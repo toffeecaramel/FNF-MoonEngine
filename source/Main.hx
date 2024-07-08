@@ -3,6 +3,7 @@ package;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 import states.*;
+import states.editors.chart.*;
 
 class Main extends Sprite
 {

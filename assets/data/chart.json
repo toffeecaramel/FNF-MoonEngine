@@ -1,25 +1,67 @@
 {
-    "bpm": 100,
-    "notes": [
-        { "direction": "left", "mustHit": false, "time": 1000},
-        { "direction": "down", "mustHit": true, "time": 1500 },
-        { "direction": "up", "mustHit": true, "time": 1500 },
-        { "direction": "up", "mustHit": true, "time": 2000 },
-        { "direction": "left", "mustHit": false, "time": 2000 },
-        { "direction": "right", "mustHit": true, "time": 2500 },
-        { "direction": "left", "mustHit": false, "time": 3000 },
-        { "direction": "down", "mustHit": false, "time": 3500 },
-        { "direction": "up", "mustHit": true, "time": 4000 },
-        { "direction": "right", "mustHit": true, "time": 4500 },
-        { "direction": "left", "mustHit": false, "time": 5000},
-        { "direction": "down", "mustHit": true, "time": 5200 },
-        { "direction": "up", "mustHit": true, "time": 5300 },
-        { "direction": "right", "mustHit": true, "time": 5500 },
-        { "direction": "left", "mustHit": false, "time": 5800 },
-        { "direction": "right", "mustHit": true, "time": 6900 },
-        { "direction": "left", "mustHit": false, "time": 9000 },
-        { "direction": "down", "mustHit": false, "time": 10000 },
-        { "direction": "up", "mustHit": true, "time": 10200 },
-        { "direction": "right", "mustHit": true, "time": 10500 }
+      "bpm": 120,
+      "notes": 
+      [
+        {
+          "direction": "left",
+          "mustHit": false,
+          "time": 1000
+        },
+        {
+          "direction": "down",
+          "mustHit": false,
+          "time": 2000
+        },
+        {
+          "direction": "up",
+          "mustHit": false,
+          "time": 3000
+        },
+        {
+          "direction": "right",
+          "mustHit": false,
+          "time": 4000
+        },
+        {
+          "direction": "left",
+          "mustHit": false,
+          "time": 4500
+        },
+        {
+          "direction": "down",
+          "mustHit": false,
+          "time": 5000
+        },
+        {
+          "direction": "up",
+          "mustHit": false,
+          "time": 5500
+        },
+        {
+          "direction": "right",
+          "mustHit": false,
+          "time": 6000
+        },
+        {
+          "direction": "left",
+          "mustHit": true,
+          "time": 6500
+        },
+        {
+          "direction": "down",
+          "mustHit": true,
+          "time": 7000
+        },
+        {
+          "direction": "up",
+          "mustHit": true,
+          "time": 7500
+        },
+        {
+          "direction": "right",
+          "mustHit": true,
+          "time": 8000
+        }
     ]
 }
+  
