@@ -42,7 +42,7 @@ class PlayState extends MusicState
         for (noteData in chart.notes)
 		{
 			var x = getNoteX(noteData.direction, noteData.mustHit);
-			var y = downscroll ? -50 : FlxG.height + 50;
+			var y = downscroll ? -50 : FlxG.height + 50; // this doesnt rlly matter honestly.
 			var note = new Note(x, y, noteData.direction, noteData.time, noteData.mustHit);
 			notes.add(note);
 		}

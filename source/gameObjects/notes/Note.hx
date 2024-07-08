@@ -10,6 +10,7 @@ class Note extends FlxSprite
     public var direction:String;
     public var time:Float;
     public var player:Bool;
+	public var hit:Bool = false;
 
     public function new(x:Float, y:Float, direction:String, time:Float, player:Bool)
     {
