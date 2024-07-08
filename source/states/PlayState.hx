@@ -11,6 +11,7 @@ import gameObjects.notes.*;
 import states.data.MusicState;
 import states.editors.chart.*;
 
+
 class PlayState extends MusicState
 {
 	private var playerStrumline:Strumline;
@@ -18,6 +19,7 @@ class PlayState extends MusicState
 
 	private var chart:Chart;
     private var notes:FlxTypedGroup<Note>;
+	private var sustains:FlxTypedGroup<SustainNote>;
 
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
@@ -38,15 +40,25 @@ class PlayState extends MusicState
 		chart = new Chart("assets/data/chart.json");
         Conductor.changeBPM(chart.bpm);
 
+		sustains = new FlxTypedGroup<SustainNote>();
 		notes = new FlxTypedGroup<Note>();
         for (noteData in chart.notes)
 		{
 			var x = getNoteX(noteData.direction, noteData.mustHit);
 			var y = downscroll ? -50 : FlxG.height + 50; // this doesnt rlly matter honestly.
-			var note = new Note(x, y, noteData.direction, noteData.time, noteData.mustHit);
-			notes.add(note);
+			if (noteData.duration != null)
+			{
+				var sustainNote = new SustainNote(x + 33, y, noteData.direction, noteData.time, noteData.duration, noteData.mustHit);
+				sustains.add(sustainNote);
+			}
+			else
+			{
+				var note = new Note(x, y, noteData.direction, noteData.time, noteData.mustHit);
+				notes.add(note);
+			}
 		}
-        add(notes);
+		add(sustains);
+		add(notes);
 
 		FlxG.sound.playMusic("assets/Inst.ogg");
 	}
@@ -84,18 +96,21 @@ class PlayState extends MusicState
 			FlxG.sound.music.stop();
 		}
 
+		var targetY = downscroll ? FlxG.height - 140 : 40;
+
 		for (note in notes.members)
 		{
-			// I think i suck at logic
-			var targetY = downscroll ? FlxG.height - 140 : 40;
-			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50
-				+ 100 : note.y = targetY - ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50; // lol im a idiot
+			// Atualizando a posição Y das notas
+			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 + 100 : targetY
+				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50;
 			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
 			}
 		}
+		for (sustainNote in sustains.members)
+			sustainNote.updateYPosition(Conductor.songPosition, Conductor.stepCrochet, targetY, downscroll);
 	}
 
 	private function playStrumlineConfirmAnimation(direction:String, mustHit:Bool):Void

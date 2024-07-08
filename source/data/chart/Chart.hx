@@ -7,6 +7,7 @@ typedef NoteData = {
     var direction:String;
     var mustHit:Bool;
     var time:Float;
+	var duration:Null<Float>;
 }
 
 typedef ChartData = {

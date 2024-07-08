@@ -1,11 +1,12 @@
 package gameObjects.notes;
 
+import data.depedency.FNFSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import states.*;
 
-class Note extends FlxSprite
+class Note extends FNFSprite
 {
     public var direction:String;
     public var time:Float;
