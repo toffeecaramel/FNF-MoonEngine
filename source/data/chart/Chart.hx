@@ -37,7 +37,7 @@ class Chart
 		`All it does is get the chart information (from SwagSong)`
 		`and change the values so they work on the Moon Engine format.`
 	**/
-	public static function convertOriginalToNew(originalSong:SwagSong):Void
+	public static function convertOriginalToNew(originalSong:SwagSong):ChartData
 	{
 		// - Make the new structure while getting values from the og chart
 		var newChart:ChartData = {
@@ -63,17 +63,9 @@ class Chart
 			}
 		}
 
-		// - Stringfy the thingies cause yes you must stringfy it lol
-		final newJson = Json.stringify(newChart, "\t");
-
-		// - The path in which it'll save the thing
-		final outputPath = 'assets/data/convertedCharts/chart.json';
-
-		// - Then save it :D
-		File.saveContent(outputPath, newJson);
-
-		// - Cool trace so you see on the console.
-		trace("Converted chart saved to " + outputPath);
+		// - Then return the chart
+		return newChart;
+		//return Json.stringify(newChart, "\t");
 	}
 
 	/**
