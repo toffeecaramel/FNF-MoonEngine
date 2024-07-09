@@ -123,6 +123,6 @@ class Strumline extends FlxTypedGroup<StrumNote>
 	{
 		super.update(a);
 		for (note in this.members)
-			note.scale.x = note.scale.y = FlxMath.lerp(note.scale.x, PlayState.noteScale, a * 14);
+			note.scale.x = note.scale.y = FlxMath.lerp(note.scale.x, PlayState.noteScale, a * 19);
 	}
 }

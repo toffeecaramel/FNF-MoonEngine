@@ -23,6 +23,7 @@ class PlayState extends MusicState
 
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
+	public static var scrollSpeed:Float;
 
 	override public function create()
 	{
@@ -31,36 +32,60 @@ class PlayState extends MusicState
 		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
 		add(bg);
 
+		try
+		{
+			chart = new Chart("assets/data/chart.json");
+			scrollSpeed = chart.scrollSpeed;
+			Conductor.changeBPM(chart.bpm);
+		}
+		catch (e:Dynamic)
+		{
+			trace("Error loading chart: " + e);
+			return;
+		}
+
 		opponentStrumline = new Strumline(false);
 		add(opponentStrumline);
 
 		playerStrumline = new Strumline(true);
 		add(playerStrumline);
 
-		chart = new Chart("assets/data/chart.json");
-        Conductor.changeBPM(chart.bpm);
-
 		sustains = new FlxTypedGroup<SustainNote>();
 		notes = new FlxTypedGroup<Note>();
-        for (noteData in chart.notes)
+		try
 		{
-			var x = getNoteX(noteData.direction, noteData.mustHit);
-			var y = downscroll ? -50 : FlxG.height + 50; // this doesnt rlly matter honestly.
-			if (noteData.duration != null)
+			for (noteData in chart.notes)
 			{
-				var sustainNote = new SustainNote(x + 33, y, noteData.direction, noteData.time, noteData.duration, noteData.mustHit);
-				sustains.add(sustainNote);
+				var x = getNoteX(noteData.direction, noteData.mustHit);
+				var y = downscroll ? -50 : FlxG.height + 50; // this doesnt rlly matter honestly.
+				if (noteData.duration != null && noteData.duration > 0)
+				{
+					var sustainNote = new SustainNote(x + 33, y, noteData.direction, noteData.time, noteData.duration, noteData.mustHit);
+					sustains.add(sustainNote);
+				}
+				else
+				{
+					var note = new Note(x, y, noteData.direction, noteData.time, noteData.mustHit);
+					notes.add(note);
+				}
 			}
-			else
-			{
-				var note = new Note(x, y, noteData.direction, noteData.time, noteData.mustHit);
-				notes.add(note);
-			}
+		}
+		catch (e:Dynamic)
+		{
+			trace("Error processing notes: " + e);
+			return;
 		}
 		add(sustains);
 		add(notes);
 
-		FlxG.sound.playMusic("assets/Inst.ogg");
+		try
+		{
+			FlxG.sound.playMusic("assets/songs/booted-up/Inst.ogg");
+		}
+		catch (e:Dynamic)
+		{
+			trace('$e on music load');
+		}
 	}
 
 	private function getNoteX(direction:String, player:Bool):Float
@@ -85,10 +110,8 @@ class PlayState extends MusicState
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.LEFT)
-			FlxG.sound.music.time -= 8000;
+		super.update(elapsed);
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
@@ -96,21 +119,24 @@ class PlayState extends MusicState
 			FlxG.sound.music.stop();
 		}
 
-		var targetY = downscroll ? FlxG.height - 140 : 40;
+		if (FlxG.keys.justPressed.NINE)
+			Chart.convertOriginalToNew('booted-up');
+
+		final targetY = downscroll ? FlxG.height - 140 : 40;
+		var sp = scrollSpeed / 1.7;
 
 		for (note in notes.members)
 		{
-			// Atualizando a posição Y das notas
-			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 + 100 : targetY
-				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50;
-			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
+			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp + 100 : targetY
+				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp;
+			if (note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
 			}
 		}
 		for (sustainNote in sustains.members)
-			sustainNote.updateYPosition(Conductor.songPosition, Conductor.stepCrochet, targetY, downscroll);
+			sustainNote.updateYPosition(Conductor.songPosition, Conductor.stepCrochet, targetY, downscroll, sp);
 	}
 
 	private function playStrumlineConfirmAnimation(direction:String, mustHit:Bool):Void

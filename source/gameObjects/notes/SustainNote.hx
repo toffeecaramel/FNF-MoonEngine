@@ -97,9 +97,10 @@ class SustainNote extends FlxGroup
 			middle.color = starthold.color;
 	}
 
-	public function updateYPosition(songPosition:Float, stepCrochet:Float, targetY:Float, downscroll:Bool):Void
+	public function updateYPosition(songPosition:Float, stepCrochet:Float, targetY:Float, downscroll:Bool, scrollSpeed:Float):Void
 	{
-		var yPos = (!downscroll) ? ((time - songPosition) / stepCrochet) * 50 + 100 : targetY - ((time - songPosition) / stepCrochet) * 50;
+		var yPos = (!downscroll) ? ((time - songPosition) / stepCrochet) * 50 * scrollSpeed + 100 : targetY
+			- ((time - songPosition) / stepCrochet) * 50 * scrollSpeed;
 		initialNote.y = yPos;
 
 		if (downscroll)
@@ -107,14 +108,14 @@ class SustainNote extends FlxGroup
 			starthold.y = yPos;
 			for (i in 0...middleholds.length)
 				middleholds[i].y = starthold.y - (i + 1) * middleholds[i].height;
-			endhold.y = middleholds[middleholds.length - 1].y - middleholds[middleholds.length - 1].height;
+			endhold.y = middleholds[middleholds.length - 1].y - middleholds[middleholds.length - 1].height + 5;
 		}
 		else
 		{
 			starthold.y = yPos + 10;
 			for (i in 0...middleholds.length)
 				middleholds[i].y = yPos + (i + 1) * middleholds[i].height;
-			endhold.y = middleholds[middleholds.length - 1].y + middleholds[middleholds.length - 1].height;
+			endhold.y = middleholds[middleholds.length - 1].y + middleholds[middleholds.length - 1].height - 5;
 		}
 	}
 }
