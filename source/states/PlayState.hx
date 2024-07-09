@@ -150,8 +150,8 @@ class PlayState extends MusicState
 		for (note in notes.members)
 		{
 			// I think i suck at logic
-			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50
-				+ 100 : note.y = targetY - ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50; // lol im a idiot
+			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp + 100 : targetY
+				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp; // lol im an idiot
 			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
@@ -160,15 +160,13 @@ class PlayState extends MusicState
 
 			if (justPressed.contains(true) && note.player)
 			{
-				if (note.y >= targetY - 10 && note.y <= targetY + 10)
-					for (i in 0...justPressed.length)
+				for (i in 0...justPressed.length)
+				{
+					if(justPressed[i])
 					{
-						if(justPressed[i])
-						{
-							note.kill();
-							playStrumlineConfirmAnimation(note.direction, note.player);
-						}
+						trace(guh);
 					}
+				}
 			}
 		}
 		for (sustainNote in sustains.members)
