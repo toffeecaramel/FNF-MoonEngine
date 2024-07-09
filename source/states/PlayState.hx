@@ -10,7 +10,7 @@ import flixel.util.FlxColor;
 import gameObjects.notes.*;
 import states.data.MusicState;
 import states.editors.chart.*;
-
+import flixel.text.FlxText;
 
 class PlayState extends MusicState
 {
@@ -24,6 +24,7 @@ class PlayState extends MusicState
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
 	public static var scrollSpeed:Float;
+	var missed:FlxText;
 
 	override public function create()
 	{
@@ -31,6 +32,12 @@ class PlayState extends MusicState
 
 		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
 		add(bg);
+
+		opponentStrumline = new Strumline(false);
+		add(opponentStrumline);
+
+		playerStrumline = new Strumline(true);
+		add(playerStrumline);
 
 		try
 		{
@@ -40,15 +47,9 @@ class PlayState extends MusicState
 		}
 		catch (e:Dynamic)
 		{
-			trace("Error loading chart: " + e);
+			trace('Error loading chart: $e');
 			return;
 		}
-
-		opponentStrumline = new Strumline(false);
-		add(opponentStrumline);
-
-		playerStrumline = new Strumline(true);
-		add(playerStrumline);
 
 		sustains = new FlxTypedGroup<SustainNote>();
 		notes = new FlxTypedGroup<Note>();
@@ -78,14 +79,12 @@ class PlayState extends MusicState
 		add(sustains);
 		add(notes);
 
-		try
-		{
-			FlxG.sound.playMusic("assets/songs/no-cigar/Inst.ogg");
-		}
-		catch (e:Dynamic)
-		{
-			trace('$e on music load');
-		}
+        missed = new FlxText(12, FlxG.height - 24, 0);
+        missed.setFormat(Paths.fonts("vcr.ttf"), 16);
+        missed.text = "Misses: " + misses;
+        add(missed);
+
+		FlxG.sound.playMusic("assets/Inst.ogg");
 	}
 
 	private function getNoteX(direction:String, player:Bool):Float
@@ -106,47 +105,65 @@ class PlayState extends MusicState
 		}
 	}
 
-	var pressed:Array<Bool> = [];
+	var pressed:Array<Bool> 	= [];
 	var justPressed:Array<Bool> = [];
-	var released:Array<Bool> = [];
+	var released:Array<Bool> 	= [];
+	var misses:Int = 0;
 
 	override public function update(elapsed:Float)
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-
 		super.update(elapsed);
-		pressed = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
-		justPressed = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
-		released = [controls.LEFT_R, controls.DOWN_R, controls.UP_R, controls.RIGHT_R];
+
+		//if (FlxG.keys.justPressed.LEFT)
+			//FlxG.sound.music.time -= 8000;
+
+		missed.text = "Misses: " + misses;
+		pressed = [
+			controls.LEFT_P,
+			controls.DOWN_P,
+			controls.UP_P,
+			controls.RIGHT_P,
+		];
+		justPressed = [
+			controls.LEFT,
+			controls.DOWN,
+			controls.UP,
+			controls.RIGHT,
+		];
+		released = [
+			controls.LEFT_R,
+			controls.DOWN_R,
+			controls.UP_R,
+			controls.RIGHT_R,
+		];
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			FlxG.switchState(new ChartEditor());
 			FlxG.sound.music.stop();
 		}
-
-		if (FlxG.keys.justPressed.NINE)
-			Chart.convertOriginalToNew('no-cigar');
-
+		
 		final targetY = downscroll ? FlxG.height - 140 : 40;
 		var sp = scrollSpeed / 1.7;
-
 		for (note in notes.members)
 		{
-			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp + 100 : targetY
-				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp;
-			if (note.y >= targetY - 10 && note.y <= targetY + 10)
+			// I think i suck at logic
+			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50
+				+ 100 : note.y = targetY - ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50; // lol im a idiot
+			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
 			}
+
 			if (justPressed.contains(true) && note.player)
 			{
 				if (note.y >= targetY - 10 && note.y <= targetY + 10)
 					for (i in 0...justPressed.length)
 					{
-						if (justPressed[i])
+						if(justPressed[i])
 						{
 							note.kill();
 							playStrumlineConfirmAnimation(note.direction, note.player);

@@ -37,10 +37,8 @@ class Chart
 		`All it does is get the chart information (from SwagSong)`
 		`and change the values so they work on the Moon Engine format.`
 	**/
-	public static function convertOriginalToNew(jsonPath:String):Void
+	public static function convertOriginalToNew(originalSong:SwagSong):Void
 	{
-		// - Get the original chart json
-		var originalSong = loadBaseFromJson(jsonPath);
 		// - Make the new structure while getting values from the og chart
 		var newChart:ChartData = {
 			scrollSpeed: originalSong.speed,
@@ -108,7 +106,7 @@ class Chart
 	**/
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
-		var rawJson = File.getContent('assets/data/baseToConvert/$jsonInput.json').trim();
+		var rawJson = File.getContent('$jsonInput').trim();
 
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
