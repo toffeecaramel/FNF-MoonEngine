@@ -80,7 +80,7 @@ class PlayState extends MusicState
 
 		try
 		{
-			FlxG.sound.playMusic("assets/songs/booted-up/Inst.ogg");
+			FlxG.sound.playMusic("assets/songs/no-cigar/Inst.ogg");
 		}
 		catch (e:Dynamic)
 		{
@@ -106,12 +106,19 @@ class PlayState extends MusicState
 		}
 	}
 
+	var pressed:Array<Bool> = [];
+	var justPressed:Array<Bool> = [];
+	var released:Array<Bool> = [];
+
 	override public function update(elapsed:Float)
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
 		super.update(elapsed);
+		pressed = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
+		justPressed = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
+		released = [controls.LEFT_R, controls.DOWN_R, controls.UP_R, controls.RIGHT_R];
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
@@ -120,7 +127,7 @@ class PlayState extends MusicState
 		}
 
 		if (FlxG.keys.justPressed.NINE)
-			Chart.convertOriginalToNew('booted-up');
+			Chart.convertOriginalToNew('no-cigar');
 
 		final targetY = downscroll ? FlxG.height - 140 : 40;
 		var sp = scrollSpeed / 1.7;
@@ -133,6 +140,18 @@ class PlayState extends MusicState
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
+			}
+			if (justPressed.contains(true) && note.player)
+			{
+				if (note.y >= targetY - 10 && note.y <= targetY + 10)
+					for (i in 0...justPressed.length)
+					{
+						if (justPressed[i])
+						{
+							note.kill();
+							playStrumlineConfirmAnimation(note.direction, note.player);
+						}
+					}
 			}
 		}
 		for (sustainNote in sustains.members)

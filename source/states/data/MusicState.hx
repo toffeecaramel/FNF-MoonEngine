@@ -20,6 +20,8 @@ class MusicState extends FlxState
 	public var curStep:Int = 0;
 	public var curBeat:Int = 0;
 
+	private var controls(get, never):Controls;
+
 	// class create event
 	override function create()
 	{
@@ -79,6 +81,9 @@ class MusicState extends FlxState
 	{
 		curBeat = Math.floor(curStep / 4);
 	}
+
+	inline function get_controls():Controls
+		return PlayerSettings.player1.controls;
 
 	public function updateCurStep():Void
 	{
