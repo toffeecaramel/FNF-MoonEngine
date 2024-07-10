@@ -8,8 +8,10 @@ import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import gameObjects.notes.*;
+import gameObjects.*;
 import states.data.MusicState;
 import states.editors.chart.*;
+import states.editors.*;
 import flixel.text.FlxText;
 
 class PlayState extends MusicState
@@ -30,8 +32,8 @@ class PlayState extends MusicState
 	{
 		super.create();
 
-		var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
-		add(bg);
+		var stage = new Stage();
+		add(stage);
 
 		opponentStrumline = new Strumline(false);
 		add(opponentStrumline);
@@ -144,6 +146,11 @@ class PlayState extends MusicState
 			FlxG.switchState(new ChartEditor());
 			FlxG.sound.music.stop();
 		}
+		if(FlxG.keys.justPressed.NINE)
+		{
+			FlxG.switchState(new ChartConverterState());
+			FlxG.sound.music.stop();
+		}
 		
 		final targetY = downscroll ? FlxG.height - 140 : 40;
 		var sp = scrollSpeed / 1.7;
@@ -152,7 +159,7 @@ class PlayState extends MusicState
 			// I think i suck at logic
 			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp + 100 : targetY
 				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp; // lol im an idiot
-			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
+			if (note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
@@ -164,7 +171,7 @@ class PlayState extends MusicState
 				{
 					if(justPressed[i])
 					{
-						trace(guh);
+						//trace('guh');
 					}
 				}
 			}

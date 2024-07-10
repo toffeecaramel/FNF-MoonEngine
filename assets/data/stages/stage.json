@@ -1,0 +1,22 @@
+{
+    "images": [
+        {
+            "path": "stage/stageback",
+            "x": 0,
+            "y": 0,
+            "antialiasing": true,
+            "scale": 0.6,
+            "parallaxx": 1,
+            "parallaxy": 1
+        },
+        {
+            "path": "stage/stagecurtains",
+            "x": 0,
+            "y": 0,
+            "antialiasing": true,
+            "scale": 0.6,
+            "parallaxx": 1,
+            "parallaxy": 1
+        }
+    ]
+}
