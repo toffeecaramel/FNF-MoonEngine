@@ -15,27 +15,20 @@ using StringTools;
 typedef CharacterData = {
     var isPlayer:Bool;
     var flipX:Bool;
-    var offsetX:Float;
-    var offsetY:Float;
-    var camOffsetX:Float;
-    var camOffsetY:Float;
+    var objectOffsets:Array<Float>;
+    var camOffsets:Array<Float>;
     var quickDancer:Bool;
     var healthbarColors:Array<Int>;
     var animations:Array<AnimationData>;
-    var offsets:Array<OffsetData>;
 }
 
 typedef AnimationData = {
     var name:String;
     var prefix:String;
-    var fps:Int;
-    var looped:Bool;
-}
-
-typedef OffsetData = {
-    var animation:String;
     var x:Float;
     var y:Float;
+    var fps:Int;
+    var looped:Bool;
 }
 
 class Character extends FNFSprite {
@@ -67,10 +60,10 @@ class Character extends FNFSprite {
         flipX = characterData.flipX;
 
         for (anim in characterData.animations)
+        {
             animation.addByPrefix(anim.name, anim.prefix, anim.fps, anim.looped);
-
-        for (offset in characterData.offsets)
-            addOffset(offset.animation, offset.x, offset.y);
+            addOffset(anim.name, anim.x, anim.y);
+        }
 
         playAnim('idle');
 
@@ -83,8 +76,8 @@ class Character extends FNFSprite {
             flipLeftRight();
 
         if (adjustPos) {
-            x += characterData.offsetX;
-            y += (characterData.offsetY - (frameHeight * scale.y));
+            x += characterData.objectOffsets[0];
+            y += (characterData.objectOffsets[1] - (frameHeight * scale.y));
         }
 
         this.x = x;

@@ -34,6 +34,9 @@ class Paths
         return returnAsset;
     }
 
+    inline static public function sound(key:String)
+        return 'assets/sounds/$key.ogg';
+
     inline static public function fonts(key:String)
         return 'assets/fonts/$key';
 
