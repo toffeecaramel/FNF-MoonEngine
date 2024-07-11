@@ -37,6 +37,9 @@ class Paths
     inline static public function fonts(key:String)
         return 'assets/fonts/$key';
 
+    inline static public function character(key:String)
+        return 'assets/data/characters/${key}';
+
     inline static public function getSparrowAtlas(key:String, ?library:String)
     {
         var graphic:FlxGraphic = returnGraphic(key, library);

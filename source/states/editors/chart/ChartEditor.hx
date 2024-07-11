@@ -67,6 +67,8 @@ class ChartEditor extends MusicState
 	{
 		super.create();
 
+		makeBG();
+
 		songMusic = new FlxSound().loadEmbedded("assets/Inst.ogg", false, true);
 		FlxG.sound.list.add(songMusic);
 		songMusic.play();
@@ -74,11 +76,24 @@ class ChartEditor extends MusicState
 		strumLineCam = new FlxObject(0, 0);
 		strumLineCam.screenCenter(X);
 
-		strumline = new FlxSprite(0, 0).makeGraphic(Std.int(400), 4);
+		strumline = new FlxSprite(0, 0).loadGraphic(Paths.image('editors/charter/strumline'));
 		add(strumline);
-		strumline.screenCenter(X);
+		strumline.screenCenter();
+
+		var bar = new FlxSprite().makeGraphic(FlxG.width, 60, FlxColor.fromRGB(152, 170, 255));
+		bar.scrollFactor.set();
+		bar.alpha = 0.3;
+		add(bar);
 
 		FlxG.camera.follow(strumLineCam);
+	}
+
+	private function makeBG():Void
+	{
+		var coolGradient = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height,
+			FlxColor.gradient(FlxColor.fromRGB(75, 60, 83), FlxColor.fromRGB(61, 44, 71), 16));
+		coolGradient.scrollFactor.set();
+		add(coolGradient);
 	}
 
 	override public function update(elapsed:Float)
@@ -98,6 +113,7 @@ class ChartEditor extends MusicState
 		}
 
 		Conductor.songPosition = songMusic.time;
+		strumline.x = (FlxG.width - strumline.width) - 140;
 		strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 18);
 		strumLineCam.y = strumline.y + (FlxG.height / 2.6);
 	}

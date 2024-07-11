@@ -14,6 +14,8 @@ import states.editors.chart.*;
 import states.editors.*;
 import flixel.text.FlxText;
 
+using StringTools;
+
 class PlayState extends MusicState
 {
 	private var playerStrumline:Strumline;
@@ -22,6 +24,8 @@ class PlayState extends MusicState
 	private var chart:Chart;
     private var notes:FlxTypedGroup<Note>;
 	private var sustains:FlxTypedGroup<SustainNote>;
+
+	public var opp:Character;
 
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
@@ -34,6 +38,11 @@ class PlayState extends MusicState
 
 		var stage = new Stage();
 		add(stage);
+
+		opp = new Character();
+		opp.setCharacter(0, 0, 'dad');
+		opp.screenCenter();
+		add(opp);
 
 		opponentStrumline = new Strumline(false);
 		add(opponentStrumline);
@@ -159,11 +168,14 @@ class PlayState extends MusicState
 			// I think i suck at logic
 			note.y = (!downscroll) ? ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp + 100 : targetY
 				- ((note.time - Conductor.songPosition) / Conductor.stepCrochet) * 50 * sp; // lol im an idiot
-			if (note.y >= targetY - 10 && note.y <= targetY + 10)
+			if (!note.player && note.y >= targetY - 10 && note.y <= targetY + 10)
 			{
 				note.kill(); // Remove the note
 				playStrumlineConfirmAnimation(note.direction, note.player);
+				opp.playAnim('sing' + note.direction.toUpperCase());
 			}
+			for (sustainNote in sustains.members)
+				sustainNote.updateYPosition(Conductor.songPosition, Conductor.stepCrochet, targetY, downscroll, sp);
 
 			if (justPressed.contains(true) && note.player)
 			{
@@ -176,8 +188,6 @@ class PlayState extends MusicState
 				}
 			}
 		}
-		for (sustainNote in sustains.members)
-			sustainNote.updateYPosition(Conductor.songPosition, Conductor.stepCrochet, targetY, downscroll, sp);
 	}
 
 	private function playStrumlineConfirmAnimation(direction:String, mustHit:Bool):Void
@@ -191,5 +201,8 @@ class PlayState extends MusicState
 	override function beatHit()
 	{
 		super.beatHit();
+		if ((opp.animation.curAnim.name.startsWith("idle") || opp.animation.curAnim.name.startsWith("dance"))
+			&& (curBeat % 2 == 0 || opp.characterData.quickDancer))
+			opp.dance();
 	}
 }
