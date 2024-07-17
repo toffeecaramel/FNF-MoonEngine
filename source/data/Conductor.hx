@@ -2,6 +2,13 @@ package data;
 
 // import meta.data.Song.SwagSong;
 
+/**
+	This is just the base game's conductor, because I'm still a little dumb
+	and dont know how to code a BPM System properly!
+
+	Code from forever engine
+**/
+
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;

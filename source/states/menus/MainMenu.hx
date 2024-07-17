@@ -20,6 +20,8 @@ import states.data.MusicState;
 import states.editors.chart.*;
 import states.editors.*;
 import openfl.display.BlendMode;
+import sys.FileSystem;
+import sys.io.File;
 
 using StringTools;
 
@@ -27,13 +29,14 @@ class MainMenu extends MusicState
 {
     private var options:Array<String> = 
     [
-        'story mode', 'freeplay', 'achievements', 
-        'mods', 'credits', 'options', 'music player', 
+        'story mode', 'freeplay', 'mods', 
+        'profile', 'credits', 'options',
         'exit'
     ];
     private var optionsTxt:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
 
+    private var display:FlxSprite;
     private var info:FlxText;
 
     override public function create():Void
@@ -52,6 +55,9 @@ class MainMenu extends MusicState
         bg.alpha = 0.3;
         add(bg);
 
+        display = new FlxSprite();
+        add(display);
+
         info = new FlxText(0,0,0,'FNF Moon Engine v.${Main.gameVersion}');
         info.setFormat(Paths.fonts('vcr.ttf'), 32, RIGHT);
         info.antialiasing = false;
@@ -59,18 +65,18 @@ class MainMenu extends MusicState
         info.y = FlxG.height - info.height;
         add(info);
 
-        var itemsBox = new FlxSprite().makeGraphic(Std.int(FlxG.width / 2.6), FlxG.height, FlxColor.BLACK);
+        var itemsBox = new FlxSprite().makeGraphic(Std.int(FlxG.width / 2.6) - 50, FlxG.height, FlxColor.BLACK);
         itemsBox.alpha = 0.4;
         add(itemsBox);
 
         optionsTxt = new FlxTypedGroup<FlxText>();
         for (i in 0...options.length)
         {
-            final spacing = 32;
+            final spacing = 36;
             final totalHeight = options.length * (48 + spacing) - spacing;
             final startY = (FlxG.height - totalHeight) / 2;
 
-            var item = new FlxText(-300, startY + i * (48 + spacing), 0, options[i]);
+            var item = new FlxText(-400, startY + i * (48 + spacing), 0, options[i]);
             item.setFormat(Paths.fonts('phantomuff/empty.ttf'), 50, LEFT);
             item.ID = i;
             item.antialiasing = true;
@@ -78,38 +84,27 @@ class MainMenu extends MusicState
         }
         add(optionsTxt);
 
+        FlxG.sound.playMusic('assets/music/interfaces/givealilbitback2.ogg', 0.8);
+        Conductor.changeBPM(121);
+
         changeSelection(0);
+        loadTexts();
         callRandomTexts();
     }
 
-    // For now it will be an array but I promise that I'll add
-    // support for it to be read from a txt file so its easy+
-    // to modify! (just like the intro texts in the base game)
-    private var txtArr:Array<String> = [
-        'Soundgoodizer.',
-        'Fuck that psych engine shit', //nothing personal shadow mario, your engine rocks <3
-        "Fuck that fps+ Engine Shit", //same for you rozebud
-        'Soup engine is amazing',
-        'also try forever engine',
-        'Cracking at it?',
-        'bro downloaded it yo',
-        'Sup',
-        "wheres my funkin at a friday night",
-        "Funkin' in a Friday Night",
-        'ooiia iouiiaio',
-        'OW MY HAND',
-        'Freeplay mode is better',
-        'saquei',
-        'trolha',
-        'Esse jogo é de graça?',
-        "Mad Virus Attack (that's right)",
-        'fkodgoirejigojrpoEW',
-        'Ah shit, here we go again',
-        'FNF Vs Brawlhalla when?',
-        "Funkin' Robo Blast is coming when?",
-        "Manyato Funkin' is coming when?",
-        "FNF on Steam when?"
-    ];
+    private var txtArr:Array<String>;
+    private function loadTexts():Void
+    {
+        var filePath:String = 'assets/data/menuTexts.txt';
+        if (FileSystem.exists(filePath))
+        {
+            var fileContent:String = File.getContent(filePath);
+            txtArr = fileContent.split("\n").map(function(line:String):String {
+                return line.trim();
+            });
+        }
+        else txtArr = ['No Texts found :('];
+    }
 
     private function callRandomTexts():Void
     {
@@ -132,10 +127,16 @@ class MainMenu extends MusicState
 		final accepted = controls.ACCEPT;
         final opt = options[curSelected];
 
+        if(FlxG.sound.music != null)
+            Conductor.songPosition = FlxG.sound.music.time;
+
         super.update(elapsed);
         for(txt in optionsTxt.members) if (!selected) txt.x = FlxMath.lerp(txt.x, 25, elapsed * 11);
-        if (up) changeSelection(-1);
-        if (down) changeSelection(1);
+        display.y = FlxMath.lerp(display.y, 0, elapsed * 12);
+        display.scale.x = display.scale.y = FlxMath.lerp(display.scale.x, 1, elapsed * 16);
+
+        if (up && !selected) changeSelection(-1);
+        if (down && !selected) changeSelection(1);
         
         if(accepted && !selected)
         {
@@ -143,13 +144,14 @@ class MainMenu extends MusicState
             FlxG.sound.play(Paths.sound('interfaces/confirm'), 0.8);
             for (txt in optionsTxt.members)
             {
-                if (txt.ID != curSelected) FlxTween.tween(txt, {x: -200, alpha: 0}, 1, {ease:FlxEase.circOut});
-                else FlxFlicker.flicker(txt, 0.5, 0.04, true, true, function(f:FlxFlicker)
+                if (txt.ID != curSelected) FlxTween.tween(txt, {x: -350, alpha: 0}, 1, {ease:FlxEase.circOut});
+                else FlxFlicker.flicker(txt, 1, 0.05, true, true, function(f:FlxFlicker)
                 {
                     switch(opt)
                     {
-                        case "exit":
-                            Sys.exit(1);
+                        case "freeplay": FlxG.switchState(new Freeplay());
+                        case "profile": FlxG.switchState(new Profile());
+                        case "exit": Sys.exit(1);
                     }
                 });
             }
@@ -160,6 +162,9 @@ class MainMenu extends MusicState
     {
         curSelected = FlxMath.wrap(curSelected + change, 0, options.length - 1);
         FlxG.sound.play(Paths.sound('interfaces/scroll'), 0.8);
+        display.loadGraphic(Paths.image('menus/main/icons/${options[curSelected]}'));
+        display.x = FlxG.width - display.width;
+        display.y += 5;
         for(txt in optionsTxt.members)
         {
             if(curSelected == txt.ID)
@@ -176,5 +181,11 @@ class MainMenu extends MusicState
                 txt.color = FlxColor.WHITE;
             }
         }
+    }
+
+    override function beatHit()
+    {
+        super.beatHit();
+        display.scale.set(1.04, 1.04);
     }
 }

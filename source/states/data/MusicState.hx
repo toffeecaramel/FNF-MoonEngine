@@ -6,12 +6,13 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
 import states.*;
 import states.data.*;
 
-class MusicState extends FlxState
+class MusicState extends FlxUIState
 {
 	// original variables extended from original game source
 	private var lastBeat:Float = 0;
@@ -26,6 +27,9 @@ class MusicState extends FlxState
 	override function create()
 	{
 		super.create();
+
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
 
 		// For debugging
 		FlxG.watch.add(Conductor, "songPosition");

@@ -10,6 +10,8 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 /**
 	Global FNF sprite utilities, all in one parent class!
 	You'll be able to easily edit functions and such that are used by sprites
+
+	Code originally from Forever Engine.
 **/
 class FNFSprite extends FlxSprite
 {

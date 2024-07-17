@@ -5,6 +5,10 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import haxe.Json;
 
+/**
+    WIP
+**/
+
 typedef StageStructure = {
     var images:Array<StageData>;
 }

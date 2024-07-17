@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
+import shaders.RGBPallete.RGBShaderReference;
+import shaders.RGBPallete;
 import states.*;
 
 class SustainNote extends FlxGroup
@@ -18,6 +20,10 @@ class SustainNote extends FlxGroup
 	public var time:Float;
 	public var duration:Float;
 	public var player:Bool;
+
+	//shader color stuff (from psych engine)
+	public static var rgbShader:RGBShaderReference;
+	public static var globalRgbShaders:Array<RGBPalette> = [];
 
 	public function new(x:Float, y:Float, direction:String, time:Float, duration:Float, player:Bool)
 	{
@@ -33,7 +39,7 @@ class SustainNote extends FlxGroup
 		initialNote.scale.set(PlayState.noteScale, PlayState.noteScale);
 		initialNote.updateHitbox();
 
-		starthold = new FlxSprite(x, y + 10);
+		starthold = new FlxSprite(x, y + 100);
 		starthold.loadGraphic(Paths.image('UI/notes/default/holdS'));
 		starthold.antialiasing = true;
 		starthold.scale.set(PlayState.noteScale, PlayState.noteScale);
@@ -41,7 +47,7 @@ class SustainNote extends FlxGroup
 		starthold.updateHitbox();
 		add(starthold);
 
-		var middleHeight:Float = 43; // Altura do sprite do meio
+		var middleHeight:Float = 43;
 		var middleCount:Int = Math.ceil(calculateMiddleHeight(duration) / middleHeight);
 
 		middleholds = [];
@@ -66,35 +72,22 @@ class SustainNote extends FlxGroup
 
 		add(initialNote);
 
-		setDirection(direction);
+		var owo = [initialNote, starthold, endhold];
+		for (middle in middleholds)
+			owo.push(middle);
+
+		for (thing in owo)
+			rgbShader = new RGBShaderReference(thing, initializeGlobalRGBShader(CoolUtil.directionToNumber(direction)));
+        defaultRGB();
+				
+		initialNote.angle = directions[CoolUtil.directionToNumber(direction)];
 	}
+
+	public static var directions:Array<Float> = [-90, 180, 0, 90];
 
 	private function calculateMiddleHeight(duration:Float):Float
 	{
 		return (duration / Conductor.stepCrochet) * 50;
-	}
-
-	private function setDirection(direction:String):Void
-	{
-		switch (direction)
-		{
-			case "left":
-				initialNote.angle = -90;
-				initialNote.color = FlxColor.fromRGB(194, 75, 153);
-			case "down":
-				initialNote.angle = 180;
-				initialNote.color = FlxColor.fromRGB(0, 255, 255);
-			case "up":
-				initialNote.angle = 0;
-				initialNote.color = FlxColor.fromRGB(18, 250, 5);
-			case "right":
-				initialNote.angle = 90;
-				initialNote.color = FlxColor.fromRGB(249, 57, 63);
-		}
-		endhold.color = starthold.color = initialNote.color;
-
-		for (middle in middleholds)
-			middle.color = starthold.color;
 	}
 
 	public function updateYPosition(songPosition:Float, stepCrochet:Float, targetY:Float, downscroll:Bool, scrollSpeed:Float):Void
@@ -112,10 +105,42 @@ class SustainNote extends FlxGroup
 		}
 		else
 		{
-			starthold.y = yPos + 10;
+			starthold.y = yPos;
 			for (i in 0...middleholds.length)
 				middleholds[i].y = yPos + (i + 1) * middleholds[i].height;
 			endhold.y = middleholds[middleholds.length - 1].y + middleholds[middleholds.length - 1].height - 5;
+		}
+	}
+
+	//ugh...
+	public static function initializeGlobalRGBShader(noteData:Int)
+	{
+		if(globalRgbShaders[noteData] == null)
+		{
+			var newRGB:RGBPalette = new RGBPalette();
+			globalRgbShaders[noteData] = newRGB;
+
+			var arr:Array<FlxColor> = Note.arrowRGB[noteData];
+			if (noteData > -1 && noteData <= arr.length)
+			{
+				newRGB.r = arr[0];
+				newRGB.g = arr[1];
+				newRGB.b = arr[2];
+			}
+		}
+		return globalRgbShaders[noteData];
+	}
+
+	public function defaultRGB()
+	{
+		var noteData = CoolUtil.directionToNumber(direction);
+		var arr:Array<FlxColor> = Note.arrowRGB[noteData];
+
+		if (noteData > -1 && noteData <= arr.length)
+		{
+			rgbShader.r = arr[0];
+			rgbShader.g = arr[1];
+			rgbShader.b = arr[2];
 		}
 	}
 }

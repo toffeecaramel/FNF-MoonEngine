@@ -12,6 +12,10 @@ import sys.io.File;
 
 using StringTools;
 
+/**
+    Character class, heavily based on forever engine's
+**/
+
 typedef CharacterData = {
     var isPlayer:Bool;
     var flipX:Bool;

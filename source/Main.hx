@@ -39,7 +39,7 @@ class Main extends Sprite
 	public static var framerate:Int = 60; // How many frames per second the game should run at.
 	public static var mainClassState:Class<FlxState> = Init; // Determine the main class state of the game
 	
-	public static var initState:Class<FlxState> = states.menus.MainMenu;
+	public static var initState:Class<FlxState> = states.PreloadState;
 
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.

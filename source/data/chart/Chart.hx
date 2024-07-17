@@ -5,6 +5,17 @@ import sys.io.File;
 
 using StringTools;
 
+/**
+	Here is the class that contains all of the chart's information
+	mainly being notes, it's time, direction, sustain length and more!
+	there's still things missing for now but I'll add more in the future.
+
+	This class also contains functions to convert charts, which was made for
+	porting charts. I will add support for porting moon engine charts to other
+	formats soon!
+**/
+
+//typedef for the note data
 typedef NoteData = {
     var direction:String;
     var mustHit:Bool;
@@ -12,6 +23,7 @@ typedef NoteData = {
 	var duration:Null<Float>;
 }
 
+//and typedef for the whole chart data
 typedef ChartData = {
     var bpm:Float;
 	var scrollSpeed:Float;
@@ -26,12 +38,18 @@ class Chart
 
     public function new(jsonPath:String)
     {
+		//get the file content
         var jsonString = File.getContent(jsonPath);
+
+		//parse to a variable
         var chartData:ChartData = Json.parse(jsonString);
+
+		//and set it's values on the class variables
         this.bpm = chartData.bpm;
 		this.scrollSpeed = chartData.scrollSpeed;
         this.notes = chartData.notes;
     }
+
 	/**
 		*Convert FNF (Legacy) Charts to Moon Engine charts*
 		`All it does is get the chart information (from SwagSong)`
@@ -53,7 +71,7 @@ class Chart
 			{
 				// - Set the notes direction, Must Hit, the time, and duration of sustains
 				var noteData:NoteData = {
-					direction: convertDirection(note[1]),
+					direction: CoolUtil.numberToDirection(note[1]),
 					mustHit: if (note[1] > 3) !section.mustHitSection else section.mustHitSection,
 					time: note[0],
 					duration: if (note.length > 2) note[2] else null
@@ -69,33 +87,10 @@ class Chart
 	}
 
 	/**
-		*Convert directions from the base game format.*
-		`Basically, the format the moon engine uses is:`
-		`direction: directionString (like left, right etc.)`
-		`and the base game uses numbers to determine directions`
-		`and here we adapt the system to work as strings instead of numbers!`
-	**/
-	private static function convertDirection(direction:Int):String
-	{
-		switch (direction)
-		{
-			case 0 | 4:
-				return "left";
-			case 1 | 5:
-				return "down";
-			case 2 | 6:
-				return "up";
-			case 3 | 7:
-				return "right";
-			default:
-				return "unknown";
-		}
-	}
-
-	/**
 		*Just load the base game JSON*
 		`this literally just loads base game json (code from Forever Engine)`
 	**/
+	
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
 		var rawJson = File.getContent('$jsonInput').trim();

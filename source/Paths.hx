@@ -10,6 +10,7 @@ import openfl.media.Sound;
 import openfl.system.System;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
+import openfl.display3D.textures.RectangleTexture;
 import sys.FileSystem; // man the fucking vsc console wont shut up abt this
 import sys.io.File;
 
@@ -28,11 +29,29 @@ class Paths
         return getPath(file, type, library);
     }
 
-    inline static public function image(key:String, ?library:String, ?textureCompression:Bool = false)
+    static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
     {
-        var returnAsset:FlxGraphic = returnGraphic(key, library, textureCompression);
-        return returnAsset;
+        var bitmap:BitmapData = null;
+        var file:String = getPath('images/$key.png', IMAGE, library);
+
+        if (currentTrackedAssets.exists(file)) {
+            localTrackedAssets.push(file);
+            return currentTrackedAssets.get(file);
+        } else if (OpenFlAssets.exists(file, IMAGE)) {
+            bitmap = OpenFlAssets.getBitmapData(file);
+        }
+
+        if (bitmap != null) {
+            var retVal = cacheBitmap(file, bitmap, allowGPU);
+            if(retVal != null) return retVal;
+        }
+
+        trace('oh no its returning null NOOOO ($file)');
+        return null;
     }
+
+    inline static public function imagePath(key:String)
+        return 'assets/images/$key.png';
 
     inline static public function sound(key:String)
         return 'assets/sounds/$key.ogg';
@@ -47,6 +66,34 @@ class Paths
     {
         var graphic:FlxGraphic = returnGraphic(key, library);
         return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('images/$key.xml', library))));
+    }
+
+    static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true) 
+    {
+        if(bitmap == null) {
+            if (OpenFlAssets.exists(file, IMAGE)) {
+                bitmap = OpenFlAssets.getBitmapData(file);
+            }
+
+            if(bitmap == null) return null;
+        }
+
+        localTrackedAssets.push(file);
+        if (allowGPU) {
+            var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
+            texture.uploadFromBitmapData(bitmap);
+            bitmap.image.data = null;
+            bitmap.dispose();
+            bitmap.disposeImage();
+            bitmap = BitmapData.fromTexture(texture);
+        }
+
+        var newGraphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, file);
+        newGraphic.persist = true;
+        newGraphic.destroyOnNoUse = false;
+        currentTrackedAssets.set(file, newGraphic);
+
+        return newGraphic;
     }
 
     public static function returnGraphic(key:String, ?library:String, ?textureCompression:Bool = false)

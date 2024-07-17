@@ -5,6 +5,10 @@ import flixel.FlxG;
 import flixel.util.FlxSignal;
 import Controls;
 
+/**
+	Player Controls
+**/
+
 class PlayerSettings
 {
 	static public var numPlayers(default, null) = 0;

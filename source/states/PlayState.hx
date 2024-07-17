@@ -183,7 +183,7 @@ class PlayState extends MusicState
 				{
 					if(justPressed[i])
 					{
-						//trace('guh');
+						//trace)()
 					}
 				}
 			}

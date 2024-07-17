@@ -4,14 +4,30 @@ import data.depedency.FNFSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
+import shaders.RGBPallete.RGBShaderReference;
+import shaders.RGBPallete;
 import states.*;
+
+/**
+    Ah yes, the note class, my beloved
+
+    this is just the note class... nothing surprising
+    here yet!
+
+    but in the future, there will be notetypes 👀👀👀👀👀
+**/
 
 class Note extends FNFSprite
 {
+    public var missed:Bool = false;
     public var direction:String;
     public var time:Float;
     public var player:Bool;
 	public var hit:Bool = false;
+
+    //shader color stuff (from psych engine)
+    public static var rgbShader:RGBShaderReference;
+	public static var globalRgbShaders:Array<RGBPalette> = [];
 
     public function new(x:Float, y:Float, direction:String, time:Float, player:Bool)
     {
@@ -25,17 +41,48 @@ class Note extends FNFSprite
         scale.set(PlayState.noteScale, PlayState.noteScale);
         updateHitbox();
 
-        setDirection(direction);
+        rgbShader = new RGBShaderReference(this, initializeGlobalRGBShader(CoolUtil.directionToNumber(direction)));
+        defaultRGB();
+        angle = directions[CoolUtil.directionToNumber(direction)];
     }
 
-    private function setDirection(direction:String):Void
+    public static var directions:Array<Float> = [-90, 180, 0, 90];
+
+    public static var arrowRGB:Array<Array<FlxColor>> = [
+		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+		[0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+		[0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+		[0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+    ];
+
+    public static function initializeGlobalRGBShader(noteData:Int)
     {
-        switch(direction)
+        if(globalRgbShaders[noteData] == null)
         {
-            case "left": angle = -90; color = FlxColor.fromRGB(194, 75, 153);
-            case "down": angle = 180; color = FlxColor.fromRGB(0, 255, 255);
-            case "up": angle = 0; color = FlxColor.fromRGB(18, 250, 5);
-            case "right": angle = 90; color = FlxColor.fromRGB(249, 57, 63);
+            var newRGB:RGBPalette = new RGBPalette();
+            globalRgbShaders[noteData] = newRGB;
+
+            var arr:Array<FlxColor> = arrowRGB[noteData];
+            if (noteData > -1 && noteData <= arr.length)
+            {
+                newRGB.r = arr[0];
+                newRGB.g = arr[1];
+                newRGB.b = arr[2];
+            }
+        }
+        return globalRgbShaders[noteData];
+    }
+
+    public function defaultRGB()
+    {
+        var noteData = CoolUtil.directionToNumber(direction);
+        var arr:Array<FlxColor> = arrowRGB[noteData];
+
+        if (noteData > -1 && noteData <= arr.length)
+        {
+            rgbShader.r = arr[0];
+            rgbShader.g = arr[1];
+            rgbShader.b = arr[2];
         }
     }
 }

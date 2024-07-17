@@ -57,6 +57,8 @@ import sys.thread.Thread;
 
 class ChartEditor extends MusicState
 {
+	final gridSize:Int = 48;
+	private var grid:FlxSprite;
 	private var songMusic:FlxSound;
 
 	var strumline:FlxSprite;
@@ -71,7 +73,7 @@ class ChartEditor extends MusicState
 
 		songMusic = new FlxSound().loadEmbedded("assets/Inst.ogg", false, true);
 		FlxG.sound.list.add(songMusic);
-		songMusic.play();
+
 
 		strumLineCam = new FlxObject(0, 0);
 		strumLineCam.screenCenter(X);

@@ -42,7 +42,8 @@
 	<haxelib name="flixel-ui" />
 	<haxelib name="discord_rpc" if="cpp" />
 	<haxelib name="hxcpp-debug-server" if="debug" />
-
+	<haxelib name="hxgamejolt-api" />
+	<haxelib name="hscript" />
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<!--Remove the legacy health system-->
