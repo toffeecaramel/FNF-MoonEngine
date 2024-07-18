@@ -1,21 +1,12 @@
-// Define variables
-var counter:Int = 0;
-var message:String = "Hello from script";
-
-// Define functions
-function onCreate():Void {
-    state.missed.text = "Misses: 0 (Script onCreate)";
-    trace("onCreate function executed");
+function create()
+{
+    trace('wow, I just got here');
+    var duh = new FlxSprite().makeGraphic(FlxG.width, FlxG.height);
+    add(duh);
 }
 
-function onUpdate():Void {
-    counter++;
-    if (counter % 60 == 0) {
-        trace("onUpdate function executed: " + message);
-    }
-}
-
-function onBeatHit():Void {
-    state.missed.text = "Misses: " + counter;
-    trace("onBeatHit function executed");
+function beatHit()
+{
+    var d = FlxG.random.int(0, 20);
+    trace('beatii' + d);
 }

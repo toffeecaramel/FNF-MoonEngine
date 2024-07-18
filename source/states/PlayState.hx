@@ -30,11 +30,18 @@ class PlayState extends MusicState
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
 	public static var scrollSpeed:Float;
+
 	var missed:FlxText;
+
+	private var scriptHandler:ScriptHandler;
 
 	override public function create()
 	{
 		super.create();
+
+		scriptHandler = new ScriptHandler();
+		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
+        scriptHandler.set("game", this);
 
 		var stage = new Stage();
 		add(stage);
@@ -96,6 +103,10 @@ class PlayState extends MusicState
         add(missed);
 
 		FlxG.sound.playMusic("assets/Inst.ogg");
+
+		if(scriptHandler.exists('create'))
+			scriptHandler.get("create")();
+		scriptHandler.set("add", add);
 	}
 
 	private function getNoteX(direction:String, player:Bool):Float
@@ -188,6 +199,8 @@ class PlayState extends MusicState
 				}
 			}
 		}
+		if(scriptHandler.exists('update'))
+			scriptHandler.get("update")(elapsed);
 	}
 
 	private function playStrumlineConfirmAnimation(direction:String, mustHit:Bool):Void
@@ -204,5 +217,8 @@ class PlayState extends MusicState
 		if ((opp.animation.curAnim.name.startsWith("idle") || opp.animation.curAnim.name.startsWith("dance"))
 			&& (curBeat % 2 == 0 || opp.characterData.quickDancer))
 			opp.dance();
+
+		if(scriptHandler.exists('beatHit'))
+			scriptHandler.get("beatHit")(curBeat);
 	}
 }
