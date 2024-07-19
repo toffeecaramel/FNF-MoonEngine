@@ -1,5 +1,6 @@
 package data.chart;
 
+import util.*;	
 import haxe.Json;
 import sys.io.File;
 
@@ -13,6 +14,8 @@ using StringTools;
 	This class also contains functions to convert charts, which was made for
 	porting charts. I will add support for porting moon engine charts to other
 	formats soon!
+
+	will also add support for modern fnf later.
 **/
 
 //typedef for the note data

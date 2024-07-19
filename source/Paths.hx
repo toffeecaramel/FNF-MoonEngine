@@ -13,6 +13,7 @@ import openfl.utils.Assets as OpenFlAssets;
 import openfl.display3D.textures.RectangleTexture;
 import sys.FileSystem; // man the fucking vsc console wont shut up abt this
 import sys.io.File;
+import util.*;
 
 // Also this is just forever engine's Paths so yea I didnt make this
 

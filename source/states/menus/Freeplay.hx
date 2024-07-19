@@ -76,7 +76,7 @@ class Freeplay extends MusicState
 
         if (up && !selected) changeSelection(-1);
         if (down && !selected) changeSelection(1);
-        if(accepted) FlxG.switchState(new PlayState());
+        if(accepted) {FlxG.sound.music.stop(); FlxG.switchState(new PlayState());}
     }
 
     var lilTween:FlxTween;

@@ -7,6 +7,7 @@ import flixel.util.FlxColor;
 import shaders.RGBPallete.RGBShaderReference;
 import shaders.RGBPallete;
 import states.*;
+import util.*;
 
 /**
     Ah yes, the note class, my beloved

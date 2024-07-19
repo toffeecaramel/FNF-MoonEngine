@@ -8,6 +8,7 @@ import flixel.util.FlxColor;
 import shaders.RGBPallete.RGBShaderReference;
 import shaders.RGBPallete;
 import states.*;
+import util.*;
 
 class SustainNote extends FlxGroup
 {

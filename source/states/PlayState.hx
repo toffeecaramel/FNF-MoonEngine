@@ -13,6 +13,9 @@ import states.data.MusicState;
 import states.editors.chart.*;
 import states.editors.*;
 import flixel.text.FlxText;
+import util.*;
+import util.SoundUtil.AudioState;
+import util.SoundUtil.AudioType;
 
 using StringTools;
 
@@ -22,6 +25,8 @@ class PlayState extends MusicState
     private var opponentStrumline:Strumline;
 
 	private var chart:Chart;
+	private var soundUtil:SoundUtil;
+
     private var notes:FlxTypedGroup<Note>;
 	private var sustains:FlxTypedGroup<SustainNote>;
 
@@ -40,7 +45,7 @@ class PlayState extends MusicState
 		super.create();
 
 		scriptHandler = new ScriptHandler();
-		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
+		//scriptHandler.loadScript("assets/data/scripts/Guh.hx");
         scriptHandler.set("game", this);
 
 		var stage = new Stage();
@@ -102,7 +107,18 @@ class PlayState extends MusicState
         missed.text = "Misses: " + misses;
         add(missed);
 
-		FlxG.sound.playMusic("assets/Inst.ogg");
+		//FlxG.sound.playMusic("assets/Inst.ogg");
+		soundUtil = new SoundUtil();
+
+        var instrumental = new FlxSound().loadEmbedded("assets/songs/Inst.ogg", false, true);
+        soundUtil.addSound(instrumental, AudioType.GAMEPLAY);
+
+		FlxG.sound.music = instrumental;
+
+        var vocals = new FlxSound().loadEmbedded("assets/songs/Voices.ogg", false, true);
+        soundUtil.addSound(vocals, AudioType.GAMEPLAY);
+        soundUtil.setStateByIndex(0, AudioState.PLAY); // Play instrumental
+        soundUtil.setStateBySound(vocals, AudioState.PLAY); // Play vocals
 
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
@@ -199,6 +215,7 @@ class PlayState extends MusicState
 				}
 			}
 		}
+
 		if(scriptHandler.exists('update'))
 			scriptHandler.get("update")(elapsed);
 	}
@@ -211,6 +228,18 @@ class PlayState extends MusicState
 				note.strumAnim('confirm');
 	}
 
+	override public function onFocus():Void
+	{
+		soundUtil.playAudios();
+		super.onFocus();
+	}
+
+	override public function onFocusLost():Void
+	{
+		soundUtil.pauseAudios();
+		super.onFocusLost();
+	}
+
 	override function beatHit()
 	{
 		super.beatHit();
@@ -220,5 +249,11 @@ class PlayState extends MusicState
 
 		if(scriptHandler.exists('beatHit'))
 			scriptHandler.get("beatHit")(curBeat);
+	}
+
+	override function stepHit()
+	{
+		super.stepHit();
+		soundUtil.syncAll(Conductor.songPosition);
 	}
 }
