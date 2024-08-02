@@ -74,7 +74,7 @@ class Chart
 			{
 				// - Set the notes direction, Must Hit, the time, and duration of sustains
 				var noteData:NoteData = {
-					direction: CoolUtil.numberToDirection(note[1]),
+					direction: NoteUtils.numberToDirection(note[1]),
 					mustHit: if (note[1] > 3) !section.mustHitSection else section.mustHitSection,
 					time: note[0],
 					duration: if (note.length > 2) note[2] else null

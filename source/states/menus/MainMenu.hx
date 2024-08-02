@@ -19,6 +19,7 @@ import gameObjects.*;
 import states.data.MusicState;
 import states.editors.chart.*;
 import states.editors.*;
+import subStates.*;
 import openfl.display.BlendMode;
 import sys.FileSystem;
 import sys.io.File;
@@ -33,6 +34,8 @@ class MainMenu extends MusicState
         'profile', 'credits', 'options',
         'exit'
     ];
+
+    private var itemsBox:FlxSprite;
     private var optionsTxt:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
 
@@ -58,16 +61,16 @@ class MainMenu extends MusicState
         display = new FlxSprite();
         add(display);
 
+        itemsBox = new FlxSprite().makeGraphic(Std.int(FlxG.width / 2.6) - 50, FlxG.height, FlxColor.BLACK);
+        itemsBox.alpha = 0.4;
+        add(itemsBox);
+
         info = new FlxText(0,0,0,'FNF Moon Engine v.${Main.gameVersion}');
         info.setFormat(Paths.fonts('vcr.ttf'), 32, RIGHT);
         info.antialiasing = false;
         info.x = FlxG.width - info.width;
         info.y = FlxG.height - info.height;
         add(info);
-
-        var itemsBox = new FlxSprite().makeGraphic(Std.int(FlxG.width / 2.6) - 50, FlxG.height, FlxColor.BLACK);
-        itemsBox.alpha = 0.4;
-        add(itemsBox);
 
         optionsTxt = new FlxTypedGroup<FlxText>();
         for (i in 0...options.length)
@@ -76,7 +79,7 @@ class MainMenu extends MusicState
             final totalHeight = options.length * (48 + spacing) - spacing;
             final startY = (FlxG.height - totalHeight) / 2;
 
-            var item = new FlxText(-400, startY + i * (48 + spacing), 0, options[i]);
+            var item = new FlxText(-500, startY + i * (48 + spacing), 0, options[i]);
             item.setFormat(Paths.fonts('phantomuff/empty.ttf'), 50, LEFT);
             item.ID = i;
             item.antialiasing = true;
@@ -133,24 +136,31 @@ class MainMenu extends MusicState
         super.update(elapsed);
         for(txt in optionsTxt.members) if (!selected) txt.x = FlxMath.lerp(txt.x, 25, elapsed * 11);
         display.y = FlxMath.lerp(display.y, 0, elapsed * 12);
-        display.scale.x = display.scale.y = FlxMath.lerp(display.scale.x, 1, elapsed * 16);
+        if(!selected) display.scale.x = display.scale.y = FlxMath.lerp(display.scale.x, 1, elapsed * 16);
 
         if (up && !selected) changeSelection(-1);
         if (down && !selected) changeSelection(1);
-        
         if(accepted && !selected)
         {
             selected = true;
-            FlxG.sound.play(Paths.sound('interfaces/confirm'), 0.8);
+            FlxG.sound.play(Paths.sound('interfaces/confirm'));
+            FlxTween.tween(display, {"scale.x": 0, "scale.y": 0, angle: -180}, 0.8, {ease:FlxEase.backIn});
+            FlxTween.tween(info, {x: FlxG.width + 300}, 0.8, {ease:FlxEase.circIn});
+
+            if(opt == 'freeplay' || opt == 'options')
+                FlxTween.tween(itemsBox, {x: FlxG.width - itemsBox.width - 25, "scale.x": 1.2}, 0.8, {ease:FlxEase.circOut});
+            else
+                FlxTween.tween(itemsBox, {x: -900}, 1, {ease:FlxEase.circOut});
             for (txt in optionsTxt.members)
             {
-                if (txt.ID != curSelected) FlxTween.tween(txt, {x: -350, alpha: 0}, 1, {ease:FlxEase.circOut});
-                else FlxFlicker.flicker(txt, 1, 0.05, true, true, function(f:FlxFlicker)
+                FlxTween.tween(txt, {x: -350, alpha: 0.0001}, 1, {ease:FlxEase.circOut});
+                FlxFlicker.flicker(txt, 1, 0.05, true, true, function(f:FlxFlicker)
                 {
                     switch(opt)
                     {
-                        case "freeplay": FlxG.switchState(new Freeplay());
+                        case "freeplay": openSubState(new Freeplay());
                         case "profile": FlxG.switchState(new Profile());
+                        case "options": openSubState(new OptionsSubState());
                         case "exit": Sys.exit(1);
                     }
                 });
@@ -161,7 +171,7 @@ class MainMenu extends MusicState
     function changeSelection(change:Int = 0):Void
     {
         curSelected = FlxMath.wrap(curSelected + change, 0, options.length - 1);
-        FlxG.sound.play(Paths.sound('interfaces/scroll'), 0.8);
+        FlxG.sound.play(Paths.sound('interfaces/scroll'));
         display.loadGraphic(Paths.image('menus/main/icons/${options[curSelected]}'));
         display.x = FlxG.width - display.width;
         display.y += 5;
@@ -186,6 +196,7 @@ class MainMenu extends MusicState
     override function beatHit()
     {
         super.beatHit();
-        display.scale.set(1.04, 1.04);
+        if(!selected)
+            display.scale.set(1.04, 1.04);
     }
 }

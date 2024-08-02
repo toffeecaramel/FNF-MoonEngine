@@ -10,13 +10,13 @@ import haxe.ds.StringMap;
 **/
 
 /**
-    Also this enum is just for separating the logic for gameplay song
+    Also this **enum** is just for separating the logic for gameplay song
     and interface song, that way it only applies the sync logic if
     its a gameplay type-of-song :D 
 
     ok im adding support to normal sounds too lmao
     I'm just so excited to use more enums because thanks
-    to @crowplexus I now know how to use them!!
+    to *@crowplexus* I now know how to use them!!
 
     and I might use them alot now lmao
 **/
@@ -28,7 +28,7 @@ enum AudioType {
 }
 
 /**
-    Enum for setting the audio state, to any of these
+    **enum** for setting the audio state, to any of these
     below.
 **/
 
@@ -105,15 +105,16 @@ class SoundUtil
     public function pauseAudios():Void
     {
         for (entry in audios)
-            entry.sound.pause();
+            if(entry.sound != null)
+                entry.sound.pause();
     }
 
     public function playAudios():Void
-        {
-            for (entry in audios)
-                if(!entry.sound.playing)
-                    entry.sound.play();
-        }
+    {
+        for (entry in audios)
+            if(!entry.sound.playing && entry.sound != null)
+                entry.sound.play();
+    }
 
     /**
         Syncs all GAMEPLAY sounds to the baseTime.

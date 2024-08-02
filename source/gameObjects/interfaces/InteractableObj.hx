@@ -15,6 +15,7 @@ import flixel.math.FlxMath;
 class InteractableObj extends FlxSprite
 {
     public var onClick:Void->Void;
+    public var canInteract:Bool = true;
 
     public function new(x:Float, y:Float, graphic:String)
     {
@@ -31,18 +32,21 @@ class InteractableObj extends FlxSprite
 
         scale.x = scale.y = FlxMath.lerp(scale.x, scalee, elapsed * 22);
 
-        if(FlxG.mouse.overlaps(this))
+        if(canInteract)
         {
-            alpha = 1;
-            scalee = 1.5;
-            if(FlxG.mouse.justPressed)
-                if(onClick != null)
-                    onClick();
-        }
-        else
-        {
-            scalee = 1.3;
-            alpha = 0.8;
+            if(FlxG.mouse.overlaps(this))
+            {
+                alpha = 1;
+                scalee = 1.5;
+                if(FlxG.mouse.justPressed && canInteract)
+                    if(onClick != null)
+                        onClick();
+            }
+            else
+            {
+                scalee = 1.3;
+                alpha = 0.8;
+            }
         }
     }
 }

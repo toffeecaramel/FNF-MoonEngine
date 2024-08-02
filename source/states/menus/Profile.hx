@@ -31,6 +31,11 @@ import openfl.display.BitmapData;
 
 using StringTools;
 
+enum CurrentState {
+    LOGGING;
+    LOGGED;
+}
+
 class Profile extends MusicState
 {
     private var user:String;
@@ -43,6 +48,8 @@ class Profile extends MusicState
     private var typeToken:FlxUIInputText;
 
     private var txt:FlxText;
+
+    private var curState:CurrentState = LOGGING;
 
     override public function create():Void
     {
@@ -94,25 +101,34 @@ class Profile extends MusicState
         var logButton = new InteractableObj(0, 0, 'assets/images/menus/account/login');
         logButton.onClick = function()
         {
-            txt.color = FlxColor.WHITE;
-            txt.text = 'Checking...';
-            user = typeUser.text;
-            token = typeToken.text;
-
-            GameJolt.authUser(user, token, 
+            if(curState != LOGGED)
             {
-                onSucceed: function(data:Dynamic):Void
+                txt.color = FlxColor.WHITE;
+                txt.text = 'Checking...';
+                user = typeUser.text;
+                token = typeToken.text;
+
+                GameJolt.authUser(user, token, 
                 {
-                    txt.color = FlxColor.LIME;
-                    txt.text = 'Success!\nPlease wait.';
-                },
-                onFail: function(message:String):Void
-                {
-                    txt.color = FlxColor.RED;
-                    txt.text = 'Error!\n$message';
-                    trace(message);
-                }
-            });
+                    onSucceed: function(data:Dynamic):Void
+                    {
+                        txt.color = FlxColor.LIME;
+                        txt.text = 'Success!\nPlease wait.';
+                        logButton.canInteract = false;
+                        curState = LOGGED;
+                        new FlxTimer().start(0.8, function (_:FlxTimer)
+                        {
+                            showProfile([back, typeUser, typeToken, logButton, txt]);
+                        });
+                    },
+                    onFail: function(message:String):Void
+                    {
+                        txt.color = FlxColor.RED;
+                        txt.text = 'Error!\n$message';
+                        //trace(message);
+                    }
+                });
+            }
         }
         logButton.antialiasing = true;
         logButton.screenCenter();
@@ -120,7 +136,7 @@ class Profile extends MusicState
         add(logButton);
 
         txt = new FlxText(0, 0, back.width - 10);
-        txt.setFormat(Paths.fonts('HoltwoodOne.ttf'), 28, CENTER);
+        txt.setFormat(Paths.fonts('vcr.ttf'), 28, CENTER);
         txt.text = 'Welcome!\nPlease, insert your gamejolt username and token to proceed.';
         txt.screenCenter(X);
         txt.y = 50;
@@ -139,14 +155,46 @@ class Profile extends MusicState
         super.update(elapsed);
 
         coolBackdrop.y = FlxMath.lerp(coolBackdrop.y, yVal, elapsed * 20);
-        txt.scale.x = txt.scale.y = FlxMath.lerp(txt.scale.x,1,elapsed*18);
+
+        if(curState != LOGGED)
+            txt.scale.x = txt.scale.y = FlxMath.lerp(txt.scale.x,1,elapsed*18);
     }
 
     override function beatHit():Void
     {
         super.beatHit();
         //coolBackdrop.angle = FlxG.random.float(-10, 10);
-        txt.scale.set(1.04, 1.04);
+        if(curState != LOGGED)
+            txt.scale.set(1.04, 1.04);
         yVal += 10;
+    }
+
+    private var list:Array<String> = ["trophies", "leaderboard"];
+    private function showProfile(objToRemove:Array<Dynamic>)
+    {
+        for (i in 0...objToRemove.length)
+            FlxTween.tween(objToRemove[i], {x: objToRemove[i].x + 1200, alpha: 0}, 1, {
+            ease: FlxEase.circOut, onComplete:
+            function(_:FlxTween)
+            {
+                objToRemove[i].destroy();
+                
+            }});
+        
+        var geez = new FlxSprite(0, -50).makeGraphic(FlxG.width, 100, FlxColor.BLACK);
+        geez.alpha = 0.0001;
+        add(geez);
+
+        var wc = new FlxText(100, -200, 0, 'Welcome, $user!');
+        wc.setFormat(Paths.fonts('vcr.ttf'), 38, CENTER);
+        //wc.screenCenter(X);
+        wc.antialiasing = false;
+        add(wc);
+
+        var buttons = new ButtonsList(64, 'menus/account/buttons', list);
+        add(buttons);
+
+        FlxTween.tween(wc, {y: 25}, 1.5, {ease:FlxEase.circOut});
+        FlxTween.tween(geez, {alpha: 0.4, y: 0}, 1.5, {ease:FlxEase.circOut});
     }
 }

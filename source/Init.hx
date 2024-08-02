@@ -12,7 +12,6 @@ using StringTools;
 
 class Init extends FlxState
 {
-	public static var settings:Map<String, Dynamic> = [];
 	public static var gameControls:Map<String, Dynamic> = [
 		'UP' 		=> 		[[FlxKey.UP, W], 2],
 		'DOWN' 		=> 		[[FlxKey.DOWN, S], 1],
@@ -31,6 +30,7 @@ class Init extends FlxState
 	override public function create()
 	{
 		super.create();
+		UserSettings.init();
 		FlxG.switchState(Type.createInstance(Main.initState, []));
 	}
 }
