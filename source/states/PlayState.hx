@@ -1,24 +1,34 @@
 package states;
 
-import data.*;
-import data.chart.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.FlxState;
 import flixel.FlxSubState;
+import flixel.FlxObject;
+
 import flixel.group.FlxGroup;
+import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import flixel.util.FlxTimer;
+
+import flixel.text.FlxText;
+
 import gameObjects.notes.*;
 import gameObjects.*;
 import states.data.MusicState;
+
 import states.editors.chart.*;
 import states.editors.*;
-import flixel.text.FlxText;
+
 import util.*;
 import subStates.*;
+
+import data.*;
+import data.chart.*;
 import data.Timings.JudgementsTiming;
 
 using StringTools;
@@ -41,11 +51,21 @@ class PlayState extends MusicState
     //private var notes:FlxTypedGroup<Note>;
 	//private var sustains:FlxTypedGroup<SustainNote>;
 
-	public var opp:Character;
+	public static var opp:Character;
+	public static var player:Character;
+
+	public var camGame:FlxCamera;
+	public var camHUD:FlxCamera;
+	public var camStrums:FlxCamera;
+	public var camOther:FlxCamera;
+	public var camFollow:FlxObject;
+
+	public var gameHUD:GameHUD;
 
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
 	public static var scrollSpeed:Float;
+	public static var health:Float = 50;
 
 	public var canPause:Bool = true;
 	public var paused:Bool = false;
@@ -69,20 +89,38 @@ class PlayState extends MusicState
 		//scriptHandler.loadScript("assets/data/scripts/Guh.hx");
         scriptHandler.set("game", this);
 
-		var stage = new Stage();
+		camGame = FlxG.camera;
+		camHUD = new FlxCamera();
+		camStrums = new FlxCamera();
+		camOther = new FlxCamera();
+
+		camHUD.bgColor = 0x00000000;
+		camStrums.bgColor = 0x00000000;
+		camOther.bgColor = 0x00000000;
+
+		FlxG.cameras.add(camHUD, false);
+		FlxG.cameras.add(camStrums, false);
+		FlxG.cameras.add(camOther, false);
+
+		var stage = new Stage('stage');
 		add(stage);
 
-		opp = new Character();
-		opp.setCharacter(0, 0, 'dad');
-		opp.screenCenter();
+		opp = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad');
 		add(opp);
+
+		player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf');
+		add(player);
+
+		gameHUD = new GameHUD(downscroll);
+		gameHUD.camera = camHUD;
+		add(gameHUD);
 
 		final yPos = (downscroll) ? FlxG.height - 140 : 70;
 
-		opponentStrumline = new Strumline(false, -100, yPos);	
+		opponentStrumline = new Strumline(false, -100, yPos, camStrums);	
 		add(opponentStrumline);
 
-		playerStrumline = new Strumline(true, 660, yPos);
+		playerStrumline = new Strumline(true, 660, yPos, camStrums);
 		add(playerStrumline);
 
 		try
@@ -102,6 +140,7 @@ class PlayState extends MusicState
 		{
 			var noteX = getNoteX(noteData.direction, noteData.mustHit);
 			var note:Note = Note.returnDefaultNote(DEFAULT, noteData.time, noteData.direction, true, false);
+			note.camera = camStrums;
 			note.noteSpeed = scrollSpeed;
 			note.setup(note);
 			note.scale.set(noteScale, noteScale);
@@ -116,6 +155,7 @@ class PlayState extends MusicState
 				var sustainNote:Note = Note.returnDefaultNote(DEFAULT,
 					noteData.time + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet,
 					noteData.direction, noteData.mustHit, true, oldNote);
+				sustainNote.camera = camStrums;
 				sustainNote.scrollFactor.set();
 				sustainNote.setup(sustainNote);
 				sustainNote.scale.set(noteScale, noteScale);
@@ -128,8 +168,6 @@ class PlayState extends MusicState
 			note.scrollFactor.set();
 			add(note);
 		}
-		
-		//add(notes);
 
 		//FlxG.sound.playMusic("assets/Inst.ogg");
 		soundUtil = new SoundUtil();
@@ -143,6 +181,11 @@ class PlayState extends MusicState
         soundUtil.addSound(vocals, GAMEPLAY);
         soundUtil.setStateByIndex(0, PLAY); // Play instrumental
         soundUtil.setStateByIndex(1, PLAY); // Play vocals
+
+		camFollow = new FlxObject(0, 0, 1, 1);
+		camFollow.setPosition(0, 0);
+		camGame.follow(camFollow, LOCKON, 1);
+		camGame.zoom = stage.zoom;
 
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
@@ -199,12 +242,14 @@ class PlayState extends MusicState
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			FlxG.switchState(new ChartEditor());
-			FlxG.sound.music.stop();
+			soundUtil.setStateByIndex(0, STOP);
+			soundUtil.setStateByIndex(1, STOP);
 		}
 		if(FlxG.keys.justPressed.NINE)
 		{
 			FlxG.switchState(new ChartConverterState());
-			FlxG.sound.music.stop();
+			soundUtil.setStateByIndex(0, STOP);
+			soundUtil.setStateByIndex(1, STOP);
 		}
 
 		if((FlxG.keys.justPressed.ESCAPE || FlxG.keys.justPressed.ENTER) && canPause)
@@ -214,7 +259,11 @@ class PlayState extends MusicState
 			soundUtil.setStateByIndex(0, PAUSE);
 			soundUtil.setStateByIndex(1, PAUSE);
 		}
-	
+
+		health = FlxMath.bound(health, 0, 100);
+		if(FlxG.keys.pressed.LEFT) health += 0.5;
+		if(FlxG.keys.pressed.RIGHT) health -= 0.5;
+		trace(health);
 
 		if(scriptHandler.exists('update'))
 			scriptHandler.get("update")(elapsed);
@@ -272,15 +321,44 @@ class PlayState extends MusicState
 		super.onFocusLost();
 	}
 
+	var camtwn:FlxTween;
+	public function moveCamera(x:Float, y:Float, duration:Float, easey:EaseFunction)
+	{
+		if(camtwn != null && camtwn.active)
+			camtwn.cancel();
+
+		camtwn = FlxTween.tween(camFollow, {x: x, y: y}, duration, {ease: easey});
+	}
+
+	var bool:Bool = false;
 	override function beatHit()
 	{
 		super.beatHit();
-		if ((opp.animation.curAnim.name.startsWith("idle") || opp.animation.curAnim.name.startsWith("dance"))
-			&& (curBeat % 2 == 0 || opp.characterData.quickDancer))
+		if ((opp.animation.curAnim.name.startsWith("idle") 
+		|| opp.animation.curAnim.name.startsWith("dance"))
+		&& (curBeat % 2 == 0 || opp.characterData.quickDancer))
 			opp.dance();
+
+		if ((player.animation.curAnim.name.startsWith("idle") 
+		|| player.animation.curAnim.name.startsWith("dance"))
+		&& (curBeat % 2 == 0 || player.characterData.quickDancer))
+			player.dance();
+
+		gameHUD.beatHit(curBeat);
 
 		if (curBeat % 2 == 0)
 			onLowHealth();
+
+		if(curBeat % 4 == 0)
+		{
+			bool = !bool;
+			var oppPos = [opp.getMidpoint().x + opp.camOffsets[0], opp.getMidpoint().y + opp.camOffsets[1]];
+			var pPos = [player.getMidpoint().x + player.camOffsets[0], player.getMidpoint().y + player.camOffsets[1]];
+			if(!bool)
+				moveCamera(oppPos[0], oppPos[1], 0.6, FlxEase.circOut);
+			else
+				moveCamera(pPos[0], pPos[1], 0.6, FlxEase.circOut);
+		}
 
 		if(scriptHandler.exists('beatHit'))
 			scriptHandler.get("beatHit")(curBeat);

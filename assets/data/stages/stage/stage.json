@@ -1,0 +1,28 @@
+{
+    "zoom": 0.8,
+    "oppPos": [1500, 1080],
+    "playerPos": [1380, 910],
+    "images": [
+        {
+            "name": "stageback",
+            "pos": [0,0],
+            "parallax": [1,1],
+            "antialiasing": true,
+            "scale": 1
+        },
+        {
+            "name": "stagefront",
+            "pos": [0, 950],
+            "parallax":[1, 1],
+            "antialiasing": true,
+            "scale": 1
+        },
+        {
+            "name": "stagecurtains",
+            "pos": [0,0],
+            "parallax": [1,1],
+            "antialiasing": true,
+            "scale": 1
+        }
+    ]
+}

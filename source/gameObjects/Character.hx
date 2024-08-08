@@ -8,7 +8,6 @@ import data.*;
 import data.depedency.*;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
-import sys.io.File;
 
 using StringTools;
 
@@ -46,6 +45,9 @@ class Character extends FNFSprite {
     public var characterData:CharacterData;
     public var adjustPos:Bool = true;
 
+    public var camOffsets:Array<Float>;
+    public var healthbarColors:Array<Int>;
+
     public function new() {
         super(x, y);
     }
@@ -54,11 +56,14 @@ class Character extends FNFSprite {
         curCharacter = character;
         antialiasing = true;
 
-        trace(curCharacter);
+        //trace(curCharacter);
         frames = FlxAtlasFrames.fromSparrow(Paths.character('$curCharacter/$curCharacter.png'), Paths.character('$curCharacter/$curCharacter.xml'));
 
-        var rawjson:String = File.getContent('assets/data/characters/$curCharacter/$curCharacter.json');
+        var rawjson:String = sys.io.File.getContent('assets/data/characters/$curCharacter/$curCharacter.json');
         characterData = Json.parse(rawjson);
+
+        this.camOffsets = characterData.camOffsets;
+        this.healthbarColors = characterData.healthbarColors;
 
         isPlayer = characterData.isPlayer;
         flipX = characterData.flipX;

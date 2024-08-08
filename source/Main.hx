@@ -39,7 +39,7 @@ class Main extends Sprite
 	public static var framerate:Int = 60; // How many frames per second the game should run at.
 	public static var mainClassState:Class<FlxState> = Init; // Determine the main class state of the game
 	
-	public static var initState:Class<FlxState> = states.PreloadState;
+	public static var initState:Class<FlxState> = states.menus.MainMenu;
 
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -74,6 +74,7 @@ class Main extends Sprite
 		var gameCreate:FlxGame;
 		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash);
 		addChild(gameCreate); // and create it afterwards
+		FlxG.fixedTimestep = false;
 	}
 
 	function onCrash(e:UncaughtErrorEvent):Void
@@ -86,7 +87,7 @@ class Main extends Sprite
 		dateNow = StringTools.replace(dateNow, " ", "_");
 		dateNow = StringTools.replace(dateNow, ":", "'");
 
-		path = "crash/" + "FE_" + dateNow + ".txt";
+		path = 'crash/ME_${dateNow}.txt';
 
 		for (stackItem in callStack)
 		{
@@ -99,32 +100,15 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/CrowPlexus/Forever-Engine-Legacy";
+		errMsg += 'An error occurred: ${e.error}';
 
 		if (!FileSystem.exists("crash/"))
 			FileSystem.createDirectory("crash/");
 
 		File.saveContent(path, errMsg + "\n");
-
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
-
-		var crashDialoguePath:String = "FE-CrashDialog";
-
-		#if windows
-		crashDialoguePath += ".exe";
-		#end
-
-		if (FileSystem.exists(crashDialoguePath))
-		{
-			Sys.println("Found crash dialog: " + crashDialoguePath);
-			new Process(crashDialoguePath, [path]);
-		}
-		else
-		{
-			Sys.println("No crash dialog found! Making a simple alert instead...");
-			Application.current.window.alert(errMsg, "Error!");
-		}
+		Application.current.window.alert(errMsg, "Error!");
 
 		Sys.exit(1);
 	}

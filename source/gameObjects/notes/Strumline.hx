@@ -1,6 +1,7 @@
 package gameObjects.notes;
 
 import flixel.FlxSprite;
+import flixel.FlxCamera;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
@@ -14,7 +15,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
     public var y:Float;
     public var width:Float;
 
-    public function new(isPlayer:Bool, x:Float, y:Float)
+    public function new(isPlayer:Bool, x:Float, y:Float, camera:FlxCamera)
     {
         super();
         this.isPlayer = isPlayer;
@@ -26,6 +27,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             var strum:FlxSprite = new FlxSprite(x, y);
             strum.loadGraphic(Paths.image('UI/notes/DEFAULT/strum'));
             strum.setGraphicSize(Std.int(strum.width * 0.6), Std.int(strum.height * 0.6));
+            strum.camera = camera;
             strum.antialiasing = true;
             strum.x += (strum.width + 98 * i);
             strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i));

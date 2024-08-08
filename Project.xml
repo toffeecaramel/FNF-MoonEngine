@@ -39,10 +39,14 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
+	
 	<haxelib name="flixel-ui" />
+	<haxelib name="flixel-text-input" />
+
 	<haxelib name="discord_rpc" if="cpp" />
 	<haxelib name="hxcpp-debug-server" if="debug" />
 	<haxelib name="hxgamejolt-api" />
+
 	<haxelib name="hscript" />
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

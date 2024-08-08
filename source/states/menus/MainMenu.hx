@@ -21,8 +21,6 @@ import states.editors.chart.*;
 import states.editors.*;
 import subStates.*;
 import openfl.display.BlendMode;
-import sys.FileSystem;
-import sys.io.File;
 
 using StringTools;
 
@@ -99,9 +97,9 @@ class MainMenu extends MusicState
     private function loadTexts():Void
     {
         var filePath:String = 'assets/data/menuTexts.txt';
-        if (FileSystem.exists(filePath))
+        if (sys.FileSystem.exists(filePath))
         {
-            var fileContent:String = File.getContent(filePath);
+            var fileContent:String = sys.io.File.getContent(filePath);
             txtArr = fileContent.split("\n").map(function(line:String):String {
                 return line.trim();
             });
@@ -145,7 +143,7 @@ class MainMenu extends MusicState
             selected = true;
             FlxG.sound.play(Paths.sound('interfaces/confirm'));
             FlxTween.tween(display, {"scale.x": 0, "scale.y": 0, angle: -180}, 0.8, {ease:FlxEase.backIn});
-            FlxTween.tween(info, {x: FlxG.width + 300}, 0.8, {ease:FlxEase.circIn});
+            FlxTween.tween(info, {x: FlxG.width + 300, alpha: 0}, 0.8, {ease:FlxEase.circIn});
 
             if(opt == 'freeplay' || opt == 'options')
                 FlxTween.tween(itemsBox, {x: FlxG.width - itemsBox.width - 25, "scale.x": 1.2}, 0.8, {ease:FlxEase.circOut});

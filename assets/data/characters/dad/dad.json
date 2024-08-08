@@ -3,8 +3,8 @@
     "isPlayer": false,
     "flipX": false,
     "objectOffsets": [-810, 70],
-    "camOffsets": [-340, 250],
-    "healthbarColors": [161, 193, 239],
+    "camOffsets": [220, -120],
+    "healthbarColors": [151, 0, 215],
     "animations": 
     [
         {"name": "idle", "prefix": "Dad idle dance", "x": 0, "y": 0, "fps": 24, "looped": false},

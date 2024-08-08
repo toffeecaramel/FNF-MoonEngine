@@ -17,46 +17,31 @@ import gameObjects.notes.*;
 import gameObjects.*;
 import states.data.MusicState.MusicSubState;
 import openfl.display.BlendMode;
+import sys.io.File;
+import sys.FileSystem;
+import haxe.Json;
 
 using StringTools;
 
 class Freeplay extends MusicSubState
 {
+    // The array containing all the songs
     private var songList:Array<String>= [
         'bopeebo',
         'fresh',
-        'dadbattle',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta',
-        'eu adoro testes bosta'
+        'dadbattle'
     ];
+
+    // group for the texts
     private var txtList:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
 
     private var itemHeight:Float = 50;
-    private var spacing:Float = 32;
+    private var spacing:Float = 24;
 
     private var targetY:Float = 0;
     private var currentY:Float = 0;
-    private var scrollSpeed:Float = 14; // haha scroll speed
+    private var scrollSpeed:Float = 16; // haha scroll speed
 
     override public function create():Void
     {
@@ -99,6 +84,17 @@ class Freeplay extends MusicSubState
 
         var totalHeight = songList.length * (itemHeight + spacing) - spacing;
         targetY = ((FlxG.height - itemHeight) / 2 - curSelected * (itemHeight + spacing));
+
+        ///////////////////////////////////////////////////////////////////////////////////
+
+        var path = 'assets/songs/${songList[curSelected]}/metadata.json';
+        if(FileSystem.exists(path))
+        {
+            var toParse = File.getContent(path);
+            var content = Json.parse(toParse);
+
+            trace(content.name);
+        }
     }
 
     function updateTextPositions(elapsed:Float):Void
@@ -109,7 +105,7 @@ class Freeplay extends MusicSubState
             txt.y = currentY + i * (itemHeight + spacing);
 
             final targetScale:Float = (curSelected == txt.ID) ? 1 : 0.8;
-            final targetAlpha:Float = (curSelected == txt.ID) ? 1 : 0.3;
+            final targetAlpha:Float = (curSelected == txt.ID) ? 1 : 0.2;
 
             txt.scale.x = txt.scale.y = FlxMath.lerp(txt.scale.x, targetScale, scrollSpeed * elapsed);
             txt.alpha = FlxMath.lerp(txt.alpha, targetAlpha, scrollSpeed * elapsed);
