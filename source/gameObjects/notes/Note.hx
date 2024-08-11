@@ -160,7 +160,7 @@ class Note extends FNFSprite {
             if (prevNote.isSustainNote) 
             {
                 prevNote.loadGraphic(Paths.image('UI/notes/${props.assetPath}/holdM'));
-                prevNote.scale.y *= Conductor.stepCrochet / 100 * 2.7 * prevNote.noteSpeed;
+                prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }
         }

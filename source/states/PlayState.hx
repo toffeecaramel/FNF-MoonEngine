@@ -7,8 +7,11 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.FlxObject;
 
-import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
+import flixel.math.FlxRect;
+
+import flixel.group.FlxGroup;
+
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
@@ -64,6 +67,7 @@ class PlayState extends MusicState
 
 	public static var noteScale:Float = 0.6;
 	public static var downscroll:Bool = false;
+	final yPos:Float = (downscroll) ? FlxG.height - 140 : 70;
 	public static var scrollSpeed:Float;
 	public static var health:Float = 50;
 
@@ -80,6 +84,8 @@ class PlayState extends MusicState
 		this.gamemode = gamemode;
 		unspawnNotes = [];
 	}
+
+	private var judgeT:FlxText;
 
 	override public function create()
 	{
@@ -115,8 +121,6 @@ class PlayState extends MusicState
 		gameHUD.camera = camHUD;
 		add(gameHUD);
 
-		final yPos = (downscroll) ? FlxG.height - 140 : 70;
-
 		opponentStrumline = new Strumline(false, -100, yPos, camStrums);	
 		add(opponentStrumline);
 
@@ -126,7 +130,7 @@ class PlayState extends MusicState
 		try
 		{
 			chart = new Chart("assets/data/chart.json");
-			scrollSpeed = chart.scrollSpeed;
+			scrollSpeed = chart.scrollSpeed / 2.3;
 			Conductor.changeBPM(chart.bpm);
 		}
 		catch (e:Dynamic)
@@ -145,6 +149,7 @@ class PlayState extends MusicState
 			note.setup(note);
 			note.scale.set(noteScale, noteScale);
 			note.updateHitbox();
+			note.mustPress = noteData.mustHit;
 			note.x = noteX;
 		
 			var susLength:Float = noteData.duration / Conductor.stepCrochet;
@@ -160,6 +165,7 @@ class PlayState extends MusicState
 				sustainNote.setup(sustainNote);
 				sustainNote.scale.set(noteScale, noteScale);
 				sustainNote.updateHitbox();
+				sustainNote.mustPress = noteData.mustHit;
 				sustainNote.x = noteX + 32;
 				add(sustainNote);
 				unspawnNotes.push(sustainNote);
@@ -174,11 +180,12 @@ class PlayState extends MusicState
 
         var instrumental = new FlxSound().loadEmbedded("assets/songs/Inst.ogg", false, true);
         soundUtil.addSound(instrumental, GAMEPLAY);
-
 		FlxG.sound.music = instrumental;
+		FlxG.sound.list.add(instrumental);
 
         var vocals = new FlxSound().loadEmbedded("assets/songs/Voices.ogg", false, true);
         soundUtil.addSound(vocals, GAMEPLAY);
+		FlxG.sound.list.add(vocals);
         soundUtil.setStateByIndex(0, PLAY); // Play instrumental
         soundUtil.setStateByIndex(1, PLAY); // Play vocals
 
@@ -190,23 +197,24 @@ class PlayState extends MusicState
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
 		scriptHandler.set("add", add);
+
+		judgeT = new FlxText(0, 0, 0, "Waiting");
+		judgeT.size = 32;
+		judgeT.screenCenter();
+		judgeT.camera = camHUD;
+		add(judgeT);
 	}
 
 	private function getNoteX(direction:String, isPlayer:Bool):Float 
 	{
 		var strumline = (isPlayer) ? playerStrumline : opponentStrumline;
-		switch (direction) {
-			case "left": return strumline.members[0].x;
-			case "down": return strumline.members[1].x;
-			case "up": return strumline.members[2].x;
-			case "right": return strumline.members[3].x;
-			default: return 0;
-		}
+		return strumline.members[NoteUtils.directionToNumber(direction)].x;
 	}
 
-	var pressed:Array<Bool> 	= [];
+	var pressed:Array<Bool> = [];
 	var justPressed:Array<Bool> = [];
-	var released:Array<Bool> 	= [];
+	var released:Array<Bool> = [];
+
 	var misses:Int = 0;
 
 	override public function update(elapsed:Float)
@@ -215,29 +223,40 @@ class PlayState extends MusicState
 			Conductor.songPosition = FlxG.sound.music.time;
 		super.update(elapsed);
 
-		for (note in unspawnNotes)	
-			updateNotePosition(note);
-		//if (FlxG.keys.justPressed.LEFT)
-			//FlxG.sound.music.time -= 8000;
+		///////////////////////////////////////////////////////
 
-		pressed = [
+		justPressed = [
 			controls.LEFT_P,
 			controls.DOWN_P,
 			controls.UP_P,
 			controls.RIGHT_P,
 		];
-		justPressed = [
+
+		pressed = [
 			controls.LEFT,
 			controls.DOWN,
 			controls.UP,
 			controls.RIGHT,
 		];
-		released = [
+
+		released = [		
 			controls.LEFT_R,
 			controls.DOWN_R,
 			controls.UP_R,
 			controls.RIGHT_R,
 		];
+
+		///////////////////////////////////////////////////////
+
+		for (note in unspawnNotes) 
+			updateNotePosition(note);
+
+		checkForInput();
+
+		//if (FlxG.keys.justPressed.LEFT)
+			//FlxG.sound.music.time -= 8000;
+
+		health = FlxMath.bound(health, -0.1, 101);
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
@@ -259,11 +278,7 @@ class PlayState extends MusicState
 			soundUtil.setStateByIndex(0, PAUSE);
 			soundUtil.setStateByIndex(1, PAUSE);
 		}
-
-		health = FlxMath.bound(health, 0, 100);
-		if(FlxG.keys.pressed.LEFT) health += 0.5;
-		if(FlxG.keys.pressed.RIGHT) health -= 0.5;
-		trace(health);
+		//trace(health);
 
 		if(scriptHandler.exists('update'))
 			scriptHandler.get("update")(elapsed);
@@ -271,15 +286,217 @@ class PlayState extends MusicState
 
 	private function updateNotePosition(note:Note):Void 
 	{
-		var songPosition:Float = Conductor.songPosition;
-		var timeDifference:Float = note.strumTime - songPosition;
-		var sp = scrollSpeed / 1.5; // SAO PAULO REFERENCIA
+		final timeDifference:Float = note.strumTime - Conductor.songPosition;
 		var susVal = (note.isSustainNote) ? 30 : 0;
 	
 		if (downscroll)
-			note.y = (FlxG.height / 2) - (timeDifference * sp) + susVal;
+			note.y = (yPos) - (timeDifference * scrollSpeed) + susVal;
 		else
-			note.y = (FlxG.height / 2) + (timeDifference * sp) - susVal;
+			note.y = (yPos) + (timeDifference * scrollSpeed) - susVal;
+
+		/*if(note.isSustainNote)
+		{
+			clipRect = new FlxRect(
+					0, 0,
+					note.frameWidth,
+					note.frameHeight
+				);
+			clipRect.y = (strumCenter - note.y) / note.scale.y;
+			clipRect.height -= clipRect.y;
+		}*/
+	}
+
+	var hitAnyNote:Bool = false;
+	private function checkForInput():Void
+	{
+		// * Check for note hits * //
+
+		// - Check if the 'pressed' controls array contains a true value
+		if (justPressed.contains(true))
+		{
+			for (i in 0...justPressed.length)
+			{
+				if (justPressed[i])
+				{
+					// - Loop through all the notes to check if any can be hit
+					for (note in unspawnNotes)
+					{
+						// - Then check if the note direction corresponds to the (...) v
+						// (...) >  array item, by converting the direction into a number!
+
+						// - While it also checks if the note is a player note, and check if its (...) v
+						// (...) > on the timing window.
+						if (note.noteDir == NoteUtils.numberToDirection(i) &&
+						note.mustPress && isWithinTiming(note))
+						{
+							// - Then, it calls the 'onNoteHit();' function
+							onNoteHit(note, player);
+							break;
+						}
+						else // - Checks for ghost tapping
+							hitAnyNote = false;
+					}
+
+					if(!hitAnyNote)
+						onNoteMiss();
+				}
+			}
+		}
+
+		// * Check for Sustain Note hits * //
+
+		// - Once again, get the notes array
+		for (note in unspawnNotes)
+		{
+			// - Then, checks if the 'pressed' array contains true in the current direction.
+			// - & checks if it's a sustain.
+			// - & checks if the parent note was good hit
+			// - & checks if the note timing is exact to the corresponding time on chart.
+
+			//final strum = (note.mustPress) ? playerStrumline : opponentStrumline;
+			//final strumCenter:Float = strum.y + note.width * 0.5 + 10;
+			if (pressed[NoteUtils.directionToNumber(note.noteDir)] 
+			&& note.isSustainNote 
+			&& note.parentNote.wasGoodHit
+			&& note.mustPress
+			&& note.strumTime - Conductor.songPosition <= 0) 
+			{
+				//note.clipRect = clipRect;
+				// - Then it calls the 'onNoteHit();' function
+				onNoteHit(note, player);
+				break;
+			}
+
+			// - Incase the sustain got released while you were holding it
+			// - That makes so when you miss it, you cant hold on it anymore.
+			// - Then after that, it calls miss and sets the note's 'canBeHit' to false.
+			if (released[NoteUtils.directionToNumber(note.noteDir)] 
+			&& note.isSustainNote 
+			&& note.mustPress
+			&& note.canBeHit)
+			{
+				onNoteMiss();
+				note.canBeHit = false;
+				note.alpha = 0.3;
+				break;
+			}
+
+			// - Checks for the opponent note hit
+			if (!note.mustPress && note.strumTime - Conductor.songPosition <= 0)
+			{
+				unspawnNotes.remove(note);
+				note.kill();
+				onNoteHit(note, opp);
+			}
+		}
+	}
+
+	/**
+		Function for playing *animations* on the *strumline!*
+		**mustHit** is for checking wether it's an opponent strumline or not
+		**direction** is the note direction, so it plays the animation for the correct strum.
+	**/
+	private function playStrumAnim(mustHit:Bool, direction:String):Void
+	{
+		// - Get the strum.
+		final strum = (!mustHit) ? opponentStrumline : playerStrumline;
+
+		// - Play the animation.
+		strum.playConfirm(direction);
+	}
+	
+	/**
+		Check if the *note* is within *timing* on the timings class!
+		**note** is the note.
+	**/
+	private function isWithinTiming(note:Note):Bool 
+	{
+		// - Check timing for the note.
+		final jt = checkTiming(note);
+		
+		// - If it isn't null...
+		if (jt != null)
+		{
+			// - Set the note to 'canBeHit' and return true.
+			note.canBeHit = true;
+			return true;
+		}
+		
+		return false;
+	}
+
+	/**
+		Function for checking the *timing* on the note!
+		**note** is the note.
+	**/
+	private function checkTiming(note:Note):JudgementsTiming 
+	{
+		// - Get the time difference betwen note and conductor.
+		final timeDifference:Float = Math.abs(note.strumTime - Conductor.songPosition);
+	
+		// - Get timing values (the judgements, such as sick, good, etc.)
+		for (jt in Timings.values)
+		{
+			// - Get parameters.
+			final timingData = Timings.getParameters(jt);
+
+			// - Then return the correct judgement depending on the timeDifference.
+			if (timeDifference <= timingData[1])
+				return jt;
+		}
+		
+		return null;
+	}
+	
+	/**
+		Function called whenever a *character* hits a *note!*
+		**note** is the note.
+		**character** is the character that will hit a note.
+	**/
+	private function onNoteHit(note:Note, character:Character):Void 
+	{
+		// - If the note is a mustPress, it will call the timing functions
+		if(note.mustPress)
+		{
+			// - Check the timing for the note
+			final jt = checkTiming(note);
+			if (jt != null)
+			{
+				// - Get the timings parameters
+				final timingData = Timings.getParameters(jt);
+
+				// TODO: Health gain option to legacy or moon engine
+				health += timingData[4];
+				judgeT.text = 'Judge: $jt\nhealth gain: ${timingData[4]}';
+				judgeT.screenCenter();
+			}
+		}
+
+		note.wasGoodHit = true;
+		note.canBeHit = false;
+
+		playStrumAnim(note.mustPress, note.noteDir);
+
+		unspawnNotes.remove(note);
+		note.kill();
+
+		hitAnyNote = true;
+
+		// - Make the character sing depending on note press
+		character.playAnim('sing${note.noteDir.toUpperCase()}', true);
+		character.holdTimer = 0;
+	}
+
+	/**
+		This function is called whenever the player misses a note!
+	**/
+	private function onNoteMiss():Void
+	{
+		misses += 1;
+		health -= 10;
+	
+		judgeT.text = 'Miss!';
+		judgeT.screenCenter();
 	}
 
 	override function openSubState(SubState:FlxSubState)
@@ -349,7 +566,7 @@ class PlayState extends MusicState
 		if (curBeat % 2 == 0)
 			onLowHealth();
 
-		if(curBeat % 4 == 0)
+		if(curBeat == 4)
 		{
 			bool = !bool;
 			var oppPos = [opp.getMidpoint().x + opp.camOffsets[0], opp.getMidpoint().y + opp.camOffsets[1]];

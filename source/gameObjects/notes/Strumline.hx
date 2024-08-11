@@ -1,5 +1,6 @@
 package gameObjects.notes;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.group.FlxGroup;
@@ -14,6 +15,9 @@ class Strumline extends FlxTypedGroup<FlxSprite>
     public var x:Float;
     public var y:Float;
     public var width:Float;
+
+    private var nScalex:Float;
+    private var nScaley:Float;
 
     public function new(isPlayer:Bool, x:Float, y:Float, camera:FlxCamera)
     {
@@ -30,29 +34,39 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             strum.camera = camera;
             strum.antialiasing = true;
             strum.x += (strum.width + 98 * i);
-            strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i));
             strum.updateHitbox();
             width += strum.width;
             add(strum);
+
+            strum.alpha = 0;
+            strum.y -= 20;
+            strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i));
+
+            FlxTween.tween(strum, {alpha: 1, y: strum.y + 20}, 
+            Conductor.crochet / 1000 * 2,
+            {ease: FlxEase.quadOut, startDelay: 0.1 * i});
+
+            nScalex = strum.scale.x;
+            nScaley = strum.scale.y;
         }
     }
 
-    var tween1:FlxTween;
-    var tween2:FlxTween;
-    public function animateNoteHit(noteDir:String) 
+    override public function update(elapsed:Float)
     {
-        var index = NoteUtils.directionToNumber(noteDir);
-        var tw = [tween1, tween2];
-        for (twn in tw)
-            if(twn != null && twn.active)
-                twn.cancel();
+        for (i in 0...members.length)
+        {
+            var strum = members[i];
+            strum.scale.x = strum.scale.y = flixel.math.FlxMath.lerp(strum.scale.x, nScalex, elapsed * 28);
+
+        }
+    }
+    public function playConfirm(noteDir:String) 
+    {
+        final index = NoteUtils.directionToNumber(noteDir);
         if (index != -1) 
         {
             var strum = members[index];
-
-            tween1 = FlxTween.tween(strum.scale, {x: 1.2, y: 1.2}, 0.1, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
-                tween2 = FlxTween.tween(strum.scale, {x: 1, y: 1}, 0.1, {ease: FlxEase.quadInOut});
-            }});
+            strum.scale.set(nScalex + 0.15, nScaley + 0.15);
         }
     }
 }

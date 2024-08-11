@@ -37,7 +37,6 @@ class Main extends Sprite
 	public static var gameWidth:Int = 1280;
 	public static var gameHeight:Int = 720;
 	public static var framerate:Int = 60; // How many frames per second the game should run at.
-	public static var mainClassState:Class<FlxState> = Init; // Determine the main class state of the game
 	
 	public static var initState:Class<FlxState> = states.menus.MainMenu;
 
@@ -50,6 +49,7 @@ class Main extends Sprite
 		Lib.current.addChild(new Main());
 	}
 
+	public static var mainClassState:Class<FlxState> = Init;
 	public function new()
 	{
 		super();

@@ -6,4 +6,6 @@ import flixel.sound.FlxSound;
 import flixel.system.FlxSound;
 #end
 
+import data.Conductor;
+
 #end

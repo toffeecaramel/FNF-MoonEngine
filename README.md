@@ -8,6 +8,6 @@
 <h3 align="center">A FNF engine based on Forever Engine!</h3>
 
 # • Features:
-nothing much yet for now, blehhh
+* Support to hscript
 
 ----------------------------------------------
