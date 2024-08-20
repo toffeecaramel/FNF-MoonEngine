@@ -7,7 +7,15 @@
 <h1 align="center">• Welcome to Moon Engine! • </h1>
 <h3 align="center">A FNF engine based on Forever Engine!</h3>
 
-# • Features:
-* Support to hscript
+----------------------------------------------
+
+<h1 align="center">• INSTALLATION GUIDE • </h1>
+
+# Step 1: Installing Flixel
+* Download [the latest haxe version](https://haxe.org)
+* Then, download [the latest git version](https://www.git-scm.com)
 
 ----------------------------------------------
+
+# • Features:
+* Support to hscript
