@@ -14,65 +14,114 @@ using StringTools;
 
 class OptionsSubState extends MusicSubState
 {
-    private var optionsMap:Map<String, Array<String>>;
-    private var optionsGroup:FlxTypedGroup<FlxText>;
+    private var optionsMap:Map<String, Dynamic>;
+    private var categories:Array<Dynamic>;
+    private var options:Array<Dynamic>;
     private var curSelected:Int = 0;
-    private var categoryIndices:Array<Int>;
-    private var scrollOffset:Float = 0;
-    private var targetScrollOffset:Float = 0;
 
     public function new()
     {
         super();
-        createOptions();
-        createUI();
-        highlightOption();
-        setTargetScrollOffset();
-    }
 
-    private function createOptions():Void
-    {
+        // - Setup your options categories here!
+        // - Alright here's a brief explanation on how you do it:
+
+        /**
+            *Step 1*
+            - Make the first value of the Map the category, as it will be the category title!
+            (Reminder: The game will add 'Options' in front of it.)
+
+            *Step 2*
+            - Make an array, then inside of that array, make another array with your option.
+            - If your option is meant to do something else, add in front of it what function it should call!
+            Ex: ["MyCoolOption", coolFunction]
+
+            *Step 3*
+            - Drink water.
+            now.
+            I'm not asking.
+            I'm demanding.
+            DRINK WATER NOW.
+        **/
         optionsMap = [
-            "Graphics" => ["Resolution", "Fullscreen", "VSync"],
-            "Audio" => ["Master Volume", "Music Volume", "SFX Volume"],
-            "Gameplay" => ["Difficulty", "Ghost Tapping", "Downscroll"],
-            "Controls" => ["Key Bindings", "Controller Settings"]
+            "Video" => 
+            [
+                ['Fullscreen Resolution'],
+                ['Screen Mode'],
+                ['Window Size']
+            ],
+    
+            "Sound" =>
+            [
+                ["Master Volume"],
+                ["Instrumental Volume"],
+                ["Voices Volume"],
+                ["SFX Volume"],
+                ["Mute Vocals on Miss"]
+            ],
+    
+            "Keybinds" =>
+            [
+                ["Keyboard Options..."],
+                ["Controller Options..."]
+            ],
+    
+            "Gameplay" =>
+            [
+                ["Downscroll"],
+                ["Middlescroll"],
+                ["Ghost Tapping"],
+                ["Mechanics"],
+                ["Calibrate Timings..."],
+                ["Visual Offset"],
+                ["Input Offset"]
+            ],
+    
+            "Graphic" =>
+            [
+                ["Anti-Aliasing"],
+                ["FPS Cap"],
+                ["Shaders"]
+            ],
+    
+            "Interface" =>
+            [
+                ["Show Healthbar"],
+                ["Show Misses"],
+                ["Show Ranking"],
+                ["Change Interface Positions..."]
+            ]
         ];
+        categories = [];
+        options = [];
 
-        categoryIndices = [];
-        var index = 0;
-        for (key in optionsMap.keys())
+        var yOffset:Float = 20;
+        
+        for (category in optionsMap.keys()) 
         {
-            categoryIndices.push(index);
-            index += optionsMap.get(key).length + 1; // +1 for the category title
-        }
-    }
+            // - Create category title
+            var categoryText = new FlxText(0, yOffset, 0, category, 32);
+            categoryText.color = FlxColor.YELLOW;
+            add(categoryText);
+            categories.push(categoryText);
 
-    private function createUI():Void
-    {
-        optionsGroup = new FlxTypedGroup<FlxText>();
-        var yPos:Float = 20;
+            yOffset += 40;
 
-        for (category in optionsMap.keys())
-        {
-            var categoryTitle = new FlxText(20, yPos, FlxG.width - 40, category);
-            categoryTitle.setFormat(null, 24, FlxColor.YELLOW, CENTER);
-            categoryTitle.screenCenter(X);
-            optionsGroup.add(categoryTitle);
-            yPos += 30;
-
-            for (option in optionsMap.get(category))
+            // - Create options under the category
+            for (i in 0...optionsMap[category].length) 
             {
-                var optionText = new FlxText(40, yPos, FlxG.width - 60, option);
-                optionText.setFormat(null, 18, FlxColor.WHITE, CENTER);
-                optionText.screenCenter(X);
-                optionsGroup.add(optionText);
-                yPos += 30;
+                var optionText = new FlxText(20, yOffset, 0, optionsMap[category][i][0], 24);
+                optionText.color = FlxColor.WHITE;
+                optionText.ID = i;
+                add(optionText);
+                options.push(optionText);
+
+                yOffset += 30;
             }
-            yPos += 10;
+            yOffset += 20; // • Space between categories
         }
 
-        add(optionsGroup);
+        updateSelection(0);
     }
 
     override public function update(elapsed:Float):Void
@@ -80,71 +129,21 @@ class OptionsSubState extends MusicSubState
         super.update(elapsed);
 
         if (FlxG.keys.justPressed.UP)
-            changeSelection(-1);
+            updateSelection(-1);
         else if (FlxG.keys.justPressed.DOWN)
-            changeSelection(1);
+            updateSelection(1);
 
-        updateScroll(elapsed);
+        if (FlxG.keys.justPressed.ENTER)
+            handleOptionSelect();
     }
 
-    private function changeSelection(change:Int):Void
+    private function updateSelection(change:Int):Void
     {
-        var prevSelected = curSelected;
-        curSelected = FlxMath.wrap(curSelected + change, 0, optionsGroup.length - 1);
-
-        while (isCategoryTitle(curSelected))
-            curSelected = FlxMath.wrap(curSelected + change, 0, optionsGroup.length - 1);
-
-        highlightOption();
-        setTargetScrollOffset();
+        curSelected = FlxMath.wrap(curSelected + change, 0, options.length - 1);
     }
 
-    private function isCategoryTitle(index:Int):Bool
+    private function handleOptionSelect():Void
     {
-        return categoryIndices.contains(index);
-    }
-
-    private function highlightOption():Void
-    {
-        for (i in 0...optionsGroup.length)
-        {
-            var txt:FlxText = optionsGroup.members[i];
-            if (i == curSelected)
-            {
-                txt.color = FlxColor.RED;
-                txt.size = 20;
-            }
-            else
-            {
-                txt.color = (isCategoryTitle(i)) ? FlxColor.YELLOW : FlxColor.WHITE;
-                txt.size = 18;
-            }
-        }
-    }
-
-    private function setTargetScrollOffset():Void
-    {
-        var selectedText = optionsGroup.members[curSelected];
-        var targetY:Float = FlxG.height / 2;
-
-        if (selectedText.y > targetY + 10)
-            targetScrollOffset += selectedText.y - targetY - 10;
-        else if (selectedText.y < targetY - 10)
-            targetScrollOffset += selectedText.y - targetY + 10;
-    }
-
-    private function updateScroll(elapsed:Float):Void
-    {
-        if (scrollOffset != targetScrollOffset)
-        {
-            var scrollStep = (targetScrollOffset - scrollOffset) * 0.1;
-            scrollOffset += scrollStep;
-
-            for (i in 0...optionsGroup.length)
-                optionsGroup.members[i].y -= scrollStep;
-
-            if (Math.abs(scrollStep) < 0.5)
-                scrollOffset = targetScrollOffset;
-        }
+        trace('Selected Option: ' + options[curSelected].text);
     }
 }

@@ -38,7 +38,7 @@ class Main extends Sprite
 	public static var gameHeight:Int = 720;
 	public static var framerate:Int = 60; // How many frames per second the game should run at.
 	
-	public static var initState:Class<FlxState> = states.menus.MainMenu;
+	public static var initState:Class<FlxState> = states.PreloadState;
 
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -58,22 +58,15 @@ class Main extends Sprite
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (zoom == -1)
-		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
-			// this just kind of sets up the camera zoom in accordance to the surface width and camera zoom.
-			// if set to negative one, it is done so automatically, which is the default.
-		}
-
 		PlayerSettings.init();
 
 		var gameCreate:FlxGame;
 		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash);
 		addChild(gameCreate); // and create it afterwards
+
+		var infoCounter = new Overlay(0, 0);
+		addChild(infoCounter);
+
 		FlxG.fixedTimestep = false;
 	}
 

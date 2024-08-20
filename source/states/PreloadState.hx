@@ -66,10 +66,10 @@ class PreloadState extends FlxTransitionableState
 
 			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, transitionDuration, 
                 new FlxPoint(-2, -1), {asset: diamond, width: 32, height: 32},
-				new FlxRect(-300, 0, FlxG.width, FlxG.height));
+				new FlxRect(-1, 0, FlxG.width, FlxG.height));
 			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, transitionDuration, 
                 new FlxPoint(2, -1), {asset: diamond, width: 32, height: 32}, 
-                new FlxRect(-300, 0, FlxG.width, FlxG.height));
+                new FlxRect(-1, 0, FlxG.width, FlxG.height));
                 
             FlxTransitionableState.defaultTransIn.cameraMode = NEW;
             FlxTransitionableState.defaultTransOut.cameraMode = NEW;

@@ -19,6 +19,8 @@ import states.PlayState;
     anyways this one is heavily based on Forever Engine too
     at this point, idek what isnt based on forever engine :v
     **I DO NOT** support yoshubs by the way.
+    go support @crowplexus instead! she's cool :3
+    
     anyways,
     time to pain
 **/
@@ -29,16 +31,8 @@ typedef NoteTypeProperties = {
     var ?arrowColors:Array<Array<FlxColor>>;
 };
 
-/**
-    Set your notetype, ALT, BOMB, Etc...
-**/
-enum Notetype {
-    DEFAULT;
-    ALT;
-    BOMB;
-}
-
 class Note extends FNFSprite {
+    public var type:String = 'DEFAULT';
     public var strumTime:Float = 0;
     public var noteDir:String = 'left';
 
@@ -60,43 +54,29 @@ class Note extends FNFSprite {
     public static var rgbShader:RGBShaderReference;
     public static var globalRgbShaders:Array<RGBPalette> = [];
     public static var arrowRGB:Array<Array<FlxColor>> = [];
+    public static var globalColors:Array<FlxColor> = [];
 
     /**
         Setup everything in your notetype!
         colors, path, and allow rotation! (in case your note is one angle only)
+
+        UPDATE - Change those things at *"assets/data/notetypes/ColorSetup.hx"*
     **/
+    public static var noteTypeProperties:Map<String, NoteTypeProperties>;
 
-    public static var noteTypeProperties:Map<Notetype, NoteTypeProperties> = [
-        DEFAULT => {
-            assetPath: "DEFAULT",
-            allowRotation: true,
-            arrowColors: [
-                [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
-                [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
-                [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
-                [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
-            ]
-        },
-        BOMB => {
-            assetPath: "_notetypes/BOMB",
-            allowRotation: false,
-            arrowColors: [
-                [0xFFFF0000, 0xFFFFFFFF, 0xFFFFFFFF], //I feel so dumb.
-                [0xFFFF0000, 0xFFFFFFFF, 0xFFFFFFFF],
-                [0xFFFF0000, 0xFFFFFFFF, 0xFFFFFFFF],
-                [0xFFFF0000, 0xFFFFFFFF, 0xFFFFFFFF]
-            ]
-        }
-    ];
-
-    public function new(type:Notetype = DEFAULT, strumTime:Float, noteDir:String, mustPress:Bool, ?prevNote:Note, ?sustainNote:Bool = false) {
+    public function new(type:String = "DEFAULT", strumTime:Float, noteDir:String, 
+        mustPress:Bool, ?prevNote:Note, ?sustainNote:Bool = false) 
+    {
         super(x, y);
+
+        loadNoteTypeProperties();
 
         if (prevNote == null)
             prevNote = this;
 
         y -= 3000;
 
+        this.type = type;
         this.noteDir = noteDir;
         this.prevNote = prevNote;
         isSustainNote = sustainNote;
@@ -111,6 +91,13 @@ class Note extends FNFSprite {
         } 
         else if (!isSustainNote)
             parentNote = null;
+    }
+
+    public static function loadNoteTypeProperties():Void
+    {
+        var scriptHandler = new ScriptHandler();
+        scriptHandler.loadScript('assets/data/notetypes/ColorSetup.hx');
+        noteTypeProperties = scriptHandler.get("noteTypeProperties");
     }
 
     override function update(elapsed:Float) 
@@ -131,15 +118,18 @@ class Note extends FNFSprite {
             alpha = 0.3;
     }
 
-    public static function returnDefaultNote(type:Notetype, strumTime:Float, 
+    public static function returnDefaultNote(type:String, strumTime:Float, 
     noteDir:String, mustPress:Bool, ?isSustainNote:Bool = false, 
     ?prevNote:Note = null):Note 
     {
         var newNote:Note = new Note(type, strumTime, noteDir, mustPress, prevNote, isSustainNote);
         var props = noteTypeProperties.get(type);
-        if (props == null) props = noteTypeProperties.get(DEFAULT);
+        if (props == null) props = noteTypeProperties.get("DEFAULT");
 
         arrowRGB = props.arrowColors;
+
+        for (i in 0...arrowRGB.length)
+            globalColors.push(arrowRGB[i][0]);
         
         if (!isSustainNote) 
         {
@@ -147,7 +137,7 @@ class Note extends FNFSprite {
             if (props.allowRotation)
                 newNote.angle = NoteUtils.angleFromDirection(noteDir);
 
-            if(type == BOMB)
+            if(type == "BOMB")
                 FlxTween.tween(newNote, {angle: 360}, Conductor.crochet / 1000 * 2, {type: LOOPING});
         }
         

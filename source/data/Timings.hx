@@ -18,13 +18,14 @@ class Timings
             score from it (2)
             percentage (3)
             health gain (4)
-            accuracy tag (5)
+            judgement color (5)
+            accuracy tag (6)
         **/
-        sick => [0,   45,      350,   100,   2,      "SFC"],
-        good => [1,   90,      150,   75,    1,      "GFC"],
-        bad  => [2,   135,     0,     25,    0.7,     "FC"],
-        shit => [3,   157.5,  -50,   -150,   0.5,   "SDCB"],
-        miss => [4,   180,    -100,  -175,    -4,   "SDCB"]
+        sick => [0,   45,      350,   100,   2,       0xFF2883ff,       "SFC"],
+        good => [1,   90,      150,   75,    1,       0xFF44cd4d,       "GFC"],
+        bad  => [2,   135,     0,     25,    0.7,     0xFFa8738a,        "FC"],
+        shit => [3,   157.5,  -50,   -150,   0.5,     0xFF59443f,      "SDCB"],
+        miss => [4,   180,    -100,  -175,    -4,     0xFF894331,      "SDCB"]
     ];
 
     public static var accRanks:Map<String, Int> = [

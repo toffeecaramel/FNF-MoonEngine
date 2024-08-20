@@ -181,7 +181,7 @@ class ChartEditor extends MusicState
 		{
 			final noteX = getNoteX(noteData.direction, noteData.mustHit);
 
-			var note:Note = Note.returnDefaultNote(DEFAULT, noteData.time, noteData.direction, true, false);
+			var note:Note = Note.returnDefaultNote("DEFAULT", noteData.time, noteData.direction, true, false);
 			note.setup(note);
 			note.setGraphicSize(gridSize-2, gridSize-2);
 			note.updateHitbox();

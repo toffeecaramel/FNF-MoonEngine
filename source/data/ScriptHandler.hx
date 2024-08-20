@@ -3,6 +3,8 @@ package data;
 import sys.io.File;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
 import sys.FileSystem;
 import hscript.Parser;
@@ -23,15 +25,22 @@ using StringTools;
 class ScriptHandler
 {
     private var interp:Interp;
+
+    private var variables:Array<Dynamic> = [
+        ["FlxG", FlxG],
+        ["FlxSprite", FlxSprite],
+        ["FlxTween", FlxTween],
+        ["FlxEase", FlxEase],
+        ["Paths", Paths]
+    ];
     
     public function new()
     {
         interp = new Interp();
 
         //setup all the libraries
-        interp.variables.set("FlxG", FlxG);
-        interp.variables.set("FlxSprite", FlxSprite);
-        interp.variables.set("Paths", Paths);
+        for(i in 0...variables.length)
+            interp.variables.set(variables[i][0], variables[i][1]);
     }
 
     //load the file and parse

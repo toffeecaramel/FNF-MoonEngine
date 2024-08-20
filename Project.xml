@@ -48,6 +48,7 @@
 	<haxelib name="hxgamejolt-api" />
 
 	<haxelib name="hscript" />
+	<haxelib name="funkin.visfix" />
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<!--Remove the legacy health system-->

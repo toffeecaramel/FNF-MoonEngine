@@ -17,6 +17,7 @@ import gameObjects.interfaces.HealthIcon;
 class GameHUD extends FlxTypedGroup<FlxBasic>
 {
     public var downscroll:Bool;
+    private var barY:Float;
 
     // - Healthbar Items
     public var bar:FlxBar;
@@ -27,19 +28,21 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
     public function new(downscroll:Bool)
     {
         this.downscroll = downscroll;
+        barY = (downscroll) ? 80 : FlxG.height - 80;
         super();
 
-        createHealthBar(downscroll);
+        createHealthBar();
+        createStats();
     }
 
-    public function createHealthBar(downscroll:Bool):Void
+    public function createHealthBar():Void
     {
-        final barY = (downscroll) ? 80 : FlxG.height - 80;
-
-        final oppColors:Array<Int> = PlayState.opp.healthbarColors;
+        final oppColors:Array<Int> = PlayState.opponent.healthbarColors;
         final playerColors:Array<Int> = PlayState.player.healthbarColors;
 
         barBG = new FlxSprite(0, barY).loadGraphic(Paths.image('UI/game-ui/healthbar'));
+        barBG.scale.set(0.7, 0.7);
+        barBG.updateHitbox();
         barBG.screenCenter(X);
 
         bar = new FlxBar(0, barY, RIGHT_TO_LEFT, Std.int(barBG.width - 3), Std.int(barBG.height));
@@ -58,6 +61,11 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
         add(iconPlayer);
     }
 
+    public function createStats():Void
+    {
+
+    }
+
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
@@ -67,8 +75,8 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
         var value = bar.x + (bar.width * percent);
         iconOpp.x = FlxMath.lerp(iconOpp.x, value - 120, elapsed * 16);
         iconPlayer.x = FlxMath.lerp(iconPlayer.x, value - 15, elapsed * 16);
-        iconOpp.scale.x = iconOpp.scale.y = FlxMath.lerp(iconOpp.scale.x, 1, elapsed * 18);
-        iconPlayer.scale.x = iconPlayer.scale.y = FlxMath.lerp(iconPlayer.scale.x, 1, elapsed * 18);
+        iconOpp.scale.x = iconOpp.scale.y = FlxMath.lerp(iconOpp.scale.x, 0.8, elapsed * 18);
+        iconPlayer.scale.x = iconPlayer.scale.y = FlxMath.lerp(iconPlayer.scale.x, 0.8, elapsed * 18);
 
         if (PlayState.health >= 80)
         {
@@ -87,7 +95,7 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
         }
     }
 
-    final iconScale:Float = 1.2;
+    final iconScale:Float = 1.1;
     public function beatHit(curBeat:Int):Void
     {
         iconPlayer.scale.set(iconScale, iconScale);

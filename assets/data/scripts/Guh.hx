@@ -1,12 +1,13 @@
+
 function create()
 {
     trace('wow, I just got here');
-    var duh = new FlxSprite().makeGraphic(FlxG.width, FlxG.height);
-    add(duh);
+    var mum = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
+    //mum.camera = camHUD;
+    add(mum);
 }
 
 function beatHit()
 {
-    var d = FlxG.random.int(0, 20);
-    trace('beatii' + d);
+    trace('beathit');
 }

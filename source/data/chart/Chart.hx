@@ -1,8 +1,8 @@
 package data.chart;
 
+import flixel.tweens.FlxEase;
 import util.*;	
 import haxe.Json;
-import sys.io.File;
 
 using StringTools;
 
@@ -18,12 +18,19 @@ using StringTools;
 	will also add support for modern fnf later.
 **/
 
-//typedef for the note data
+//typedef for the note data	
 typedef NoteData = {
+	var type:String;
     var direction:String;
     var mustHit:Bool;
     var time:Float;
 	var duration:Null<Float>;
+}
+
+typedef EventData = {
+	var name:String;
+	var values:Array<Dynamic>;
+	var time:Float;
 }
 
 //and typedef for the whole chart data
@@ -31,6 +38,7 @@ typedef ChartData = {
     var bpm:Float;
 	var scrollSpeed:Float;
     var notes:Array<NoteData>;
+	var events:Array<EventData>;
 }
 
 class Chart
@@ -38,11 +46,12 @@ class Chart
     public var bpm:Float;
 	public var scrollSpeed:Float;
     public var notes:Array<NoteData>;
+	public var events:Array<EventData>;
 
     public function new(jsonPath:String)
     {
 		//get the file content
-        var jsonString = File.getContent(jsonPath);
+        var jsonString = sys.io.File.getContent(jsonPath);
 
 		//parse to a variable
         var chartData:ChartData = Json.parse(jsonString);
@@ -51,6 +60,7 @@ class Chart
         this.bpm = chartData.bpm;
 		this.scrollSpeed = chartData.scrollSpeed;
         this.notes = chartData.notes;
+		this.events = chartData.events;
     }
 
 	/**
@@ -64,8 +74,11 @@ class Chart
 		var newChart:ChartData = {
 			scrollSpeed: originalSong.speed,
 			bpm: originalSong.bpm,
-			notes: []
+			notes: [],
+			events: []
 		};
+
+		var lastMustHitSection:Bool = originalSong.notes[0].mustHitSection;
 
 		// - Sections don't exist in this format, so lets adapt!
 		for (section in originalSong.notes)
@@ -74,6 +87,7 @@ class Chart
 			{
 				// - Set the notes direction, Must Hit, the time, and duration of sustains
 				var noteData:NoteData = {
+					type: (note[3] == null) ? 'DEFAULT' : note[3],
 					direction: NoteUtils.numberToDirection(note[1]),
 					mustHit: ((note[1] > 3) ? !section.mustHitSection : section.mustHitSection),
 					time: note[0],
@@ -81,6 +95,22 @@ class Chart
 				};
 				// - Then push it to the notes array
 				newChart.notes.push(noteData);
+
+				if (section.mustHitSection != lastMustHitSection)
+				{
+					var cameraEvent:EventData = {
+						name: "Move Camera",
+						values: [
+							section.mustHitSection ? "Player" : "Opponent",
+							0.6,
+							"circOut"
+						],
+						time: note[0]
+					};
+					newChart.events.push(cameraEvent);
+		
+					lastMustHitSection = section.mustHitSection;
+				}
 			}
 		}
 
@@ -96,7 +126,7 @@ class Chart
 	
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
-		var rawJson = File.getContent('$jsonInput').trim();
+		var rawJson = sys.io.File.getContent('$jsonInput').trim();
 
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
@@ -165,3 +195,47 @@ class Section
 		this.lengthInSteps = lengthInSteps;
 	}
 }
+
+/**
+y-you came all the way here?
+	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀					⠀⣀⡤⠤⠖⠒⠒⠒⠒⠒⠒⠉⠉⠉⠉⠒⠒⠒⠢⠤⡀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠤⠊⠉⣀⣠⣤⣶⣶⣶⣶⣶⣶⣿⣿⣿⣿⣿⣶⣷⣶⣤⣤⣄⣀⡈⠁⠒⠠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠔⠉⣀⣤⣶⣿⡿⠿⠻⠟⣛⠛⡍⠭⣉⠑⠢⡁⢆⠩⡉⠭⠙⡛⡛⠿⢿⣿⣷⣶⣤⡀⠉⠲⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠊⢀⣤⣾⠟⡛⢍⠰⣀⠣⡁⠎⠤⡘⢠⡁⢆⠩⡐⢡⢂⠱⡈⢆⠱⢠⠑⡌⢢⠐⡍⠛⢿⣿⣷⣤⡀⠑⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠋⢀⣴⡟⢩⠐⡌⠰⡈⢆⠰⢠⠑⡌⢢⠑⠤⡘⢠⠃⡜⢠⠊⠤⡑⡈⢆⠡⢊⠤⡁⢎⡐⠩⠄⡌⠹⢿⣿⣦⡀⠘⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠎⠀⣴⡿⠃⡜⣀⠃⡌⢡⠐⡌⢢⠁⢎⡐⢡⠊⡔⢡⢂⠱⡈⢆⠩⡐⢡⠘⡄⢣⠁⢆⡑⢂⠌⡱⢈⠔⡡⢂⡙⢿⣿⣦⡀⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠁⢠⣾⠏⡅⠣⠐⡄⢊⠄⢣⠘⡠⠃⡜⢠⠘⡄⠣⠘⡄⢊⠔⡁⢎⡐⢡⠃⡘⢄⠃⡜⢠⠘⠌⣂⠱⢈⠢⡁⠆⠌⠤⡙⢿⣿⣆⠀⠣⡀⠀⠀⠀⠀⡠⠔⠒⠒⢤⡤⠤⠄⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠁⣰⣿⢏⡘⠄⣃⠱⠈⢆⠚⢠⠃⡔⠣⠘⡄⠣⢌⠡⢃⠜⡠⠚⡐⢢⠘⢄⠣⠑⡌⠒⢌⠂⠍⡒⠤⠑⡌⠰⡁⠎⡘⡐⠌⡌⢻⣿⣷⡀⠸⢆⠀⠀⢸⢁⢠⣶⣦⣀⣨⣤⣄⠈⢢
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⠀⣰⣿⠏⡰⢀⠣⠄⠣⡉⠆⡉⠆⡱⢈⠒⡡⠌⡑⡈⢆⠡⢊⠔⠱⡈⢆⡉⠆⡡⢃⠌⡱⠈⡜⢠⢡⣼⠷⢿⣷⣾⣦⣕⡄⢣⠈⠤⠙⣿⣿⡄⠉⣆⠀⠸⡆⠘⣯⣟⣯⢿⣽⣻⠀⢸
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⢰⣿⡏⡘⢄⠃⢢⠉⢆⠱⡈⠔⡡⢂⠅⣊⣄⣣⣐⣡⣂⠱⣈⠢⢁⠒⡄⢢⠑⢢⠁⠎⡄⢣⠐⣵⠏⠥⣀⠤⢀⠉⠻⢿⣿⣦⣉⠆⡱⠘⣿⣿⡀⢸⡀⠀⠳⡀⠘⢿⣞⡿⡾⠃⢀⡎
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⣿⣿⠰⣁⠊⠜⡠⢃⠌⠒⠌⣢⣵⣶⣾⣿⡿⠿⠿⠿⢿⣿⣶⣥⣊⠔⡈⠆⡉⢆⡉⠒⡌⠄⣿⢃⠋⡔⠰⡈⠦⣘⠠⠄⠙⢿⣿⣦⢁⢃⢻⣿⣇⠀⣳⠀⠀⠘⢦⡀⠛⠛⠁⡠⠋⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢼⠀⢸⣿⡇⢣⠠⡉⢆⠡⢂⢌⣵⣿⣿⠟⠛⡩⠔⣢⢐⠢⠔⡂⡌⠛⠿⣿⣷⣜⡠⢑⠢⡈⠥⡘⣼⠏⡌⣼⣴⣷⣾⣷⣶⣍⡢⢡⠀⠻⣿⣧⡘⡈⣿⣿⡄⢨⡀⣠⠀⢀⠉⠒⠒⠊⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⡀⣿⣿⢡⢂⠱⡐⠌⡰⣡⣾⡿⠋⢀⡔⣉⠒⡩⠐⡌⣌⣥⣕⣨⣉⣆⠩⠻⣿⣷⣇⠢⢑⠰⢰⣿⣱⣾⣿⣿⣿⣿⣿⣿⣿⣿⣦⢓⠠⠹⣿⣧⠡⢼⣿⡇⠀⡏⠐⣤⡈⠋⠉⠲⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⢀⣿⣿⢂⠌⡂⢅⠊⣼⣿⠟⠀⣠⠋⡔⢡⢊⣴⣷⣿⣿⣿⣿⣿⣿⣿⣿⣦⣉⢿⣿⣧⢊⠔⣿⣷⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣷⡡⠂⢿⣿⡅⢺⣿⣿⠀⣷⠀⠹⣷⡿⠃⢠⡄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠠⣿⣿⢈⢂⠱⡈⢼⣿⡟⠀⡜⢄⠣⣘⣶⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⢻⣿⣧⡘⣿⣿⣯⠀⠌⢁⢠⣿⣿⣿⣿⣿⣿⣿⣷⠀⢸⣿⡧⢩⣿⣿⠀⣇⠑⢄⣀⣀⠔⠃⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⡀⣿⣿⡐⢌⠢⠑⣾⡿⠀⡜⢌⠢⣱⡇⢀⠉⠋⠄⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢻⣿⡾⣿⣿⣿⣷⣬⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⡆⢸⣿⡗⣰⣿⣿⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⠀⢿⣿⡔⡈⢆⠡⣿⡇⠘⡰⢈⣶⣿⣿⣆⢈⠐⣈⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣤⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⠃⣼⣿⡇⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠘⣿⣷⠈⡔⠂⢿⡇⠈⠰⢱⣿⣿⣿⣿⣿⣿⣿⣿⣏⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⡷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣯⢱⣿⡿⠀⢸⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⠀⢻⣿⡆⠰⡉⠼⣧⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⡗⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⡿⣂⣿⣿⠃⢀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠈⢿⣿⡅⣘⡰⢻⣆⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⡼⣩⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⡱⣽⣿⠇⠀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠈⢿⣿⣔⠲⣍⠿⣧⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣅⣼⣿⣿⡿⢏⡼⣱⢱⡚⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣏⢶⣿⣻⠋⢀⠜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠈⢳⣿⣳⡎⡽⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣏⡝⣎⠶⣡⢧⡙⢦⡛⠻⢿⣿⣿⣿⣿⣿⣟⠿⣜⣾⣟⡗⠁⣰⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢢⡀⠙⣷⢿⣜⢣⡝⣞⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢟⠋⠥⠙⢦⡚⣬⢓⡵⣊⠝⠢⠌⡑⢂⠒⣬⢫⠷⣌⢯⣿⢿⡽⠊⢀⠔⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢤⠈⠻⣟⣷⣞⡭⣳⡞⣶⡻⣍⢿⣝⢯⡹⢥⢆⠩⢄⡉⢆⠩⡐⠤⢁⠊⠔⡠⢊⠑⡌⠰⡁⢎⠰⣋⣾⣿⣿⠟⠋⢀⠴⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠊⢉⣉⣁⠀⠈⠙⠿⣿⣷⣾⣲⡹⣍⢧⢫⢖⡙⣎⠞⡡⢂⠜⣀⠣⠘⡄⠣⡘⠰⡁⢌⠒⡈⢅⣸⣴⣿⣿⠿⠋⠁⣠⡞⠁⠀⡠⠖⠊⠉⠉⠉⠑⠢⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣃⢠⡶⢏⡭⣙⠻⡶⣄⠀⠈⠙⠻⢿⣿⣾⣾⣼⣎⣱⡌⢢⠑⡌⠰⡀⠎⢡⣐⡡⣌⣡⣴⣼⣶⣿⣿⠿⠛⠋⣁⡠⠔⠉⠀⠀⡠⠊⢀⣤⢾⠻⣝⠻⢶⡄⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢏⠈⢻⣬⢳⣉⠷⡱⢻⣇⠀⢓⠤⢄⣀⠉⠙⠛⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠟⠛⠉⢁⣀⠤⠗⠊⠉⠀⠀⠀⠀⢰⠃⢠⡿⣙⢎⡳⢬⡛⣼⠃⢀⡗⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⢻⡖⣭⠲⣍⠧⣿⠀⢹⠀⠀⠀⠉⠒⠆⠠⠄⠀⣄⣀⣀⣀⣀⣀⣀⣠⠠⠤⠤⠘⠚⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⣸⠷⣩⢎⡵⢣⣿⠃⢀⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡆⠘⣿⡔⣫⠖⣡⢻⣆⠈⠙⠊⠉⠉⠈⠉⠉⠉⠉⠉⠉⠉⠒⠒⠒⠤⣀⣠⠤⠔⠒⠒⠒⠒⠊⠉⠁⠑⠒⠒⠒⠒⠚⠁⢀⣿⢣⡓⡮⢜⣱⡏⠀⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠎⢀⣴⠟⢦⣡⠩⣐⢂⠩⡙⢋⠛⡙⢋⠍⢫⠙⡙⣛⣙⢻⣛⠷⣶⣦⣄⠈⢀⣤⣴⡶⢶⡞⣛⣛⢛⢋⠛⠛⡛⢚⡒⢖⡚⢫⠁⢆⠰⡁⢆⠚⣧⡀⠙⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠀⣾⡟⣈⠆⠤⡉⠔⡈⢆⡑⠌⣂⠱⣈⠘⡄⢣⠰⡱⢨⠖⣭⢚⡴⣩⢿⣷⣿⢏⢧⡙⢧⡚⣅⢚⢦⠘⡌⢡⠂⡅⠒⠤⡘⢠⢉⡐⢢⠁⢆⠩⠼⣿⡄⢘⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠀⢸⣿⠃⡔⡈⠆⢡⠊⠔⡂⢌⠒⠄⡃⢄⣃⣌⣄⣣⣑⣎⣹⢆⣏⢶⣱⡾⠋⢿⣎⠶⣙⢦⡹⠜⣊⠎⡑⣨⠄⡑⢌⠑⠢⢑⠢⠌⡰⠁⠎⡄⢃⠌⣿⣧⠀⢵⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⣽⣿⠒⠤⠑⡌⠢⢉⠆⡱⢈⠜⠢⢑⢂⠹⡙⡛⠿⣯⣍⠉⠉⡉⠉⢁⣀⠴⣀⠌⠙⠋⠛⠛⢛⣻⡿⠿⢛⠛⠣⢌⢊⠱⡈⢆⠱⡀⠏⡰⢈⠆⡘⢼⣿⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡀⢹⣿⣎⠰⡁⢆⠡⢃⠜⢠⠃⡜⠰⡁⠎⡰⢠⠑⡂⠌⢿⣇⠀⡏⠉⠉⠀⠀⠀⠉⠉⢹⠃⢠⣿⢋⠰⡁⠎⢨⠑⠢⠌⢢⠑⠌⢢⠑⡌⠰⣁⠘⢄⣿⣿⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢣⠀⠻⣿⣧⡘⠄⠣⠌⡘⢄⠊⡔⢡⠘⠤⡑⢂⠆⡱⠘⣼⡟⠀⡏⠀⠀⠀⠀⠀⠀⠀⢸⡀⢸⣿⠌⡰⢠⠉⠆⡌⠱⡈⠆⡜⡈⢆⡘⠄⠣⢄⣩⣾⡿⠃⢀⠟⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢄⡈⠻⣿⣮⡁⢎⠰⡈⢒⡈⠆⣉⠒⡄⢃⠒⢄⢣⣿⠃⢐⠇⠀⠀⠀⠀⠀⠀⠀⠀⣇⠀⢿⣧⠐⡡⠊⡔⢨⠑⡌⠒⠤⠑⡠⠒⢌⣡⣾⡿⠋⢀⡔⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⡄⠘⠻⣿⣷⣦⣑⡢⢐⠡⢂⠜⡀⠎⢌⣢⣿⠋⢀⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠘⢿⣦⣁⠣⠄⡃⠔⡨⢁⠎⣁⣦⣽⣾⡿⠟⠁⡠⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⢄⡈⠙⠻⢿⣿⣷⣾⣶⣶⣷⠾⠟⠋⠁⡠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠢⡀⠙⠻⢷⣶⣧⣼⣤⣷⣾⣿⠿⠟⠉⢀⡤⠊⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠢⢤⣀⣉⣁⣠⡀⠠⠴⠴⠚⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠒⠤⠤⣀⣀⣉⠉⠉⠉⣀⡠⠴⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+**/

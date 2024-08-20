@@ -34,7 +34,7 @@ class Overlay extends TextField
 		autoSize = LEFT;
 		selectable = false;
 
-		defaultTextFormat = new TextFormat(14, 0xFFFFFF);
+		defaultTextFormat = new TextFormat(Paths.fonts('KodeMono-Bold.ttf'), 16, 0xEBEBEB);
 		text = "";
 
 		addEventListener(Event.ENTER_FRAME, update);
@@ -55,7 +55,6 @@ class Overlay extends TextField
 		{
 			text = ''; // set up the text itself
 			text += (displayFps ? times.length + " FPS\n" : ''); // Framerate
-			text += #if !neko (displayExtra ? Main.mainClassState + "\n" : ''); #end // Current Game State
 			text += (displayMemory ? '${FlxStringUtil.formatBytes(mem)} / ${FlxStringUtil.formatBytes(memPeak)}\n' : ''); 
 			// Current and Total Memory Usage
 		}

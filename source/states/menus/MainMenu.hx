@@ -37,6 +37,7 @@ class MainMenu extends MusicState
     private var optionsTxt:FlxTypedGroup<FlxText>;
     private var curSelected:Int = 0;
 
+    var bColor:FlxSprite;
     private var display:FlxSprite;
     private var info:FlxText;
 
@@ -44,12 +45,21 @@ class MainMenu extends MusicState
     {
         super.create();
 
-        var bgColor = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height,
-			FlxColor.gradient(FlxColor.fromRGB(70, 22, 125), FlxColor.fromRGB(0, 29, 158), 32));
-        bgColor.alpha = 0.0001;
-		add(bgColor);
+        FlxG.sound.playMusic('assets/music/interfaces/givealilbitback2.ogg', 0.8);
+        Conductor.changeBPM(121);
 
-        FlxTween.tween(bgColor, {alpha: 0.8}, 0.7);
+        bColor = FlxGradient.createGradientFlxSprite(FlxG.width, FlxG.height,
+			FlxColor.gradient(FlxColor.fromRGB(70, 22, 125), FlxColor.fromRGB(0, 29, 158), 32));
+        bColor.alpha = 0.0001;
+		add(bColor);
+
+        FlxTween.tween(bColor, {alpha: 0.4}, Conductor.crochet / 1000 * 6);
+
+        @:privateAccess
+		var musicSrc = cast FlxG.sound.music._channel.__audioSource;
+
+		var visualizer = new Visualizer(musicSrc, 16);
+		add(visualizer);
 
         var bg = new FlxSprite().loadGraphic(Paths.image('menus/main/menuDesat'));
         bg.blend = BlendMode.DIFFERENCE;
@@ -84,9 +94,6 @@ class MainMenu extends MusicState
             optionsTxt.add(item);
         }
         add(optionsTxt);
-
-        FlxG.sound.playMusic('assets/music/interfaces/givealilbitback2.ogg', 0.8);
-        Conductor.changeBPM(121);
 
         changeSelection(0);
         loadTexts();
@@ -196,5 +203,8 @@ class MainMenu extends MusicState
         super.beatHit();
         if(!selected)
             display.scale.set(1.04, 1.04);
+
+        if (curBeat % 8 == 0)
+            {bColor.alpha = 1; FlxTween.tween(bColor, {alpha: 0.4}, Conductor.crochet / 1000 * 6);}
     }
 }

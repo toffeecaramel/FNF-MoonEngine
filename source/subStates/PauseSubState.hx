@@ -1,8 +1,10 @@
 package subStates;
 
+import flixel.FlxCamera;
 import states.PlayState.GameMode;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.FlxBasic;
 import flixel.group.FlxGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -10,6 +12,8 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import states.data.MusicState.MusicSubState;
+import states.menus.*;
+import states.PlayState;
 
 using StringTools;
 
@@ -28,9 +32,12 @@ class PauseSubState extends MusicSubState
     private var curSelected:Int = 0;
     private var textGrp:FlxTypedGroup<FlxText>;
 
-    public function new(gamemode:GameMode)
+    public var cam:FlxCamera;
+
+    public function new(gamemode:GameMode, cam:FlxCamera)
     {
         super();
+        this.cam = cam;
 
         switch(gamemode)
         {
@@ -106,8 +113,12 @@ class PauseSubState extends MusicSubState
             {
                 case 'Resume':
                     close();
-                case 'Exit to Editor' | 'Exit to Freeplay' | 'Exit to Menu':
-                    trace('youre stuck lol');
+                    PlayState.resync();
+                case 'Restart Song':
+                    PlayState.setAudioState('kill');
+                    FlxG.switchState(new PlayState(FREEPLAY));
+                case 'Exit to Freeplay':
+                    FlxG.switchState(new Freeplay());
             }
         }
     }
@@ -135,5 +146,11 @@ class PauseSubState extends MusicSubState
                 txt.screenCenter(X);
             }
         }
+    }
+
+    override function add(Object:FlxBasic):FlxBasic
+    {
+        cast(Object, FlxSprite).camera = cam;
+        return super.add(Object);
     }
 }
