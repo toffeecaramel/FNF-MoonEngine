@@ -115,8 +115,8 @@ class InputHandler
                 var timing = checkTiming(note);
                 if (onNoteHit != null) onNoteHit(note, timing);
                 note.wasGoodHit = true;
-                unspawnNotes.remove(note);
-                note.kill();
+                //unspawnNotes.remove(note);
+                //note.kill();
             }
         }
     }

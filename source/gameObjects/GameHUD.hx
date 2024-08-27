@@ -17,7 +17,7 @@ import gameObjects.interfaces.HealthIcon;
 class GameHUD extends FlxTypedGroup<FlxBasic>
 {
     public var downscroll:Bool;
-    private var barY:Float;
+    private var barY:Float = 0;
 
     // - Healthbar Items
     public var bar:FlxBar;
@@ -28,7 +28,6 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
     public function new(downscroll:Bool)
     {
         this.downscroll = downscroll;
-        barY = (downscroll) ? 80 : FlxG.height - 80;
         super();
 
         createHealthBar();
@@ -69,10 +68,14 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
+
+        barY = (downscroll) ? 80 : FlxG.height - 80;
+
         bar.value = FlxMath.lerp(bar.value, PlayState.health, elapsed * 16);
 
         var percent:Float = 1 - (PlayState.health / 100);
         var value = bar.x + (bar.width * percent);
+        
         iconOpp.x = FlxMath.lerp(iconOpp.x, value - 120, elapsed * 16);
         iconPlayer.x = FlxMath.lerp(iconPlayer.x, value - 15, elapsed * 16);
         iconOpp.scale.x = iconOpp.scale.y = FlxMath.lerp(iconOpp.scale.x, 0.8, elapsed * 18);

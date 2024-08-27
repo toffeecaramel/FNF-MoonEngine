@@ -55,11 +55,11 @@ class MainMenu extends MusicState
 
         FlxTween.tween(bColor, {alpha: 0.4}, Conductor.crochet / 1000 * 6);
 
-        @:privateAccess
-		var musicSrc = cast FlxG.sound.music._channel.__audioSource;
+        //@:privateAccess
+		//var musicSrc = cast FlxG.sound.music._channel.__audioSource;
 
-		var visualizer = new Visualizer(musicSrc, 16);
-		add(visualizer);
+		//var visualizer = new Visualizer(musicSrc, 16);
+		//add(visualizer);
 
         var bg = new FlxSprite().loadGraphic(Paths.image('menus/main/menuDesat'));
         bg.blend = BlendMode.DIFFERENCE;
@@ -127,7 +127,7 @@ class MainMenu extends MusicState
         });
     }
 
-    var selected:Bool = false;
+    public static var selected:Bool = false;
     override public function update(elapsed:Float):Void
     {
         final up = controls.UI_UP_P;
@@ -153,9 +153,10 @@ class MainMenu extends MusicState
             FlxTween.tween(info, {x: FlxG.width + 300, alpha: 0}, 0.8, {ease:FlxEase.circIn});
 
             if(opt == 'freeplay' || opt == 'options')
-                FlxTween.tween(itemsBox, {x: FlxG.width - itemsBox.width - 25, "scale.x": 1.2}, 0.8, {ease:FlxEase.circOut});
+                FlxTween.tween(itemsBox, {"scale.x": 6}, 0.8, {ease:FlxEase.circOut});
             else
                 FlxTween.tween(itemsBox, {x: -900}, 1, {ease:FlxEase.circOut});
+
             for (txt in optionsTxt.members)
             {
                 FlxTween.tween(txt, {x: -350, alpha: 0.0001}, 1, {ease:FlxEase.circOut});
@@ -165,7 +166,7 @@ class MainMenu extends MusicState
                     {
                         case "freeplay": openSubState(new Freeplay());
                         case "profile": FlxG.switchState(new Profile());
-                        case "options": openSubState(new OptionsSubState());
+                        case "options": openSubState(new OptionsSubState(false));
                         case "exit": Sys.exit(1);
                     }
                 });

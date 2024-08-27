@@ -49,7 +49,11 @@
 
 	<haxelib name="hscript" />
 	<haxelib name="funkin.visfix" />
+
 	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<!--<haxedef name="HXCPP_STACK_LINE" />-->
+	<!--<haxedef name="HXCPP_STACK_TRACE"/>-->
 
 	<!--Remove the legacy health system-->
 	<haxedef name="FLX_NO_HEALTH" />

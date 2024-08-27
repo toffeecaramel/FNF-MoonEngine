@@ -8,6 +8,8 @@ import flixel.input.keyboard.FlxKey;
 import openfl.filters.BitmapFilter;
 import openfl.filters.ColorMatrixFilter;
 
+import data.PlayerSettings;
+
 using StringTools;
 
 class Init extends FlxState
@@ -30,6 +32,7 @@ class Init extends FlxState
 	override public function create()
 	{
 		super.create();
+		PlayerSettings.init();
 		UserSettings.init();
 		FlxG.switchState(Type.createInstance(Main.initState, []));
 	}

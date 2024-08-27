@@ -33,6 +33,8 @@ class PauseSubState extends MusicSubState
     private var textGrp:FlxTypedGroup<FlxText>;
 
     public var cam:FlxCamera;
+    
+    var game(get, never):PlayState;
 
     public function new(gamemode:GameMode, cam:FlxCamera)
     {
@@ -117,6 +119,9 @@ class PauseSubState extends MusicSubState
                 case 'Restart Song':
                     PlayState.setAudioState('kill');
                     FlxG.switchState(new PlayState(FREEPLAY));
+                case 'Settings':
+                    close();
+                    game.openSubState(new OptionsSubState(true, game.camOther));
                 case 'Exit to Freeplay':
                     FlxG.switchState(new Freeplay());
             }
@@ -153,4 +158,8 @@ class PauseSubState extends MusicSubState
         cast(Object, FlxSprite).camera = cam;
         return super.add(Object);
     }
+
+    @:noCompletion
+    function get_game():PlayState
+        return PlayState.curPlaystate;
 }

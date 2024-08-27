@@ -44,10 +44,9 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             add(strum);
 
             strum.alpha = 0;
-            strum.y -= 20;
             strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i));
 
-            FlxTween.tween(strum, {alpha: 1, y: strum.y + 20}, 
+            FlxTween.tween(strum, {alpha: 1}, 
             Conductor.crochet / 1000 * 2,
             {ease: FlxEase.quadOut, startDelay: Conductor.crochet / 1000 * i});
 
@@ -62,6 +61,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
         {
             var strum = members[i];
             strum.scale.x = strum.scale.y = flixel.math.FlxMath.lerp(strum.scale.x, nScalex, elapsed * 18);
+            strum.y = y;
 
         }
     }

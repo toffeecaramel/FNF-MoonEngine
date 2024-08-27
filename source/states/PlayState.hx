@@ -52,6 +52,8 @@ enum GameMode {
 
 class PlayState extends MusicState
 {
+	public static var curPlaystate:PlayState;
+
 	private var playerStrumline:Strumline;
     private var opponentStrumline:Strumline;
 	private var gl:StrumGlow;
@@ -88,7 +90,7 @@ class PlayState extends MusicState
 	public var combo:Int = 0;
 	public static var score:Int = 0;
 
-	final yPos:Float = (downscroll) ? FlxG.height - 120 : 50;
+	var yPos:Float = 0;
 
 	public var canPause:Bool = true;
 	public var paused:Bool = false;
@@ -116,6 +118,9 @@ class PlayState extends MusicState
 	{
 		super.create();
 
+		curPlaystate = this;
+
+		// - Setup the cameras
 		camGame = FlxG.camera;
 		camHUD = new FlxCamera();
 		camStrums = new FlxCamera();
@@ -129,23 +134,28 @@ class PlayState extends MusicState
 		FlxG.cameras.add(camStrums, false);
 		FlxG.cameras.add(camOther, false);
 
+		// - Setup the stage
 		stage = new Stage('stage');
 		add(stage);
 
+		// - Setup the characters
 		opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad');
 		add(opponent);
 
 		player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf');
 		add(player);
 
+		// - Add the game HUD
 		gameHUD = new GameHUD(downscroll);
 		gameHUD.camera = camHUD;
 		add(gameHUD);
 
+		// - Add the Game Group
 		comboGroup = new FlxTypedGroup<FNFSprite>();
 		updateComboDisplay(combo);
 		add(comboGroup);
 
+		// - Add the strums
 		opponentStrumline = new Strumline(false, -100, yPos);	
 		opponentStrumline.camera = camStrums;
 		add(opponentStrumline);
@@ -158,6 +168,7 @@ class PlayState extends MusicState
 		gl.camera = camStrums;
 		add(gl);
 
+		// - Load the chart
 		try
 		{
 			chart = new Chart("assets/data/chart.json");
@@ -173,7 +184,7 @@ class PlayState extends MusicState
 			return;
 		}
 
-		//notes = new FlxTypedGroup<Note>();
+		// - Load the notes
 		for (noteData in chart.notes) 
 		{
 			final noteX = getNoteX(noteData.direction, noteData.mustHit);
@@ -209,11 +220,11 @@ class PlayState extends MusicState
 			add(note);
 		}
 
+		// - Add the input handler
 		inputHandler = new InputHandler(unspawnNotes);
 		inputHandler.onNoteHit = function(note:Note, judgement:JudgementsTiming):Void {
             onNoteHit(note, player, judgement);
-            trace('Nota acertada: ${note.noteDir}, $judgement');
-            // Aqui você pode adicionar pontuação, tocar animações, etc.
+            trace('Note got hit: ${note.noteDir}, $judgement');
         };
         inputHandler.onNoteMiss = checkMiss;
 		
@@ -267,6 +278,9 @@ class PlayState extends MusicState
 		if(loadedSong && !paused)
 			Conductor.songPosition = inst.time;
 		super.update(elapsed);
+
+		downscroll = UserSettings.callSetting('Downscroll');
+		trace(UserSettings.callSetting('Downscroll'));
 
 		if (unspawnNotes.length == 0)
 			beatCounter = 0;
@@ -330,12 +344,8 @@ class PlayState extends MusicState
 			FlxG.switchState(new ChartConverterState());
 		}
 
-		if((FlxG.keys.justPressed.ESCAPE || FlxG.keys.justPressed.ENTER) && canPause)
-		{
-			setAudioState('pause');
-			paused = true;
-			openSubState(new PauseSubState(gamemode, camOther));
-		}
+		if(controls.BACK && canPause)
+			pauseGame();
 		//trace(health);
 
 		if(scriptHandler.exists('update'))
@@ -352,6 +362,10 @@ class PlayState extends MusicState
 	
 		// - Get the y position of the strumline member corresponding to the note's direction
 		var strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
+
+		yPos = (downscroll) ? FlxG.height - 120 : 50;
+		
+		strumline.y = yPos;
 
 		final susVal = (note.isSustainNote) ? 30 : 0;
 	
@@ -519,8 +533,28 @@ class PlayState extends MusicState
 		}
 	}
 
-	override function openSubState(SubState:FlxSubState)
+	override public function openSubState(SubState:FlxSubState)
 	{
+		if (!paused)
+		{
+			// pause all tweens and timers
+			FlxTimer.globalManager.forEach(function(tmr:FlxTimer)
+			{
+				if (!tmr.finished)
+					tmr.active = false;
+			});
+
+			FlxTween.globalManager.forEach(function(twn:FlxTween)
+			{
+				if (!twn.finished)
+					twn.active = false;
+			});
+
+			paused = true;
+			setAudioState('pause');
+			// */
+		}
+
 		super.openSubState(SubState);
 	}
 
@@ -542,6 +576,7 @@ class PlayState extends MusicState
 			});
 
 			paused = false;
+			setAudioState('play');
 			// */
 		}
 
@@ -621,15 +656,20 @@ class PlayState extends MusicState
 		final audios = [inst, voices];
 		for (yeah in audios)
 		{
-			switch(st)
+			if(yeah != null)
 			{
-				case 'play': yeah.play();
-				case 'pause': yeah.pause();
-				case 'stop': yeah.stop();
-				case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);
+				switch(st)
+				{
+					case 'play': yeah.play();
+					case 'pause': yeah.pause();
+					case 'stop': yeah.stop();
+					case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);
+				}
 			}
 		}
 	}
+
+
 
 	public static function resync():Void
 	{
@@ -638,6 +678,13 @@ class PlayState extends MusicState
 		Conductor.songPosition = inst.time;
 		voices.time = Conductor.songPosition;
 		setAudioState('play');
+	}
+
+	public function pauseGame():Void
+	{
+		setAudioState('pause');
+		paused = true;
+		openSubState(new PauseSubState(gamemode, camOther));
 	}
 
 	private var nextMustHitBeat:Int = 0;
