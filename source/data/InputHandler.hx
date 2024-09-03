@@ -8,10 +8,8 @@ import data.Timings.JudgementsTiming;
     First of all, yes, this is also based on forever's engine input but
     with also my attempt to do my own code for it
 
-    I tried doing one from scratch but I am a dumbass and I truly hated it
-    I don't know why but I'm just a dumb idiot
-
-    sorry
+    I tried doing one from scratch but I am a dumbass and I truly hated it.
+    trust me it was terrible lmao :sob:
 **/
 
 class InputHandler
@@ -110,13 +108,18 @@ class InputHandler
         for (note in unspawnNotes)
         {
             var noteDir = NoteUtils.directionToNumber(note.noteDir);
-            if (pressed[noteDir] && note.isSustainNote && note.parentNote.wasGoodHit && note.mustPress)
+            if (pressed[noteDir]
+            && note.isSustainNote
+            && note.parentNote.wasGoodHit
+			&& note.mustPress
+			&& note.strumTime - Conductor.songPosition <= 0 + 48)
             {
-                var timing = checkTiming(note);
-                if (onNoteHit != null) onNoteHit(note, timing);
+                if (onNoteHit != null) onNoteHit(note, null);
                 note.wasGoodHit = true;
-                //unspawnNotes.remove(note);
-                //note.kill();
+                note.canBeHit = false;
+                unspawnNotes.remove(note);
+                note.kill();
+                break;
             }
         }
     }
@@ -127,13 +130,18 @@ class InputHandler
         {
             if (!note.wasGoodHit
             && note.mustPress
+            && !note.tooLate
             && Conductor.songPosition > note.strumTime
             + Timings.getParameters(JudgementsTiming.miss)[1])
             {
+                //trace('Skill Issue :/');
                 if (onNoteMiss != null) onNoteMiss(note);
+                note.wasGoodHit = false;
                 note.tooLate = true;
+                note.canBeHit = false;
                 unspawnNotes.remove(note);
                 note.kill();
+                break;
             }
         }
     }

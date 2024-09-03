@@ -33,8 +33,10 @@ class Strumline extends FlxTypedGroup<FlxSprite>
 
         for (i in 0...4) 
         {
+            final skin = UserSettings.callSetting('Noteskin');
+            
             var strum:FlxSprite = new FlxSprite(x, y);
-            strum.loadGraphic(Paths.image('UI/notes/DEFAULT/strum'));
+            strum.loadGraphic(Paths.dataImg('notes/$skin/strum'));
             strum.setGraphicSize(Std.int(strum.width * 0.6), Std.int(strum.height * 0.6));
             strum.antialiasing = true;
             strum.x += (strum.width + 95 * i);
@@ -62,7 +64,6 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             var strum = members[i];
             strum.scale.x = strum.scale.y = flixel.math.FlxMath.lerp(strum.scale.x, nScalex, elapsed * 18);
             strum.y = y;
-
         }
     }
 
@@ -72,7 +73,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
         if (index != -1) 
         {
             var strum = members[index];
-            strum.scale.set(nScalex + 0.20, nScaley + 0.20);
+            strum.scale.set(nScalex + 0.25, nScaley + 0.25);
         }
     }
 }

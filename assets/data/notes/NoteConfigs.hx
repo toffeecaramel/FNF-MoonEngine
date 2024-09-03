@@ -1,6 +1,5 @@
 noteTypeProperties = [
     "DEFAULT" => {
-        assetPath: "DEFAULT",
         allowRotation: true,
         arrowColors: [
             [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
@@ -10,7 +9,6 @@ noteTypeProperties = [
         ]
     },
     "MOON" => {
-        assetPath: "MOON",
         allowRotation: true,
         arrowColors: [
             [0xFFB048E0, 0xFFFFFFFF, 0xFF2F1F36],
@@ -20,7 +18,6 @@ noteTypeProperties = [
         ]
     },
     "BOMB" => {
-        assetPath: "_notetypes/BOMB",
         allowRotation: false,
         arrowColors: [
             [0xFFFF0000, 0xFFFFFFFF, 0xFFFFFFFF],

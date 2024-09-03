@@ -94,6 +94,13 @@ class UserSettings
         ],
 
         // - Graphic Settings
+        'Noteskin' => [
+            SettingType.SELECTOR,
+            ["Change the skin of the notes to your desire."],
+            ["DEFAULT", "MOON"],
+            "DEFAULT"
+        ],
+        
         'Anti-Aliasing' => [
             SettingType.CHECKMARK,
             ["Anti-aliasing improves the appearance of \"jagged\" polygon edges, or \"jaggies\", so they are smoothed out on the screen, blending pixels together."],

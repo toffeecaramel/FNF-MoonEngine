@@ -18,7 +18,8 @@ import states.PlayState;
 
     anyways this one is heavily based on Forever Engine too
     at this point, idek what isnt based on forever engine :v
-    **I DO NOT** support yoshubs by the way.
+    however, I feel like I should say:
+    **I DO NOT** support yoshubs in ANY way.
     go support @crowplexus instead! she's cool :3
     
     anyways,
@@ -26,12 +27,12 @@ import states.PlayState;
 **/
 
 typedef NoteTypeProperties = {
-    var assetPath:String;
     var allowRotation:Bool;
     var ?arrowColors:Array<Array<FlxColor>>;
 };
 
 class Note extends FNFSprite {
+    public var skin:String = 'DEFAULT';
     public var type:String = 'DEFAULT';
     public var strumTime:Float = 0;
     public var noteDir:String = 'left';
@@ -64,18 +65,22 @@ class Note extends FNFSprite {
     **/
     public static var noteTypeProperties:Map<String, NoteTypeProperties>;
 
-    public function new(type:String = "DEFAULT", strumTime:Float, noteDir:String, 
-        mustPress:Bool, ?prevNote:Note, ?sustainNote:Bool = false) 
+    public function new(skin:String = 'DEFAULT', 
+    type:String = "DEFAULT", strumTime:Float, noteDir:String, 
+    mustPress:Bool, ?prevNote:Note, ?sustainNote:Bool = false) 
     {
         super(x, y);
 
-        loadNoteTypeProperties();
+        var scriptHandler = new ScriptHandler();
+        scriptHandler.loadScript('assets/data/notes/NoteConfigs.hx');
+        noteTypeProperties = scriptHandler.get("noteTypeProperties");
 
         if (prevNote == null)
             prevNote = this;
 
         y -= 3000;
 
+        this.skin = skin;
         this.type = type;
         this.noteDir = noteDir;
         this.prevNote = prevNote;
@@ -91,13 +96,6 @@ class Note extends FNFSprite {
         } 
         else if (!isSustainNote)
             parentNote = null;
-    }
-
-    public static function loadNoteTypeProperties():Void
-    {
-        var scriptHandler = new ScriptHandler();
-        scriptHandler.loadScript('assets/data/notetypes/ColorSetup.hx');
-        noteTypeProperties = scriptHandler.get("noteTypeProperties");
     }
 
     override function update(elapsed:Float) 
@@ -118,22 +116,31 @@ class Note extends FNFSprite {
             alpha = 0.3;
     }
 
-    public static function returnDefaultNote(type:String, strumTime:Float, 
-    noteDir:String, mustPress:Bool, ?isSustainNote:Bool = false, 
+    public static function returnDefaultNote(skin:String, type:String,
+    strumTime:Float, noteDir:String, mustPress:Bool, ?isSustainNote:Bool = false, 
     ?prevNote:Note = null):Note 
     {
-        var newNote:Note = new Note(type, strumTime, noteDir, mustPress, prevNote, isSustainNote);
+        // Create the new note
+        var newNote:Note = new Note(skin, type, strumTime, noteDir, mustPress, prevNote, isSustainNote);
+        
+        // Try to get properties for the given type, fallback to 'DEFAULT' if not found
         var props = noteTypeProperties.get(type);
-        if (props == null) props = noteTypeProperties.get("DEFAULT");
+        if (props == null) {
+            props = noteTypeProperties.get("DEFAULT");
+            type = "DEFAULT";  // Reset to 'DEFAULT' if type properties are not found
+        }
+        
+        final typeStr = (type != "DEFAULT") ? '_notetypes/$type/' : '';
 
         arrowRGB = props.arrowColors;
-
+        globalColors = []; // Clear global colors before pushing new ones
+        
         for (i in 0...arrowRGB.length)
             globalColors.push(arrowRGB[i][0]);
         
         if (!isSustainNote) 
         {
-            newNote.loadGraphic(Paths.image('UI/notes/${props.assetPath}/note'));
+            newNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}note'));
             if (props.allowRotation)
                 newNote.angle = NoteUtils.angleFromDirection(noteDir);
 
@@ -144,12 +151,12 @@ class Note extends FNFSprite {
         if (isSustainNote && prevNote != null) 
         {
             newNote.noteSpeed = prevNote.noteSpeed;
-            newNote.loadGraphic(Paths.image('UI/notes/${props.assetPath}/holdE'));
-            newNote.flipY = (PlayState.downscroll) ? true : false;
+            newNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}holdE'));
+            newNote.flipY = UserSettings.callSetting('Downscroll');
             newNote.updateHitbox();
             if (prevNote.isSustainNote) 
             {
-                prevNote.loadGraphic(Paths.image('UI/notes/${props.assetPath}/holdM'));
+                prevNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}holdM'));
                 prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }

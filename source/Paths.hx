@@ -61,7 +61,10 @@ class Paths
         return 'assets/fonts/$key';
 
     inline static public function character(key:String)
-        return 'assets/data/characters/${key}';
+        return 'assets/data/characters/$key';
+    
+    inline static public function dataImg(key:String)
+        return 'assets/data/$key.png';
 
     inline static public function getSparrowAtlas(key:String, ?library:String)
     {
