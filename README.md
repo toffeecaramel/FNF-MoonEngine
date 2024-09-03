@@ -37,13 +37,15 @@
 
 ----------------------------------------------
 
-# • Features:
+<h1 align="center">• FEATURES • </h1>
+
+# -> Built-In Features
 * Hscript support (W.I.P)
 * Notetypes (W.I.P)
 * Characters JSON
 * Stages JSON (W.I.P)
 
-# • Planned Features:
+# -> Planned Features:
 * P2 Support.
 * GameJolt implementation.
 * Revamped chart editor.
