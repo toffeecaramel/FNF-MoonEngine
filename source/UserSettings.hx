@@ -73,14 +73,7 @@ class UserSettings
             false
         ],
         'Ghost Tapping' => [
-            SettingType.SELECTOR,
-            [
-                "You will miss if you tap on your note keybinds",
-                "You can only tap on your note keybinds when not singing",
-                "You can tap on your note keybinds at any moment."
-            ],
-            ["Off", "When not singing", "On"],
-            "On"
+		SettingType.CHECKMARK, [''], true
         ],
         'Mechanics' => [
             SettingType.CHECKMARK,

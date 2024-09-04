@@ -1,21 +1,21 @@
 package subStates;
 
+import UserSettings.SettingType;
+import UserSettings;
+import flixel.FlxBasic;
+import flixel.FlxCamera;
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.FlxG;
-import flixel.FlxCamera;
-import flixel.FlxBasic;
 import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 import flixel.text.FlxText;
-import states.data.MusicState.MusicSubState;
-import UserSettings;
-import UserSettings.SettingType;
+import flixel.util.FlxColor;
 import gameObjects.options.*;
 import states.*;
-import states.menus.*;
 import states.PlayState.GameMode;
+import states.data.MusicState.MusicSubState;
+import states.menus.*;
 
 using StringTools;
 

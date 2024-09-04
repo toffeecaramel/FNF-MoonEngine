@@ -1,8 +1,8 @@
 package data;
 
+import data.Timings.JudgementsTiming;
 import gameObjects.notes.Note;
 import util.NoteUtils;
-import data.Timings.JudgementsTiming;
 
 /**
     First of all, yes, this is also based on forever's engine input but
@@ -89,7 +89,7 @@ class InputHandler
                         if (eligible)
                         {
                             var timing = checkTiming(coolNote);
-                            if (onNoteHit != null) onNoteHit(coolNote, timing);
+							(timing != miss) ? onNoteHit(coolNote, timing) : onNoteMiss(coolNote);
                             coolNote.wasGoodHit = true;
                             pressedNotes.push(coolNote);
                             unspawnNotes.remove(coolNote);
@@ -98,7 +98,8 @@ class InputHandler
                     }
                 } 
                 else
-                    if (onNoteMiss != null) onNoteMiss(null);
+				if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
+					onNoteMiss(null);
             }
         }
     }

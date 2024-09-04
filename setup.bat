@@ -28,6 +28,7 @@ haxelib install flixel
 haxelib install flixel-addons
 haxelib install flixel-ui
 haxelib install flixel-tools
+haxelib install flixel-text-input
 haxelib install hscript
 haxelib run lime setup
 haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
