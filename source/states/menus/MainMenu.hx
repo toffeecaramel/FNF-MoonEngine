@@ -28,7 +28,10 @@ class MainMenu extends MusicState
 {
 	private var options:Array<String> = [
         'story mode', 'freeplay', 'mods', 
-        'profile', 'credits', 'options',
+		'profile',
+		'credits',
+		'options',
+		'music player',
         'exit'
     ];
 

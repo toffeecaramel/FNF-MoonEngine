@@ -23,6 +23,7 @@ import flixel.input.keyboard.FlxKey;
 
 enum abstract Action(String) to String from String
 {
+	// * - UI CONTROLS - * //
     var UI_UP = "ui_up";
     var UI_LEFT = "ui_left";
     var UI_RIGHT = "ui_right";
@@ -35,18 +36,36 @@ enum abstract Action(String) to String from String
     var UI_LEFT_R = "ui_left-release";
     var UI_RIGHT_R = "ui_right-release";
     var UI_DOWN_R = "ui_down-release";
-    var UP = "up";
-    var LEFT = "left";
-    var RIGHT = "right";
-    var DOWN = "down";
-    var UP_P = "up-press";
-    var LEFT_P = "left-press";
-    var RIGHT_P = "right-press";
-    var DOWN_P = "down-press";
-    var UP_R = "up-release";
-    var LEFT_R = "left-release";
-    var RIGHT_R = "right-release";
-    var DOWN_R = "down-release";
+	// * - PLAYER CONTROLS - * //
+	// • PLAYER 1 • //
+	var UP_P1 = "up-p1";
+	var LEFT_P1 = "left-p1";
+	var RIGHT_P1 = "right-p1";
+	var DOWN_P1 = "down-p1";
+	var UP_P1_P = "up-p1-press";
+	var LEFT_P1_P = "left-p1-press";
+	var RIGHT_P1_P = "right-p1-press";
+	var DOWN_P1_P = "down-p1-press";
+	var UP_P1_R = "up-p1-release";
+	var LEFT_P1_R = "left-p1-release";
+	var RIGHT_P1_R = "right-p1-release";
+	var DOWN_P1_R = "down-p1-release";
+
+	// • PLAYER 2 • //
+	var UP_P2 = "up-p2";
+	var LEFT_P2 = "left-p2";
+	var RIGHT_P2 = "right-p2";
+	var DOWN_P2 = "down-p2";
+	var UP_P2_P = "up-p2-press";
+	var LEFT_P2_P = "left-p2-press";
+	var RIGHT_P2_P = "right-p2-press";
+	var DOWN_P2_P = "down-p2-press";
+	var UP_P2_R = "up-p2-release";
+	var LEFT_P2_R = "left-p2-release";
+	var RIGHT_P2_R = "right-p2-release";
+	var DOWN_P2_R = "down-p2-release";
+
+	// * - OTHER KEYBINDS - * //
     var ACCEPT = "accept";
     var BACK = "back";
     var PAUSE = "pause";
@@ -67,10 +86,14 @@ enum Device
  */
 enum Control
 {
-    UP;
-    LEFT;
-    RIGHT;
-    DOWN;
+	UP_P1;
+	LEFT_P1;
+	RIGHT_P1;
+	DOWN_P1;
+	UP_P2;
+	LEFT_P2;
+	RIGHT_P2;
+	DOWN_P2;
     UI_UP;
     UI_LEFT;
     UI_RIGHT;
@@ -96,6 +119,32 @@ enum KeyboardScheme
  */
 class Controls extends FlxActionSet
 {
+	var _up_p1 = new FlxActionDigital(Action.UP_P1);
+	var _left_p1 = new FlxActionDigital(Action.LEFT_P1);
+	var _right_p1 = new FlxActionDigital(Action.RIGHT_P1);
+	var _down_p1 = new FlxActionDigital(Action.DOWN_P1);
+	var _up_p1P = new FlxActionDigital(Action.UP_P1_P);
+	var _left_p1P = new FlxActionDigital(Action.LEFT_P1_P);
+	var _right_p1P = new FlxActionDigital(Action.RIGHT_P1_P);
+	var _down_p1P = new FlxActionDigital(Action.DOWN_P1_P);
+	var _up_p1R = new FlxActionDigital(Action.UP_P1_R);
+	var _left_p1R = new FlxActionDigital(Action.LEFT_P1_R);
+	var _right_p1R = new FlxActionDigital(Action.RIGHT_P1_R);
+	var _down_p1R = new FlxActionDigital(Action.DOWN_P1_R);
+
+	var _up_p2 = new FlxActionDigital(Action.UP_P2);
+	var _left_p2 = new FlxActionDigital(Action.LEFT_P2);
+	var _right_p2 = new FlxActionDigital(Action.RIGHT_P2);
+	var _down_p2 = new FlxActionDigital(Action.DOWN_P2);
+	var _up_p2P = new FlxActionDigital(Action.UP_P2_P);
+	var _left_p2P = new FlxActionDigital(Action.LEFT_P2_P);
+	var _right_p2P = new FlxActionDigital(Action.RIGHT_P2_P);
+	var _down_p2P = new FlxActionDigital(Action.DOWN_P2_P);
+	var _up_p2R = new FlxActionDigital(Action.UP_P2_R);
+	var _left_p2R = new FlxActionDigital(Action.LEFT_P2_R);
+	var _right_p2R = new FlxActionDigital(Action.RIGHT_P2_R);
+	var _down_p2R = new FlxActionDigital(Action.DOWN_P2_R);
+    
     var _ui_up = new FlxActionDigital(Action.UI_UP);
     var _ui_left = new FlxActionDigital(Action.UI_LEFT);
     var _ui_right = new FlxActionDigital(Action.UI_RIGHT);
@@ -108,18 +157,7 @@ class Controls extends FlxActionSet
     var _ui_leftR = new FlxActionDigital(Action.UI_LEFT_R);
     var _ui_rightR = new FlxActionDigital(Action.UI_RIGHT_R);
     var _ui_downR = new FlxActionDigital(Action.UI_DOWN_R);
-    var _up = new FlxActionDigital(Action.UP);
-    var _left = new FlxActionDigital(Action.LEFT);
-    var _right = new FlxActionDigital(Action.RIGHT);
-    var _down = new FlxActionDigital(Action.DOWN);
-    var _upP = new FlxActionDigital(Action.UP_P);
-    var _leftP = new FlxActionDigital(Action.LEFT_P);
-    var _rightP = new FlxActionDigital(Action.RIGHT_P);
-    var _downP = new FlxActionDigital(Action.DOWN_P);
-    var _upR = new FlxActionDigital(Action.UP_R);
-    var _leftR = new FlxActionDigital(Action.LEFT_R);
-    var _rightR = new FlxActionDigital(Action.RIGHT_R);
-    var _downR = new FlxActionDigital(Action.DOWN_R);
+
     var _accept = new FlxActionDigital(Action.ACCEPT);
     var _back = new FlxActionDigital(Action.BACK);
     var _pause = new FlxActionDigital(Action.PAUSE);
@@ -135,11 +173,38 @@ class Controls extends FlxActionSet
     public var gamepadsAdded:Array<Int> = [];
     public var keyboardScheme = KeyboardScheme.None;
 
-    // Lol
-    public var UP(get, never):Bool;
-    public var LEFT(get, never):Bool;
-    public var RIGHT(get, never):Bool;
-    public var DOWN(get, never):Bool;
+	// Gameplay Just Pressed Controls Bindings
+	public var UP_P1(get, never):Bool;
+	public var LEFT_P1(get, never):Bool;
+	public var RIGHT_P1(get, never):Bool;
+	public var DOWN_P1(get, never):Bool;
+
+	public var UP_P2(get, never):Bool;
+	public var LEFT_P2(get, never):Bool;
+	public var RIGHT_P2(get, never):Bool;
+	public var DOWN_P2(get, never):Bool;
+
+	// Gameplay Pressed Controls bindings
+	public var UP_P1_P(get, never):Bool;
+	public var LEFT_P1_P(get, never):Bool;
+	public var RIGHT_P1_P(get, never):Bool;
+	public var DOWN_P1_P(get, never):Bool;
+
+	public var UP_P2_P(get, never):Bool;
+	public var LEFT_P2_P(get, never):Bool;
+	public var RIGHT_P2_P(get, never):Bool;
+	public var DOWN_P2_P(get, never):Bool;
+
+	// Gameplay Relese Controls bindings
+	public var UP_P1_R(get, never):Bool;
+	public var LEFT_P1_R(get, never):Bool;
+	public var RIGHT_P1_R(get, never):Bool;
+	public var DOWN_P1_R(get, never):Bool;
+
+	public var UP_P2_R(get, never):Bool;
+	public var LEFT_P2_R(get, never):Bool;
+	public var RIGHT_P2_R(get, never):Bool;
+	public var DOWN_P2_R(get, never):Bool;
     
     // UI Controls bindings
     public var UI_UP(get, never):Bool;
@@ -158,18 +223,6 @@ class Controls extends FlxActionSet
     public var UI_LEFT_R(get, never):Bool;
     public var UI_RIGHT_R(get, never):Bool;
     public var UI_DOWN_R(get, never):Bool;
-
-    // Gameplay Pressed Controls bindings
-    public var UP_P(get, never):Bool;
-    public var LEFT_P(get, never):Bool;
-    public var RIGHT_P(get, never):Bool;
-    public var DOWN_P(get, never):Bool;
-
-    // Gameplay Relese Controls bindings
-    public var UP_R(get, never):Bool;
-    public var LEFT_R(get, never):Bool;
-    public var RIGHT_R(get, never):Bool;
-    public var DOWN_R(get, never):Bool;
 
     // Additional Controls bindings
     public var ACCEPT(get, never):Bool;
@@ -214,41 +267,90 @@ class Controls extends FlxActionSet
     inline function get_UI_DOWN_R()
         return _ui_downR.check();
 
-    inline function get_UP()
-        return _up.check();
+	/** GET PLAYER 1 & PLAYER 2 CONTROLS **/
+	inline function get_UP_P1()
+		return _up_p1.check();
 
-    inline function get_LEFT()
-        return _left.check();
+	inline function get_LEFT_P1()
+		return _left_p1.check();
 
-    inline function get_RIGHT()
-        return _right.check();
+	inline function get_RIGHT_P1()
+		return _right_p1.check();
 
-    inline function get_DOWN()
-        return _down.check();
+	inline function get_DOWN_P1()
+		return _down_p1.check();
 
-    inline function get_UP_P()
-        return _upP.check();
+	//
 
-    inline function get_LEFT_P()
-        return _leftP.check();
+	inline function get_UP_P2()
+		return _up_p2.check();
 
-    inline function get_RIGHT_P()
-        return _rightP.check();
+	inline function get_LEFT_P2()
+		return _left_p2.check();
 
-    inline function get_DOWN_P()
-        return _downP.check();
+	inline function get_RIGHT_P2()
+		return _right_p2.check();
 
-    inline function get_UP_R()
-        return _upR.check();
+	inline function get_DOWN_P2()
+		return _down_p2.check();
 
-    inline function get_LEFT_R()
-        return _leftR.check();
+	//
 
-    inline function get_RIGHT_R()
-        return _rightR.check();
+	inline function get_UP_P1_P()
+		return _up_p1P.check();
 
-    inline function get_DOWN_R()
-        return _downR.check();
+	inline function get_LEFT_P1_P()
+		return _left_p1P.check();
+
+	inline function get_RIGHT_P1_P()
+		return _right_p1P.check();
+
+	inline function get_DOWN_P1_P()
+		return _down_p1P.check();
+
+	//
+
+	inline function get_UP_P2_P()
+		return _up_p2P.check();
+
+	inline function get_LEFT_P2_P()
+		return _left_p2P.check();
+
+	inline function get_RIGHT_P2_P()
+		return _right_p2P.check();
+
+	inline function get_DOWN_P2_P()
+		return _down_p2P.check();
+
+	//
+
+	inline function get_UP_P1_R()
+		return _up_p1R.check();
+
+	inline function get_LEFT_P1_R()
+		return _left_p1R.check();
+
+	inline function get_RIGHT_P1_R()
+		return _right_p1R.check();
+
+	inline function get_DOWN_P1_R()
+		return _down_p1R.check();
+
+	//
+
+	inline function get_UP_P2_R()
+		return _up_p2R.check();
+
+	inline function get_LEFT_P2_R()
+		return _left_p2R.check();
+
+	inline function get_RIGHT_P2_R()
+		return _right_p2R.check();
+
+	inline function get_DOWN_P2_R()
+		return _down_p2R.check();
+
+	//
 
     inline function get_ACCEPT()
         return _accept.check();
@@ -269,18 +371,37 @@ class Controls extends FlxActionSet
     {
         super(name);
 
-        add(_up);
-        add(_left);
-        add(_right);
-        add(_down);
-        add(_upP);
-        add(_leftP);
-        add(_rightP);
-        add(_downP);
-        add(_upR);
-        add(_leftR);
-        add(_rightR);
-        add(_downR);
+		final uhmyeah = [
+			_up_p1,
+			_left_p1,
+			_right_p1,
+			_down_p1,
+			_up_p1P,
+			_left_p1P,
+			_right_p1P,
+			_down_p1P,
+			_up_p1R,
+			_left_p1R,
+			_right_p1R,
+			_down_p1R,
+			// now time for p2 fuskcaksdfk
+			_up_p2,
+			_left_p2,
+			_right_p2,
+			_down_p2,
+			_up_p2P,
+			_left_p2P,
+			_right_p2P,
+			_down_p2P,
+			_up_p2R,
+			_left_p2R,
+			_right_p2R,
+			_down_p2R,
+		];
+
+		for (mothersday in uhmyeah)
+			add(mothersday);
+
         add(_ui_up);
         add(_ui_left);
         add(_ui_right);
@@ -340,10 +461,14 @@ class Controls extends FlxActionSet
     {
         return switch (control)
         {
-            case UP: _up;
-            case DOWN: _down;
-            case LEFT: _left;
-            case RIGHT: _right;
+			case UP_P1: _up_p1;
+			case DOWN_P1: _down_p1;
+			case LEFT_P1: _left_p1;
+			case RIGHT_P1: _right_p1;
+			case UP_P2: _up_p2;
+			case DOWN_P2: _down_p2;
+			case LEFT_P2: _left_p2;
+			case RIGHT_P2: _right_p2;
             case UI_UP: _ui_up;
             case UI_DOWN: _ui_down;
             case UI_LEFT: _ui_left;
@@ -372,22 +497,40 @@ class Controls extends FlxActionSet
     {
         switch (control)
         {
-            case UP:
-                func(_up, PRESSED);
-                func(_upP, JUST_PRESSED);
-                func(_upR, JUST_RELEASED);
-            case LEFT:
-                func(_left, PRESSED);
-                func(_leftP, JUST_PRESSED);
-                func(_leftR, JUST_RELEASED);
-            case RIGHT:
-                func(_right, PRESSED);
-                func(_rightP, JUST_PRESSED);
-                func(_rightR, JUST_RELEASED);
-            case DOWN:
-                func(_down, PRESSED);
-                func(_downP, JUST_PRESSED);
-                func(_downR, JUST_RELEASED);
+			case UP_P1:
+				func(_up_p1, PRESSED);
+				func(_up_p1P, JUST_PRESSED);
+				func(_up_p1R, JUST_RELEASED);
+			case LEFT_P1:
+				func(_left_p1, PRESSED);
+				func(_left_p1P, JUST_PRESSED);
+				func(_left_p1R, JUST_RELEASED);
+			case RIGHT_P1:
+				func(_right_p1, PRESSED);
+				func(_right_p1P, JUST_PRESSED);
+				func(_right_p1R, JUST_RELEASED);
+			case DOWN_P1:
+				func(_down_p1, PRESSED);
+				func(_down_p1P, JUST_PRESSED);
+				func(_down_p1R, JUST_RELEASED);
+			//
+			case UP_P2:
+				func(_up_p2, PRESSED);
+				func(_up_p2P, JUST_PRESSED);
+				func(_up_p2R, JUST_RELEASED);
+			case LEFT_P2:
+				func(_left_p2, PRESSED);
+				func(_left_p2P, JUST_PRESSED);
+				func(_left_p2R, JUST_RELEASED);
+			case RIGHT_P2:
+				func(_right_p2, PRESSED);
+				func(_right_p2P, JUST_PRESSED);
+				func(_right_p2R, JUST_RELEASED);
+			case DOWN_P2:
+				func(_down_p2, PRESSED);
+				func(_down_p2P, JUST_PRESSED);
+				func(_down_p2R, JUST_RELEASED);
+			//
             case UI_UP:
                 func(_ui_up, PRESSED);
                 func(_ui_upP, JUST_PRESSED);
@@ -552,10 +695,16 @@ class Controls extends FlxActionSet
         removeKeyboard();
 
         // keyboardScheme = scheme;
-        inline bindKeys(Control.UP, [Init.gameControls.get('UP')[0][0], Init.gameControls.get('UP')[0][1]]);
-        inline bindKeys(Control.DOWN, [Init.gameControls.get('DOWN')[0][0], Init.gameControls.get('DOWN')[0][1]]);
-        inline bindKeys(Control.LEFT, [Init.gameControls.get('LEFT')[0][0], Init.gameControls.get('LEFT')[0][1]]);
-        inline bindKeys(Control.RIGHT, [Init.gameControls.get('RIGHT')[0][0], Init.gameControls.get('RIGHT')[0][1]]);
+		inline bindKeys(Control.LEFT_P1, [Init.gameControls.get('LEFT_P1')[0][0]]);
+		inline bindKeys(Control.DOWN_P1, [Init.gameControls.get('DOWN_P1')[0][0]]);
+		inline bindKeys(Control.UP_P1, [Init.gameControls.get('UP_P1')[0][0]]);
+		inline bindKeys(Control.RIGHT_P1, [Init.gameControls.get('RIGHT_P1')[0][0]]);
+
+		inline bindKeys(Control.LEFT_P2, [Init.gameControls.get('LEFT_P2')[0][0]]);
+		inline bindKeys(Control.DOWN_P2, [Init.gameControls.get('DOWN_P2')[0][0]]);
+		inline bindKeys(Control.UP_P2, [Init.gameControls.get('UP_P2')[0][0]]);
+		inline bindKeys(Control.RIGHT_P2, [Init.gameControls.get('RIGHT_P2')[0][0]]);
+
         inline bindKeys(Control.UI_UP, [Init.gameControls.get('UI_UP')[0][0], Init.gameControls.get('UI_UP')[0][1]]);
         inline bindKeys(Control.UI_DOWN, [Init.gameControls.get('UI_DOWN')[0][0], Init.gameControls.get('UI_DOWN')[0][1]]);
         inline bindKeys(Control.UI_LEFT, [Init.gameControls.get('UI_LEFT')[0][0], Init.gameControls.get('UI_LEFT')[0][1]]);
@@ -636,10 +785,10 @@ class Controls extends FlxActionSet
         addGamepadLiteral(id, [
             Control.ACCEPT => [A],
             Control.BACK => [B],
-            Control.UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
-            Control.DOWN => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
-            Control.LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
-            Control.RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
+			Control.UP_P1 => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
+			Control.DOWN_P1 => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
+			Control.LEFT_P1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],
+			Control.RIGHT_P1 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT],
             Control.PAUSE => [START],
             Control.RESET => [Y]
         ]);
@@ -648,10 +797,10 @@ class Controls extends FlxActionSet
             // Swap A and B for switch
             Control.ACCEPT => [B],
             Control.BACK => [A],
-            Control.UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP],
-            Control.DOWN => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN],
-            Control.LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT],
-            Control.RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT],
+			Control.UP_P1 => [DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP],
+			Control.DOWN_P1 => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN],
+			Control.LEFT_P1 => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT],
+			Control.RIGHT_P1 => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT],
             Control.PAUSE => [START],
             // Swap Y and X for switch
             Control.RESET => [Y],

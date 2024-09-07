@@ -2,6 +2,7 @@ package states.editors.chart;
 
 import data.*;
 import data.chart.*;
+import data.chart.*;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -31,6 +32,7 @@ import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
 import flixel.util.FlxTimer;
+import gameObjects.notes.*;
 import haxe.Json;
 import haxe.io.Bytes;
 import lime.media.AudioBuffer;
@@ -48,9 +50,6 @@ import states.data.MusicState;
 import sys.io.File;
 import sys.thread.Mutex;
 import sys.thread.Thread;
-
-import gameObjects.notes.*;
-import data.chart.*;
 import util.*;
 
 using StringTools;
@@ -66,7 +65,6 @@ import sys.thread.Thread;
 	code by @toffeecaramel
 **/
 
-//@:build(haxe.ui.ComponentBuilder.build("assets/data/ui/charter/main-view.xml"))
 class ChartEditor extends MusicState
 {
 	final gridSize:Int = 64;
@@ -101,15 +99,10 @@ class ChartEditor extends MusicState
 		songMusic.time = 0; //makin sure it starts from the start :P
 
 		_renderedLanes = new FlxTypedGroup<FlxSprite>();
-		_sustains = new FlxTypedGroup<FlxSprite>();
-		_notes = new FlxTypedGroup<Note>();
 
 		generateGrid();
-		generateNotes();
 
 		add(_renderedLanes);
-		add(_sustains);
-		add(_notes);
 
 		strumLineCam = new FlxObject(0, 0);
 		strumLineCam.screenCenter(X);
@@ -168,62 +161,6 @@ class ChartEditor extends MusicState
 		}
 	}
 
-	final arrowColor:Array<FlxColor> = [
-		0xFFC24B99,
-		0xFF00FFFF,
-		0xFF12FA05,
-		0xFFF9393F
-	];
-
-	function generateNotes():Void
-	{
-		for (noteData in _chart.notes)
-		{
-			final noteX = getNoteX(noteData.direction, noteData.mustHit);
-
-			var note:Note = Note.returnDefaultNote("DEFAULT", "DEFAULT", noteData.time, noteData.direction, true, false);
-			note.setup(note);
-			note.setGraphicSize(gridSize-2, gridSize-2);
-			note.updateHitbox();
-			note.x = noteX;
-			note.antialiasing = true;
-			note.y = Math.floor(getYfromStrum(noteData.time)) + 1;
-			_notes.add(note);
-
-			if (noteData.duration != null && noteData.duration > 0)
-                createSustain(noteData, noteX);
-		}
-	}
-
-	function createSustain(noteData:Dynamic, noteX:Float):Void
-	{
-		var susStartY:Float = Math.floor(getYfromStrum(noteData.time));
-		var susEndY:Float = Math.floor(getYfromStrum(noteData.time + noteData.duration));
-
-		var midNote:FlxSprite = new FlxSprite().makeGraphic(gridSize - 15, gridSize);
-		midNote.setGraphicSize(gridSize, susEndY - susStartY - gridSize);
-		midNote.x = noteX;
-		midNote.y = susStartY + gridSize;
-		midNote.updateHitbox();
-		midNote.scale.x -= 2;
-		midNote.alpha = 0.6;
-		midNote.color = arrowColor[NoteUtils.directionToNumber(noteData.direction)];
-		midNote.ID = 1;
-		_sustains.add(midNote);
-
-		var endNote:FlxSprite = new FlxSprite();
-		endNote.loadGraphic(Paths.image('editors/charter/susEnd'));
-		endNote.setGraphicSize(gridSize, gridSize);
-		endNote.x = noteX;
-		endNote.y = susEndY;
-		endNote.updateHitbox();
-		endNote.scale.x = midNote.scale.x - 0.12;
-		endNote.alpha = midNote.alpha;
-		endNote.color = midNote.color;
-		endNote.ID = 2;
-		_sustains.add(endNote);
-	}
-
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -257,36 +194,10 @@ class ChartEditor extends MusicState
 				dummyArrow.y = FlxG.mouse.y;
 			else
 				dummyArrow.y = Math.floor(FlxG.mouse.y / gridSize) * gridSize;
-
-			if (FlxG.mouse.overlaps(_sustains))
-			{
-				_sustains.forEachAlive(function(sus:FlxSprite)
-				{
-					if (sus.ID == 1 && FlxG.mouse.pressed)
-					{
-						var newHeight = FlxG.mouse.screenY - sus.y;
-						sus.setGraphicSize(gridSize, newHeight);
-						sus.updateHitbox();
-					}
-				});
-			}
 		}
 	}
 
 	function getYfromStrum(strumTime:Float):Float
 		return FlxMath.remapToRange(strumTime, 0, songMusic.length, 0, 
 		(songMusic.length / Conductor.stepCrochet) * 64);
-
-	function getNoteX(direction:String, mustHit:Bool):Float
-	{
-		final offset:Int = (mustHit) ? 4 : 0;
-		switch (direction)
-		{
-			case "left": return grid.x + (0 + offset) * gridSize;
-			case "down": return grid.x + (1 + offset) * gridSize;
-			case "up": return grid.x + (2 + offset) * gridSize;
-			case "right": return grid.x + (3 + offset) * gridSize;
-			default: return grid.x;
-		}
-	}
 }

@@ -66,8 +66,7 @@ class InputHandler
                     if (note.noteDir == noteDir
                     && note.mustPress
                     && isWithinTiming(note)
-                    && !note.wasGoodHit
-                    && !note.isSustainNote
+					&& !note.wasGoodHit
                     && !note.tooLate)
                         possibleNoteList.push(note);
 
@@ -88,12 +87,11 @@ class InputHandler
 
                         if (eligible)
                         {
-                            var timing = checkTiming(coolNote);
+							final timing = checkTiming(coolNote);
 							(timing != miss) ? onNoteHit(coolNote, timing) : onNoteMiss(coolNote);
                             coolNote.wasGoodHit = true;
                             pressedNotes.push(coolNote);
-                            unspawnNotes.remove(coolNote);
-                            coolNote.kill();
+							assassinateNote(coolNote);
                         }
                     }
                 } 
@@ -118,8 +116,7 @@ class InputHandler
                 if (onNoteHit != null) onNoteHit(note, null);
                 note.wasGoodHit = true;
                 note.canBeHit = false;
-                unspawnNotes.remove(note);
-                note.kill();
+				assassinateNote(note);
                 break;
             }
         }
@@ -140,8 +137,7 @@ class InputHandler
                 note.wasGoodHit = false;
                 note.tooLate = true;
                 note.canBeHit = false;
-                unspawnNotes.remove(note);
-                note.kill();
+				assassinateNote(note);
                 break;
             }
         }
@@ -157,7 +153,7 @@ class InputHandler
 
         for (jt in Timings.values)
         {
-            var timingData = Timings.getParameters(jt);
+			final timingData = Timings.getParameters(jt);
             if (timeDifference <= timingData[1])
             {
                 note.canBeHit = true;
@@ -166,4 +162,9 @@ class InputHandler
         }
         return null;
     }
+	private function assassinateNote(poorLittleNote:Note):Void
+	{
+		poorLittleNote.kill();
+		unspawnNotes.remove(poorLittleNote);
+	}
 }

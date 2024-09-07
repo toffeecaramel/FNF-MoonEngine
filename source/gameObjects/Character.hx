@@ -1,13 +1,13 @@
 package gameObjects;
 
+import data.*;
+import data.depedency.*;
 import flixel.FlxG;
 import flixel.addons.util.FlxSimplex;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
-import data.*;
-import data.depedency.*;
-import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
+import openfl.utils.Assets as OpenFlAssets;
 
 using StringTools;
 

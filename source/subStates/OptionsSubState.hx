@@ -171,9 +171,9 @@ class OptionsSubState extends MusicSubState
     {
         super.update(elapsed);
 
-        if (controls.UP_P)
+		if (controls.UI_UP_P)
             updateSelection(-1);
-        else if (controls.DOWN_P)
+		else if (controls.UI_DOWN_P)
             updateSelection(1);
 
         if (controls.ACCEPT)
@@ -190,7 +190,8 @@ class OptionsSubState extends MusicSubState
         }
 
         // Handle left/right inputs to toggle CheckmarkType
-        if (controls.LEFT_P || controls.RIGHT_P) {
+		if (controls.UI_LEFT_P || controls.UI_RIGHT_P)
+		{
             final selectedOption = options[curSelected];
             if (Std.isOfType(selectedOption, CheckmarkType)) {
                 var checkmarkOption:CheckmarkType = cast selectedOption;
