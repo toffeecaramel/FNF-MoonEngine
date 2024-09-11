@@ -13,6 +13,8 @@ class CharacterEditor extends MusicSubState
 		this.cam = cam;
 		super();
 
+		trace("My mom is so cool");
+
 		FlxG.mouse.visible = true;
 		FlxG.mouse.useSystemCursor = true;
 	}

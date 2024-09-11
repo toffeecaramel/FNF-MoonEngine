@@ -1,6 +1,6 @@
 package gameObjects;
 
-import data.depedency.FNFSprite;
+import data.dependency.FNFSprite;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import haxe.Json;

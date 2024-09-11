@@ -66,7 +66,7 @@ class MusicState extends FlxUIState
 		}
 		if (skippedSteps.length > 0)
 		{
-			trace('skipped steps $skippedSteps');
+			//trace('skipped steps $skippedSteps');
 			skippedSteps = [];
 		}
 		curStep = trueStep;

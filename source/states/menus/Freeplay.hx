@@ -1,5 +1,8 @@
 package states.menus;
 
+import states.PlayState;
+import source.subStates.LoadingSubState;
+import states.PlayState;
 import data.*;
 import data.chart.*;
 import flixel.FlxG;
@@ -27,9 +30,10 @@ class Freeplay extends MusicSubState
 {
     // The array containing all the songs
     private var songList:Array<String>= [
-        'bopeebo',
-        'fresh',
-        'dadbattle'
+        'tenkaichi battleword',
+        'good will',
+	'oiiaoiia',
+	'spiderdance'
     ];
 
     // group for the texts
@@ -71,7 +75,13 @@ class Freeplay extends MusicSubState
 
         if (up && !selected) changeSelection(-1);
         if (down && !selected) changeSelection(1);
-        if (accepted) {FlxG.sound.music.stop(); FlxG.switchState(new PlayState(FREEPLAY));}
+        if (accepted) {
+            FlxG.sound.music.stop();
+            PlayState.gamemode = FREEPLAY;
+            PlayState.song = songList[curSelected];
+            PlayState.difficulty = "hard";
+            openSubState(new LoadingSubState());
+        }
 
         currentY = FlxMath.lerp(currentY, targetY, scrollSpeed * elapsed);
         updateTextPositions(elapsed);

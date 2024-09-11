@@ -1,127 +1,85 @@
 package states.editors.chart;
 
-import data.*;
-import data.chart.*;
-import data.chart.*;
-import flixel.FlxBasic;
-import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxBackdrop;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.addons.display.FlxTiledSprite;
-import flixel.addons.display.shapes.FlxShapeBox;
-import flixel.addons.ui.FlxInputText;
-import flixel.addons.ui.FlxUI9SliceSprite;
-import flixel.addons.ui.FlxUI;
-import flixel.addons.ui.FlxUICheckBox;
-import flixel.addons.ui.FlxUIDropDownMenu;
-import flixel.addons.ui.FlxUIInputText;
-import flixel.addons.ui.FlxUINumericStepper;
-import flixel.addons.ui.FlxUISlider;
-import flixel.addons.ui.FlxUITabMenu;
-import flixel.graphics.FlxGraphic;
-import flixel.group.FlxGroup;
-import flixel.group.FlxSpriteGroup;
+import flixel.FlxObject;
 import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.ui.FlxButton;
-import flixel.util.FlxColor;
+import flixel.group.FlxGroup;
 import flixel.util.FlxGradient;
-import flixel.util.FlxTimer;
-import gameObjects.notes.*;
-import haxe.Json;
-import haxe.io.Bytes;
-import lime.media.AudioBuffer;
-import openfl.Lib;
-import openfl.display.BlendMode;
-import openfl.events.Event;
-import openfl.events.IOErrorEvent;
-import openfl.geom.ColorTransform;
-import openfl.geom.Rectangle;
-import openfl.media.Sound;
-import openfl.net.FileReference;
-import openfl.net.FileReference;
-import openfl.utils.ByteArray;
+import flixel.addons.display.shapes.FlxShapeBox;
+import data.Conductor;
 import states.data.MusicState;
-import sys.io.File;
-import sys.thread.Mutex;
-import sys.thread.Thread;
-import util.*;
-
-using StringTools;
-
-#if sys
-import sys.thread.Thread;
-#end
-
-/**
-	Here I go, code this huge thing :sob:
-	chart editor concept by @LunaMyria
-
-	code by @toffeecaramel
-**/
+import flixel.util.FlxColor;
+import gameObjects.notes.*;
+import data.chart.*;
 
 class ChartEditor extends MusicState
 {
-	final gridSize:Int = 64;
+    final gridSize:Int = 50;
+	final kAmmount:Int = 8;
+    private var inst:FlxSound;
+    private var voices:FlxSound;
 
-	private var _chart:Chart;
+    private var _chart:Chart;
 
-	public var grid:FlxTiledSprite;
-	public var _renderedLanes:FlxTypedGroup<FlxSprite>;
-	public var lanesLine:FlxSprite;
-
-	private var _sustains:FlxTypedGroup<FlxSprite>;
-	private var _notes:FlxTypedGroup<Note>;
-
-	private var songMusic:FlxSound;
+    private var _renderedLanes:FlxTypedGroup<FlxSprite>;
+    private var _notes:FlxTypedGroup<Note>;
 
 	var strumline:FlxSprite;
 	private var dummyArrow:FlxSprite;
 	var strumLineCam:FlxObject;
 
-	override public function create():Void
-	{
-		super.create();
+    public var song:String;
+	public var difficulty:String;
 
-		_chart = new Chart("assets/data/chart.json");
+    public function new(song:String, difficulty:String):Void
+    {
+        super();
+        this.song = song;
+        this.difficulty = difficulty;
+
+		_chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
 		Conductor.changeBPM(_chart.bpm);
+    }
+
+    override public function create():Void
+    {
+        super.create();
+
+        inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
+		FlxG.sound.list.add(inst);
+		
+		final path = (_chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
+		voices = new FlxSound().loadEmbedded(path, false, true);
+		FlxG.sound.list.add(voices);
+
+        inst.time = 0;
 
 		makeBG();
+        
+        dummyArrow = new FlxSprite().makeGraphic(gridSize, gridSize, FlxColor.WHITE);
+        add(dummyArrow);
 
-		songMusic = new FlxSound().loadEmbedded("assets/songs/Inst.ogg", false, true);
-		FlxG.sound.list.add(songMusic);
+        _renderedLanes = new FlxTypedGroup<FlxSprite>();
+        add(_renderedLanes);
 
-		songMusic.time = 0; //makin sure it starts from the start :P
-
-		_renderedLanes = new FlxTypedGroup<FlxSprite>();
-
-		generateGrid();
-
-		add(_renderedLanes);
+        generateGrid();
 
 		strumLineCam = new FlxObject(0, 0);
 		strumLineCam.screenCenter(X);
 
-		strumline = new FlxSprite(0, 0).loadGraphic(Paths.image('editors/charter/strumline'));
+		strumline = new FlxSprite(650, 0).loadGraphic(Paths.image('editors/charter/strumline'));
 		add(strumline);
 		//strumline.setGraphicSize(gridSize, gridSize); THIS LOOKED SO FUNNY LMFAO
-		strumline.screenCenter();
-
-		dummyArrow = new FlxSprite().makeGraphic(gridSize, gridSize);
-		add(dummyArrow);
-
-		var bar = new FlxSprite().makeGraphic(FlxG.width, 100, FlxColor.fromRGB(80, 80, 80));
+		
+		var bar = new FlxSprite().makeGraphic(FlxG.width, 70, FlxColor.fromRGB(80, 80, 80));
 		bar.scrollFactor.set();
 		bar.alpha = 0.3;
 		add(bar);
-
+		
 		FlxG.camera.follow(strumLineCam);
-	}
+        FlxG.mouse.visible = FlxG.mouse.useSystemCursor = true;
+    }
 
 	private function makeBG():Void
 	{
@@ -130,74 +88,89 @@ class ChartEditor extends MusicState
 		add(coolGradient);
 	}
 
-	function generateGrid():Void
-	{
-		var bitmap:openfl.display.BitmapData = FlxGridOverlay.createGrid(gridSize, gridSize, gridSize * 2, 
-			gridSize * 2, true, FlxColor.fromRGB(55, 55, 57), FlxColor.fromRGB(36, 36, 39));
+    function generateGrid():Void
+    {
+        _renderedLanes.clear();
 
-		grid = new FlxTiledSprite(null, gridSize * 8, gridSize);
-		grid.loadGraphic(bitmap);
-		grid.x = (FlxG.width - grid.width) - 150;
-		grid.height = (songMusic.length / Conductor.stepCrochet) * gridSize;
-		add(grid);
-
-		final beatDuration:Float = Conductor.stepCrochet * 4;
-        final totalBeats:Int = Math.ceil(songMusic.length / beatDuration);
-        for (i in 0...totalBeats) //this makes so every beat it creates this line
+        final stepDuration:Float = Conductor.stepCrochet;
+        final totalSteps:Int = Math.ceil(inst.length / stepDuration);
+        
+        for (i in 0...totalSteps)
         {
-            final yPosition:Float = i * gridSize * 4;
+            final yPosition:Float = i * gridSize;
 
-            var beatLine:FlxSprite = new FlxSprite().makeGraphic(Std.int(grid.width), 3, FlxColor.BLACK);
-            beatLine.x = grid.x;
-            beatLine.y = yPosition;
-            _renderedLanes.add(beatLine);
+            _renderedLanes.recycle(FlxSprite, function():FlxSprite{
+                var stepLine:FlxSprite = new FlxSprite().makeGraphic(Std.int(gridSize * kAmmount), 4, 
+                FlxColor.WHITE);
+                stepLine.y = yPosition;
+                stepLine.x = (FlxG.width - stepLine.width) - gridSize * 4 - 30;
+                stepLine.alpha = 0.7;
+                return stepLine;
+            });
         }
+    }
 
-		for (i in 1...2) 
-		{
-			var separator:FlxSprite = new FlxSprite().makeGraphic(4, Std.int(grid.height), FlxColor.BLACK);
-			separator.x = grid.x + gridSize * (4 * i) - 2.5;
-			_renderedLanes.add(separator);
-		}
-	}
-
-	override public function update(elapsed:Float)
-	{
-		super.update(elapsed);
+    override public function update(elapsed:Float):Void
+    {
+        super.update(elapsed);
 
 		if (FlxG.keys.justPressed.SPACE)
-		{
-			if (songMusic.playing)
-				songMusic.pause();
-			else
-				songMusic.play();
-		}
+        {
+            if (inst.playing)
+                setAudioState('pause');
+            else
+                setAudioState('play');
+        }
 
-		checkMouseInteractions(elapsed);
+        checkMouseInteractions(elapsed);
 
-		Conductor.songPosition = songMusic.time;
-		strumline.x = grid.x;
-		strumline.y = getYfromStrum(Conductor.songPosition);
+		Conductor.songPosition = inst.time;
+		strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 28);
 		strumLineCam.y = strumline.y + (FlxG.height / 2.6) - 25;
-	}
+    }
 
-	private function checkMouseInteractions(elapsed:Float):Void
-	{
-		if (FlxG.mouse.x > (grid.x)
-			&& FlxG.mouse.x < (grid.x + grid.width)
-			&& FlxG.mouse.y > 0
-			&& FlxG.mouse.y < (getYfromStrum(songMusic.length)))
-		{
-			var fakeMouseX = FlxG.mouse.x - grid.x;
-			dummyArrow.x = (Math.floor((fakeMouseX) / gridSize) * gridSize) + grid.x;
-			if (FlxG.keys.pressed.SHIFT)
-				dummyArrow.y = FlxG.mouse.y;
-			else
-				dummyArrow.y = Math.floor(FlxG.mouse.y / gridSize) * gridSize;
-		}
-	}
+    private function checkMouseInteractions(elapsed:Float):Void
+    {
+        final minX = FlxG.width - (gridSize * kAmmount) - gridSize * 4 - 30;
+        final maxX = minX + gridSize * (kAmmount - 1);
+    
+        if (FlxG.mouse.y > 0 && FlxG.mouse.y < getYfromStrum(inst.length))
+        {
+            var gridX = Math.floor(FlxG.mouse.x / gridSize) * gridSize;
 
-	function getYfromStrum(strumTime:Float):Float
-		return FlxMath.remapToRange(strumTime, 0, songMusic.length, 0, 
-		(songMusic.length / Conductor.stepCrochet) * 64);
+            dummyArrow.x = FlxMath.bound(gridX, minX, maxX);
+            dummyArrow.y = Math.floor(FlxG.mouse.y / gridSize) * gridSize;
+
+            if (FlxG.mouse.justPressed)
+            {
+                addNote();
+            }
+        }
+    }
+
+    private function addNote():Void
+    {
+		trace('okay buddy');
+    }
+
+    private function setAudioState(st:String = 'play')
+    {
+        final audios = [inst, voices];
+        for (yeah in audios)
+        {
+            if(yeah != null)
+            {
+                switch(st)
+                {
+                    case 'play': yeah.play(); yeah.volume = 1;
+                    case 'pause': yeah.pause();
+                    case 'stop': yeah.stop();
+                    case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);
+                }
+            }
+        }
+    }
+
+    private function getYfromStrum(strumTime:Float):Float
+        return FlxMath.remapToRange(strumTime, 0, inst.length, 0, (inst.length / Conductor.stepCrochet) * gridSize);
 }

@@ -1,6 +1,6 @@
 package gameObjects.notes;
 
-import data.depedency.FNFSprite;
+import data.dependency.FNFSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxCamera;

@@ -1,5 +1,6 @@
 package gameObjects.notes;
 
+import flixel.FlxSprite;
 import data.*;
 import shaders.RGBPallete.RGBShaderReference;
 import shaders.RGBPallete;
@@ -7,7 +8,7 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
 import data.*;
-import data.depedency.*;
+import data.dependency.*;
 import util.*;
 import states.PlayState;
 
@@ -164,7 +165,7 @@ class Note extends FNFSprite {
         return newNote;
     }
 
-    public function setup(newNote:Note) 
+    public function setup(newNote:FlxSprite) 
     {
         if (arrowRGB != [] || arrowRGB != null) 
         {

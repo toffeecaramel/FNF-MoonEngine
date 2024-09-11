@@ -1,0 +1,3305 @@
+{
+	"events": [],
+	"notes": [
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 1000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 1200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 1300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 1400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 1500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 1600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 1700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 1800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 2000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 3433.33333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 3691.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 3825,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 3966.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 4241.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 4383.33333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 4516.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 4658.33333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 4791.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 4925,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 5066.66666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 5358.33333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 6400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 6600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 7000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 7100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 7200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 7300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 7400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 7500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 7600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 6800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 7600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 7700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 7800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 7900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 6400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 6700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 6800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 8000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 8200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 8400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 8600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 8700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 8800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 8900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 8400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 8000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 8300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 9000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 9100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 9200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 9300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 9350,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 9400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 9500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 10200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 10400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 10500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 10700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 10000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 10800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 11000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 11100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 9900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 10000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 9600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 9600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 9800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 10300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 10600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 10800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 10900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 11200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 11200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 11400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 11500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 11600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 11600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 11800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 11900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 12000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 12200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 12100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 12300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 12400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 12500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 12600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 12700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 12800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 13000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 13400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 13500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 13600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 13700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 13800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 13900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 14000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 13200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 14000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 14100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 14200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 14300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 12800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 13100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 13200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 14400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 14600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 14800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 15000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 15100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 15200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 15300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 14800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 14400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 14700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 15400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 15500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 15600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 15700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 15750,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 15800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 15900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 16600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 16800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 16900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 17100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 16400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 17200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 17400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 17500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 16300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 16400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 16000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 16000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 16200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 16700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 17000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 17200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 17300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 17600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 17600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 17800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 17900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 18000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 18000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 18200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 18300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 18400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 18600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 18500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 18700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 18800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 18900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 19000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 19100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 19200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 19200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 19400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 19500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 19600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 19700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 19800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 19900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 20000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 20100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 20200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 20400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 20300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 20600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 20700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 20800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 21000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 21200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 21300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 21400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 21400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 21500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 21600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 21800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 21900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 22000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 22100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 22200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 22250,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 22300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 22400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 22600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 22700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 22600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 22800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 22900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 23000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 23100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 23300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 23400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 23500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 23600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 23700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 23800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 23900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 24000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 24200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 24600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 24650,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 24700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 24800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 24900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 24400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 24500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 25000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 25100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 25200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 25300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 25400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 25500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 25600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 25800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 25900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 26000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 26100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 26200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 26300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 26400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 26500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 26600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 26800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 26700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 27000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 27100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 25600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 27200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 27400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 27600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 27700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 27800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 27800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 27900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 28000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 28200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 28300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 28400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 28500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 28600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 28650,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 28700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 28800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 29000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 29100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 29000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 29200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 29300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 29400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 29500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 29700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 29800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 29900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 30000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 30100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 30200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 30300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 32000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 32100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 32200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 32300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 32400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 32500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 32600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 32700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 32800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 32900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 33000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 33100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 33200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 33300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 33400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 33500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 100,
+			"time": 34800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 33600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 33700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 33800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 33900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 34000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 34100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 34200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 34300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 34400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 34500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 34600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 34700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 35200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 35300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 35400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 35500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 35600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 35700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 35800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 35900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 36000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 36100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 36200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 36300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 36400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 36500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 36600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 36700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 36800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 36900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 37000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 37100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 37200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 37300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 37400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 37500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 37600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 37700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 37800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 37900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 100,
+			"time": 38000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 38400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 38500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 38500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 38700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 38800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 39000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 39100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 39900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 39800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 39700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 39400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 38800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 39100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 39300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 39600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 40000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 40200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 40300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 40300,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 40500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 40600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 40600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 40700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 40900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 41000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 41100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 41200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 100,
+			"time": 41200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 41600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 41700,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 41800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 41900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 42000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 42100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 100,
+			"time": 42200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 42400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 42500,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 100,
+			"time": 42600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 42800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 42900,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 43000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 43100,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 200,
+			"time": 43200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 200,
+			"time": 43200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 200,
+			"time": 43200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 200,
+			"time": 43200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 44800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 45200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 45200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 44800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 45066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 45466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 45600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 45600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 46000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 46000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 45866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 46133.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 46266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 46400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 46400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 46666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 46800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 46800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 47066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 47200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 47200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 47333.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 47466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 47600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 47800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 47733.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 47866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 48000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 48000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 48266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 48400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 48400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 48666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 48800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 48800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 48933.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 49066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 49200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 49200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 49466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 49600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 49600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 49866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 50000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 50000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 50133.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 50266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 50400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 50400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 50533.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 50666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 50800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 51200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 51600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 51600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 51200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 51466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 51866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 52000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 52000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 52400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 52400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 52266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 52533.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 52666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 52800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 52800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 53066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 53200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 53200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 53466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 53600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 53600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 53733.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 53866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 54000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 54200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 54133.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 54266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 54400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 54400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 54666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 54800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 54800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 55066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 55200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 55200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 55333.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 55466.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 55600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 55600,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 55866.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 56000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 56800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 57200,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 56000,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "left",
+			"duration": 0,
+			"time": 56133.3333333333,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 56266.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 56400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "right",
+			"duration": 0,
+			"time": 56400,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 56666.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 56800,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "down",
+			"duration": 0,
+			"time": 57066.6666666667,
+			"type": "DEFAULT"
+		},
+		{
+			"mustHit": true,
+			"direction": "up",
+			"duration": 0,
+			"time": 57200,
+			"type": "DEFAULT"
+		}
+	],
+	"scrollSpeed": 2.7,
+	"hasVoices": false,
+	"bpm": 150
+}

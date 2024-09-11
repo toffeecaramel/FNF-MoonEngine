@@ -1,7 +1,7 @@
 package gameObjects;
 
 import data.*;
-import data.depedency.*;
+import data.dependency.*;
 import flixel.FlxG;
 import flixel.addons.util.FlxSimplex;
 import flixel.animation.FlxBaseAnimation;

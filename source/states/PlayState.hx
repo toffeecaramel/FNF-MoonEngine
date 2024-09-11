@@ -1,17 +1,17 @@
 package states;
 
+import haxe.macro.Compiler.NullSafetyMode;
 import data.*;
 import data.Timings.JudgementsTiming;
 import data.chart.*;
 import data.depedency.*;
-import data.depedency.FNFSprite;
+import data.dependency.FNFSprite;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
-import flixel.effects.particles.FlxEmitter;
 import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
@@ -47,6 +47,7 @@ class PlayState extends MusicState
 	private var playerStrumline:Strumline;
     private var opponentStrumline:Strumline;
 	private var gl:StrumGlow;
+	private var splashGrp:FlxTypedGroup<NoteSplash>;
 
 	private var chart:Chart;
 
@@ -96,12 +97,15 @@ class PlayState extends MusicState
 
 	private var scriptHandler:ScriptHandler;
 
-	private var gamemode:GameMode;
-	public function new(gamemode:GameMode)
+	public static var gamemode:GameMode;
+	public static var song:String;
+	public static var difficulty:String;
+
+	public function new()
 	{
 		super();
-		this.gamemode = gamemode;
 		unspawnNotes = [];
+
 		health = 50;
 		misses = 0;
 	}
@@ -110,7 +114,6 @@ class PlayState extends MusicState
 	override public function create()
 	{
 		super.create();
-		trace("test??");
 
 		curPlaystate = this;
 
@@ -166,22 +169,30 @@ class PlayState extends MusicState
 		gl.camera = camStrums;
 		add(gl);
 
+		splashGrp = new FlxTypedGroup<NoteSplash>();
+
+		for (i in 0...playerStrumline.members.length)
+		{
+			final strum = playerStrumline.members[i];
+
+			splashGrp.recycle(NoteSplash, function():NoteSplash
+			{
+				var splash = new NoteSplash(skin);
+				splash.camera = camStrums;
+				splash.ID = i;
+				return splash;
+			});
+		}
+		
+		add(splashGrp);
+
 		// - Load the chart
-		try
-		{
-			chart = new Chart("assets/data/chart.json");
-			scrollSpeed = chart.scrollSpeed / 2.6;
-			Conductor.changeBPM(chart.bpm);
+		chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
+		scrollSpeed = chart.scrollSpeed / 2.6;
+		Conductor.changeBPM(chart.bpm);
 
-			for (event in chart.events)
-				eventList.push(event);
-		}
-		catch (e:Dynamic)
-		{
-			trace('Error loading chart: $e');
-			return;
-		}
-
+		for (event in chart.events)
+			eventList.push(event);
 		// - Load the notes
 		for (noteData in chart.notes) 
 		{
@@ -251,10 +262,12 @@ class PlayState extends MusicState
 
 	private function generateSong():Void
 	{
-		inst = new FlxSound().loadEmbedded("assets/songs/Inst.ogg", false, true);
+		inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
 		FlxG.sound.list.add(inst);
-
-		voices = new FlxSound().loadEmbedded("assets/songs/Voices.ogg", false, true);
+		
+		// - Doing like this because not loading any embed at all makes sounds glitchy
+		final path = (chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
+		voices = new FlxSound().loadEmbedded(path, false, true);
 		FlxG.sound.list.add(voices);
 		loadedSong = true;
 
@@ -316,7 +329,7 @@ class PlayState extends MusicState
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			setAudioState('stop');
-			FlxG.switchState(new ChartEditor());
+			FlxG.switchState(new ChartEditor(song, difficulty));
 		}
 		if (FlxG.keys.justPressed.U)
 		{
@@ -354,7 +367,7 @@ class PlayState extends MusicState
 		playerStrumline.y = opponentStrumline.y = yPos;
 
 		final susVal = (note.isSustainNote) ? 48 : 0;
-		final susOffset = (note.isSustainNote) ? 32 : 0;
+		final susOffset = (note.isSustainNote) ? 30 : 0;
 	
 		// - Adjust y position based on scroll direction
 		if (UserSettings.callSetting('Downscroll'))
@@ -403,6 +416,7 @@ class PlayState extends MusicState
 		**note** is the note.
 		**character** is the character that will hit a note.
 	**/
+	var pTween:FlxTween;
 	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
 	{
 		// - If the note is a mustPress, it will call the timing functions
@@ -416,22 +430,36 @@ class PlayState extends MusicState
 				final timingData = Timings.getParameters(jt);
 
 				// TODO: Health gain option to legacy or moon engine
-				health += (!note.isSustainNote) ? timingData[4] : 0.8;
+				health += timingData[4];
 				if(!note.isSustainNote)
 				{
+					for (i in 0...splashGrp.members.length)
+						if(jt == sick && splashGrp.members[i].ID == NoteUtils.directionToNumber(note.noteDir))
+						{
+							var props = Note.noteTypeProperties.get(note.type);
+							var arrowRGB = props != null ? 
+							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
+
+							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
+							splashGrp.members[i].x = strum.x-70;
+							splashGrp.members[i].y = strum.y-56;
+							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
+						}
+
 					score += timingData[2];
 				}
 			}
 		}
 
-		//if(!note.isSustainNote)
-		//	FlxG.sound.play('assets/sounds/hitsoundtest.ogg');
-
 		playStrumAnim(note.mustPress, note.noteDir);
 
-		// - Make the character sing depending on note press
-		if(note.type.toLowerCase() != 'no animation')
-			character.playAnim('sing${note.noteDir.toUpperCase()}', true);
+		// - SET UP YOUR NOTETYPES FUNCTIONS HERE!!
+
+		switch(note.type.toLowerCase())
+		{
+			case 'no animation': //nothing.
+			default: character.playAnim('sing${note.noteDir.toUpperCase()}', true);
+		}
 
 		//character.holdTimer = 0;
 	}
@@ -635,7 +663,7 @@ class PlayState extends MusicState
 	{
 		super.stepHit();
 		if(countdownFinished)
-			if (voices.time >= Conductor.songPosition + 10 || voices.time <= Conductor.songPosition - 10)
+			if (inst.time >= Conductor.songPosition + 10 || inst.time <= Conductor.songPosition - 10)
 				resync();
 	}
 
@@ -669,7 +697,7 @@ class PlayState extends MusicState
 	{
 		if(countdownFinished)
 		{
-			trace('Resyncing: ${inst.time} to ${Conductor.songPosition}');
+			//trace('Resyncing: ${inst.time} to ${Conductor.songPosition}');
 			setAudioState('pause');
 			Conductor.songPosition = inst.time;
 			voices.time = Conductor.songPosition;

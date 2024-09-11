@@ -37,6 +37,7 @@ typedef EventData = {
 typedef ChartData = {
     var bpm:Float;
 	var scrollSpeed:Float;
+	var hasVoices:Bool;
     var notes:Array<NoteData>;
 	var events:Array<EventData>;
 }
@@ -45,6 +46,7 @@ class Chart
 {
     public var bpm:Float;
 	public var scrollSpeed:Float;
+	public var hasVoices:Bool;
     public var notes:Array<NoteData>;
 	public var events:Array<EventData>;
 
@@ -61,6 +63,7 @@ class Chart
 		this.scrollSpeed = chartData.scrollSpeed;
         this.notes = chartData.notes;
 		this.events = chartData.events;
+	this.hasVoices = chartData.hasVoices;
     }
 
 	/**
@@ -73,6 +76,7 @@ class Chart
 		// - Make the new structure while getting values from the og chart
 		var newChart:ChartData = {
 			scrollSpeed: originalSong.speed,
+			hasVoices: originalSong.needsVoices,
 			bpm: originalSong.bpm,
 			notes: [],
 			events: []
