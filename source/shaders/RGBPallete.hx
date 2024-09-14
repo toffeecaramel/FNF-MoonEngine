@@ -3,6 +3,7 @@ package shaders;
 /**
     Credits to `Psych Engine`
     got this shader from it, so yee
+	I thinkk its made by bbpanzu but imnot sure so my bad
 **/
 
 import flixel.system.FlxAssets.FlxShader;

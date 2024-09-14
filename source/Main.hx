@@ -12,7 +12,6 @@ import haxe.CallStack.StackItem;
 import haxe.CallStack;
 import haxe.io.Path;
 import lime.app.Application;
-import meta.*;
 import openfl.Assets;
 import openfl.Lib;
 import openfl.display.FPS;
@@ -20,10 +19,6 @@ import openfl.display.Sprite;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.UncaughtErrorEvent;
-import states.*;
-import states.*;
-import states.data.*;
-import states.editors.chart.*;
 import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
@@ -37,11 +32,12 @@ class Main extends Sprite
 	public static var gameHeight:Int = 720;
 	public static var framerate:Int = 60; // How many frames per second the game should run at.
 	
-	public static var initState:Class<FlxState> = states.PreloadState;
+	public static var initState:Class<FlxState> = moon.states.PreloadState;
 
+	// - The game's zoom, since it's -1, it menas the game automatically calculates to fit the window dimensions
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var infoCounter:Overlay; // initialize the heads up display that shows information before creating it.
+	var infoCounter:backend.FPS; // initialize the heads up display that shows information before creating it.
 
 	public static function main():Void
 	{
@@ -61,7 +57,7 @@ class Main extends Sprite
 		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash);
 		addChild(gameCreate); // and create it afterwards
 
-		var infoCounter = new Overlay(0, 0);
+		var infoCounter = new backend.FPS(0, 0);
 		addChild(infoCounter);
 
 		FlxG.fixedTimestep = false;

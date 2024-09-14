@@ -2,7 +2,7 @@
 	"events": [
 		{
 			"name": "Move Camera",
-			"time": 26966.2921348315,
+			"step": 26966.2921348315,
 			"values": [
 				"Player",
 				0.6,
@@ -11,7 +11,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 32359.5505617978,
+			"step": 32359.5505617978,
 			"values": [
 				"Opponent",
 				0.6,
@@ -20,7 +20,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 37752.808988764,
+			"step": 37752.808988764,
 			"values": [
 				"Player",
 				0.6,
@@ -29,7 +29,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 43146.0674157303,
+			"step": 43146.0674157303,
 			"values": [
 				"Opponent",
 				0.6,
@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 54775.2808988764,
+			"step": 54775.2808988764,
 			"values": [
 				"Player",
 				0.6,
@@ -47,7 +47,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 64719.1011235955,
+			"step": 64719.1011235955,
 			"values": [
 				"Opponent",
 				0.6,
@@ -56,7 +56,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 75505.6179775281,
+			"step": 75505.6179775281,
 			"values": [
 				"Player",
 				0.6,
@@ -65,7 +65,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 86966.2921348316,
+			"step": 86966.2921348316,
 			"values": [
 				"Opponent",
 				0.6,
@@ -74,7 +74,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 92359.5505617978,
+			"step": 92359.5505617978,
 			"values": [
 				"Player",
 				0.6,
@@ -83,7 +83,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 103820.224719101,
+			"step": 103820.224719101,
 			"values": [
 				"Opponent",
 				0.6,
@@ -92,7 +92,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 120000,
+			"step": 120000,
 			"values": [
 				"Player",
 				0.6,
@@ -101,7 +101,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 130786.516853933,
+			"step": 130786.516853933,
 			"values": [
 				"Opponent",
 				0.6,
@@ -110,7 +110,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 141573.033707866,
+			"step": 141573.033707866,
 			"values": [
 				"Player",
 				0.6,
@@ -119,7 +119,7 @@
 		},
 		{
 			"name": "Move Camera",
-			"time": 150505.617977528,
+			"step": 150505.617977528,
 			"values": [
 				"Opponent",
 				0.6,
@@ -127,5560 +127,5560 @@
 			]
 		}
 	],
+	"hasVoices": true,
 	"notes": [
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 21741.5730337079,
+			"lane": "Opponent",
+			"step": 258,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 21910.1123595506,
+			"lane": "Opponent",
+			"step": 260,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 22078.6516853933,
+			"lane": "Opponent",
+			"step": 262,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 22247.191011236,
+			"lane": "Opponent",
+			"step": 264,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 22415.7303370787,
+			"lane": "Opponent",
+			"step": 266,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 22584.2696629213,
+			"lane": "Opponent",
+			"step": 267,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 22752.808988764,
+			"lane": "Opponent",
+			"step": 269,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 22921.3483146067,
+			"lane": "Opponent",
+			"step": 271,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 23089.8876404494,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 273,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 23426.9662921348,
+			"lane": "Opponent",
+			"step": 277,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 23511.2359550562,
+			"lane": "Opponent",
+			"step": 279,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 23595.5056179775,
+			"lane": "Opponent",
+			"step": 279,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 23764.0449438202,
+			"lane": "Opponent",
+			"step": 281,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 23932.5842696629,
+			"lane": "Opponent",
+			"step": 283,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 24101.1235955056,
+			"lane": "Opponent",
+			"step": 285,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 24438.202247191,
+			"lane": "Opponent",
+			"step": 289,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 24606.7415730337,
+			"lane": "Opponent",
+			"step": 291,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 24775.2808988764,
+			"lane": "Opponent",
+			"step": 293,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 24943.8202247191,
+			"lane": "Opponent",
+			"step": 296,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 25112.3595505618,
+			"lane": "Opponent",
+			"step": 298,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 25280.8988764045,
+			"lane": "Opponent",
+			"step": 300,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 25449.4382022472,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 302,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 25786.5168539326,
+			"lane": "Opponent",
+			"step": 306,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 25955.0561797753,
+			"lane": "Opponent",
+			"step": 308,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 26123.595505618,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 310,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 26460.6741573034,
+			"lane": "Opponent",
+			"step": 314,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 26544.9438202247,
+			"lane": "Opponent",
+			"step": 314,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 26629.2134831461,
+			"lane": "Opponent",
+			"step": 316,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 26797.7528089888,
+			"lane": "Opponent",
+			"step": 318,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 589.887640449438,
-			"time": 26966.2921348315,
+			"duration": 6,
+			"lane": "P2",
+			"step": 320,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 27134.8314606742,
+			"lane": "P1",
+			"step": 322,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 27303.3707865169,
+			"lane": "P1",
+			"step": 324,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 27471.9101123596,
+			"lane": "P1",
+			"step": 326,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 27640.4494382022,
+			"lane": "P1",
+			"step": 327,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 27808.9887640449,
+			"lane": "P1",
+			"step": 329,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 27977.5280898876,
+			"lane": "P1",
+			"step": 331,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 28146.0674157303,
+			"lane": "P1",
+			"step": 333,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 28314.606741573,
+			"lane": "P1",
+			"step": 335,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 28483.1460674157,
+			"duration": 3,
+			"lane": "P1",
+			"step": 337,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 28820.2247191011,
+			"lane": "P1",
+			"step": 341,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 28904.4943820225,
+			"lane": "P1",
+			"step": 343,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 28988.7640449438,
+			"lane": "P1",
+			"step": 343,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 29157.3033707865,
+			"lane": "P1",
+			"step": 345,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 29325.8426966292,
+			"lane": "P1",
+			"step": 347,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 29494.3820224719,
+			"lane": "P1",
+			"step": 349,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 29831.4606741573,
+			"lane": "P1",
+			"step": 354,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 30000,
+			"lane": "P1",
+			"step": 356,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 30168.5393258427,
+			"lane": "P1",
+			"step": 358,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 30337.0786516854,
+			"lane": "P1",
+			"step": 360,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 30505.6179775281,
+			"lane": "P1",
+			"step": 362,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 30674.1573033708,
+			"lane": "P1",
+			"step": 364,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 30842.6966292135,
+			"duration": 3,
+			"lane": "P1",
+			"step": 366,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 31179.7752808989,
+			"lane": "P1",
+			"step": 370,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 31348.3146067416,
+			"lane": "P1",
+			"step": 372,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 31516.8539325843,
+			"lane": "P1",
+			"step": 374,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 31685.393258427,
+			"lane": "P1",
+			"step": 376,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 31769.6629213483,
+			"lane": "P1",
+			"step": 376,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 31853.9325842697,
+			"lane": "P1",
+			"step": 378,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 32022.4719101124,
+			"lane": "P1",
+			"step": 380,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 32191.0112359551,
+			"lane": "P1",
+			"step": 382,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 589.887640449438,
-			"time": 32359.5505617978,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 384,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 32359.5505617978,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 384,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 32696.6292134831,
+			"lane": "Opponent",
+			"step": 387,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 32865.1685393258,
+			"lane": "Opponent",
+			"step": 389,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 33202.2471910112,
+			"lane": "Opponent",
+			"step": 393,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 33370.7865168539,
+			"lane": "Opponent",
+			"step": 395,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 33539.3258426966,
+			"lane": "Opponent",
+			"step": 397,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 33876.404494382,
+			"lane": "Opponent",
+			"step": 401,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 34044.9438202247,
+			"lane": "Opponent",
+			"step": 403,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 34213.4831460674,
+			"lane": "Opponent",
+			"step": 405,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 34382.0224719101,
+			"lane": "Opponent",
+			"step": 407,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 34550.5617977528,
+			"lane": "Opponent",
+			"step": 409,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 34719.1011235955,
+			"lane": "Opponent",
+			"step": 411,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 34803.3707865169,
+			"lane": "Opponent",
+			"step": 413,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 34887.6404494382,
+			"lane": "Opponent",
+			"step": 414,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 35056.1797752809,
+			"lane": "Opponent",
+			"step": 416,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 35224.7191011236,
+			"lane": "Opponent",
+			"step": 418,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 35393.2584269663,
+			"lane": "Opponent",
+			"step": 420,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 35561.797752809,
+			"lane": "Opponent",
+			"step": 422,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 35730.3370786517,
+			"lane": "Opponent",
+			"step": 424,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 35898.8764044944,
+			"lane": "Opponent",
+			"step": 426,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 36067.4157303371,
+			"lane": "Opponent",
+			"step": 428,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 36235.9550561798,
+			"lane": "Opponent",
+			"step": 430,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 36573.0337078652,
+			"lane": "Opponent",
+			"step": 434,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 36741.5730337079,
+			"lane": "Opponent",
+			"step": 436,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 36910.1123595506,
+			"lane": "Opponent",
+			"step": 438,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 37078.6516853933,
+			"lane": "Opponent",
+			"step": 440,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 37247.191011236,
+			"lane": "Opponent",
+			"step": 442,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 37415.7303370787,
+			"lane": "Opponent",
+			"step": 444,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 37584.2696629213,
+			"lane": "Opponent",
+			"step": 445,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 37752.808988764,
+			"duration": 3,
+			"lane": "P2",
+			"step": 447,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 37752.808988764,
+			"duration": 3,
+			"lane": "P1",
+			"step": 447,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 38089.8876404494,
+			"lane": "P1",
+			"step": 451,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 38258.4269662921,
+			"lane": "P1",
+			"step": 453,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 38595.5056179775,
+			"lane": "P1",
+			"step": 457,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 38764.0449438202,
+			"lane": "P1",
+			"step": 459,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 38932.5842696629,
+			"lane": "P1",
+			"step": 461,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 39269.6629213483,
+			"lane": "P1",
+			"step": 465,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 39438.202247191,
+			"lane": "P1",
+			"step": 467,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 39606.7415730337,
+			"lane": "P1",
+			"step": 469,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 39691.0112359551,
+			"lane": "P1",
+			"step": 471,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 39775.2808988764,
+			"lane": "P1",
+			"step": 471,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 39943.8202247191,
+			"lane": "P1",
+			"step": 474,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 40112.3595505618,
+			"lane": "P1",
+			"step": 476,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 40280.8988764045,
+			"lane": "P1",
+			"step": 478,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 40365.1685393258,
+			"lane": "P1",
+			"step": 478,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 40449.4382022472,
+			"lane": "P1",
+			"step": 480,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 40617.9775280899,
+			"lane": "P1",
+			"step": 482,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 40786.5168539326,
+			"lane": "P1",
+			"step": 484,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 40955.0561797753,
+			"lane": "P1",
+			"step": 486,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 41039.3258426966,
+			"lane": "P1",
+			"step": 486,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 41123.595505618,
+			"lane": "P1",
+			"step": 488,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 41292.1348314607,
+			"lane": "P1",
+			"step": 490,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 41376.404494382,
+			"lane": "P1",
+			"step": 490,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 41460.6741573034,
+			"lane": "P1",
+			"step": 492,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 41629.2134831461,
+			"lane": "P1",
+			"step": 494,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 41966.2921348315,
+			"lane": "P1",
+			"step": 498,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 42134.8314606742,
+			"lane": "P1",
+			"step": 500,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 42219.1011235955,
+			"lane": "P1",
+			"step": 500,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 42303.3707865169,
+			"duration": 3,
+			"lane": "P1",
+			"step": 502,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 42640.4494382022,
+			"lane": "P1",
+			"step": 505,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 42724.7191011236,
+			"lane": "P1",
+			"step": 507,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 42808.9887640449,
+			"lane": "P1",
+			"step": 507,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 42640.4494382022,
+			"lane": "P2",
+			"step": 505,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 42977.5280898876,
+			"lane": "P2",
+			"step": 509,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 42977.5280898876,
+			"lane": "P1",
+			"step": 509,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 674.157303370787,
-			"time": 43146.0674157303,
+			"duration": 8,
+			"lane": "Opponent",
+			"step": 511,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 43988.7640449438,
+			"lane": "Opponent",
+			"step": 521,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 44157.3033707865,
+			"lane": "Opponent",
+			"step": 523,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 44325.8426966292,
+			"lane": "Opponent",
+			"step": 525,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 589.887640449438,
-			"time": 43146.0674157303,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 511,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 44662.9213483146,
+			"lane": "Opponent",
+			"step": 529,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 45000,
+			"lane": "Opponent",
+			"step": 534,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 45084.2696629213,
+			"lane": "Opponent",
+			"step": 534,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 45168.5393258427,
+			"lane": "Opponent",
+			"step": 536,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 45337.0786516854,
+			"lane": "Opponent",
+			"step": 538,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 45505.6179775281,
+			"lane": "Opponent",
+			"step": 540,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 45674.1573033708,
+			"lane": "Opponent",
+			"step": 542,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 421.348314606742,
-			"time": 45842.6966292135,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 544,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 46348.3146067416,
+			"lane": "Opponent",
+			"step": 550,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 46685.393258427,
+			"lane": "Opponent",
+			"step": 554,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 46853.9325842697,
+			"lane": "Opponent",
+			"step": 556,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 47022.4719101124,
+			"lane": "Opponent",
+			"step": 558,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 47359.5505617978,
+			"lane": "Opponent",
+			"step": 562,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 47528.0898876404,
+			"lane": "Opponent",
+			"step": 563,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 47696.6292134831,
+			"lane": "Opponent",
+			"step": 565,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 47865.1685393258,
+			"lane": "Opponent",
+			"step": 567,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 48033.7078651685,
+			"lane": "Opponent",
+			"step": 569,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 48370.7865168539,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 573,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 421.348314606742,
-			"time": 48370.7865168539,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 573,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 48876.404494382,
+			"lane": "Opponent",
+			"step": 579,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 48960.6741573034,
+			"lane": "Opponent",
+			"step": 581,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 49382.0224719101,
+			"lane": "Opponent",
+			"step": 585,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 49719.1011235955,
+			"lane": "Opponent",
+			"step": 590,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 48707.8651685393,
+			"lane": "Opponent",
+			"step": 577,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 48876.404494382,
+			"lane": "Opponent",
+			"step": 579,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 49044.9438202247,
+			"lane": "Opponent",
+			"step": 581,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 49129.2134831461,
+			"lane": "Opponent",
+			"step": 583,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 49213.4831460674,
+			"lane": "Opponent",
+			"step": 583,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 49382.0224719101,
+			"lane": "Opponent",
+			"step": 585,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 49550.5617977528,
+			"lane": "Opponent",
+			"step": 587,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 49719.1011235955,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 590,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 49044.9438202247,
+			"lane": "Opponent",
+			"step": 581,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 49213.4831460674,
+			"lane": "Opponent",
+			"step": 583,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 49887.6404494382,
+			"lane": "Opponent",
+			"step": 592,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 50056.1797752809,
+			"lane": "Opponent",
+			"step": 594,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 50224.7191011236,
+			"lane": "Opponent",
+			"step": 596,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 50393.2584269663,
+			"lane": "Opponent",
+			"step": 598,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 50561.797752809,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 600,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 50898.8764044944,
+			"lane": "Opponent",
+			"step": 604,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 51067.4157303371,
+			"lane": "Opponent",
+			"step": 606,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 50056.1797752809,
+			"lane": "Opponent",
+			"step": 594,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 50224.7191011236,
+			"lane": "Opponent",
+			"step": 596,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 50393.2584269663,
+			"lane": "Opponent",
+			"step": 598,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 50477.5280898876,
+			"lane": "Opponent",
+			"step": 598,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 50561.797752809,
+			"lane": "Opponent",
+			"step": 600,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 50730.3370786517,
+			"lane": "Opponent",
+			"step": 602,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 50898.8764044944,
+			"lane": "Opponent",
+			"step": 604,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 51067.4157303371,
+			"lane": "Opponent",
+			"step": 606,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 51151.6853932584,
+			"lane": "Opponent",
+			"step": 606,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 51404.4943820225,
+			"lane": "Opponent",
+			"step": 610,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 51573.0337078652,
+			"lane": "Opponent",
+			"step": 612,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 51657.3033707865,
+			"lane": "Opponent",
+			"step": 612,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 51741.5730337079,
+			"lane": "Opponent",
+			"step": 614,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 51910.1123595506,
+			"lane": "Opponent",
+			"step": 616,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 52078.6516853933,
+			"lane": "Opponent",
+			"step": 618,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 52162.9213483146,
+			"lane": "Opponent",
+			"step": 619,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 52247.191011236,
+			"lane": "Opponent",
+			"step": 620,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 52415.7303370786,
+			"lane": "Opponent",
+			"step": 621,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 589.887640449438,
-			"time": 51235.9550561798,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 608,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 52078.6516853933,
+			"lane": "Opponent",
+			"step": 618,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 421.348314606742,
-			"time": 52415.7303370786,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 621,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 52921.3483146067,
+			"lane": "Opponent",
+			"step": 627,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 53005.6179775281,
+			"lane": "Opponent",
+			"step": 629,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 53089.8876404494,
+			"lane": "Opponent",
+			"step": 629,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 53174.1573033708,
+			"lane": "Opponent",
+			"step": 631,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 53258.4269662921,
+			"lane": "Opponent",
+			"step": 631,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 53426.9662921348,
+			"lane": "Opponent",
+			"step": 633,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 53595.5056179775,
+			"lane": "Opponent",
+			"step": 635,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 53764.0449438202,
+			"lane": "Opponent",
+			"step": 637,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 52752.808988764,
+			"lane": "Opponent",
+			"step": 625,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 52837.0786516854,
+			"lane": "Opponent",
+			"step": 627,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 52921.3483146067,
+			"lane": "Opponent",
+			"step": 627,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 53089.8876404494,
+			"lane": "Opponent",
+			"step": 629,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 53258.4269662921,
+			"lane": "Opponent",
+			"step": 631,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 53426.9662921348,
+			"lane": "Opponent",
+			"step": 633,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 53595.5056179775,
+			"lane": "Opponent",
+			"step": 635,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 53764.0449438202,
+			"lane": "Opponent",
+			"step": 637,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 53848.3146067416,
+			"lane": "Opponent",
+			"step": 639,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 54775.2808988764,
+			"lane": "P1",
+			"step": 650,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 54943.8202247191,
+			"lane": "P1",
+			"step": 652,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 55112.3595505618,
+			"lane": "P1",
+			"step": 654,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 842.696629213483,
-			"time": 53932.5842696629,
+			"duration": 9,
+			"lane": "P2",
+			"step": 639,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 674.157303370787,
-			"time": 53932.5842696629,
+			"duration": 8,
+			"lane": "P1",
+			"step": 639,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 55449.4382022472,
+			"lane": "P1",
+			"step": 658,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 55786.5168539326,
+			"lane": "P1",
+			"step": 662,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 55870.7865168539,
+			"lane": "P1",
+			"step": 662,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 55955.0561797753,
+			"lane": "P1",
+			"step": 664,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 56123.595505618,
+			"lane": "P1",
+			"step": 666,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 56292.1348314607,
+			"lane": "P1",
+			"step": 668,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 56460.6741573034,
+			"lane": "P1",
+			"step": 670,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 421.348314606742,
-			"time": 56629.2134831461,
+			"duration": 5,
+			"lane": "P1",
+			"step": 672,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 57134.8314606742,
+			"lane": "P1",
+			"step": 678,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 57471.9101123595,
+			"lane": "P1",
+			"step": 681,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 57640.4494382022,
+			"lane": "P1",
+			"step": 683,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 57808.9887640449,
+			"lane": "P1",
+			"step": 685,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 58146.0674157304,
+			"lane": "P1",
+			"step": 690,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 58314.606741573,
+			"lane": "P1",
+			"step": 691,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 58483.1460674157,
+			"lane": "P1",
+			"step": 693,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 58651.6853932584,
+			"lane": "P1",
+			"step": 695,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 58820.2247191011,
+			"lane": "P1",
+			"step": 697,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 421.348314606742,
-			"time": 59157.3033707865,
+			"duration": 5,
+			"lane": "P1",
+			"step": 701,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 59662.9213483146,
+			"lane": "P1",
+			"step": 708,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 59747.191011236,
+			"lane": "P1",
+			"step": 709,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 60168.5393258427,
+			"lane": "P1",
+			"step": 714,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 60505.6179775281,
+			"lane": "P1",
+			"step": 718,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 59325.8426966292,
+			"lane": "P2",
+			"step": 703,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 59494.3820224719,
+			"lane": "P2",
+			"step": 705,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 59662.9213483146,
+			"lane": "P2",
+			"step": 708,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 421.348314606742,
-			"time": 59831.4606741573,
+			"duration": 5,
+			"lane": "P2",
+			"step": 710,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 60337.0786516854,
+			"lane": "P2",
+			"step": 716,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 59831.4606741573,
+			"lane": "P1",
+			"step": 710,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 60000,
+			"lane": "P1",
+			"step": 712,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 60674.1573033708,
+			"lane": "P1",
+			"step": 720,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 60842.6966292135,
+			"lane": "P1",
+			"step": 722,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 61011.2359550562,
+			"lane": "P1",
+			"step": 724,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 61179.7752808989,
+			"lane": "P1",
+			"step": 726,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 61348.3146067416,
+			"duration": 3,
+			"lane": "P1",
+			"step": 728,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 61685.393258427,
+			"lane": "P1",
+			"step": 732,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 61853.9325842697,
+			"lane": "P1",
+			"step": 734,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 60674.1573033708,
+			"lane": "P2",
+			"step": 720,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 60842.6966292135,
+			"lane": "P2",
+			"step": 722,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 61011.2359550562,
+			"lane": "P2",
+			"step": 724,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 61179.7752808989,
+			"duration": 3,
+			"lane": "P2",
+			"step": 726,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 61516.8539325843,
+			"lane": "P2",
+			"step": 730,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 61685.393258427,
+			"lane": "P2",
+			"step": 732,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 1011.23595505618,
-			"time": 61853.9325842697,
+			"duration": 12,
+			"lane": "P2",
+			"step": 734,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 62191.0112359551,
+			"lane": "P1",
+			"step": 738,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 62359.5505617977,
+			"lane": "P1",
+			"step": 739,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 62443.8202247191,
+			"lane": "P1",
+			"step": 741,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 62528.0898876404,
+			"lane": "P1",
+			"step": 741,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 62696.6292134831,
+			"lane": "P1",
+			"step": 743,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 62865.1685393258,
+			"lane": "P1",
+			"step": 745,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 62949.4382022472,
+			"lane": "P1",
+			"step": 747,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 63033.7078651685,
+			"lane": "P1",
+			"step": 747,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 63202.2471910112,
+			"lane": "P1",
+			"step": 749,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 63539.3258426966,
+			"lane": "P1",
+			"step": 753,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 63623.595505618,
+			"lane": "P1",
+			"step": 755,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 63707.8651685393,
+			"lane": "P1",
+			"step": 755,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 63876.404494382,
+			"lane": "P1",
+			"step": 757,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 64044.9438202247,
+			"lane": "P1",
+			"step": 759,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 64213.4831460674,
+			"lane": "P1",
+			"step": 761,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 64382.0224719101,
+			"lane": "P1",
+			"step": 763,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 64550.5617977528,
+			"lane": "P1",
+			"step": 765,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 64719.1011235955,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 768,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 65224.7191011236,
+			"lane": "Opponent",
+			"step": 774,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 65308.9887640449,
+			"lane": "Opponent",
+			"step": 774,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 65393.2584269663,
+			"lane": "Opponent",
+			"step": 776,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 65561.797752809,
+			"lane": "Opponent",
+			"step": 778,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 65730.3370786517,
+			"lane": "Opponent",
+			"step": 780,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 65898.8764044944,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 782,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 1011.23595505618,
-			"time": 64719.1011235955,
+			"duration": 12,
+			"lane": "Opponent",
+			"step": 768,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 66235.9550561798,
+			"lane": "Opponent",
+			"step": 786,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 66404.4943820225,
+			"lane": "Opponent",
+			"step": 788,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 66573.0337078652,
+			"lane": "Opponent",
+			"step": 790,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 66741.5730337079,
+			"lane": "Opponent",
+			"step": 792,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 66910.1123595506,
+			"lane": "Opponent",
+			"step": 794,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 67078.6516853933,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 796,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 67415.7303370787,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 800,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 67752.8089887641,
+			"lane": "Opponent",
+			"step": 804,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 68089.8876404494,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 807,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 68426.9662921348,
+			"lane": "Opponent",
+			"step": 811,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 68595.5056179775,
+			"lane": "Opponent",
+			"step": 813,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 68932.5842696629,
+			"lane": "Opponent",
+			"step": 817,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 69016.8539325843,
+			"lane": "Opponent",
+			"step": 819,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 168.539325842697,
-			"time": 69101.1235955056,
+			"duration": 2,
+			"lane": "Opponent",
+			"step": 819,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 69775.2808988764,
+			"lane": "Opponent",
+			"step": 828,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 69438.202247191,
+			"lane": "Opponent",
+			"step": 823,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 69943.8202247191,
+			"lane": "Opponent",
+			"step": 829,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 70112.3595505618,
+			"lane": "Opponent",
+			"step": 832,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 70280.8988764045,
+			"lane": "Opponent",
+			"step": 834,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 70449.4382022472,
+			"lane": "Opponent",
+			"step": 836,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 168.539325842697,
-			"time": 70617.9775280899,
+			"duration": 2,
+			"lane": "Opponent",
+			"step": 838,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 70955.0561797753,
+			"lane": "Opponent",
+			"step": 842,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 71123.595505618,
+			"lane": "Opponent",
+			"step": 844,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 71292.1348314607,
+			"lane": "Opponent",
+			"step": 846,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 71123.595505618,
+			"lane": "Opponent",
+			"step": 844,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 71292.1348314607,
+			"lane": "Opponent",
+			"step": 846,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 421.348314606742,
-			"time": 71460.6741573034,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 848,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 71797.7528089888,
+			"lane": "Opponent",
+			"step": 852,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 71966.2921348315,
+			"lane": "Opponent",
+			"step": 854,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 71460.6741573034,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 848,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 72303.3707865169,
+			"lane": "Opponent",
+			"step": 858,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 72471.9101123596,
+			"lane": "Opponent",
+			"step": 860,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 72640.4494382023,
+			"lane": "Opponent",
+			"step": 862,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 72556.1797752809,
+			"lane": "Opponent",
+			"step": 861,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 72471.9101123596,
+			"lane": "Opponent",
+			"step": 860,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 72640.4494382023,
+			"lane": "Opponent",
+			"step": 862,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 72724.7191011236,
+			"lane": "Opponent",
+			"step": 863,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 72808.988764045,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 864,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 73146.0674157304,
+			"lane": "Opponent",
+			"step": 868,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 73314.6067415731,
+			"lane": "Opponent",
+			"step": 870,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 73651.6853932585,
+			"lane": "Opponent",
+			"step": 874,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 73820.2247191012,
+			"lane": "Opponent",
+			"step": 876,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 73988.7640449438,
+			"lane": "Opponent",
+			"step": 877,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 72808.988764045,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 864,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 73146.0674157304,
+			"lane": "Opponent",
+			"step": 868,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 73314.6067415731,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 870,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 73820.2247191012,
+			"lane": "Opponent",
+			"step": 876,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 73988.7640449438,
+			"lane": "Opponent",
+			"step": 877,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 74325.8426966292,
+			"lane": "Opponent",
+			"step": 881,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 74662.9213483146,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 886,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 75000,
+			"lane": "Opponent",
+			"step": 890,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 75168.5393258427,
+			"lane": "Opponent",
+			"step": 892,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 75337.0786516854,
+			"lane": "Opponent",
+			"step": 894,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 74157.3033707866,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 880,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 74494.382022472,
+			"lane": "Opponent",
+			"step": 884,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 74662.9213483146,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 886,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 75168.5393258427,
+			"lane": "Opponent",
+			"step": 892,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 75337.0786516854,
+			"lane": "Opponent",
+			"step": 894,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 75505.6179775281,
+			"lane": "P2",
+			"step": 896,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 75674.1573033708,
+			"lane": "P2",
+			"step": 898,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 75842.6966292135,
+			"lane": "P2",
+			"step": 900,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 76011.2359550562,
+			"duration": 5,
+			"lane": "P2",
+			"step": 902,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 76516.8539325843,
+			"lane": "P2",
+			"step": 908,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 76685.393258427,
+			"lane": "P2",
+			"step": 910,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 75505.6179775281,
+			"duration": 3,
+			"lane": "P1",
+			"step": 896,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 75842.6966292135,
+			"lane": "P1",
+			"step": 900,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 76011.2359550562,
+			"lane": "P1",
+			"step": 902,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 76095.5056179776,
+			"lane": "P1",
+			"step": 903,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 76179.7752808989,
+			"lane": "P1",
+			"step": 904,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 76348.3146067416,
+			"lane": "P1",
+			"step": 906,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 76516.8539325843,
+			"lane": "P1",
+			"step": 908,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 76685.393258427,
+			"duration": 3,
+			"lane": "P1",
+			"step": 910,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 76853.9325842697,
+			"lane": "P2",
+			"step": 912,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 77022.4719101124,
+			"lane": "P2",
+			"step": 914,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 77191.0112359551,
+			"lane": "P2",
+			"step": 916,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 77359.5505617978,
+			"lane": "P2",
+			"step": 918,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 77528.0898876405,
+			"lane": "P2",
+			"step": 920,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 77696.6292134832,
+			"lane": "P2",
+			"step": 922,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 77865.1685393259,
+			"lane": "P2",
+			"step": 924,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 78033.7078651686,
+			"lane": "P2",
+			"step": 926,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 77022.4719101124,
+			"lane": "P1",
+			"step": 914,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 77191.0112359551,
+			"lane": "P1",
+			"step": 916,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 77359.5505617978,
+			"lane": "P1",
+			"step": 918,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 77528.0898876405,
+			"lane": "P1",
+			"step": 920,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 77696.6292134832,
+			"lane": "P1",
+			"step": 922,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 77865.1685393259,
+			"duration": 3,
+			"lane": "P1",
+			"step": 924,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 78202.2471910113,
+			"lane": "P2",
+			"step": 928,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 78370.786516854,
+			"lane": "P2",
+			"step": 930,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 78539.3258426967,
+			"lane": "P2",
+			"step": 932,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 78707.8651685394,
+			"duration": 5,
+			"lane": "P2",
+			"step": 934,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 79382.0224719102,
+			"lane": "P2",
+			"step": 942,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 79213.4831460675,
+			"lane": "P2",
+			"step": 940,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 78202.2471910113,
+			"duration": 3,
+			"lane": "P1",
+			"step": 928,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 78539.3258426967,
+			"lane": "P1",
+			"step": 932,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 78707.8651685394,
+			"lane": "P1",
+			"step": 934,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 78876.4044943821,
+			"duration": 3,
+			"lane": "P1",
+			"step": 936,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 79213.4831460675,
+			"lane": "P1",
+			"step": 940,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 79382.0224719102,
+			"duration": 3,
+			"lane": "P1",
+			"step": 942,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 79550.5617977529,
+			"lane": "P2",
+			"step": 944,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 79719.1011235956,
+			"lane": "P2",
+			"step": 946,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 79887.6404494383,
+			"lane": "P2",
+			"step": 948,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 80056.179775281,
+			"lane": "P2",
+			"step": 950,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 80224.7191011237,
+			"lane": "P2",
+			"step": 952,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 80393.2584269664,
+			"lane": "P2",
+			"step": 954,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 80561.7977528091,
+			"lane": "P2",
+			"step": 956,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 80730.3370786517,
+			"lane": "P2",
+			"step": 958,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 79719.1011235956,
+			"lane": "P1",
+			"step": 946,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 79803.3707865169,
+			"lane": "P1",
+			"step": 947,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 79887.6404494383,
+			"duration": 3,
+			"lane": "P1",
+			"step": 948,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 80224.7191011237,
+			"lane": "P1",
+			"step": 952,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 80393.2584269664,
+			"lane": "P1",
+			"step": 954,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 80561.7977528091,
+			"lane": "P1",
+			"step": 956,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 80730.3370786517,
+			"lane": "P1",
+			"step": 958,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 80898.8764044945,
+			"duration": 3,
+			"lane": "P2",
+			"step": 960,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 589.887640449438,
-			"time": 80898.8764044945,
+			"duration": 6,
+			"lane": "P1",
+			"step": 960,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 81573.0337078652,
+			"lane": "P1",
+			"step": 968,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 337.078651685393,
-			"time": 81657.3033707866,
+			"duration": 3,
+			"lane": "P1",
+			"step": 969,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 82078.6516853933,
+			"duration": 5,
+			"lane": "P1",
+			"step": 974,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 83258.4269662922,
+			"lane": "P2",
+			"step": 988,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 82584.2696629214,
+			"lane": "P1",
+			"step": 980,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 82752.8089887641,
+			"lane": "P1",
+			"step": 982,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 83089.8876404495,
+			"lane": "P1",
+			"step": 986,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 758.426966292135,
-			"time": 83426.9662921349,
+			"duration": 9,
+			"lane": "P1",
+			"step": 990,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 83595.5056179776,
+			"duration": 3,
+			"lane": "P2",
+			"step": 992,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 84269.6629213484,
+			"lane": "P1",
+			"step": 1000,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 337.078651685393,
-			"time": 84353.9325842697,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1001,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 84775.2808988765,
+			"lane": "P1",
+			"step": 1006,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 85112.3595505619,
+			"lane": "P1",
+			"step": 1010,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 85280.8988764046,
+			"lane": "P1",
+			"step": 1012,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 85196.6292134832,
+			"lane": "P1",
+			"step": 1011,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 85449.4382022473,
+			"lane": "P1",
+			"step": 1014,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 85617.97752809,
+			"lane": "P1",
+			"step": 1016,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 85786.5168539327,
+			"lane": "P1",
+			"step": 1018,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 85955.0561797754,
+			"lane": "P1",
+			"step": 1020,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 86123.5955056181,
+			"lane": "P1",
+			"step": 1022,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 86966.2921348316,
+			"lane": "Opponent",
+			"step": 1032,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 87134.8314606743,
+			"lane": "Opponent",
+			"step": 1034,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 87303.370786517,
+			"lane": "Opponent",
+			"step": 1036,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 87471.9101123596,
+			"lane": "Opponent",
+			"step": 1038,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 87640.4494382024,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1040,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 88146.0674157304,
+			"lane": "Opponent",
+			"step": 1046,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 88230.3370786518,
+			"lane": "Opponent",
+			"step": 1047,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 88314.6067415731,
+			"lane": "Opponent",
+			"step": 1048,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 88483.1460674158,
+			"lane": "Opponent",
+			"step": 1050,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 88651.6853932585,
+			"lane": "Opponent",
+			"step": 1052,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 88820.2247191012,
+			"lane": "Opponent",
+			"step": 1054,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 88988.7640449439,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1056,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 89494.382022472,
+			"lane": "Opponent",
+			"step": 1062,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 89662.9213483147,
+			"lane": "Opponent",
+			"step": 1064,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 89831.4606741574,
+			"lane": "Opponent",
+			"step": 1066,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 90168.5393258428,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1070,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 90674.1573033709,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1076,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 91011.2359550563,
+			"lane": "Opponent",
+			"step": 1080,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 91179.775280899,
+			"lane": "Opponent",
+			"step": 1082,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 758.426966292135,
-			"time": 91516.8539325844,
+			"duration": 9,
+			"lane": "Opponent",
+			"step": 1086,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 92359.5505617978,
+			"lane": "P1",
+			"step": 1096,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 92528.0898876406,
+			"lane": "P1",
+			"step": 1098,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 92696.6292134832,
+			"lane": "P1",
+			"step": 1100,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 92865.1685393259,
+			"lane": "P1",
+			"step": 1102,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 93033.7078651686,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1104,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 93539.3258426967,
+			"lane": "P1",
+			"step": 1110,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 93623.5955056181,
+			"lane": "P1",
+			"step": 1111,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 93707.8651685394,
+			"lane": "P1",
+			"step": 1112,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 93876.4044943821,
+			"lane": "P1",
+			"step": 1114,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 94044.9438202248,
+			"lane": "P1",
+			"step": 1116,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 94213.4831460675,
+			"lane": "P1",
+			"step": 1118,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 94382.0224719102,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1120,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 94887.6404494383,
+			"lane": "P1",
+			"step": 1126,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 95056.179775281,
+			"lane": "P1",
+			"step": 1128,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 95224.7191011237,
+			"lane": "P1",
+			"step": 1130,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 95561.7977528091,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1134,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 96067.4157303372,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1140,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 96404.4943820226,
+			"lane": "P1",
+			"step": 1144,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 96573.0337078653,
+			"lane": "P1",
+			"step": 1146,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 421.348314606742,
-			"time": 96910.1123595507,
+			"duration": 5,
+			"lane": "P1",
+			"step": 1150,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 97415.7303370788,
+			"lane": "P1",
+			"step": 1156,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 97500.0000000002,
+			"lane": "P1",
+			"step": 1157,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 97584.2696629215,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1158,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 97921.3483146069,
+			"lane": "P1",
+			"step": 1162,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 98089.8876404496,
+			"lane": "P1",
+			"step": 1164,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 98258.4269662923,
+			"lane": "P1",
+			"step": 1166,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 98426.966292135,
+			"lane": "P1",
+			"step": 1168,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 98764.0449438204,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1172,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 99101.1235955058,
+			"lane": "P1",
+			"step": 1176,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 99269.6629213485,
+			"lane": "P1",
+			"step": 1178,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 99438.2022471912,
+			"lane": "P1",
+			"step": 1180,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 99606.7415730339,
+			"lane": "P1",
+			"step": 1182,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 99775.2808988766,
+			"lane": "P1",
+			"step": 1184,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 100112.359550562,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1188,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 100449.438202247,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1191,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 100786.516853933,
+			"lane": "P2",
+			"step": 1196,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 100955.056179775,
+			"lane": "P2",
+			"step": 1197,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 100786.516853933,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1196,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 589.887640449438,
-			"time": 101123.595505618,
+			"duration": 6,
+			"lane": "P2",
+			"step": 1200,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 101123.595505618,
+			"lane": "P1",
+			"step": 1200,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 101460.674157304,
+			"lane": "P1",
+			"step": 1204,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 101629.213483146,
+			"lane": "P1",
+			"step": 1205,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 101797.752808989,
+			"lane": "P1",
+			"step": 1208,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 101966.292134832,
+			"lane": "P1",
+			"step": 1210,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 102303.370786517,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1214,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 102640.449438202,
+			"lane": "P1",
+			"step": 1217,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 102808.988764045,
+			"lane": "P1",
+			"step": 1220,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 102977.528089888,
+			"lane": "P1",
+			"step": 1222,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 102471.91011236,
+			"duration": 3,
+			"lane": "P2",
+			"step": 1216,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 102808.988764045,
+			"duration": 3,
+			"lane": "P2",
+			"step": 1220,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 103146.067415731,
+			"lane": "P2",
+			"step": 1224,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 103314.606741573,
+			"lane": "P2",
+			"step": 1225,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 103483.146067416,
+			"lane": "P2",
+			"step": 1228,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 103651.685393259,
+			"lane": "P2",
+			"step": 1230,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 103146.067415731,
+			"lane": "P1",
+			"step": 1224,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 103314.606741573,
+			"lane": "P1",
+			"step": 1225,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 103483.146067416,
+			"lane": "P1",
+			"step": 1228,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 103651.685393259,
+			"lane": "P1",
+			"step": 1230,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 103820.224719101,
+			"lane": "Opponent",
+			"step": 1231,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 104157.303370787,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1236,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 104494.382022472,
+			"lane": "Opponent",
+			"step": 1240,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 104662.921348315,
+			"lane": "Opponent",
+			"step": 1242,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 104831.460674157,
+			"lane": "Opponent",
+			"step": 1243,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 105000,
+			"lane": "Opponent",
+			"step": 1246,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 1264.04494382022,
-			"time": 103820.224719101,
+			"duration": 14,
+			"lane": "Opponent",
+			"step": 1231,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 105168.539325843,
+			"lane": "Opponent",
+			"step": 1248,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 105505.617977528,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1251,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 252.808988764045,
-			"time": 105842.696629214,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1256,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 106179.775280899,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1260,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 106179.775280899,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1260,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 589.887640449438,
-			"time": 106516.853932584,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 1263,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 106516.853932584,
+			"lane": "Opponent",
+			"step": 1263,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 106853.93258427,
+			"lane": "Opponent",
+			"step": 1268,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 107022.471910113,
+			"lane": "Opponent",
+			"step": 1270,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 107191.011235955,
+			"lane": "Opponent",
+			"step": 1271,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 107359.550561798,
+			"lane": "Opponent",
+			"step": 1274,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 107696.629213483,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1277,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 107359.550561798,
+			"lane": "Opponent",
+			"step": 1274,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 1432.58426966292,
-			"time": 107696.629213483,
+			"duration": 16,
+			"lane": "Opponent",
+			"step": 1277,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 107191.011235955,
+			"lane": "Opponent",
+			"step": 1271,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 108033.707865169,
+			"lane": "Opponent",
+			"step": 1282,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 108202.247191011,
+			"lane": "Opponent",
+			"step": 1283,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 108370.786516854,
+			"lane": "Opponent",
+			"step": 1286,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 108539.325842697,
+			"lane": "Opponent",
+			"step": 1288,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 108707.86516854,
+			"lane": "Opponent",
+			"step": 1290,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 108876.404494382,
+			"lane": "Opponent",
+			"step": 1291,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 109044.943820225,
+			"lane": "Opponent",
+			"step": 1294,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 109213.483146068,
+			"lane": "Opponent",
+			"step": 1296,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 109550.561797753,
+			"lane": "Opponent",
+			"step": 1300,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 109887.640449438,
+			"lane": "Opponent",
+			"step": 1303,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 110056.179775281,
+			"lane": "Opponent",
+			"step": 1306,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 110224.719101124,
+			"lane": "Opponent",
+			"step": 1308,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 110393.258426967,
+			"lane": "Opponent",
+			"step": 1310,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 110561.797752809,
+			"lane": "Opponent",
+			"step": 1312,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 110730.337078652,
+			"lane": "Opponent",
+			"step": 1314,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 110898.876404495,
+			"lane": "Opponent",
+			"step": 1316,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 111067.415730337,
+			"lane": "Opponent",
+			"step": 1317,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 111235.95505618,
+			"lane": "Opponent",
+			"step": 1320,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 111573.033707865,
+			"lane": "Opponent",
+			"step": 1323,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 111741.573033708,
+			"lane": "Opponent",
+			"step": 1326,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 111910.112359551,
+			"lane": "Opponent",
+			"step": 1328,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 112078.651685393,
+			"lane": "Opponent",
+			"step": 1329,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 112247.191011236,
+			"lane": "Opponent",
+			"step": 1332,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 112415.730337079,
+			"lane": "Opponent",
+			"step": 1334,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 112584.269662922,
+			"lane": "Opponent",
+			"step": 1336,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 112752.808988764,
+			"lane": "Opponent",
+			"step": 1337,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 112921.348314607,
+			"lane": "Opponent",
+			"step": 1340,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 113089.88764045,
+			"lane": "Opponent",
+			"step": 1342,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 113258.426966292,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1343,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 113595.505617978,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1348,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 113932.584269663,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1352,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 114269.662921349,
+			"lane": "Opponent",
+			"step": 1356,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 114606.741573034,
+			"lane": "Opponent",
+			"step": 1360,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 114943.820224719,
+			"lane": "Opponent",
+			"step": 1363,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 115280.898876405,
+			"lane": "Opponent",
+			"step": 1368,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 115786.516853933,
+			"lane": "Opponent",
+			"step": 1374,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 115617.97752809,
+			"lane": "Opponent",
+			"step": 1372,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 115280.898876405,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1368,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 115617.97752809,
+			"lane": "Opponent",
+			"step": 1372,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 114943.820224719,
+			"lane": "Opponent",
+			"step": 1363,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 115955.056179776,
+			"lane": "Opponent",
+			"step": 1376,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 115955.056179776,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1376,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 116292.134831461,
+			"lane": "Opponent",
+			"step": 1380,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 116629.213483146,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1383,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 116966.292134832,
+			"lane": "Opponent",
+			"step": 1388,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 116292.134831461,
+			"lane": "Opponent",
+			"step": 1380,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 116966.292134832,
+			"lane": "Opponent",
+			"step": 1388,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 117640.449438203,
+			"lane": "Opponent",
+			"step": 1396,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 168.539325842697,
-			"time": 117682.584269663,
+			"duration": 2,
+			"lane": "Opponent",
+			"step": 1396,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 117977.528089888,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1400,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 118314.606741573,
+			"lane": "Opponent",
+			"step": 1403,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 117303.370786517,
+			"lane": "Opponent",
+			"step": 1392,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 117471.91011236,
+			"lane": "Opponent",
+			"step": 1394,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 117640.449438203,
+			"lane": "Opponent",
+			"step": 1396,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 117808.988764045,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 1398,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 118314.606741573,
+			"lane": "Opponent",
+			"step": 1403,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 118483.146067416,
+			"lane": "Opponent",
+			"step": 1406,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 118651.685393259,
+			"lane": "Opponent",
+			"step": 1408,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 118820.224719101,
+			"lane": "Opponent",
+			"step": 1409,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 118988.764044944,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1412,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 119325.842696629,
+			"lane": "Opponent",
+			"step": 1415,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 119494.382022472,
+			"lane": "Opponent",
+			"step": 1418,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 119662.921348315,
+			"lane": "Opponent",
+			"step": 1420,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 119831.460674158,
+			"lane": "Opponent",
+			"step": 1422,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 119325.842696629,
+			"lane": "Opponent",
+			"step": 1415,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 119410.112359551,
+			"lane": "Opponent",
+			"step": 1417,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 119494.382022472,
+			"lane": "Opponent",
+			"step": 1418,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 119662.921348315,
+			"lane": "Opponent",
+			"step": 1420,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 119831.460674158,
+			"lane": "Opponent",
+			"step": 1422,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 118651.685393259,
+			"lane": "Opponent",
+			"step": 1408,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 118820.224719101,
+			"lane": "Opponent",
+			"step": 1409,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 118988.764044944,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1412,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 120000,
+			"lane": "P2",
+			"step": 1424,
 			"type": "GF Sing"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 120000,
+			"lane": "P1",
+			"step": 1424,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 120337.078651686,
+			"lane": "P1",
+			"step": 1428,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 120674.157303371,
+			"lane": "P1",
+			"step": 1432,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 120842.696629214,
+			"lane": "P1",
+			"step": 1434,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 121011.235955056,
+			"lane": "P1",
+			"step": 1435,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 121179.775280899,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1438,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 121516.853932585,
+			"lane": "P1",
+			"step": 1442,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 121685.393258427,
+			"lane": "P1",
+			"step": 1444,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 121853.93258427,
+			"lane": "P1",
+			"step": 1446,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 122022.471910113,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1448,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 122359.550561798,
+			"lane": "P1",
+			"step": 1452,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 122528.089887641,
+			"lane": "P1",
+			"step": 1454,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 122696.629213483,
+			"lane": "P1",
+			"step": 1455,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 122865.168539326,
+			"lane": "P1",
+			"step": 1458,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 123033.707865169,
+			"lane": "P1",
+			"step": 1460,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 123202.247191012,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1462,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 123539.325842697,
+			"lane": "P1",
+			"step": 1466,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 123623.595505618,
+			"lane": "P1",
+			"step": 1467,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 123707.86516854,
+			"lane": "P1",
+			"step": 1468,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 123876.404494382,
+			"lane": "P1",
+			"step": 1469,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 124044.943820225,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1472,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 124382.02247191,
+			"lane": "P1",
+			"step": 1475,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 124550.561797753,
+			"lane": "P1",
+			"step": 1478,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 124887.640449439,
+			"lane": "P1",
+			"step": 1482,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 125056.179775281,
+			"lane": "P1",
+			"step": 1484,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 125224.719101124,
+			"lane": "P1",
+			"step": 1486,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 125308.988764045,
+			"lane": "P1",
+			"step": 1487,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 125393.258426967,
+			"lane": "P1",
+			"step": 1488,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 125730.337078652,
+			"lane": "P1",
+			"step": 1492,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 125898.876404495,
+			"lane": "P1",
+			"step": 1494,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 126235.95505618,
+			"lane": "P1",
+			"step": 1498,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 126404.494382023,
+			"lane": "P1",
+			"step": 1500,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 421.348314606742,
-			"time": 126573.033707865,
+			"duration": 5,
+			"lane": "P1",
+			"step": 1501,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 127078.651685394,
+			"lane": "P1",
+			"step": 1508,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 127162.921348315,
+			"lane": "P1",
+			"step": 1509,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 127247.191011236,
+			"lane": "P1",
+			"step": 1510,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 127584.269662922,
+			"duration": 3,
+			"lane": "P1",
+			"step": 1514,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 127921.348314607,
+			"lane": "P1",
+			"step": 1518,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 128089.88764045,
+			"lane": "P1",
+			"step": 1520,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 128258.426966292,
+			"lane": "P1",
+			"step": 1521,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 128426.966292135,
+			"lane": "P1",
+			"step": 1524,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 421.348314606742,
-			"time": 128595.505617978,
+			"duration": 5,
+			"lane": "P1",
+			"step": 1526,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 129101.123595506,
+			"lane": "P1",
+			"step": 1532,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 129269.662921349,
+			"lane": "P1",
+			"step": 1534,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 1264.04494382022,
-			"time": 129438.202247191,
+			"duration": 14,
+			"lane": "P1",
+			"step": 1536,
 			"type": "Spidey Note"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 926.966292134831,
-			"time": 130786.516853933,
+			"duration": 10,
+			"lane": "Opponent",
+			"step": 1552,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 758.426966292135,
-			"time": 130786.516853933,
+			"duration": 9,
+			"lane": "Opponent",
+			"step": 1552,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 131629.213483146,
+			"lane": "Opponent",
+			"step": 1561,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 131797.752808989,
+			"lane": "Opponent",
+			"step": 1564,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 131966.292134832,
+			"lane": "Opponent",
+			"step": 1566,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 926.966292134831,
-			"time": 131797.752808989,
+			"duration": 10,
+			"lane": "Opponent",
+			"step": 1564,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 589.887640449438,
-			"time": 132808.988764045,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 1576,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 589.887640449438,
-			"time": 132808.988764045,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 1576,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 132303.370786517,
+			"lane": "Opponent",
+			"step": 1570,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 132640.449438202,
+			"lane": "Opponent",
+			"step": 1573,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 132724.719101123,
+			"lane": "Opponent",
+			"step": 1574,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 132808.988764045,
+			"lane": "Opponent",
+			"step": 1576,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 132977.528089888,
+			"lane": "Opponent",
+			"step": 1578,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 133146.06741573,
+			"lane": "Opponent",
+			"step": 1579,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 133314.606741573,
+			"lane": "Opponent",
+			"step": 1581,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 133483.146067416,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 1584,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 133988.764044944,
+			"lane": "Opponent",
+			"step": 1590,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 134325.842696629,
+			"lane": "Opponent",
+			"step": 1593,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 134494.382022472,
+			"lane": "Opponent",
+			"step": 1596,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 134662.921348314,
+			"lane": "Opponent",
+			"step": 1597,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
-			"duration": 926.966292134831,
-			"time": 133483.146067416,
+			"duration": 10,
+			"lane": "Opponent",
+			"step": 1584,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 926.966292134831,
-			"time": 134494.382022472,
+			"duration": 10,
+			"lane": "Opponent",
+			"step": 1596,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 421.348314606741,
-			"time": 135505.617977528,
+			"duration": 4,
+			"lane": "Opponent",
+			"step": 1607,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 135000,
+			"lane": "Opponent",
+			"step": 1602,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 135168.539325843,
+			"lane": "Opponent",
+			"step": 1604,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 135337.078651685,
+			"lane": "Opponent",
+			"step": 1605,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 135505.617977528,
+			"lane": "Opponent",
+			"step": 1607,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 135674.157303371,
+			"lane": "Opponent",
+			"step": 1610,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 136011.235955057,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1614,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 421.348314606742,
-			"time": 136011.235955057,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 1614,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 136348.314606742,
+			"lane": "Opponent",
+			"step": 1618,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 136516.853932585,
+			"lane": "Opponent",
+			"step": 1620,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 136601.123595506,
+			"lane": "Opponent",
+			"step": 1621,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 136685.393258427,
+			"lane": "Opponent",
+			"step": 1622,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 136769.662921349,
+			"lane": "Opponent",
+			"step": 1623,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 136853.93258427,
+			"lane": "Opponent",
+			"step": 1624,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 137022.471910113,
+			"lane": "Opponent",
+			"step": 1626,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 137191.011235955,
+			"lane": "Opponent",
+			"step": 1627,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 252.808988764045,
-			"time": 137359.550561798,
+			"duration": 3,
+			"lane": "Opponent",
+			"step": 1630,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 136516.853932585,
+			"lane": "Opponent",
+			"step": 1620,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 136601.123595506,
+			"lane": "Opponent",
+			"step": 1621,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 136685.393258427,
+			"lane": "Opponent",
+			"step": 1622,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 136769.662921349,
+			"lane": "Opponent",
+			"step": 1623,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 136853.93258427,
+			"lane": "Opponent",
+			"step": 1624,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 137022.471910113,
+			"lane": "Opponent",
+			"step": 1626,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 137191.011235955,
+			"lane": "Opponent",
+			"step": 1627,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 137359.550561798,
+			"lane": "Opponent",
+			"step": 1630,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 137696.629213483,
+			"lane": "Opponent",
+			"step": 1633,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 137865.168539326,
+			"lane": "Opponent",
+			"step": 1636,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 138033.707865169,
+			"lane": "Opponent",
+			"step": 1638,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 138117.97752809,
+			"lane": "Opponent",
+			"step": 1639,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 138202.247191012,
+			"lane": "Opponent",
+			"step": 1640,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 138370.786516854,
+			"lane": "Opponent",
+			"step": 1642,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 138539.325842697,
+			"lane": "Opponent",
+			"step": 1644,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 138707.86516854,
+			"lane": "Opponent",
+			"step": 1646,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 138792.134831461,
+			"lane": "Opponent",
+			"step": 1647,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 137528.089887641,
+			"lane": "Opponent",
+			"step": 1632,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 137696.629213483,
+			"lane": "Opponent",
+			"step": 1633,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 137865.168539326,
+			"lane": "Opponent",
+			"step": 1636,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 138202.247191012,
+			"lane": "Opponent",
+			"step": 1640,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 138539.325842697,
+			"lane": "Opponent",
+			"step": 1644,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 138033.707865169,
+			"lane": "Opponent",
+			"step": 1638,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 138370.786516854,
+			"lane": "Opponent",
+			"step": 1642,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 138707.86516854,
+			"lane": "Opponent",
+			"step": 1646,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 138286.516853933,
+			"lane": "Opponent",
+			"step": 1641,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 589.887640449438,
-			"time": 138876.404494382,
+			"duration": 6,
+			"lane": "Opponent",
+			"step": 1647,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 139719.101123596,
+			"lane": "Opponent",
+			"step": 1658,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 421.348314606742,
-			"time": 140056.179775281,
+			"duration": 5,
+			"lane": "Opponent",
+			"step": 1662,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 139213.483146068,
+			"lane": "Opponent",
+			"step": 1652,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 139297.752808989,
+			"lane": "Opponent",
+			"step": 1653,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 139382.02247191,
+			"lane": "Opponent",
+			"step": 1653,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 139719.101123596,
+			"lane": "Opponent",
+			"step": 1658,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 139803.370786517,
+			"lane": "Opponent",
+			"step": 1659,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 139044.943820225,
+			"lane": "Opponent",
+			"step": 1650,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 139887.640449439,
+			"lane": "Opponent",
+			"step": 1660,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 140056.179775281,
+			"lane": "Opponent",
+			"step": 1662,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 139550.561797753,
+			"lane": "Opponent",
+			"step": 1656,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 140561.797752809,
+			"lane": "Opponent",
+			"step": 1668,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 140646.067415731,
+			"lane": "Opponent",
+			"step": 1669,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 140730.337078652,
+			"lane": "Opponent",
+			"step": 1670,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 140814.606741573,
+			"lane": "Opponent",
+			"step": 1670,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 140898.876404495,
+			"lane": "Opponent",
+			"step": 1672,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 141067.415730337,
+			"lane": "Opponent",
+			"step": 1673,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 141235.95505618,
+			"lane": "Opponent",
+			"step": 1676,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 141404.494382023,
+			"lane": "Opponent",
+			"step": 1678,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 141488.764044944,
+			"lane": "Opponent",
+			"step": 1679,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 140393.258426967,
+			"lane": "Opponent",
+			"step": 1666,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 140477.528089888,
+			"lane": "Opponent",
+			"step": 1667,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 140561.797752809,
+			"lane": "Opponent",
+			"step": 1668,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 140730.337078652,
+			"lane": "Opponent",
+			"step": 1670,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 140898.876404495,
+			"lane": "Opponent",
+			"step": 1672,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 141067.415730337,
+			"lane": "Opponent",
+			"step": 1673,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 141235.95505618,
+			"lane": "Opponent",
+			"step": 1676,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 141404.494382023,
+			"lane": "Opponent",
+			"step": 1678,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 926.966292134831,
-			"time": 141573.033707866,
+			"duration": 10,
+			"lane": "P1",
+			"step": 1680,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 758.426966292135,
-			"time": 141573.033707866,
+			"duration": 9,
+			"lane": "P2",
+			"step": 1680,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 142415.730337079,
+			"lane": "P2",
+			"step": 1690,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 926.966292134831,
-			"time": 142584.269662922,
+			"duration": 10,
+			"lane": "P1",
+			"step": 1692,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 142584.269662922,
+			"lane": "P2",
+			"step": 1692,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 252.808988764045,
-			"time": 142752.808988764,
+			"duration": 3,
+			"lane": "P2",
+			"step": 1693,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 589.887640449438,
-			"time": 143595.505617978,
+			"duration": 6,
+			"lane": "P1",
+			"step": 1704,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 143089.88764045,
+			"lane": "P2",
+			"step": 1698,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 143426.966292135,
+			"lane": "P2",
+			"step": 1702,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 143511.235955056,
+			"lane": "P2",
+			"step": 1702,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 143595.505617978,
+			"lane": "P2",
+			"step": 1704,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 143764.044943821,
+			"lane": "P2",
+			"step": 1706,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 143932.584269663,
+			"lane": "P2",
+			"step": 1708,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 144101.123595506,
+			"lane": "P2",
+			"step": 1710,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
-			"duration": 926.966292134831,
-			"time": 144269.662921349,
+			"duration": 10,
+			"lane": "P1",
+			"step": 1712,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 926.966292134831,
-			"time": 145280.898876405,
+			"duration": 10,
+			"lane": "P1",
+			"step": 1724,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
-			"duration": 421.348314606742,
-			"time": 144269.662921349,
+			"duration": 5,
+			"lane": "P2",
+			"step": 1712,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 144775.280898877,
+			"lane": "P2",
+			"step": 1718,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 145112.359550562,
+			"lane": "P2",
+			"step": 1722,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 145280.898876405,
+			"lane": "P2",
+			"step": 1724,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 145449.438202247,
+			"lane": "P2",
+			"step": 1725,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
-			"duration": 589.887640449438,
-			"time": 146292.134831461,
+			"duration": 6,
+			"lane": "P1",
+			"step": 1736,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 145786.516853933,
+			"lane": "P2",
+			"step": 1730,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 145955.056179776,
+			"lane": "P2",
+			"step": 1732,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 146123.595505618,
+			"lane": "P2",
+			"step": 1734,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 146292.134831461,
+			"lane": "P2",
+			"step": 1736,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 146460.674157304,
+			"lane": "P2",
+			"step": 1738,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
-			"duration": 421.348314606742,
-			"time": 146797.752808989,
+			"duration": 5,
+			"lane": "P2",
+			"step": 1742,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 147303.370786517,
+			"lane": "P2",
+			"step": 1748,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 147387.640449438,
+			"lane": "P2",
+			"step": 1748,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 147471.91011236,
+			"lane": "P2",
+			"step": 1750,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 147808.988764045,
+			"lane": "P2",
+			"step": 1754,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 148146.067415731,
+			"lane": "P2",
+			"step": 1758,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 146966.292134832,
+			"lane": "P1",
+			"step": 1744,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 147134.831460674,
+			"lane": "P1",
+			"step": 1745,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 147303.370786517,
+			"lane": "P1",
+			"step": 1748,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
-			"duration": 421.348314606742,
-			"time": 147471.91011236,
+			"duration": 5,
+			"lane": "P1",
+			"step": 1750,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 147977.528089888,
+			"lane": "P1",
+			"step": 1756,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 147640.449438203,
+			"lane": "P2",
+			"step": 1752,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 148314.606741573,
+			"lane": "P2",
+			"step": 1759,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 148483.146067416,
+			"lane": "P2",
+			"step": 1762,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 148651.685393259,
+			"lane": "P2",
+			"step": 1764,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 148820.224719101,
+			"lane": "P2",
+			"step": 1765,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 149325.842696629,
+			"lane": "P2",
+			"step": 1771,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 149494.382022472,
+			"lane": "P2",
+			"step": 1774,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 148314.606741573,
+			"lane": "P1",
+			"step": 1759,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 148483.146067416,
+			"lane": "P1",
+			"step": 1762,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 148651.685393259,
+			"lane": "P1",
+			"step": 1764,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 148820.224719101,
+			"lane": "P1",
+			"step": 1765,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "up",
 			"duration": 0,
-			"time": 148904.494382023,
+			"lane": "P1",
+			"step": 1767,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "left",
 			"duration": 0,
-			"time": 148988.764044944,
+			"lane": "P1",
+			"step": 1768,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
 			"duration": 0,
-			"time": 149157.303370787,
+			"lane": "P1",
+			"step": 1770,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "right",
 			"duration": 0,
-			"time": 149325.842696629,
+			"lane": "P1",
+			"step": 1771,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": true,
 			"direction": "down",
-			"duration": 926.966292134831,
-			"time": 149494.382022472,
+			"duration": 10,
+			"lane": "P1",
+			"step": 1774,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
-			"duration": 252.808988764045,
-			"time": 148988.764044944,
+			"duration": 3,
+			"lane": "P2",
+			"step": 1768,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 150505.617977528,
+			"lane": "Opponent",
+			"step": 1785,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 150589.88764045,
+			"lane": "Opponent",
+			"step": 1787,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 150674.157303371,
+			"lane": "Opponent",
+			"step": 1788,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 150337.078651686,
+			"lane": "Opponent",
+			"step": 1784,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "down",
 			"duration": 0,
-			"time": 150084.269662922,
+			"lane": "Opponent",
+			"step": 1781,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "right",
 			"duration": 0,
-			"time": 150000,
+			"lane": "Opponent",
+			"step": 1780,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "up",
 			"duration": 0,
-			"time": 150168.539325843,
+			"lane": "Opponent",
+			"step": 1782,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 149831.460674158,
+			"lane": "Opponent",
+			"step": 1778,
 			"type": "DEFAULT"
 		},
 		{
-			"mustHit": false,
 			"direction": "left",
 			"duration": 0,
-			"time": 150842.696629214,
+			"lane": "Opponent",
+			"step": 1790,
 			"type": "DEFAULT"
 		}
 	],
 	"scrollSpeed": 3,
-	"hasVoices": true,
 	"bpm": 178
 }

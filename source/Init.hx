@@ -1,6 +1,5 @@
 package;
 
-import data.PlayerSettings;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
