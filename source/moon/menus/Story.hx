@@ -3,14 +3,17 @@ package moon.menus;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.util.FlxColor;
 
+import moon.obj.menus.TextScroll;
 import moon.utilities.CoolUtil;
 
 class Story extends MusicSubState
 {
     private var weekData:Array<Dynamic> = [];
-
     private var weekGrp:FlxTypedGroup<FlxSprite>;
+
+    private var tBool:Bool = false;
 
     public function new()
     {
@@ -20,12 +23,32 @@ class Story extends MusicSubState
         bg.scrollFactor.set();
         add(bg);
 
+        final textsArray:Array<Dynamic> = [
+            ["feel the rhythm", 0xffe4b660],
+            ["stay funky", 0xffd8af63],
+            ["rhythm excellence", 0xffe4b661],
+            ["protect yo nuts", 0xffd8a341],
+            ["hot blooded in more ways than one", 0xffcc9837],
+            ["drop the beat", 0xffc49031]
+        ];
+
+        for (i in 0...20)
+        {
+            tBool = !tBool;
+
+            var text = new TextScroll(0, -90 + (50 * i), textsArray[Std.int(i % textsArray.length)][0]);
+            text.speed = FlxG.random.float(Conductor.crochet / 1000, Conductor.crochet / 1000 * 4);
+            text.tColor = textsArray[Std.int(i % textsArray.length)][1];
+            add(text);
+        }
+
+        var panel = new FlxSprite().loadGraphic(Paths.image('menus/story/UI'));
+        add(panel);
+
         weekGrp = new FlxTypedGroup<FlxSprite>();
         add(weekGrp);
-
-        final wArray = CoolUtil.getTextFromArray(Paths.data('weeks/weekList.txt'));
-        for (i in 0...wArray.length)
-            addWeek(wArray[i]);
+        
+        addWeeks();
     }
 
     override public function update(elapsed:Float)
@@ -33,17 +56,21 @@ class Story extends MusicSubState
         super.update(elapsed);
     }
 
-    private function addWeek(week:String)
+    private function addWeeks()
     {
-        var data = WeekData.getData(week);
-        weekData.push(data);
-        trace('added ${data.displayName}, songs being ${data.tracks}');
-
-        weekGrp.recycle(FlxSprite, function():FlxSprite
+        final wArray = CoolUtil.getTextFromArray(Paths.data('weeks/weekList.txt'));
+        for (i in 0...wArray.length)
         {
-            var spr = new FlxSprite(0, 80).loadGraphic(Paths.dataImg('weeks/$week/${data.weekImage}'));
-            spr.y += 60;
-            return spr;
-        });
+            var data = WeekData.getData(wArray[i]);
+            weekData.push(data);
+            trace('added ${data.displayName}, songs being ${data.tracks}');
+    
+            weekGrp.recycle(FlxSprite, function():FlxSprite
+            {
+                var spr = new FlxSprite(100, 170).loadGraphic(Paths.dataImg('weeks/${wArray[i]}/${data.weekImage}'));
+                spr.y += 100 * i;
+                return spr;
+            });
+        }
     }
 }

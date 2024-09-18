@@ -80,6 +80,7 @@ class PlayState extends MusicState
 	public static var health:Float = 50;
 	public var combo:Int = 0;
 	public static var score:Int = 0;
+	public var totalHits:Int = 0;
 
 	var yPos:Float = 0;
 
@@ -112,6 +113,7 @@ class PlayState extends MusicState
 	override public function create()
 	{
 		super.create();
+		FlxG.mouse.visible = false;
 
 		curPlaystate = this;
 
@@ -154,12 +156,26 @@ class PlayState extends MusicState
 		judgementGroup.camera = camHUD;
 		add(judgementGroup);
 
-		// - Add the strums
-		opponentStrumline = new Strumline(false, -100, yPos);	
+		// Number of strums and spacing between them
+		var numStrums:Int = 4; // Assuming 4 strums
+		var strumSpacing:Float = 95;
+		var strumWidth:Float = 0.6 * 128; // Adjust 128 if you know the actual strum graphic width
+
+		// Calculate total width of one strumline
+		var totalStrumlineWidth:Float = numStrums * (strumWidth + strumSpacing);
+
+		// Position the opponent's strumline on the left, centered in the left half
+		var opponentX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
+
+		// Position the player's strumline on the right, centered in the right half
+		var playerX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
+
+		// - Add the strumlines
+		opponentStrumline = new Strumline(false, opponentX, yPos);
 		opponentStrumline.camera = camStrums;
 		add(opponentStrumline);
 
-		playerStrumline = new Strumline(true, 660, yPos);
+		playerStrumline = new Strumline(true, playerX, yPos);
 		playerStrumline.camera = camStrums;
 		add(playerStrumline);
 
@@ -201,6 +217,7 @@ class PlayState extends MusicState
 			note.setup(note);
 			note.scale.set(noteScale, noteScale);
 			note.updateHitbox();
+			note.active = false;
 		
 			var susLength:Float = noteData.duration / Conductor.stepCrochet;
 			unspawnNotes.push(note);
@@ -215,6 +232,7 @@ class PlayState extends MusicState
 				sustainNote.setup(sustainNote);
 				sustainNote.scale.set(noteScale, noteScale);
 				sustainNote.updateHitbox();
+				sustainNote.active = false;
 				add(sustainNote);
 				unspawnNotes.push(sustainNote);
 			}
@@ -290,7 +308,7 @@ class PlayState extends MusicState
 
 		///////////////////////////////////////////////////////
 
-		/*inputHandler.justPressed = [controls.LEFT_P1_P, controls.DOWN_P1_P, controls.UP_P1_P, controls.RIGHT_P1_P,
+		inputHandler.justPressed = [controls.LEFT_P1_P, controls.DOWN_P1_P, controls.UP_P1_P, controls.RIGHT_P1_P,
 		];
 
 		inputHandler.pressed = [controls.LEFT_P1, controls.DOWN_P1, controls.UP_P1, controls.RIGHT_P1,
@@ -301,7 +319,7 @@ class PlayState extends MusicState
 
 		///////////////////////////////////////////////////////
 
-		inputHandler.update();*/
+		inputHandler.update();
 
 		for (note in unspawnNotes) 
 			updateNotePosition(note, elapsed);
@@ -310,7 +328,7 @@ class PlayState extends MusicState
 
 		for (event in eventList)
 		{
-			if (event.step <= Conductor.stepCrochet)
+			if (event.time <= Conductor.stepCrochet)
 			{
 				executeEvent(event);
 				eventList.remove(event);
@@ -370,6 +388,17 @@ class PlayState extends MusicState
 			note.y = strumlineY - (timeDifference * scrollSpeed) + susVal;
 		else
 			note.y = strumlineY + (timeDifference * scrollSpeed) - susVal;
+			
+		if (note.y > FlxG.height + 1000)
+		{
+			note.active = false;
+			note.visible = false;
+		}
+		else
+		{
+			note.visible = true;
+			note.active = true;
+		}
 
 		// - Adjust the x position of the note
 		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
@@ -437,12 +466,21 @@ class PlayState extends MusicState
 							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
 
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].x = strum.x-70;
-							splashGrp.members[i].y = strum.y-56;
+							splashGrp.members[i].setPosition(strum.x-70, strum.y-58); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
 						}
+					
+					if (Timings.judgementCounter.exists(jt))
+						Timings.judgementCounter.set(jt, Timings.judgementCounter.get(jt) + 1);
+
+					totalHits++;
 
 					score += timingData[2];
+
+					// Accuracy test
+					final accJudge = Timings.judgementCounter.get(jt);
+					test.text = '${totalHits / (totalHits + misses) * 100}%';
+					test.screenCenter(X);
 				}
 			}
 		}
@@ -728,7 +766,7 @@ class PlayState extends MusicState
 		}
 	
 		nextMustHitBeat = Std.int((minDifference / Conductor.crochet) / 2);
-		test.text = '$nextMustHitBeat';
+		//test.text = '$nextMustHitBeat';
 	
 		if (nextMustHitTime == 0)
 			nextMustHitBeat = 0;

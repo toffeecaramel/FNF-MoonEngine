@@ -18,7 +18,6 @@ class Strumline extends FlxTypedGroup<FlxSprite>
     public var isPlayer:Bool;
     public var x:Float;
     public var y:Float;
-    public var width:Float;
 
     private var nScalex:Float;
     private var nScaley:Float;
@@ -41,7 +40,6 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             strum.x += (strum.width + 95 * i);
             PlayState.noteScale = strum.scale.x;
             strum.updateHitbox();
-            width += strum.width;
             add(strum);
 
             strum.alpha = 0;

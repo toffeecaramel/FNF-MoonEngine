@@ -28,6 +28,14 @@ class Timings
         miss => [4,   180,    -100,  -175,    -4,     0xFF894331,      "SDCB"]
     ];
 
+    public static var judgementCounter:Map<JudgementsTiming, Int> = [
+		sick => 0,
+		good => 0,
+		bad => 0,
+		shit => 0,
+		miss => 0,
+	];
+
     public static var accRanks:Map<String, Int> = [
         "S+" => 100,
         "S" => 97,

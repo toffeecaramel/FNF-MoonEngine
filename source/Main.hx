@@ -63,8 +63,21 @@ class Main extends Sprite
 		FlxG.fixedTimestep = false;
 	}
 
+	final crashMsgs:Array<String> = [
+		'Oh no!',
+		'The funk has ended abruptly.',
+		"This isn't fun...",
+		"There's no use!",
+		"What a shame.",
+		"Seems like a lazy coder issue has happened.",
+		"I gotta believe! That this bug will be fixed.",
+		"An error has happened..."
+	];
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
+		if (!FileSystem.exists("crash/"))
+			FileSystem.createDirectory("crash/");
+
 		var errMsg:String = "";
 		var path:String;
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
@@ -75,25 +88,23 @@ class Main extends Sprite
 
 		path = 'crash/ME_${dateNow}.txt';
 
+		errMsg += '${crashMsgs[FlxG.random.int(0, crashMsgs.length - 1)]}\n${e.error}\n\n';
+
 		for (stackItem in callStack)
 		{
 			switch (stackItem)
 			{
 				case FilePos(s, file, line, column):
-					errMsg += file + " (line " + line + ")\n";
+					errMsg += '$file (Line: $line)\n';
 				default:
 					Sys.println(stackItem);
 			}
 		}
 
-		errMsg += 'An error occurred: ${e.error}';
-
-		if (!FileSystem.exists("crash/"))
-			FileSystem.createDirectory("crash/");
-
+		errMsg += '\nPlease, if possible, report this bug to toffee.caramel (discord)';
 		File.saveContent(path, errMsg + "\n");
 		Sys.println(errMsg);
-		Sys.println("Crash dump saved in " + Path.normalize(path));
+		Sys.println('Crash dump saved in ${Path.normalize(path)}');
 		Application.current.window.alert(errMsg, "Error!");
 
 		Sys.exit(1);

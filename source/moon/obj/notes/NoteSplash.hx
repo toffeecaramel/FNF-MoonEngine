@@ -38,8 +38,8 @@ class NoteSplash extends FNFSprite
 
     /**
      * Set up the shader for the splash
-     * @param noteDir: Direction of the note (left, right, up, down)
-     * @param arrowRGB: Array of color values for the note splash
+     * @param noteDir Direction of the note (left, right, up, down)
+     * @param arrowRGB Array of color values for the note splash
      */
     private function setupShader(noteDir:String, arrowRGB:Array<Array<FlxColor>>):Void
     {
@@ -78,15 +78,16 @@ class NoteSplash extends FNFSprite
 
     /**
      * [Spawns note splash sprite at the given (x, y) location.]
-     * @param noteDir: Direction of the note (left, right, up, down)
-     * @param arrowRGB: Array of color values for the note splash
+     * @param noteDir Direction of the note (left, right, up, down)
+     * @param arrowRGB Array of color values for the note splash
      */
     public function spawn(noteDir:String, arrowRGB:Array<Array<FlxColor>>):Void
     {
         alpha = 1;
         angle = FlxG.random.float(-360, 360); // - Make a random angle
+        updateHitbox();
 
-        // Apply shader
+        // - Apply shader
         setupShader(noteDir, arrowRGB);
         animation.play('appear', true); // - Play the animation
     }

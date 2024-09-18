@@ -37,6 +37,7 @@
 	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
+	 
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
 	

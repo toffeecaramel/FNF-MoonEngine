@@ -36,8 +36,7 @@ class Init extends FlxState
 		super.create();
 		PlayerSettings.init();
 		UserSettings.init();
-
-		FlxG.mouse.visible = false;
+		
 		FlxG.switchState(Type.createInstance(Main.initState, []));
 	}
 }
