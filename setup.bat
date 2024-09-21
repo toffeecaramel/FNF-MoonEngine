@@ -35,7 +35,6 @@ haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 haxelib git funkin.visfix https://github.com/toffeecaramel/funkVis-GrigFIX
 
-
 cls
 title Moon Engine Setup - Doing a set-up
 

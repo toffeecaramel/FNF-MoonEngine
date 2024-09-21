@@ -28,7 +28,8 @@ class Freeplay extends MusicSubState
         'tenkaichi battleword',
         'good will',
         'oiiaoiia',
-        'spiderdance'
+        'spiderdance',
+        'unbeatable infinite'
     ];
 
     // group for the texts

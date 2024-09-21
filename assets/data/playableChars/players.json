@@ -1,0 +1,9 @@
+{
+	"players": [
+		{
+			"name":"BF",
+			"partner":"GF",
+			"gamePrefix":"bf"
+		}
+	]
+}

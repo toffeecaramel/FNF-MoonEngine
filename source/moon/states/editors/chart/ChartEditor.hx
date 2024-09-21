@@ -9,12 +9,13 @@ import flixel.util.FlxGradient;
 import flixel.addons.display.shapes.FlxShapeBox;
 import flixel.util.FlxColor;
 import moon.obj.notes.*;
+import moon.utilities.NoteUtils;
 
 /**
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     *  This chart editor was made with <3 by Toffee & LunaMyria *
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
+      ^ why is this blue ._.
     As much as it is a complex design and is a HARD work,
     we had so much fun working & designing this just for the
     users have a good time on the editor.
@@ -72,9 +73,16 @@ class ChartEditor extends MusicState
 		Conductor.changeBPM(_chart.bpm);
     }
 
+    public var minX:Float = 0;
+    public var maxX:Float = 0;
+    final minY:Float = 0;
+    public var maxY:Float = 0;
     override public function create():Void
     {
         super.create();
+
+        minX = FlxG.width - (gridSize * kAmmount) - gridSize * 4 - 30;
+        maxX = minX + gridSize * kAmmount;
 
         inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
 		FlxG.sound.list.add(inst);
@@ -84,6 +92,8 @@ class ChartEditor extends MusicState
 		FlxG.sound.list.add(voices);
 
         inst.time = 0;
+
+        maxY = getYfromStrum(inst.length);
 
 		makeBG();
         
@@ -99,7 +109,7 @@ class ChartEditor extends MusicState
         generateGrid();
 
         for(nData in _chart.notes)
-            addNote(0, Math.floor(getYfromStrum(nData.time)) + 1, nData);
+            addNote(getNoteX(nData.direction, nData.lane), Math.floor(getYfromStrum(nData.time)) + 1, nData);
 
 		strumLineCam = new FlxObject(0, 0);
 		strumLineCam.screenCenter(X);
@@ -166,12 +176,7 @@ class ChartEditor extends MusicState
     }
 
     private function checkMouseInteractions(elapsed:Float):Void
-    {
-        final minX = FlxG.width - (gridSize * kAmmount) - gridSize * 4 - 30;
-        final maxX = minX + gridSize * kAmmount;
-        final minY = 0;
-        final maxY = getYfromStrum(inst.length);
-        
+    {   
         if (FlxG.mouse.y >= minY && FlxG.mouse.y <= maxY)
         {
             final gridX = Math.floor(FlxG.mouse.x / gridSize) * gridSize;
@@ -187,26 +192,29 @@ class ChartEditor extends MusicState
                     addNote(curMouseX, curMouseY);
             }
         }
-    }        
+    }
         
     private function addNote(x:Float, y:Float, ?noteData):Void
     {
+        final colIndex = Math.floor((x - minX) / gridSize);
+        final lane = (colIndex >= 4) ? "P1" : "Opponent"; // Player notes on the right (columns 4-7)
+
+        final direction = NoteUtils.numberToDirection(colIndex % 4);
         if (noteData == null)
         {
             // Todo: make them get the actual values...
             noteData = {
                 type: "DEFAULT",
-                //time: getStrumFromY(y),
-                lane: "P1",
-                direction: "left",
+                time: getStrumFromY(y),
+                lane: lane,
+                direction: direction,
                 duration: 0.0,
-                time: 0.0
             };
-    
-            // Adiciona a nova nota na chart
+
             _chart.notes.push(noteData);
         }
 
+        final xVal = getNoteX(direction, lane);
         var note:Note = Note.returnDefaultNote(UserSettings.callSetting('Noteskin'), noteData.type, 
             noteData.time, noteData.direction, noteData.lane, false);
 
@@ -214,7 +222,7 @@ class ChartEditor extends MusicState
         note.setGraphicSize(gridSize-2, gridSize-2);
         note.antialiasing = true;
         note.updateHitbox();
-        note.x = x;
+        note.x = xVal;
         note.y = y;
         _notes.add(note);
     }
@@ -235,6 +243,14 @@ class ChartEditor extends MusicState
                 }
             }
         }
+    }
+
+    private function getNoteX(direction:String, lane:String):Float 
+    {
+        final baseX = (lane == 'P1') ? (minX + 4 * gridSize) : minX;
+        final directionIndex = NoteUtils.directionToNumber(direction);
+
+        return baseX + directionIndex * gridSize;
     }
 
     private function getYfromStrum(strumTime:Float):Float

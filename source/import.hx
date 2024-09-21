@@ -9,6 +9,7 @@ import flixel.system.FlxSound;
 import backend.Conductor;
 import backend.user.*;
 import backend.*;
+import backend.dependency.FNFSound;
 import backend.dependency.MusicState;
 import backend.dependency.MusicState.MusicSubState;
 #end

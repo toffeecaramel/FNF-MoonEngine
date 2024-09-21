@@ -37,14 +37,21 @@ class PreloadState extends FlxTransitionableState
     {
         super.create();
 
-        //setup the transition cause its huge
+        // - Setup the transition cause its huge
         setupTransition();
 
-        //the game will load only these so it
-        //wont explode your ram lolll
-        //but! if you want to change the path it loads
-        //just change this lolz - Toffee
-        loadAssets('assets/images/menus');
+        // - The game will load only these so it
+        // - won't explode your ram lolll...
+        // - But! if you want to change the path it loads
+        // - just change this lolz! - Toffee
+        final loadPaths = [
+            'assets/images/menus',
+            'assets/images/menus/charSelect', // - Apparently the game does not load it automatically?
+            'assets/data/playableChars'
+        ];
+
+        for (i in 0...loadPaths.length)
+            loadAssets(loadPaths[i]);
     }
 
     private function setupTransition()

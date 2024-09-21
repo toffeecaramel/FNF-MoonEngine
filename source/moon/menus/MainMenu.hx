@@ -18,6 +18,7 @@ import openfl.display.BlendMode;
 import moon.states.editors.*;
 import moon.states.*;
 import moon.subStates.*;
+//import moon.utilities.SoundUtil;
 
 using StringTools;
 
@@ -44,7 +45,7 @@ class MainMenu extends MusicState
 
 		var warnTxt = new FlxText();
 		warnTxt.size = 32;
-		warnTxt.text = 'This menu is being revamped lol\nPress P to go to freeplay\nO to go to Options\nS to go to story moed\n\nLMFAOOO THIS CODE WAS SO BADD';
+		warnTxt.text = 'This menu is being revamped lol\nPress P to go to freeplay\nO to go to Options\nS to go to story moed\nAlso press C to check character selection\n\n\nLMFAOOO THIS CODE WAS SO BADD';
 		warnTxt.screenCenter();
 		add(warnTxt);
     }
@@ -65,6 +66,8 @@ class MainMenu extends MusicState
 			openSubState(new Freeplay());
         else if (FlxG.keys.justPressed.S)
             openSubState(new Story());
+        else if (FlxG.keys.justPressed.C)
+            FlxG.switchState(new CharSelect());
     }
 
     function changeSelection(change:Int = 0):Void

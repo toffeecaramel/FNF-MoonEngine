@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bfRun.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="run0000" x="0" y="0" width="191" height="234" frameX="-16" frameY="0" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0001" x="0" y="0" width="191" height="234" frameX="-16" frameY="0" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0002" x="191" y="0" width="193" height="237" frameX="-8" frameY="-11" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0003" x="191" y="0" width="193" height="237" frameX="-8" frameY="-11" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0004" x="384" y="0" width="151" height="221" frameX="-49" frameY="-41" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0005" x="384" y="0" width="151" height="221" frameX="-49" frameY="-41" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0006" x="535" y="0" width="153" height="221" frameX="-47" frameY="-42" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0007" x="535" y="0" width="153" height="221" frameX="-47" frameY="-42" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0008" x="688" y="0" width="198" height="239" frameX="0" frameY="-3" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0009" x="688" y="0" width="198" height="239" frameX="0" frameY="-3" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0010" x="0" y="239" width="200" height="238" frameX="-3" frameY="-13" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0011" x="0" y="239" width="200" height="238" frameX="-3" frameY="-13" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0012" x="200" y="239" width="151" height="221" frameX="-49" frameY="-41" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0013" x="200" y="239" width="151" height="221" frameX="-49" frameY="-41" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0014" x="351" y="239" width="153" height="221" frameX="-47" frameY="-42" frameWidth="207" frameHeight="263"/>
+	<SubTexture name="run0015" x="351" y="239" width="153" height="221" frameX="-47" frameY="-42" frameWidth="207" frameHeight="263"/>
+</TextureAtlas>

@@ -89,8 +89,8 @@ class Chart
 		{
 			for (note in section.sectionNotes)
 			{
-				var lane:String = (section.mustHitSection && note[1] < 4) ? "P1" : 
-				(!section.mustHitSection && note[1] > 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
+				var lane:String = (section.mustHitSection && note[1] <= 4) ? "P1" : 
+				(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
 				
 				// - Set the notes direction, lane, step, and duration in steps
 				var noteData:NoteData = {

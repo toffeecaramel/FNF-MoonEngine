@@ -156,19 +156,19 @@ class PlayState extends MusicState
 		judgementGroup.camera = camHUD;
 		add(judgementGroup);
 
-		// Number of strums and spacing between them
-		var numStrums:Int = 4; // Assuming 4 strums
-		var strumSpacing:Float = 95;
-		var strumWidth:Float = 0.6 * 128; // Adjust 128 if you know the actual strum graphic width
+		// - Number of strums and spacing between them
+		final numStrums:Int = 4;
+		final strumSpacing:Float = 95;
+		final strumWidth:Float = 0.6 * 128;
 
-		// Calculate total width of one strumline
-		var totalStrumlineWidth:Float = numStrums * (strumWidth + strumSpacing);
+		// - Calculate total width of one strumline
+		final totalStrumlineWidth:Float = numStrums * (strumWidth + strumSpacing);
 
-		// Position the opponent's strumline on the left, centered in the left half
-		var opponentX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
+		// - Position the opponent's strumline on the left, centered in the left half
+		final opponentX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
 
-		// Position the player's strumline on the right, centered in the right half
-		var playerX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
+		// - Position the player's strumline on the right, centered in the right half
+		final playerX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
 
 		// - Add the strumlines
 		opponentStrumline = new Strumline(false, opponentX, yPos);
@@ -389,16 +389,7 @@ class PlayState extends MusicState
 		else
 			note.y = strumlineY + (timeDifference * scrollSpeed) - susVal;
 			
-		if (note.y > FlxG.height + 1000)
-		{
-			note.active = false;
-			note.visible = false;
-		}
-		else
-		{
-			note.visible = true;
-			note.active = true;
-		}
+		note.visible = note.active  = (note.y > FlxG.height + 1000) ? false : true;
 
 		// - Adjust the x position of the note
 		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
