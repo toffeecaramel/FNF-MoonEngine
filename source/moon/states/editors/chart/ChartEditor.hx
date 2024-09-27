@@ -15,10 +15,9 @@ import moon.utilities.NoteUtils;
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     *  This chart editor was made with <3 by Toffee & LunaMyria *
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-      ^ why is this blue ._.
     As much as it is a complex design and is a HARD work,
-    we had so much fun working & designing this just for the
-    users have a good time on the editor.
+    we had so much fun working & designing this just so the
+    users can have a good time into the editor.
 
     We truly hope you all enjoy using it, have fun charting peep!
 **/
@@ -28,7 +27,7 @@ class ChartEditor extends MusicState
     // - Set the size of the grid here
     final gridSize:Int = 50;
 
-    // - Set the ammount of keys
+    // - Set the ammount of keys (Default: 8)
 	final kAmmount:Int = 8;
 
     // - Set the instrumental and vocals

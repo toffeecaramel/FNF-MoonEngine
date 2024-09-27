@@ -20,7 +20,10 @@ class FNFSound extends FlxSound
      * Timer for the pause, used in `doBriefPause();`
      */
     private var _timer:FlxTimer;
-
+    /**
+     * Do a brief pause in the sound on a specific amount of time.
+     * @param duration The duration of the pause.
+     */
     public function doBriefPause( duration : Float = 0.0 ):Void
     {
         pause();
@@ -34,14 +37,28 @@ class FNFSound extends FlxSound
         });
     }
 
+    /**
+     * Tween for the pitch tween, used in `pitchTween();`
+     */
     private var _twn:FlxTween;
 
-    public function pitchTween(_toPitch : Float = 1, ?duration : Float = 1, 
-    ?easey : EaseFunction, ?onComplete : Void->Void)
+    /**
+     * Tween the sound's pitch, if there's a pitch tween happening it will cancel it and start a new one.
+     * @param toPitch      The pitch in which the sound will tween to.
+     * @param duration     The duration of the tween.
+     * @param easing       The easing of the tween.
+     * @param completeFunc What happens after the tween completes.
+     */
+    public function pitchTween(toPitch : Float = 1, ?duration : Float = 1, 
+    ?easing : EaseFunction, ?completeFunc : Void->Void)
     {
         if(_twn != null && _twn.active)
             _twn.cancel();
 
-        //_twn = new FlxTween.tween(this,)
+        _twn = FlxTween.tween(this, {pitch: toPitch}, duration, 
+            {ease: (easing == null) ? FlxEase.linear : easing, onComplete: function(tw:FlxTween){
+                if(completeFunc != null)
+                    completeFunc();
+            }});
     }
 }

@@ -301,7 +301,7 @@ class PlayState extends MusicState
 	override public function update(elapsed:Float)
 	{
 		if(loadedSong && !paused && countdownFinished)
-			Conductor.songPosition = inst.time;
+			Conductor.songPosition += elapsed * 1000;
 		super.update(elapsed);
 
 		if (unspawnNotes.length == 0)
@@ -382,7 +382,7 @@ class PlayState extends MusicState
 		playerStrumline.y = opponentStrumline.y = yPos;
 
 		final susVal = (note.isSustainNote) ? 48 : 0;
-		final susOffset = (note.isSustainNote) ? 30 : 0;
+		final susOffset = (note.isSustainNote) ? 32 : 0;
 
 		// - Adjust y position based on scroll direction
 		if (UserSettings.callSetting('Downscroll'))
@@ -433,7 +433,6 @@ class PlayState extends MusicState
 		**note** is the note.
 		**character** is the character that will hit a note.
 	**/
-	var pTween:FlxTween;
 	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
 	{
 		// - If the note is a mustPress, it will call the timing functions
@@ -445,9 +444,7 @@ class PlayState extends MusicState
 			if (jt != null)
 			{
 				final timingData = Timings.getParameters(jt);
-
-				// TODO: Health gain option to legacy or moon engine
-				health += timingData[4];
+				health += (note.isSustainNote) ? 0.4 : timingData[4];
 				if(!note.isSustainNote)
 				{
 					for (i in 0...splashGrp.members.length)
@@ -458,7 +455,7 @@ class PlayState extends MusicState
 							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
 
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].setPosition(strum.x-70, strum.y-70); // Oh boy I love offsets
+							splashGrp.members[i].setPosition(strum.x-170, strum.y-150); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
 						}
 					
@@ -592,7 +589,6 @@ class PlayState extends MusicState
 			});
 
 			paused = true;
-			setAudioState('pause');
 			// */
 		}
 
@@ -617,7 +613,6 @@ class PlayState extends MusicState
 			});
 
 			paused = false;
-			setAudioState('play');
 			// */
 		}
 
@@ -689,7 +684,7 @@ class PlayState extends MusicState
 	{
 		super.stepHit();
 		if(countdownFinished)
-			if (inst.time >= Conductor.songPosition + 10 || inst.time <= Conductor.songPosition - 10)
+			if (Math.abs(Conductor.songPosition - inst.time) >= 40 && Conductor.songPosition - inst.time <= 5000)
 				resync();
 	}
 
