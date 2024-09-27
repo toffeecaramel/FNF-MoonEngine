@@ -165,17 +165,18 @@ class PlayState extends MusicState
 		final totalStrumlineWidth:Float = numStrums * (strumWidth + strumSpacing);
 
 		// - Position the opponent's strumline on the left, centered in the left half
-		final opponentX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
+		final opponentStrumX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
+		// god this is a mess send help aahahhuhdfguihfuijoi
 
 		// - Position the player's strumline on the right, centered in the right half
-		final playerX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
+		final playerStrumX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
 
 		// - Add the strumlines
-		opponentStrumline = new Strumline(false, opponentX, yPos);
+		opponentStrumline = new Strumline(false, opponentStrumX, yPos);
 		opponentStrumline.camera = camStrums;
 		add(opponentStrumline);
 
-		playerStrumline = new Strumline(true, playerX, yPos);
+		playerStrumline = new Strumline(true, playerStrumX, yPos);
 		playerStrumline.camera = camStrums;
 		add(playerStrumline);
 
@@ -328,7 +329,7 @@ class PlayState extends MusicState
 
 		for (event in eventList)
 		{
-			if (event.time <= Conductor.stepCrochet)
+			if (event.time <= Conductor.songPosition)
 			{
 				executeEvent(event);
 				eventList.remove(event);
@@ -389,7 +390,7 @@ class PlayState extends MusicState
 		else
 			note.y = strumlineY + (timeDifference * scrollSpeed) - susVal;
 			
-		note.visible = note.active  = (note.y > FlxG.height + 1000) ? false : true;
+		note.visible = note.active  = (note.y > FlxG.height + 800 || note.y < FlxG.height - 800) ? false : true;
 
 		// - Adjust the x position of the note
 		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
@@ -457,7 +458,7 @@ class PlayState extends MusicState
 							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
 
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].setPosition(strum.x-70, strum.y-58); // Oh boy I love offsets
+							splashGrp.members[i].setPosition(strum.x-70, strum.y-70); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
 						}
 					

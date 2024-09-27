@@ -43,6 +43,8 @@
 	
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-text-input" />
+	<haxelib name="haxeui-core" /> <!-- UI framework -->
+	<haxelib name="haxeui-flixel" /> <!-- Integrate HaxeUI with Flixel -->
 
 	<haxelib name="discord_rpc" if="cpp" />
 	<haxelib name="hxcpp-debug-server" if="debug" />
@@ -90,6 +92,10 @@
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
 	<haxedef name="message.reporting" value="pretty" />
 	<!-- _________________________________ Custom _______________________________ -->
+	
+	<!-- Run a script before and after building. -->
+	<prebuild haxe="Prebuild.hx"/> -->
+	<postbuild haxe="Postbuild.hx"/> -->
 
 	<!--Place custom nodes like icons here-->
 </project>

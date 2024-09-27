@@ -1,6 +1,8 @@
 package backend.dependency;
 
 import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 
 /**
  * Holy shit FNF Sound class real
@@ -12,12 +14,12 @@ import flixel.util.FlxTimer;
  **/
 class FNFSound extends FlxSound
 {
+    // ---------- TWEENS AND TIMERS ---------- //
+
     /**
      * Timer for the pause, used in `doBriefPause();`
      */
     private var _timer:FlxTimer;
-
-    // ---------- TWEENS AND TIMERS ---------- //
 
     public function doBriefPause( duration : Float = 0.0 ):Void
     {
@@ -30,5 +32,16 @@ class FNFSound extends FlxSound
         {
             play();
         });
+    }
+
+    private var _twn:FlxTween;
+
+    public function pitchTween(_toPitch : Float = 1, ?duration : Float = 1, 
+    ?easey : EaseFunction, ?onComplete : Void->Void)
+    {
+        if(_twn != null && _twn.active)
+            _twn.cancel();
+
+        //_twn = new FlxTween.tween(this,)
     }
 }

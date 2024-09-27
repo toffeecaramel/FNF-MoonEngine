@@ -89,7 +89,7 @@ class Chart
 		{
 			for (note in section.sectionNotes)
 			{
-				var lane:String = (section.mustHitSection && note[1] <= 4) ? "P1" : 
+				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
 				(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
 				
 				// - Set the notes direction, lane, step, and duration in steps
@@ -98,7 +98,7 @@ class Chart
 					direction: NoteUtils.numberToDirection(note[1]),
 					lane: lane,
 					time: note[0],
-					duration: ((note.length > 2) ? Math.floor(note[2] / Conductor.stepCrochet) : null)
+					duration: ((note.length > 2) ? note[2] : null)
 				};
 				// - Then push it to the notes array
 				newChart.notes.push(noteData);

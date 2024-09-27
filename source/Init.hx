@@ -36,6 +36,21 @@ class Init extends FlxState
 		super.create();
 		PlayerSettings.init();
 		UserSettings.init();
+
+		// - LOAD UP HAXEUI STUFF - //
+
+	    // - Initialize the toolkit
+	    haxe.ui.Toolkit.init();
+
+	    // - Set the theme to dark
+	    haxe.ui.Toolkit.theme = 'dark';
+
+	    // - Set autoscale to false
+	    haxe.ui.Toolkit.autoScale = false;
+
+	    // - Make so it won't focus on the UI elements once they appear
+	    haxe.ui.focus.FocusManager.instance.autoFocus = false;
+	    haxe.ui.tooltips.ToolTipManager.defaultDelay = 150;
 		
 		FlxG.switchState(Type.createInstance(Main.initState, []));
 	}
