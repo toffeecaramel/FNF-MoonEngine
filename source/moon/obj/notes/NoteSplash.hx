@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.graphics.frames.FlxAtlasFrames;
+import openfl.display.BlendMode;
 import shaders.RGBPallete.RGBShaderReference;
 import shaders.RGBPallete;
 import backend.dependency.FNFSprite;
@@ -29,10 +30,11 @@ class NoteSplash extends FNFSprite
         alpha = 0;
 
         // Setup the animation
-        animation.addByPrefix('appear', 'splash1', 24, false);
+        animation.addByPrefix('appear', 'splash1', 28, false);
 
         // Resize the splash
-        scale.set(0.70, 0.70);
+        scale.set(0.75, 0.75);
+        blend = BlendMode.ADD;
         updateHitbox();
     }
 

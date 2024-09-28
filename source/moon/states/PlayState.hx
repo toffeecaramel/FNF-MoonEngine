@@ -390,7 +390,7 @@ class PlayState extends MusicState
 		else
 			note.y = strumlineY + (timeDifference * scrollSpeed) - susVal;
 			
-		note.visible = note.active  = (note.y > FlxG.height + 800 || note.y < FlxG.height - 800) ? false : true;
+		note.visible = note.active = (note.y > FlxG.height + 800 || note.y < FlxG.height - 800) ? false : true;
 
 		// - Adjust the x position of the note
 		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
@@ -413,10 +413,10 @@ class PlayState extends MusicState
 	}
 
 	/**
-		Function for playing *animations* on the *strumline!*
-		**mustHit** is for checking wether it's an opponent strumline or not
-		**direction** is the note direction, so it plays the animation for the correct strum.
-	**/
+	 * Plays an animation on the strum.
+	 * @param lane 		the lane of the strum to be triggered.
+	 * @param direction the direction of the strum.
+	 */
 	private function playStrumAnim(lane:String, direction:String):Void
 	{	
 		// - Get the strum.
@@ -429,10 +429,11 @@ class PlayState extends MusicState
 	}
 	
 	/**
-		Function called whenever a *character* hits a *note!*
-		**note** is the note.
-		**character** is the character that will hit a note.
-	**/
+	 * Function called whenever a note is hit.
+	 * @param note 		The note that got hit.
+	 * @param character The character that will have an animation triggered.
+	 * @param jt 		The judgement.
+	 */
 	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
 	{
 		// - If the note is a mustPress, it will call the timing functions
@@ -444,7 +445,7 @@ class PlayState extends MusicState
 			if (jt != null)
 			{
 				final timingData = Timings.getParameters(jt);
-				health += (note.isSustainNote) ? 0.4 : timingData[4];
+				health += timingData[4];
 				if(!note.isSustainNote)
 				{
 					for (i in 0...splashGrp.members.length)
@@ -455,7 +456,7 @@ class PlayState extends MusicState
 							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
 
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].setPosition(strum.x-170, strum.y-150); // Oh boy I love offsets
+							splashGrp.members[i].setPosition(strum.x-160, strum.y-140); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
 						}
 					

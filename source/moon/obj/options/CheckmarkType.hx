@@ -14,11 +14,13 @@ class CheckmarkType extends FlxTypedGroup<FlxText>
     public var color:FlxColor; // - Color for the thingies
     public var cLabel:FlxText; // - The text that shows the current value
 
+    private var cLabelOffset:Float = FlxG.width / 2 + 325;
+
     /**
      * [Creates an checkmark option type.]
-     * @param y: Y Position of the object.
-     * @param label: Text that shows up before the 'on, off' 
-     * @param boolean: The true/false value for the object
+     * @param y         Y Position of the object.
+     * @param label     Text that shows up before the 'on, off' 
+     * @param boolean   The true/false value for the object
      */
     public function new(y:Float = 0, label:String = 'lol hi', boolean:Bool = false):Void
     {
@@ -30,7 +32,7 @@ class CheckmarkType extends FlxTypedGroup<FlxText>
         var tLabel = new FlxText();
         tLabel.text = label;
         tLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, LEFT);
-        tLabel.x = FlxG.width / 2 - 450;
+        tLabel.x = FlxG.width / 2 - 400;
         this.x = tLabel.x;
         tLabel.scrollFactor.set();
         tLabel.ID = 0;
@@ -39,7 +41,7 @@ class CheckmarkType extends FlxTypedGroup<FlxText>
         cLabel = new FlxText();
         cLabel.text = boolean ? '< On >' : '< Off >';
         cLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, RIGHT);
-        cLabel.x = FlxG.width / 2 + 375;
+        cLabel.x = cLabelOffset;
         cLabel.scrollFactor.set();
         cLabel.ID = 1;
         add(cLabel);
@@ -60,6 +62,6 @@ class CheckmarkType extends FlxTypedGroup<FlxText>
     {
         boolean = value;
         cLabel.text = boolean ? '< On >' : '< Off >';
-        cLabel.x = FlxG.width / 2 + 375;
+        cLabel.x = cLabelOffset;
     }
 }
