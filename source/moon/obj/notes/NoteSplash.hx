@@ -30,11 +30,12 @@ class NoteSplash extends FNFSprite
         alpha = 0;
 
         // Setup the animation
-        animation.addByPrefix('appear', 'splash1', 28, false);
+        animation.addByPrefix('appear', 'splash1', 32, false);
 
         // Resize the splash
-        scale.set(0.75, 0.75);
+        scale.set(0.9, 0.9);
         blend = BlendMode.ADD;
+        antialiasing = true;
         updateHitbox();
     }
 

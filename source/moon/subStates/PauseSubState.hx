@@ -120,7 +120,7 @@ class PauseSubState extends MusicSubState
                     FlxG.switchState(new PlayState());
                 case 'Settings':
                     close();
-                    game.openSubState(new OptionsSubState(true, game.camOther));
+                    game.openSubState(new moon.menus.Options(true, game.camOther));
                 case 'Exit to Freeplay':
                     FlxG.switchState(new Freeplay());
             }

@@ -34,7 +34,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             final skin = UserSettings.callSetting('Noteskin');
             
             var strum:FlxSprite = new FlxSprite(x, y);
-            strum.loadGraphic(Paths.dataImg('notes/$skin/strum'));
+            strum.loadGraphic(Paths.data('notes/$skin/strum.png'));
             strum.setGraphicSize(Std.int(strum.width * 0.6), Std.int(strum.height * 0.6));
             strum.antialiasing = true;
             strum.x += (strum.width + 95 * i);

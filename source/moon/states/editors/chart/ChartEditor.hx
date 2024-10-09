@@ -1,5 +1,6 @@
 package moon.states.editors.chart;
 
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxObject;
@@ -9,6 +10,7 @@ import flixel.util.FlxGradient;
 import flixel.addons.display.shapes.FlxShapeBox;
 import flixel.util.FlxColor;
 import moon.obj.notes.*;
+import moon.obj.editors.*;
 import moon.utilities.NoteUtils;
 
 /**
@@ -21,6 +23,11 @@ import moon.utilities.NoteUtils;
 
     We truly hope you all enjoy using it, have fun charting peep!
 **/
+
+enum GridMode {
+    NOTES;
+    EVENTS;
+}
 
 class ChartEditor extends MusicState
 {
@@ -46,8 +53,10 @@ class ChartEditor extends MusicState
     // - Set the sprite for the 'strumline'
 	var strumline:FlxSprite;
 
-    // - Set the camera for the strumline
+    // - Set all the cameras
 	var strumLineCam:FlxObject;
+    public var camGlobal:FlxCamera;
+    public var camHUD:FlxCamera;
 
     // - Lil square that follows the mouse
 	private var dummyArrow:FlxSprite;
@@ -76,9 +85,15 @@ class ChartEditor extends MusicState
     public var maxX:Float = 0;
     final minY:Float = 0;
     public var maxY:Float = 0;
+
     override public function create():Void
     {
         super.create();
+
+        camGlobal = FlxG.camera;
+        camHUD = new FlxCamera();
+        camHUD.bgColor = 0x00000000;
+        FlxG.cameras.add(camHUD, false);
 
         minX = FlxG.width - (gridSize * kAmmount) - gridSize * 4 - 30;
         maxX = minX + gridSize * kAmmount;
@@ -121,9 +136,19 @@ class ChartEditor extends MusicState
 		bar.scrollFactor.set();
 		bar.alpha = 0.3;
 		add(bar);
+
+        // - SET UP ALL THE INTERFACE OBJECTS - //
+
+        final okay = ['arrowFunk', 'eventsGrid'];
+        for (i in 0...okay.length)
+        {
+            var spr = new WhiteButton(FlxG.width / 1 - 130, 100 + (50 * i), Paths.image('editors/charter/${okay[i]}'), function(){trace("meh");});
+            spr.camera = camHUD;
+            add(spr);
+        }
 		
 		FlxG.camera.follow(strumLineCam);
-        FlxG.mouse.visible = FlxG.mouse.useSystemCursor = true;
+        moon.obj.interfaces.Cursor.show();
     }
 
 	private function makeBG():Void

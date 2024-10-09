@@ -37,13 +37,15 @@ class MusicState extends FlxUIState
 	// class 'step' event
 	override function update(elapsed:Float)
 	{
-		updateContents();
+		updateContents(elapsed);
 
 		super.update(elapsed);
 	}
 
-	public function updateContents()
+	public function updateContents(elapsed:Float)
 	{
+		Conductor.updateSongPosition(FlxG.elapsed * 1000);
+
 		updateCurStep();
 		updateBeat();
 
@@ -88,17 +90,20 @@ class MusicState extends FlxUIState
 
 	public function updateCurStep():Void
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
+	    var lastChange:BPMChangeEvent = {
+	        stepTime: 0,
+	        songTime: 0,
+	        bpm: 0
+	    };
 
-		for (i in 0...Conductor.bpmChangeMap.length)
-			if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
-				lastChange = Conductor.bpmChangeMap[i];
+	    for (i in 0...Conductor.bpmChangeMap.length)
+	        if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
+	            lastChange = Conductor.bpmChangeMap[i];
 
-		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
+	    var songPosDiff = Conductor.songPosition - lastChange.songTime;
+
+	    // Calculate the step using the difference in time since the last BPM change
+	    curStep = lastChange.stepTime + Math.floor(songPosDiff / Conductor.stepCrochet);
 	}
 
 	public function stepHit():Void

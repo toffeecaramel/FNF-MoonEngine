@@ -36,6 +36,18 @@ class Conductor
 		//
 	}
 
+    private static var lastRealTime:Float = 0;
+
+    public static function updateSongPosition(realTime:Float):Void
+    {
+        // Calculate delta time in milliseconds based on real-time
+        var delta:Float = realTime - lastRealTime;
+        lastRealTime = realTime;
+
+        // Update song position using delta
+        songPosition += delta;
+    }
+
 	public static function changeBPM(newBpm:Float, measure:Float = 4 / 4)
 	{
 		bpm = newBpm;

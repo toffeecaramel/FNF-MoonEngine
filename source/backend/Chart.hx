@@ -83,10 +83,28 @@ class Chart
 		};
 
 		var lastMustHitSection:Bool = originalSong.notes[0].mustHitSection;
+		var lastBPM:Float = originalSong.bpm; // Store the initial BPM
+		var timeOffset:Float = 0; // Track time in milliseconds
 
-		// - Sections don't exist in this format, so lets adapt!
+		// - Iterate through sections
 		for (section in originalSong.notes)
 		{
+			/*// - Check for BPM change first, before processing notes
+			if (section.changeBPM && section.bpm != lastBPM)
+			{
+				// - Create a "Change BPM" event at the current time offset
+				var bpmChangeEvent:EventData = {
+					name: "Change BPM", 
+					values: [section.bpm],
+					time: timeOffset
+				};
+				newChart.events.push(bpmChangeEvent);
+
+				// - Update lastBPM to the new BPM
+				lastBPM = section.bpm;
+			}*/
+
+			// Process notes in the section
 			for (note in section.sectionNotes)
 			{
 				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
@@ -102,7 +120,7 @@ class Chart
 				};
 				// - Then push it to the notes array
 				newChart.notes.push(noteData);
-
+				
 				if (section.mustHitSection != lastMustHitSection)
 				{
 					var cameraEvent:EventData = {
@@ -119,9 +137,12 @@ class Chart
 					lastMustHitSection = section.mustHitSection;
 				}
 			}
+
+			// - Update timeOffset for the next section based on section length and BPM
+			//timeOffset += (section.lengthInSteps / (lastBPM / 60)) * 1000; // - Convert steps to milliseconds
+			//trace('time Offset $timeOffset', 'DEBUG');
 		}
 
-		// - Then return the chart
 		return newChart;
 	}
 

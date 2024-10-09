@@ -11,7 +11,7 @@ import backend.dependency.FNFSprite;
 using StringTools;
 
 /**
-    Character class, heavily based on forever engine's
+    Character class, heavily based on FE's
 **/
 
 typedef CharacterData = {
@@ -110,17 +110,14 @@ class Character extends FNFSprite {
 
     override function update(elapsed:Float) 
     {
-        if (!isPlayer)
-        {
-            if (animation.curAnim.name.startsWith('sing'))
-                holdTimer += elapsed;
+        if (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss'))
+            holdTimer += elapsed;
 
-            var dadVar:Float = 4;
-            if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001) 
-            {
-                dance();
-                holdTimer = 0;
-            }
+        final valVar:Float = 7;
+        if (holdTimer >= Conductor.stepCrochet * valVar * 0.001) 
+        {
+            dance();
+            holdTimer = 0;
         }
 
         var curCharSimplified:String = simplifyCharacter();

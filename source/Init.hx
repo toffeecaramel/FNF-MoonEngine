@@ -50,6 +50,9 @@ class Init extends FlxState
 
 	    // - Make so it won't focus on the UI elements once they appear
 	    haxe.ui.focus.FocusManager.instance.autoFocus = false;
+
+	    // - Register all cursors
+	    moon.obj.interfaces.Cursor.registerHaxeUICursors();
 	    haxe.ui.tooltips.ToolTipManager.defaultDelay = 150;
 		
 		FlxG.switchState(Type.createInstance(Main.initState, []));

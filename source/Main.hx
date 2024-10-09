@@ -38,17 +38,17 @@ class Main extends Sprite
 	public static final gameVersion:String = 'INDEV';
 
 	// - Game's main informations
-	public static var gameWidth:Int = 1280;
-	public static var gameHeight:Int = 720;
-	public static var framerate:Int = 60;
+	public static final gameWidth:Int = 1280;
+	public static final gameHeight:Int = 720;
+	public static final framerate:Int = 60;
 	
 	// - The state in which the game loads at.
 	public static var initState:Class<FlxState> = moon.states.PreloadState;
 
 	// - The game's zoom, since it's -1, it means the game automatically calculates to fit the window dimensions
-	var zoom:Float = -1;
+	final zoom:Float = -1;
 
-	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
+	final skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var infoCounter:backend.FPS; // initialize the heads up display that shows information before creating it.
 
 	public static function main():Void
@@ -60,8 +60,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
-
+	
 		//var stageWidth:Int = Lib.current.stage.stageWidth;
 		//var stageHeight:Int = Lib.current.stage.stageHeight;
 
@@ -92,6 +91,7 @@ class Main extends Sprite
 			}
 
 		FlxG.fixedTimestep = false;
+		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 	}
 
 	final crashMsgs:Array<String> = [
@@ -104,12 +104,14 @@ class Main extends Sprite
 		"I gotta believe! That this bug will be fixed.",
 		"An error has happened..."
 	];
+
+	// Originally from FE as well.
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
 		if (!FileSystem.exists("crash/"))
 			FileSystem.createDirectory("crash/");
 
-		var errMsg:String = "";
+		var message:String = "";
 		var path:String;
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
 		var dateNow:String = Date.now().toString();
@@ -119,24 +121,24 @@ class Main extends Sprite
 
 		path = 'crash/ME_${dateNow}.txt';
 
-		errMsg += '${crashMsgs[FlxG.random.int(0, crashMsgs.length - 1)]}\n${e.error}\n\n';
+		message += '${crashMsgs[FlxG.random.int(0, crashMsgs.length - 1)]}\nSorry, but an error has occurred.\n\n${e.error}\n\n';
 
 		for (stackItem in callStack)
 		{
 			switch (stackItem)
 			{
 				case FilePos(s, file, line, column):
-					errMsg += '$file (Line: $line)\n';
+					message += '$file (Line: $line)\n';
 				default:
 					Sys.println(stackItem);
 			}
 		}
 
-		errMsg += '\nPlease, if possible, report this bug to toffee.caramel (discord)';
-		File.saveContent(path, errMsg + "\n");
-		Sys.println(errMsg);
+		message += '\nPlease, if possible, report this bug to toffee.caramel (discord)';
+		File.saveContent(path, message + "\n");
+		Sys.println(message);
 		Sys.println('Crash dump saved in ${Path.normalize(path)}');
-		Application.current.window.alert(errMsg, "Error!");
+		Application.current.window.alert(message, "Error!");
 
 		Sys.exit(1);
 	}

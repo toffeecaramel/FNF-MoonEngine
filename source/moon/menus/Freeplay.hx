@@ -26,7 +26,8 @@ class Freeplay extends MusicSubState
     // The array containing all the songs
     private var songList:Array<String>= [
         'tenkaichi battleword',
-        'genre null'
+        'genre null',
+		'tko2'
     ];
 
     // group for the texts

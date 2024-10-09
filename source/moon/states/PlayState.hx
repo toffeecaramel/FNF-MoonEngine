@@ -259,6 +259,7 @@ class PlayState extends MusicState
 		camGame.zoom = stage.zoom;
 
 		generateSong();
+		updateByOption();
 
 		test = new FlxText(0, 10, 0, "GUH");
 		test.setFormat(Paths.fonts("vcr.ttf"), 48, CENTER);
@@ -267,8 +268,8 @@ class PlayState extends MusicState
 		add(test);
 
 		scriptHandler = new ScriptHandler();
-		//scriptHandler.loadScript("assets/data/scripts/Guh.hx");
-        scriptHandler.set("game", this);
+		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
+        scriptHandler.set("game", curPlaystate);
 
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
@@ -341,6 +342,8 @@ class PlayState extends MusicState
 
 		health = FlxMath.bound(health, -0.1, 101);
 
+		// Specific Keys Actions //
+
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			setAudioState('stop');
@@ -366,6 +369,12 @@ class PlayState extends MusicState
 			scriptHandler.get("update")(elapsed);
 	}
 
+	public function updateByOption():Void
+	{
+		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
+		playerStrumline.y = opponentStrumline.y = yPos;
+	}
+
 	private function updateNotePosition(note:Note, elapsed:Float):Void 
 	{
 		// - Subtract the note time on the chart with the song position
@@ -376,10 +385,6 @@ class PlayState extends MusicState
 
 		// - Get the y position of the strumline member corresponding to the note's direction
 		final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-
-		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
-		
-		playerStrumline.y = opponentStrumline.y = yPos;
 
 		final susVal = (note.isSustainNote) ? 48 : 0;
 		final susOffset = (note.isSustainNote) ? 32 : 0;
@@ -394,6 +399,13 @@ class PlayState extends MusicState
 
 		// - Adjust the x position of the note
 		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
+
+		if((note.strumTime - Conductor.songPosition <= 0) && note.lane == 'Opponent')
+		{
+			onNoteHit(note, opponent, null);
+			note.kill();
+			unspawnNotes.remove(note);
+		}
 	}
 
 	private function executeEvent(event:Dynamic):Void
@@ -456,7 +468,7 @@ class PlayState extends MusicState
 							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
 
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].setPosition(strum.x-160, strum.y-140); // Oh boy I love offsets
+							splashGrp.members[i].setPosition(strum.x-177, strum.y-160); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
 						}
 					
@@ -474,6 +486,9 @@ class PlayState extends MusicState
 				}
 			}
 		}
+		else
+			if(!note.isSustainNote)
+				FlxG.sound.play('assets/sounds/hitsoundtest.ogg', 0.8);
 
 		playStrumAnim(note.lane, note.noteDir);
 
@@ -485,7 +500,10 @@ class PlayState extends MusicState
 			default: character.playAnim('sing${note.noteDir.toUpperCase()}', true);
 		}
 
-		//character.holdTimer = 0;
+		if(scriptHandler.exists('onNoteHit'))
+			scriptHandler.get("onNoteHit")(note, character, jt);
+
+		character.holdTimer = 0;
 	}
 
 	private function onMiss()
@@ -643,6 +661,8 @@ class PlayState extends MusicState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		FlxG.sound.play('assets/sounds/metronomeTest.ogg');
 
 		if (curBeat % 4 == 0)
 		{

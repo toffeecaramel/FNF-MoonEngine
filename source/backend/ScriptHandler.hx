@@ -31,7 +31,9 @@ class ScriptHandler
         ["FlxSprite", FlxSprite],
         ["FlxTween", FlxTween],
         ["FlxEase", FlxEase],
-        ["Paths", Paths]
+        ["Conductor", Conductor],
+        ["Paths", Paths],
+        ["PlayState", moon.states.PlayState]
     ];
     
     public function new()

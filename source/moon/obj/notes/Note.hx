@@ -133,7 +133,7 @@ class Note extends FNFSprite {
         
         if (!isSustainNote) 
         {
-            newNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}note'));
+            newNote.loadGraphic(Paths.data('notes/$skin/${typeStr}note.png'));
             if (props.allowRotation)
                 newNote.angle = NoteUtils.angleFromDirection(noteDir);
 
@@ -144,12 +144,12 @@ class Note extends FNFSprite {
         if (isSustainNote && prevNote != null) 
         {
             newNote.noteSpeed = prevNote.noteSpeed;
-            newNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}holdE'));
+            newNote.loadGraphic(Paths.data('notes/$skin/${typeStr}holdE.png'));
             newNote.flipY = UserSettings.callSetting('Downscroll');
             newNote.updateHitbox();
             if (prevNote.isSustainNote) 
             {
-                prevNote.loadGraphic(Paths.dataImg('notes/$skin/${typeStr}holdM'));
+                prevNote.loadGraphic(Paths.data('notes/$skin/${typeStr}holdM.png'));
                 prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }

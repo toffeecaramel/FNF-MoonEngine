@@ -208,6 +208,13 @@
 			]
 		},
 		{
+			"name": "Change BPM",
+			"time": 456000,
+			"values": [
+				188
+			]
+		},
+		{
 			"name": "Move Camera",
 			"time": 137419.14893617,
 			"values": [
@@ -298,6 +305,13 @@
 			]
 		},
 		{
+			"name": "Change BPM",
+			"time": 741957.44680851,
+			"values": [
+				202
+			]
+		},
+		{
 			"name": "Move Camera",
 			"time": 191355.319148936,
 			"values": [
@@ -313,6 +327,13 @@
 				"Player",
 				0.6,
 				"circOut"
+			]
+		},
+		{
+			"name": "Change BPM",
+			"time": 779977.248788708,
+			"values": [
+				210
 			]
 		},
 		{

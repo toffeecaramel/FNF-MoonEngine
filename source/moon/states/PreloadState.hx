@@ -15,6 +15,8 @@ import moon.obj.*;
 import sys.FileSystem;
 import sys.io.File;
 
+import openfl.display.BitmapData;
+
 /**
     This state will be used for preloading all the assets
     from the menus, them being titlescreen, main menu,
@@ -46,7 +48,6 @@ class PreloadState extends FlxTransitionableState
         // - just change this lolz! - Toffee
         final loadPaths = [
             'assets/images/menus',
-            'assets/images/menus/charSelect', // - Apparently the game does not load it automatically?
             'assets/data/playableChars'
         ];
 

@@ -67,7 +67,7 @@ class Story extends MusicSubState
     
             weekGrp.recycle(FlxSprite, function():FlxSprite
             {
-                var spr = new FlxSprite(100, 170).loadGraphic(Paths.dataImg('weeks/${wArray[i]}/${data.weekImage}'));
+                var spr = new FlxSprite(100, 170).loadGraphic(Paths.data('weeks/${wArray[i]}/${data.weekImage}.png'));
                 spr.y += 100 * i;
                 return spr;
             });

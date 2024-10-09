@@ -18,7 +18,7 @@ class StrumGlow extends FlxTypedGroup<FlxSprite>
     {
         recycle(FlxSprite, function():FlxSprite
         {
-            var spr = new FlxSprite().loadGraphic(Paths.dataImg('notes/$skin/glow'));
+            var spr = new FlxSprite().loadGraphic(Paths.data('notes/$skin/glow.png'));
             spr.angle = NoteUtils.angleFromDirection(direction);
             spr.scale.set(0.65, 0.65);
             spr.color = Note.globalColors[NoteUtils.directionToNumber(direction)];

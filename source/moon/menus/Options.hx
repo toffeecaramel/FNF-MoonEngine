@@ -1,4 +1,4 @@
-package moon.subStates;
+package moon.menus;
 
 import backend.user.UserSettings.SettingType;
 import flixel.FlxBasic;
@@ -17,7 +17,7 @@ import moon.menus.*;
 
 using StringTools;
 
-class OptionsSubState extends MusicSubState
+class Options extends MusicSubState
 {
     private var optionsMap:Map<String, Dynamic>;
     private var categories:Array<FlxText>;
@@ -197,6 +197,8 @@ class OptionsSubState extends MusicSubState
                 UserSettings.setConfig(checkmarkOption.label, checkmarkOption.boolean);
                 arrowGraphic.animation.play('change', true);
             }
+
+            if(playState) game.updateByOption();
         }
 
         // - Smooth scroll effect with gradual deceleration :3
