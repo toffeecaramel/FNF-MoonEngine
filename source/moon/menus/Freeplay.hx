@@ -25,8 +25,9 @@ class Freeplay extends MusicSubState
 {
     // The array containing all the songs
     private var songList:Array<String>= [
-        'tenkaichi battleword',
-        'genre null',
+        'tutorial (arrow funk)',
+		'virus (arrow funk)',
+		'blammed (Funk Swipe)',
 		'tko2'
     ];
 

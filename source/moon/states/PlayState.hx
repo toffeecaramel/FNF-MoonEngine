@@ -337,8 +337,8 @@ class PlayState extends MusicState
 			}
 		}
 
-		camGame.zoom = FlxMath.lerp(camGame.zoom, stage.zoom, elapsed * 6);
-		camStrums.zoom = camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 6);
+		camGame.zoom = FlxMath.lerp(camGame.zoom, stage.zoom, elapsed * 12);
+		camStrums.zoom = camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 12);
 
 		health = FlxMath.bound(health, -0.1, 101);
 
@@ -662,7 +662,7 @@ class PlayState extends MusicState
 	{
 		super.beatHit();
 
-		FlxG.sound.play('assets/sounds/metronomeTest.ogg');
+		//FlxG.sound.play('assets/sounds/metronomeTest.ogg');
 
 		if (curBeat % 4 == 0)
 		{
