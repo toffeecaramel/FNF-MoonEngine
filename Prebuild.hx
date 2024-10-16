@@ -13,9 +13,10 @@ class Prebuild
     /**
      * Just a few messages to keep your motivation up!
      * Don't ever give up on coding, it is hard! but with dedication, you'll get where you want <3
+     * some of these are so silly lol
     **/
     
-    /*public static final motivationMsgs = [
+    public static var motivationMsgs:Array<String> = [
         "You are smart, I bet the game will compile just fine!",
         "You are handsome :3",
         "Time to get funky!",
@@ -26,12 +27,9 @@ class Prebuild
         "How's your code going? Let's see...",
         "Why do we brainstorm with ideas only when we're not working?",
         "Ah would ya look at that. If it isn't my favorite coder.",
-        "Your smile is just as bright as the sun, I love seeing it."
-    ];*/
-    // - I'm actually rlly sad, I didn't get this to work :(
-    // - For some reason you can't use FlxG, or any other flixel lib here...
-    // - If you could, please help me fix that, I really want to people see
-    // - Those messages when trying to compile DX
+        "Your smile is just as bright as the sun, I love seeing it.",
+        "It'll be neat to see your great ideas come to life."
+    ];
 
     static function main():Void
     {
@@ -41,7 +39,9 @@ class Prebuild
 
     public static function traceMessage():Void
     {
-        trace('Building game, this may take a while...\n');
+        final message = motivationMsgs[Std.random(motivationMsgs.length - 1)];
+        Sys.println('\n[ Building game, this may take a while... ]' + 
+        '\n\n[ Seems like you got a message... ]\n[ $message ]');
     }
 
     static function saveBuildTime():Void

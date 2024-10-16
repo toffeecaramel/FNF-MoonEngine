@@ -20,11 +20,11 @@ class StrumGlow extends FlxTypedGroup<FlxSprite>
         {
             var spr = new FlxSprite().loadGraphic(Paths.data('notes/$skin/glow.png'));
             spr.angle = NoteUtils.angleFromDirection(direction);
-            spr.scale.set(0.65, 0.65);
-            spr.color = Note.globalColors[NoteUtils.directionToNumber(direction)];
+            spr.scale.set(0.70, 0.70);
+            //spr.color = Note.globalColors[NoteUtils.directionToNumber(direction)];
             spr.updateHitbox();
-            spr.alpha = 0.56;
-            FlxTween.tween(spr, {"scale.x": 0.25, "scale.y": 0.25, alpha: 0}, Conductor.crochet / 800,
+            spr.alpha = 0.6;
+            FlxTween.tween(spr, {"scale.x": 0.20, "scale.y": 0.20, alpha: 0}, Conductor.crochet / 800,
             {ease: FlxEase.circOut, startDelay: 0.06});
             spr.x = xV;
             spr.y = yV;

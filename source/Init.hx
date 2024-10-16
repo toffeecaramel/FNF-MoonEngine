@@ -21,7 +21,7 @@ class Init extends FlxState
 		'DOWN_P2' => [[FlxKey.DOWN], 5],
 		'UP_P2' => [[FlxKey.UP], 6],
 		'RIGHT_P2' => [[FlxKey.RIGHT], 7],
-		'ACCEPT' => [[FlxKey.SPACE, Z, FlxKey.ENTER], 8],
+		'ACCEPT' => [[FlxKey.SPACE, FlxKey.ENTER], 8],
 		'BACK' => [[FlxKey.BACKSPACE, X, FlxKey.ESCAPE], 9],
 		'PAUSE' => [[FlxKey.ENTER, P], 10],
 		'UI_UP' => [[FlxKey.UP, W], 11],

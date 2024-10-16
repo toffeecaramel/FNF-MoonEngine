@@ -215,7 +215,6 @@ class PlayState extends MusicState
 				noteData.direction, noteData.lane, false);
 			note.camera = camStrums;
 			note.noteSpeed = scrollSpeed;
-			note.setup(note);
 			note.scale.set(noteScale, noteScale);
 			note.updateHitbox();
 			note.active = false;
@@ -230,7 +229,6 @@ class PlayState extends MusicState
 					noteData.direction, noteData.lane, true, oldNote);
 				sustainNote.camera = camStrums;
 				sustainNote.scrollFactor.set();
-				sustainNote.setup(sustainNote);
 				sustainNote.scale.set(noteScale, noteScale);
 				sustainNote.updateHitbox();
 				sustainNote.active = false;
@@ -349,7 +347,7 @@ class PlayState extends MusicState
 			setAudioState('stop');
 			FlxG.switchState(new ChartEditor(song, difficulty));
 		}
-		if (FlxG.keys.justPressed.U)
+		if (FlxG.keys.justPressed.EIGHT)
 		{
 			pauseGame(false);
 			trace("MOM");
@@ -373,6 +371,10 @@ class PlayState extends MusicState
 	{
 		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
 		playerStrumline.y = opponentStrumline.y = yPos;
+
+		//for(notes in unspawnNotes)
+			//for(noteData in chart.notes)
+				//notes.time = noteData.time - UserSettings.callSetting('')
 	}
 
 	private function updateNotePosition(note:Note, elapsed:Float):Void 
@@ -463,13 +465,9 @@ class PlayState extends MusicState
 					for (i in 0...splashGrp.members.length)
 						if(jt == sick && splashGrp.members[i].ID == NoteUtils.directionToNumber(note.noteDir))
 						{
-							var props = Note.noteTypeProperties.get(note.type);
-							var arrowRGB = props != null ? 
-							props.arrowColors : Note.noteTypeProperties.get("DEFAULT").arrowColors;
-
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
 							splashGrp.members[i].setPosition(strum.x-177, strum.y-160); // Oh boy I love offsets
-							splashGrp.members[i].spawn(note.noteDir, arrowRGB);
+							splashGrp.members[i].spawn(note.noteDir, note.arrowColors);
 						}
 					
 					if (Timings.judgementCounter.exists(jt))

@@ -57,7 +57,7 @@ class InputHandler
         {
             if (justPressed[i])
             {
-                var noteDir = NoteUtils.numberToDirection(i);
+                final noteDir = NoteUtils.numberToDirection(i);
 
                 var possibleNoteList:Array<Note> = [];
                 var pressedNotes:Array<Note> = [];
@@ -106,12 +106,12 @@ class InputHandler
     {
         for (note in unspawnNotes)
         {
-            var noteDir = NoteUtils.directionToNumber(note.noteDir);
+            final noteDir = NoteUtils.directionToNumber(note.noteDir);
             if (pressed[noteDir]
             && note.isSustainNote
             && note.parentNote.wasGoodHit
 			&& note.lane == 'P1'
-			&& note.strumTime - Conductor.songPosition <= 0 + 48)
+			&& note.strumTime - Conductor.songPosition <= 0)
             {
                 if (onNoteHit != null) onNoteHit(note, null);
                 note.wasGoodHit = true;

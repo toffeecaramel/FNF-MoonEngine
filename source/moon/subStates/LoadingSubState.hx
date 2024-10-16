@@ -110,7 +110,6 @@ class LoadingSubState extends MusicSubState
                 var note:Note = Note.returnDefaultNote(nSkin, 
                     noteData.type, noteData.time, 
                     noteData.direction, noteData.lane, false);
-                note.setup(note);
                 notesThing.push(note);
             
                 var susLength:Float = noteData.duration / Conductor.stepCrochet;
@@ -121,7 +120,6 @@ class LoadingSubState extends MusicSubState
                         noteData.type,
                         noteData.time + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet,
                         noteData.direction, noteData.lane, true, oldNote);
-                    sustainNote.setup(sustainNote);
                     notesThing.push(sustainNote);
                     load(sustainNote);
                 }

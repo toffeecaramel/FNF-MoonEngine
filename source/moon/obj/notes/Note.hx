@@ -1,101 +1,161 @@
 package moon.obj.notes;
 
 import flixel.FlxSprite;
-import shaders.RGBPallete.RGBShaderReference;
-import shaders.RGBPallete;
+import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-
 import backend.dependency.FNFSprite;
 import moon.utilities.*;
 import moon.states.PlayState;
+import backend.ScriptHandler;
 
 /**
-    Rewriting this up cause the last one was chaotic and terrible lol.
-    who tf makes separate classes for sustains?? like cmon lol.
-    it was painful...
-
-    anyways this one is heavily based on Forever Engine too
-    at this point, idek what isnt based on forever engine :v
-    however, I feel like I should say:
-    **I DO NOT** support yoshubs in ANY way.
-    go support @crowplexus instead! she's cool :3
-    
-    anyways,
-    time to pain
+    Note class with per-type note properties loaded from individual directories.
 **/
-
-typedef NoteTypeProperties = {
-    var allowRotation:Bool;
-    var ?arrowColors:Array<Array<FlxColor>>;
-};
-
-class Note extends FNFSprite {
+class Note extends FNFSprite
+{
     public var skin:String = 'DEFAULT';
     public var type:String = 'DEFAULT';
-    public var strumTime:Float = 0;
+    public var lane:String = 'Opponent';
     public var noteDir:String = 'left';
 
-    public var lane:String = 'Opponent';
+    public var strumTime:Float = 0;
+
     public var canBeHit:Bool = false;
     public var tooLate:Bool = false;
     public var wasGoodHit:Bool = false;
-    public var prevNote:Note;
-    public var noteSpeed:Float = 0;
-
-    public var sustainLength:Float = 0;
     public var isSustainNote:Bool = false;
 
+    public var noteSpeed:Float = 0;
+    public var sustainLength:Float = 0;
+
+    public var prevNote:Note;
     public var parentNote:Note;
     public var childrenNotes:Array<Note> = [];
 
     public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
-    public static var rgbShader:RGBShaderReference;
-    public static var globalRgbShaders:Array<RGBPalette> = [];
-    public static var arrowRGB:Array<Array<FlxColor>> = [];
-    public static var globalColors:Array<FlxColor> = [];
-    public static var noteTypeProperties:Map<String, NoteTypeProperties>;
+    public static var scriptHandler:ScriptHandler = new ScriptHandler();
+
+    public var allowRotation:Bool = false;
+    public var arrowColors:Array<Array<FlxColor>> = [
+        [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
+        [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
+        [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
+        [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
+    ];
 
     public function new(skin:String = 'DEFAULT', 
-    type:String = "DEFAULT", strumTime:Float, noteDir:String, 
-    lane:String, ?prevNote:Note, ?sustainNote:Bool = false) 
+        type:String = "DEFAULT", strumTime:Float, noteDir:String, 
+        lane:String, ?prevNote:Note, ?sustainNote:Bool = false) 
     {
         super(x, y);
-
-        var scriptHandler = new ScriptHandler();
-        scriptHandler.loadScript('assets/data/notes/NoteConfigs.hx');
-        noteTypeProperties = scriptHandler.get("noteTypeProperties");
 
         if (prevNote == null)
             prevNote = this;
 
-        y -= 3000;
-
         this.skin = skin;
         this.type = type;
         this.noteDir = noteDir;
-        this.prevNote = prevNote;
+        this.prevNote = prevNote != null ? prevNote : this;
         isSustainNote = sustainNote;
         this.strumTime = strumTime;
         this.lane = lane;
 
-        if (isSustainNote && prevNote != null) {
+        if (isSustainNote && prevNote != null){
             parentNote = prevNote;
             while (parentNote.parentNote != null)
                 parentNote = parentNote.parentNote;
             parentNote.childrenNotes.push(this);
         } 
+
         else if (!isSustainNote)
             parentNote = null;
+
+        loadNoteProperties();
+        loadNoteGraphics();
+        loadNoteScript();
     }
 
-    override function update(elapsed:Float) 
+    /**
+     * Function to load note properties from its JSON directory.
+     * If the specific type's properties don't exist, fallback to default.
+     */
+    private function loadNoteProperties():Void
+    {
+        final basePath = (type != "DEFAULT")
+            ? 'assets/data/notes/_notetypes/$type/'
+            : 'assets/data/notes/$skin/';
+
+        final propertiesPath = '${basePath}NoteProperties.json';
+
+        var jsonContent:String = sys.io.File.getContent(
+            (sys.FileSystem.exists(propertiesPath)) ? propertiesPath : 'assets/data/notes/$skin/NoteProperties.json');
+        var properties = haxe.Json.parse(jsonContent);
+        if (properties.allowRotation != null)
+            this.allowRotation = properties.allowRotation;
+
+        // - TODO: Make the game get the arrow colors correctly.
+    }
+
+    /**
+     * Function to load the graphics for the note based on type and skin.
+     */
+    private function loadNoteGraphics():Void
+    {
+        var basePath = (type != "DEFAULT")
+            ? 'assets/data/notes/_notetypes/$type/'
+            : 'assets/data/notes/$skin/';
+
+        if(basePath == null) basePath = 'assets/data/notes/DEFAULT/';
+
+        if (!isSustainNote)
+        {
+            loadGraphic('${basePath}note.png');
+            if (allowRotation)
+                angle = NoteUtils.angleFromDirection(noteDir);
+
+            if (type == "BOMB")
+                FlxTween.tween(this, {angle: 360}, Conductor.crochet / 1000 * 2, {type: LOOPING});
+        }
+
+        if (isSustainNote && prevNote != null)
+        {
+            noteSpeed = prevNote.noteSpeed;
+            loadGraphic('${basePath}holdE.png');
+            flipY = UserSettings.callSetting('Downscroll');
+            updateHitbox();
+
+            if (prevNote.isSustainNote) {
+                prevNote.loadGraphic('${basePath}holdM.png');
+                prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
+                prevNote.updateHitbox();
+            }
+        }
+    }
+
+    /**
+     * Function to load and execute the hscript file for the note type (if it exists)
+     */
+    private function loadNoteScript():Void
+    {
+        if (type != "DEFAULT") 
+        {
+            final scriptPath = 'assets/data/notes/_notetypes/$type/NoteScript.hx';
+            
+            if (sys.FileSystem.exists(scriptPath))
+                scriptHandler.loadScript(scriptPath);
+            else
+                trace('No custom script found for type $type.', "ERROR");
+        }
+    }
+
+    override function update(elapsed:Float):Void 
     {
         super.update(elapsed);
 
-        if (lane == 'P1' || lane == 'P2') {
+        if (lane == 'P1' || lane == 'P2')
+        {
             if (strumTime > Conductor.songPosition - Timings.msThreshold 
             && strumTime < Conductor.songPosition + Timings.msThreshold)
                 canBeHit = true;
@@ -110,90 +170,15 @@ class Note extends FNFSprite {
     }
 
     public static function returnDefaultNote(skin:String, type:String,
-    strumTime:Float, noteDir:String, lane:String, ?isSustainNote:Bool = false, 
-    ?prevNote:Note = null):Note 
+        strumTime:Float, noteDir:String, lane:String, ?isSustainNote:Bool = false, 
+        ?prevNote:Note = null):Note
     {
-        // Create the new note
-        var newNote:Note = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote);
-        
-        // Try to get properties for the given type, fallback to 'DEFAULT' if not found
-        var props = noteTypeProperties.get(type);
-        if (props == null) {
-            props = noteTypeProperties.get("DEFAULT");
-            type = "DEFAULT";  // Reset to 'DEFAULT' if type properties are not found
-        }
-        
-        final typeStr = (type != "DEFAULT") ? '_notetypes/$type/' : '';
+        var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote);
 
-        arrowRGB = props.arrowColors;
-        globalColors = []; // Clear global colors before pushing new ones
-        
-        for (i in 0...arrowRGB.length)
-            globalColors.push(arrowRGB[i][0]);
-        
-        if (!isSustainNote) 
-        {
-            newNote.loadGraphic(Paths.data('notes/$skin/${typeStr}note.png'));
-            if (props.allowRotation)
-                newNote.angle = NoteUtils.angleFromDirection(noteDir);
+        // Apply shader if colors are defined
+        if (newNote.arrowColors != null)
+            NoteUtils.applyNoteShader(newNote, noteDir, newNote.arrowColors);
 
-            if(type == "BOMB")
-                FlxTween.tween(newNote, {angle: 360}, Conductor.crochet / 1000 * 2, {type: LOOPING});
-        }
-        
-        if (isSustainNote && prevNote != null) 
-        {
-            newNote.noteSpeed = prevNote.noteSpeed;
-            newNote.loadGraphic(Paths.data('notes/$skin/${typeStr}holdE.png'));
-            newNote.flipY = UserSettings.callSetting('Downscroll');
-            newNote.updateHitbox();
-            if (prevNote.isSustainNote) 
-            {
-                prevNote.loadGraphic(Paths.data('notes/$skin/${typeStr}holdM.png'));
-                prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
-                prevNote.updateHitbox();
-            }
-        }
         return newNote;
-    }
-
-    public function setup(newNote:FlxSprite) 
-    {
-        if (arrowRGB != [] || arrowRGB != null) 
-        {
-            rgbShader = new RGBShaderReference(newNote, initializeGlobalRGBShader(NoteUtils.directionToNumber(noteDir)));
-            setRGB();
-        }
-    }
-
-    public static function initializeGlobalRGBShader(noteData:Int)
-    {
-        if (globalRgbShaders[noteData] == null) 
-        {
-            var newRGB:RGBPalette = new RGBPalette();
-            globalRgbShaders[noteData] = newRGB;
-
-            var arr:Array<FlxColor> = arrowRGB[noteData];
-            if (noteData > -1 && noteData <= arr.length) 
-            {
-                newRGB.r = arr[0];
-                newRGB.g = arr[1];
-                newRGB.b = arr[2];
-            }
-        }
-        return globalRgbShaders[noteData];
-    }
-
-    public function setRGB()
-    {
-        var noteData = NoteUtils.directionToNumber(noteDir);
-        var arr:Array<FlxColor> = arrowRGB[noteData];
-
-        if (noteData > -1 && noteData <= arr.length) 
-        {
-            rgbShader.r = arr[0];
-            rgbShader.g = arr[1];
-            rgbShader.b = arr[2];
-        }
     }
 }

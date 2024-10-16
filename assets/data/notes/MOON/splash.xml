@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Free texture packer v0.6.7 http://free-tex-packer.com
+-->
+<TextureAtlas imagePath="splash.png" width="634" height="564">
+  <SubTexture name="splash10007.png" x="0" y="0"  width="218" height="230" frameX="-149" frameY="-121" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10005.png" x="218" y="0"  width="210" height="226" frameX="-153" frameY="-123" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10003.png" x="0" y="230" width="220" height="206" rotated="true"  frameX="-155" frameY="-126" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10004.png" x="428" y="0"  width="206" height="220" frameX="-155" frameY="-126" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10002.png" x="428" y="220"  width="200" height="198" frameX="-158" frameY="-137" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10000.png" x="220" y="226" width="134" height="132" rotated="true"  frameX="-192" frameY="-169" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10001.png" x="0" y="436" width="134" height="128" rotated="true"  frameX="-194" frameY="-169" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10009.png" x="134" y="436"  width="120" height="120" frameX="-198" frameY="-176" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10006.png" x="218" y="0"  width="210" height="226" frameX="-153" frameY="-123" frameWidth="516" frameHeight="472"/>
+  <SubTexture name="splash10008.png" x="0" y="0"  width="218" height="230" frameX="-149" frameY="-121" frameWidth="516" frameHeight="472"/>
+</TextureAtlas>

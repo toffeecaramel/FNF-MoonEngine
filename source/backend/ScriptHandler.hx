@@ -40,7 +40,7 @@ class ScriptHandler
     {
         interp = new Interp();
 
-        //setup all the libraries
+        // - Setup all the libraries
         for(i in 0...variables.length)
             interp.variables.set(variables[i][0], variables[i][1]);
     }

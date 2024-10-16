@@ -56,7 +56,7 @@ class CharSelect extends MusicState
     {
         group.recycle(CharSelectItem, function():CharSelectItem
         {
-            var item = new CharSelectItem('${info.gamePrefix}', '${info.partner}');
+            var item = new CharSelectItem('${info.gamePrefix}');
             return item;
         });
     }
@@ -70,17 +70,14 @@ class CharSelect extends MusicState
 class CharSelectItem extends backend.dependency.FNFSprite
 {
     public var char:String;
-    public var partner:String;
 
-    public function new(char:String, partner:String):Void
+    public function new(char:String):Void
     {
         super();
 
         this.char = char;
-        this.partner = partner;
-        trace('CHAR: $char and PARTNER: $partner', 'DEBUG');
 
         // - Now time to set-up some shit - //
-        //loadGraphic(Paths.data());
+        loadGraphic(Paths.data('characters/$char'));
     }
 }

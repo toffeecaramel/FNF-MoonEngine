@@ -37,30 +37,30 @@ class Options extends MusicSubState
     {
         super();
         this.playState = playState;
-        this.cam = camera;
+        this.cam = cam;
 
         optionsMap = [
-            "Video" => 
+            /*"Video" => 
             [
-                ['Fullscreen Resolution'],
-                ['Screen Mode'],
-                ['Window Size']
-            ],
+                // Soud shit
+            ],*/
     
             "Sound" =>
             [
                 ["Master Volume"],
                 ["Instrumental Volume"],
                 ["Voices Volume"],
+                ["Music Volume"],
                 ["SFX Volume"],
-                ["Mute Vocals on Miss"]
+                ["Editor Sounds"],
+                ["Mute Voices on Miss"]
             ],
     
-            "Keybinds" =>
+            /*"Keybinds" =>
             [
-                ["Keyboard Options..."],
-                ["Controller Options..."]
-            ],
+                ["Keyboard Settings..."],
+                ["Editor Shortcuts Settings..."]
+            ],*/
     
             "Gameplay" =>
             [
@@ -68,32 +68,38 @@ class Options extends MusicSubState
                 ["Middlescroll"],
                 ["Ghost Tapping"],
                 ["Mechanics"],
-                ['Modcharts'],
-                ["Calibrate Timings..."],
-                ["Visual Offset"],
-                ["Input Offset"]
+                ["Modchart"],
+                ["Calibrate timings..."],
+                ["Offset"]
             ],
     
             "Graphic" =>
             [
                 ["Anti-Aliasing"],
-                ['V-Sync'],
+                ["V-Sync"],
                 ["FPS Cap"],
                 ["Shaders"],
-                ['Blurry Shaders'],
-                ['Flashing Lights'],
-                ['Colorblind Mode'],
-                ['Colorblind Filters']
+                ["Flashing Lights"],
+                ["Colorblind Filters"]
             ],
     
             "Interface" =>
             [
-                ["Show Healthbar"],
-                ["Show Misses"],
-                ["Show Ranking"],
-                ["Change Interface Positions..."]
+                ["Healthbar Visibility"],
+                ["Show Accuracy"],
+                ["Stats Position"],
+                ["Judgements position..."],
+                ["Icons"],
+                ["Show FPS"]
+            ],
+
+            "Engine" =>
+            [
+                ["Auto-Updates"],
+                ["Modding Tools"]
             ]
         ];
+
         categories = [];
         options = [];
 
@@ -117,29 +123,44 @@ class Options extends MusicSubState
             // - Create options under the category
             for (i in 0...optionsMap[category].length) 
             {
-                var currentType = optionsMap[category][i][0];
-                var settingConfig = UserSettings.getConfig(currentType);
+                final currentType = optionsMap[category][i][0];
+                final settingConfig = UserSettings.getConfig(currentType);
 
                 if (settingConfig != null)
                 {
-                    var settingType = settingConfig[0];
+                    final settingType = settingConfig[0];
                     switch (settingType)
                     {
                         case CHECKMARK:
-                            final initialValue = cast(settingConfig[2], Bool);
-                            //trace(initialValue);
+                            var sttShit = UserSettings.getConfig(currentType);
+                            final initialValue = cast(sttShit[2], Bool);
                             var check = new CheckmarkType(yOffset, '$currentType', initialValue);
                             xShit = check.x;
                             check.color = FlxColor.WHITE;
                             add(check);
                             options.push(check);
-                        //    trace('checkmark $settingType');
+
                         case SELECTOR:
-                        //    trace('Selected a SELECTOR option: ' + currentType);
+                            var sttShit = UserSettings.getConfig(currentType);
+                            final optionsList:Array<Dynamic> = cast sttShit[2];
+                            final selectedIndex = optionsList.indexOf(sttShit[3]);
+                            var selector = new SelectorType(yOffset, '$currentType', optionsList, selectedIndex);
+                            xShit = selector.x;
+                            selector.color = FlxColor.WHITE;
+                            add(selector);
+                            options.push(selector);
+
                         case SLIDER:
-                        //    trace('Selected a SLIDER option: ' + currentType);
-                        //default:
-                        //    trace('Unknown option type for: ' + currentType);
+                            var sttShit = UserSettings.getConfig(currentType);
+                            final min:Float = cast(sttShit[2][0], Float);
+                            final max:Float = cast(sttShit[2][1], Float);
+                            final def:Float = UserSettings.callSetting(currentType);
+                            var slider = new SliderType(yOffset, '$currentType', min, max, def);
+                            trace(def);
+                            xShit = slider.x;
+                            slider.color = FlxColor.WHITE;
+                            add(slider);
+                            options.push(slider);
                     }
                 }
                 else
@@ -152,6 +173,7 @@ class Options extends MusicSubState
             yOffset += 20; // • Space between categories
         }
 
+        // Initialize arrow graphic
         arrowGraphic = new FlxSprite(xShit - 130, 0).loadGraphic(
             Paths.image('menus/options/arrow'), true, 129, 67
         );
@@ -169,39 +191,17 @@ class Options extends MusicSubState
     {
         super.update(elapsed);
 
-		if (controls.UI_UP_P)
+        if (controls.UI_UP_P)
             updateSelection(-1);
-		else if (controls.UI_DOWN_P)
+        else if (controls.UI_DOWN_P)
             updateSelection(1);
 
         if (controls.ACCEPT)
             handleOptionSelect();
 
-        if(controls.BACK)
-        {
-            if(playState)
-                game.pauseGame();
-            else
-                MainMenu.selected = false;
+        handleInput(elapsed);
 
-            close();
-        }
-
-        // Handle left/right inputs to toggle CheckmarkType
-		if (controls.UI_LEFT_P || controls.UI_RIGHT_P)
-		{
-            final selectedOption = options[curSelected];
-            if (Std.isOfType(selectedOption, CheckmarkType)) {
-                var checkmarkOption:CheckmarkType = cast selectedOption;
-                checkmarkOption.updateCheck(!checkmarkOption.boolean);
-                UserSettings.setConfig(checkmarkOption.label, checkmarkOption.boolean);
-                arrowGraphic.animation.play('change', true);
-            }
-
-            if(playState) game.updateByOption();
-        }
-
-        // - Smooth scroll effect with gradual deceleration :3
+        // Smooth scroll
         if (targetScroll != 0)
         {
             var currentScroll:Float = FlxMath.lerp(0, targetScroll, scrollSpeed);
@@ -209,12 +209,58 @@ class Options extends MusicSubState
             targetScroll -= currentScroll;
 
             if (Math.abs(targetScroll) < 1) 
-            {
                 targetScroll = 0;
-            }
         }
 
         arrowGraphic.y = options[curSelected].y - 20;
+    }
+
+    private var holdTimer:Float = 0;
+    private var holdDelay:Float = 0.40;
+    private var holdThreshold:Float = 0.04;
+    private function handleInput(elapsed:Float):Void
+    {
+        if (controls.UI_LEFT || controls.UI_RIGHT)
+        {
+            holdTimer -= elapsed;
+
+            if (holdTimer <= 0)
+            {
+                final selectedOption = options[curSelected];
+
+                if (Std.isOfType(selectedOption, CheckmarkType))
+                {
+                    var checkmarkOption:CheckmarkType = cast selectedOption;
+                    checkmarkOption.updateCheck(!checkmarkOption.boolean);
+                    UserSettings.setConfig(checkmarkOption.label, checkmarkOption.boolean);
+                }
+                else if (Std.isOfType(selectedOption, SelectorType))
+                {
+                    var selectorOption:SelectorType = cast selectedOption;
+                    var newIndex = (controls.UI_LEFT) ? selectorOption.currentIndex - 1 : selectorOption.currentIndex + 1;
+                    selectorOption.updateSelector(FlxMath.wrap(newIndex, 0, selectorOption.options.length - 1));
+                    UserSettings.setConfig(selectorOption.label, selectorOption.options[selectorOption.currentIndex]);
+                }
+                else if (Std.isOfType(selectedOption, SliderType))
+                {
+                    var sliderOption:SliderType = cast selectedOption;
+                    var newValue = (controls.UI_LEFT) ? sliderOption.currentValue - 1 : sliderOption.currentValue + 1;
+                    sliderOption.updateSlider(FlxMath.bound(newValue, sliderOption.minValue, sliderOption.maxValue));
+                    UserSettings.setConfig(sliderOption.label, sliderOption.currentValue);
+                }
+
+                arrowGraphic.animation.play('change', true);
+                if (playState) game.updateByOption();
+
+                holdDelay = Math.max(holdDelay * 0.9, holdThreshold); // -Reduce delay over time
+                holdTimer = holdDelay;
+            }
+        }
+        else
+        {
+            holdTimer = 0; // - Reset the timer if keys are released
+            holdDelay = 0.25; // - Reset the initial delay
+        }
     }
 
     private function updateSelection(change:Int):Void
@@ -251,6 +297,8 @@ class Options extends MusicSubState
 
     override function add(Object:FlxBasic):FlxBasic
     {
+        if(playState)
+            cast(Object, FlxSprite).camera = cam;
         return super.add(Object);
     }
 }

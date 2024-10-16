@@ -38,6 +38,7 @@ class MainMenu extends MusicState
     override public function create():Void
     {
         super.create();
+		controls.setKeyboardScheme(None, false);
 
         FlxG.sound.playMusic('assets/music/interfaces/givealilbitback2.ogg', 0.8);
 		Conductor.changeBPM(121);
@@ -46,9 +47,11 @@ class MainMenu extends MusicState
 		warnTxt.size = 32;
 		
 		// lol
-		warnTxt.text = 'This menu is being revamped lol\nPress P to go to freeplay\nO to go to Options\nS to go to story moed\nAlso press C to check character selection\n\n\nLMFAOOO THIS CODE WAS SO BADD';
+		warnTxt.text = 'This menu is being revamped lol\nPress P to go to freeplay\nO to go to Options\nS to go to story moed\nAlso press C to check character selection\nK for keybind menu options\n\n\nLMFAOOO THIS CODE WAS SO BADD';
 		warnTxt.screenCenter();
 		add(warnTxt);
+
+		trace('Setting: ${UserSettings.callSetting('Master Volume')}');
     }
 
     override public function update(elapsed:Float):Void
@@ -69,6 +72,8 @@ class MainMenu extends MusicState
             openSubState(new Story());
         else if (FlxG.keys.justPressed.C)
             FlxG.switchState(new CharSelect());
+		else if (FlxG.keys.justPressed.K)
+			openSubState(new moon.menus.submenus.KeybindsSub());
     }
 
     function changeSelection(change:Int = 0):Void

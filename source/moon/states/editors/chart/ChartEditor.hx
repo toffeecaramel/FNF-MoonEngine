@@ -242,7 +242,6 @@ class ChartEditor extends MusicState
         var note:Note = Note.returnDefaultNote(UserSettings.callSetting('Noteskin'), noteData.type, 
             noteData.time, noteData.direction, noteData.lane, false);
 
-        note.setup(note);
         note.setGraphicSize(gridSize-2, gridSize-2);
         note.antialiasing = true;
         note.updateHitbox();

@@ -16,7 +16,7 @@ function create()
 function beatHit()
 {
     //game.camHUD.zoom += 0.04;
-    game.camGame.zoom += 0.08;
+    game.camGame.zoom += 0.03;
 
     //for (i in 0...game.playerStrumline.members.length)
     //    game.playerStrumline.members[i].y += 50;
