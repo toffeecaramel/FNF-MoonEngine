@@ -40,13 +40,13 @@ class UserSettings
         /**
          * - ( SOUND SETTINGS ) - * 
          **/
-        'Master Volume' => setting(SLIDER, "Change the game's main volume.", [0, 100], 100),
-        'Instrumental Volume' => setting(SLIDER, "(INGAME) Change the instrumental's main volume.", [0, 100], 100),
-        'Voices Volume' => setting(SLIDER, "(INGAME) Change the vocal's main volume.", [0, 100], 100),
-        'Music Volume' => setting(SLIDER, "Change the interfaces songs main volume.", [0, 100], 100),
-        'SFX Volume' => setting(SLIDER, "Change the sound effects main volume.", [0, 100], 100),
-        'Editor Sounds' => setting(SLIDER, "Change the sounds in editor's main volume.", [0, 100], 100),
-        'Mute Voices on Miss' => setting(CHECKMARK, "On missing a note, the vocals will be muted (They unmute after hitting a note properly.)", true),
+        'Master Volume' => setting(SLIDER, "Changes the game's main volume (affects everything).", [0, 100], 100),
+        'Instrumental Volume' => setting(SLIDER, "Changes the volume for in-game instrumentals.", [0, 100], 100),
+        'Voices Volume' => setting(SLIDER, "Changes the volume for in-game vocals.", [0, 100], 100),
+        'Music Volume' => setting(SLIDER, "Changes the volume for menu music.", [0, 100], 100),
+        'SFX Volume' => setting(SLIDER, "Changes the volume for general sound effects.", [0, 100], 100),
+        'Editor Sounds' => setting(SLIDER, "Changes the volume for editor sound effects.", [0, 100], 100),
+        'Mute Voices on Miss' => setting(CHECKMARK, "Toggles muting the vocals when you miss. Useful if you'd like to hear uninterrupted music.", true),
 
         // (Keybinds Options after) //
 
@@ -54,44 +54,44 @@ class UserSettings
          * - ( GAMEPLAY SETTINGS ) - * 
          **/
 
-        'Downscroll' => setting(CHECKMARK, "Places the lanes at the bottom of the screen.", false),
-        'Middlescroll' => setting(CHECKMARK, "Places the lanes at the middle of the screen. (IT DOESN'T APPLY ON COOP MODE!)", false),
-        'Ghost Tapping' => setting(CHECKMARK, "If on, it allows you to tap freely without being punished.", true),
-        'Mechanics' => setting(CHECKMARK, "If on, it'll enable song-specific Mechanics. (E.g. Dodge)", true), // Modders, remember to use this smh!!
-        'Modchart' => setting(CHECKMARK, "If on, it'll allow the game to play modcharts.", true),
+        'Downscroll' => setting(CHECKMARK, "Places the judgement line at the bottom of the screen. Notes will descend into it.", false),
+        'Middlescroll' => setting(CHECKMARK, "Positions the judgement line at the middle of the screen, hiding opponent notes (does not apply on co-op mode).", false),
+        'Ghost Tapping' => setting(CHECKMARK, "Allows tapping freely when there are no notes (hey, I don't judge).", true),
+        'Mechanics' => setting(CHECKMARK, "Toggles song-specific mechanics (such as dodging).", true), // Modders, remember to use this smh!!
+        'Modchart' => setting(CHECKMARK, "Toggles modcharts (animated/moving notes).", true),
         // Calibrate timings...
-        'Offset' => setting(SLIDER, "Change the delay of the notes. (NEGATIVE: LATE, POSITIVE: EARLIER)", [-1500, 1500], 0),
+        'Offset' => setting(SLIDER, "Changes the delay of the notes (NEGATIVE: LATE, POSITIVE: EARLY).", [-1500, 1500], 0),
 
         /**
          * - ( GRAPHIC SETTINGS ) - 
          **/
 
         'Anti-Aliasing' => setting(CHECKMARK, "Anti-aliasing improves the appearance of \"jagged\" polygon edges, or \"jaggies\", so they are smoothed out on the screen, blending pixels together.", true),
-        'V-Sync' => setting(CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen.", false),
-        'FPS Cap' => setting(SELECTOR, "ok agua ill leave this one to you lmfao", [30, 60, 120, 144, 240, 360], 60),
-        'Shaders' => setting(CHECKMARK, "and this one too...", true),
-        'Flashing Lights' => setting(CHECKMARK, "this one too...", true),
-        'Colorblind Filters' => setting(SELECTOR, "Applies an filter in case you're Colorblind.", ["Off", "T", "P", "R"], "Off"),
+        'V-Sync' => setting(CHECKMARK, "Uncaps the FPS and removes horizontal cuts on the screen (may increase input delay).", false),
+        'FPS Cap' => setting(SELECTOR, "The maximum amount your framerate can reach.", [30, 60, 120, 144, 240, 360], 60),
+        'Shaders' => setting(CHECKMARK, "Toggles shaders (may affect performance on low-end devices).", true),
+        'Flashing Lights' => setting(CHECKMARK, "Toggles flashing effects. Recommended to turn OFF in case of high photosensitivity.", true),
+        'Colorblind Filters' => setting(SELECTOR, "Applies filters for colorblindness.", ["Off", "T", "P", "R"], "Off"),
 
         /**
          * - ( INTERFACE SETTINGS ) - 
          **/
 
-        'Healthbar Visibilty' => setting(SELECTOR, "Alternates whether should the Healthbar be visible or not.", 
+        'Healthbar Visibilty' => setting(SELECTOR, "Toggles whether the health bar should be visible or not.", 
             ["On", "Below 100%", "Off"], "On"),
 
-        'Show Accuracy' => setting(SELECTOR, "Whether to show the stat's accuracy/precision", ["Off", "Approximate", "Full"], "Full"),
-        'Stats Position' => setting(SELECTOR, "Change the position on your stats (Misses, Score...)", ["On HP-Bar", "On Player Lane"], "On HP-Bar"),
+        'Show Accuracy' => setting(SELECTOR, "Toggles accuracy stat on the in-game HUD.", ["Off", "Approximate", "Full"], "Full"),
+        'Stats Position' => setting(SELECTOR, "Changes the position of your stats HUD (misses, score, etc).", ["On HP-Bar", "On Player Lane"], "On HP-Bar"),
         // (Judgements position...)
-        'Icons' => setting(SELECTOR, "Changes where the icons will appear.", ["Off", "At Healthbar", "On Lanes"], "At Healthbar"),
-        'Show FPS' => setting(CHECKMARK, "Whether or not to show the FPS/Memory", false),
+        'Icons' => setting(SELECTOR, "Changes where the character icons will appear.", ["Off", "At Healthbar", "On Lanes"], "At Healthbar"),
+        'Show FPS' => setting(CHECKMARK, "Toggles FPS/Memory display.", false),
 
         /**
          * - ( Engine Settings ) -
          **/
 
-        'Auto-Updates' => setting(SELECTOR, "Whether or not to download Auto-Updates.", ["Off", "In-Game", "Redirect"], "In-Game"),
-        'Modding Tools' => setting(CHECKMARK, "Enable tools for modding (Like Chart-Editor, Character editor, etc...)", false),
+        'Auto-Updates' => setting(SELECTOR, "When an update is released, select whether to automatically download it, redirect you to a browser or do nothing.", ["Off", "In-Game", "Redirect"], "In-Game"),
+        'Modding Tools' => setting(CHECKMARK, "Enable tools for modding (such as the chart and character editors).", false),
     ];
 
     private static var save:FlxSave = new FlxSave();
