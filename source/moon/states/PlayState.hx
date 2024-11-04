@@ -308,13 +308,13 @@ class PlayState extends MusicState
 
 		///////////////////////////////////////////////////////
 
-		inputHandler.justPressed = [controls.LEFT_P1_P, controls.DOWN_P1_P, controls.UP_P1_P, controls.RIGHT_P1_P,
+		inputHandler.justPressed = [FlxG.keys.justPressed.LEFT,FlxG.keys.justPressed.DOWN,FlxG.keys.justPressed.UP,FlxG.keys.justPressed.RIGHT,
 		];
 
-		inputHandler.pressed = [controls.LEFT_P1, controls.DOWN_P1, controls.UP_P1, controls.RIGHT_P1,
+		inputHandler.pressed = [FlxG.keys.pressed.LEFT,FlxG.keys.pressed.DOWN,FlxG.keys.pressed.UP,FlxG.keys.pressed.RIGHT,
 		];
 
-		inputHandler.released = [controls.LEFT_P1_R, controls.DOWN_P1_R, controls.UP_P1_R, controls.RIGHT_P1_R,
+		inputHandler.released = [FlxG.keys.justReleased.LEFT,FlxG.keys.justReleased.DOWN,FlxG.keys.justReleased.UP,FlxG.keys.justReleased.RIGHT,
 		];
 
 		///////////////////////////////////////////////////////
@@ -359,7 +359,7 @@ class PlayState extends MusicState
 			FlxG.switchState(new ChartConverterState());
 		}
 
-		if (controls.BACK && canPause)
+		if (FlxG.keys.justPressed.ESCAPE && canPause)
 			pauseGame(true);
 		//trace(health);
 
@@ -369,12 +369,17 @@ class PlayState extends MusicState
 
 	public function updateByOption():Void
 	{
+		inst.volume = UserSettings.callSetting('Instrumental Volume') / 100;
+		voices.volume = UserSettings.callSetting('Voices Volume') / 100;
+
+		//trace(UserSettings.callSetting('Instrumental Volume'), 'DEBUG');
+
 		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
 		playerStrumline.y = opponentStrumline.y = yPos;
 
-		//for(notes in unspawnNotes)
-			//for(noteData in chart.notes)
-				//notes.time = noteData.time - UserSettings.callSetting('')
+		/*for(notes in unspawnNotes)
+			for(noteData in chart.notes)
+				notes.strumTime = noteData.time - UserSettings.callSetting('Offset');*/
 	}
 
 	private function updateNotePosition(note:Note, elapsed:Float):Void 
@@ -437,6 +442,7 @@ class PlayState extends MusicState
 		final strum = (lane != 'P1') ? opponentStrumline : playerStrumline;
 		final xVal = getNoteX(direction, lane);
 		final yVal = strum.members[NoteUtils.directionToNumber(direction)].y;
+		
 		// - Play the animation.	
 		strum.playConfirm(direction);
 		gl.callAnim(xVal - 47, yVal - 47, direction, skin);
@@ -484,9 +490,6 @@ class PlayState extends MusicState
 				}
 			}
 		}
-		else
-			if(!note.isSustainNote)
-				FlxG.sound.play('assets/sounds/hitsoundtest.ogg', 0.8);
 
 		playStrumAnim(note.lane, note.noteDir);
 
@@ -724,7 +727,7 @@ class PlayState extends MusicState
 			{
 				switch(st)
 				{
-					case 'play': yeah.play(); yeah.volume = 1;
+					case 'play': yeah.play();
 					case 'pause': yeah.pause();
 					case 'stop': yeah.stop();
 					case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);

@@ -14,18 +14,15 @@ class NoteSplash extends FNFSprite
     {
         super();
 
-        // Set the sprite frames
         frames = FlxAtlasFrames.fromSparrow('assets/data/notes/$skin/splash.png', 
             'assets/data/notes/$skin/splash.xml');
 
-        // Set initial alpha
-        alpha = 0;
+        alpha = 0.0001;
 
-        // Setup the animation
         animation.addByPrefix('appear', 'splash1', 32, false);
-
-        // Resize the splash
-        scale.set(0.9, 0.9);
+        animation.finishCallback = function(name:String){
+            alpha = 0.0001;
+        };
         blend = BlendMode.ADD;
         antialiasing = true;
         updateHitbox();
@@ -34,10 +31,9 @@ class NoteSplash extends FNFSprite
     public function spawn(noteDir:String, arrowRGB:Array<Array<FlxColor>>):Void
     {
         alpha = 1;
-        angle = FlxG.random.float(-360, 360); // Random angle
+        angle = FlxG.random.float(-360, 360);
         updateHitbox();
 
-        // Apply shader using NoteUtils
         setupShader(noteDir, arrowRGB);
         animation.play('appear', true);
     }

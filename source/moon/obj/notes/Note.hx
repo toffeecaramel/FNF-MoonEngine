@@ -150,6 +150,12 @@ class Note extends FNFSprite
         }
     }
 
+    public function matchesData(noteData:Dynamic):Bool 
+        return this.noteDir == noteData.direction &&
+               this.lane == noteData.lane &&
+               this.strumTime == noteData.time &&
+               this.type == noteData.type;
+
     override function update(elapsed:Float):Void 
     {
         super.update(elapsed);

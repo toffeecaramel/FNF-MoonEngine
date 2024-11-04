@@ -13,3 +13,9 @@ import backend.dependency.FNFSound;
 import backend.dependency.MusicState;
 import backend.dependency.MusicState.MusicSubState;
 #end
+
+#if DISCORD_RPC
+import backend.user.DiscordRPC;
+#end
+
+import moon.obj.font.*;

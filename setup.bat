@@ -27,7 +27,6 @@ haxelib install openfl
 haxelib install flixel
 haxelib install flixel-addons
 haxelib install flixel-ui
-haxelib install haxeui-flixel
 haxelib install flixel-tools
 haxelib install flixel-text-input
 haxelib install hscript

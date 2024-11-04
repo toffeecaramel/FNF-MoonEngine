@@ -11,8 +11,28 @@
 			"gamePrefix":"pico"
 		},
 		{
-			"name":"Luna",
-			"partner":"toffee",
+			"name":"Luna Myria",
+			"partner": "toffee",
+			"gamePrefix":"luna"
+		},
+		{
+			"name":"Luna Myria",
+			"partner": "toffee",
+			"gamePrefix":"luna"
+		},
+		{
+			"name":"Luna Myria",
+			"partner": "toffee",
+			"gamePrefix":"luna"
+		},
+		{
+			"name":"Luna Myria",
+			"partner": "toffee",
+			"gamePrefix":"luna"
+		},
+		{
+			"name":"Luna Myria",
+			"partner": "toffee",
 			"gamePrefix":"luna"
 		}
 	]

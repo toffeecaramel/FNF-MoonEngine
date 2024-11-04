@@ -15,9 +15,6 @@ import flixel.math.FlxMath;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
-import sys.thread.Mutex;
-import sys.thread.Thread;
-
 import moon.obj.notes.*;
 import moon.obj.*;
 import moon.obj.game.*;
@@ -27,7 +24,6 @@ import moon.utilities.CoolUtil;
 class LoadingSubState extends MusicSubState
 {
     final nSkin:String = UserSettings.callSetting('Noteskin');
-    var lilmutex:Mutex;
 	
 	var loader:FlxGroup;
     var chart:Chart;
@@ -43,7 +39,6 @@ class LoadingSubState extends MusicSubState
 	public function new()
 	{
 		super();
-        lilmutex = new Mutex();
 		
 		loader = new FlxGroup();
 		add(loader);
@@ -89,10 +84,8 @@ class LoadingSubState extends MusicSubState
 
     private function startPreload(t:FlxTimer):Void
     {
-        var preloadThread = Thread.create(function()
+        var preloadThread = new lime.app.Future(() ->
         {
-            lilmutex.acquire();
-
             chart = new Chart('assets/data/charts/${PlayState.song}/chart-${PlayState.difficulty}.json');
 
             for (i in 0...2)
@@ -164,8 +157,7 @@ class LoadingSubState extends MusicSubState
             loadText.text = 'Done!';
 
             loadComplete = true;
-            lilmutex.release();
-        });
+        }, true);
     }
 
 	override public function update(elapsed:Float)
@@ -174,7 +166,7 @@ class LoadingSubState extends MusicSubState
         if(bg.alpha < 1)
             bg.alpha = loadingBar.alpha += 0.05;
 
-        if(loadComplete && controls.ACCEPT) FlxG.switchState(new PlayState());
+        if(loadComplete && FlxG.keys.justPressed.ENTER) FlxG.switchState(new PlayState());
         if(loadComplete) bfnf.alpha -= 0.03;
 
         loadText.x = bfnf.x-80;

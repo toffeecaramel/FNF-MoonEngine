@@ -1,5 +1,6 @@
 package;
 
+import moon.states.PreloadState;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -30,6 +31,8 @@ import sys.io.Process;
  * game loads on start, and more!
  */
 
+using StringTools;
+
 class Main extends Sprite
 {
 	// • Class Action Variables • //
@@ -43,7 +46,7 @@ class Main extends Sprite
 	public static final framerate:Int = 60;
 	
 	// - The state in which the game loads at.
-	public static var initState:Class<FlxState> = moon.states.PreloadState;
+	public static var initState:Class<FlxState> = PreloadState;
 
 	// - The game's zoom, since it's -1, it means the game automatically calculates to fit the window dimensions
 	final zoom:Float = -1;
@@ -73,22 +76,23 @@ class Main extends Sprite
 
 		// - Define log level prefixes and corresponding ANSI color codes
 		final logLevels = [
-			"DEBUG" => { prefix: "[DEBUG]", color: "\x1b[32m" },  // - Green
-			"WARNING" => { prefix: "[WARNING]", color: "\x1b[33m" },  // - Yellow
-			"ERROR" => { prefix: "[ERROR]", color: "\x1b[31m" },  // - Red
-			"INFO" => { prefix: "[INFO]", color: "\x1b[36m" }  // - Cyan/Blue/whatever blue tone is that
-			];
+			"DEBUG" => { prefix: "[>]", color: "\x1b[32m" },  // - Green
+			"WARNING" => { prefix: "[!]", color: "\x1b[33m" },  // - Yellow
+			"ERROR" => { prefix: "[x]", color: "\x1b[31m" },  // - Red
+			"INFO" => { prefix: "[?]", color: "\x1b[36m" }  // - Cyan/Blue/whatever blue tone is that
+		];
 	
-			// - Override the haxe log trace
-			haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) 
-			{
-				final logLevel = (infos != null 
-				&& infos.customParams != null 
-				&& infos.customParams.length > 0) ? infos.customParams[0] : "INFO";	      
-				final levelData = logLevels.exists(logLevel) ? logLevels[logLevel] : logLevels["INFO"];
-				final message = '${levelData.prefix} ${Std.string(v)}';  
-				Sys.println('${levelData.color}${message}\x1b[0m');
-			}
+		// - Override the haxe log trace
+		haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) 
+		{
+			final logLevel = (infos != null 
+			&& infos.customParams != null 
+			&& infos.customParams.length > 0) ? infos.customParams[0] : "INFO";	      
+			final levelData = logLevels.exists(logLevel) ? logLevels[logLevel] : logLevels["INFO"];
+			final className = (infos.className != null) ? '${infos.className}: ' : '';
+			final infoBefore = '> ${levelData.prefix} - ${className}';
+			Sys.println('${levelData.color}${infoBefore.rpad(' ', 10)}${v}\x1b[0m');
+		}
 
 		FlxG.fixedTimestep = false;
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);

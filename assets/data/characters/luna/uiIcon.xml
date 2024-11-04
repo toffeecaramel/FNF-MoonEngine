@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="uiIcon.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="idle0001" x="120" y="114" width="95" height="104" frameX="-5" frameY="-4" frameWidth="105" frameHeight="109"/>
+	
+	<SubTexture name="confirm0000" x="118" y="8" width="102" height="98" frameX="-3" frameY="-11" frameWidth="105" frameHeight="109"/>
+	<SubTexture name="confirm0001" x="118" y="8" width="102" height="98" frameX="-3" frameY="-11" frameWidth="105" frameHeight="109"/>
+	<SubTexture name="confirm0002" x="8" y="122" width="104" height="103" frameX="0" frameY="0" frameWidth="105" frameHeight="109"/>
+	<SubTexture name="confirm0003" x="8" y="122" width="104" height="103" frameX="0" frameY="0" frameWidth="105" frameHeight="109"/>
+	<SubTexture name="confirm0004" x="8" y="8" width="102" height="106" frameX="-1" frameY="0" frameWidth="105" frameHeight="109"/>
+	<SubTexture name="confirm0005" x="8" y="8" width="102" height="106" frameX="-1" frameY="0" frameWidth="105" frameHeight="109"/>
+</TextureAtlas>

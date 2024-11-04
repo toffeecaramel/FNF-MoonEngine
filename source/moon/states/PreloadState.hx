@@ -87,11 +87,11 @@ class PreloadState extends FlxTransitionableState
 
     private function loadAssets(path:String):Void
     {
-        var files = FileSystem.readDirectory(path);
+        final files = FileSystem.readDirectory(path);
         for (file in files)
         {
-            var filePath = '$path/$file';
-            
+            final filePath = '$path/$file';
+                        
             if(FileSystem.isDirectory(filePath))
                 loadAssets(filePath); //incase theres subfolders!!
             else
@@ -111,7 +111,7 @@ class PreloadState extends FlxTransitionableState
     {
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.SPACE)
-            FlxG.switchState(new moon.menus.MainMenu());
+        if (FlxG.keys.justPressed.ANY)
+            FlxG.switchState(new moon.menus.Title());
     }
 }

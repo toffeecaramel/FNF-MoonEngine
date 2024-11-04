@@ -101,9 +101,7 @@ class FlxSoundTray extends Sprite
     {
         // Animate stupid sound tray thing
         if (_timer > 0)
-        {
             _timer -= MS / 1000;
-        }
         else if (y > -height)
         {
             y -= (MS / 1000) * FlxG.height * 2 / 8;
@@ -136,20 +134,15 @@ class FlxSoundTray extends Sprite
         active = true;
         var globalVolume:Int = Math.round(FlxG.sound.volume * 10);
 
-
         if (FlxG.sound.muted)
             globalVolume = 0;
         
         for (i in 0..._bars.length)
         {
             if (i < globalVolume)
-            {
                 _bars[i].alpha = 1;
-            }
             else
-            {
                 _bars[i].alpha = 0.5;
-            }
         }
     }
 

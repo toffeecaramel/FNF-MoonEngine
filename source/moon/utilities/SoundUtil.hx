@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
-enum MusicState {
+enum AudioState {
     PLAY;
     PAUSE;
     STOP;
@@ -12,15 +12,7 @@ enum MusicState {
 
 class AudioUtils
 {
-    private var audList:Array<FlxSound>;
-
-    public function new(audList:Array<FlxSound>)
+    public function new()
     {
-        this.audList = audList;
-
-        for (sounds in audList)
-        {
-
-        }
     }
 }

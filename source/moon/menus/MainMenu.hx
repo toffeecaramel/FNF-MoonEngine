@@ -38,10 +38,7 @@ class MainMenu extends MusicState
     override public function create():Void
     {
         super.create();
-		controls.setKeyboardScheme(None, false);
-
-        FlxG.sound.playMusic('assets/music/interfaces/givealilbitback2.ogg', 0.8);
-		Conductor.changeBPM(121);
+        DiscordRPC.changePresence("At the Main Menu", "Choosin' an Option.");
 
 		var warnTxt = new FlxText();
 		warnTxt.size = 32;
@@ -51,14 +48,15 @@ class MainMenu extends MusicState
 		warnTxt.screenCenter();
 		add(warnTxt);
 
-		trace('Setting: ${UserSettings.callSetting('Master Volume')}');
+		//trace('Setting: ${UserSettings.callSetting('Master Volume')}');
+		trace('bind to string: ${Controls.bindToString(LEFT)} & string to bind: ${Controls.stringToBind('UI_LEFT')}', 'DEBUG');
     }
 
     override public function update(elapsed:Float):Void
     {
-        final up = controls.UI_UP_P;
-		final down = controls.UI_DOWN_P;
-		final accepted = controls.ACCEPT;
+        final up = FlxG.keys.justPressed.UP;
+		final down = FlxG.keys.justPressed.DOWN;
+		final accepted = FlxG.keys.justPressed.ENTER;
 
         if(FlxG.sound.music != null)
             Conductor.songPosition = FlxG.sound.music.time;
@@ -72,8 +70,6 @@ class MainMenu extends MusicState
             openSubState(new Story());
         else if (FlxG.keys.justPressed.C)
             FlxG.switchState(new CharSelect());
-		else if (FlxG.keys.justPressed.K)
-			openSubState(new moon.menus.submenus.KeybindsSub());
     }
 
     function changeSelection(change:Int = 0):Void

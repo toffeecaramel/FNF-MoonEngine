@@ -103,5 +103,7 @@
 	<prebuild haxe="Prebuild.hx"/> -->
 	<postbuild haxe="Postbuild.hx"/> -->
 
+	<define name="DISCORD_RPC" if="cpp" />
+
 	<!--Place custom nodes like icons here-->
 </project>

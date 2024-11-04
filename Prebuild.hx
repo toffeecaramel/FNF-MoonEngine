@@ -23,8 +23,8 @@ class Prebuild
         "Imagine a FNF VS You... I bet it'd be awesome.",
         "Imagine how happy BF/GF must be, knowing that soon they'll see you.",
         "Don't forget to drink some water!",
-        "You're almost there, just a few more seconds...!",
-        "How's your code going? Let's see...",
+        "You're almost there!",
+        "How's your code going? We'll see...",
         "Why do we brainstorm with ideas only when we're not working?",
         "Ah would ya look at that. If it isn't my favorite coder.",
         "Your smile is just as bright as the sun, I love seeing it.",
@@ -39,9 +39,8 @@ class Prebuild
 
     public static function traceMessage():Void
     {
-        final message = motivationMsgs[Std.random(motivationMsgs.length - 1)];
-        Sys.println('\n[ Building game, this may take a while... ]' + 
-        '\n\n[ Seems like you got a message... ]\n[ $message ]');
+        final message = motivationMsgs[Std.random(motivationMsgs.length)];
+        Sys.println('\n[ $message ]' + "\n\n[ Anyways, the game is buildin' up just now. ]\n[ Please wait... :3 ]\n");
     }
 
     static function saveBuildTime():Void

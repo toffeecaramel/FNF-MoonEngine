@@ -14,7 +14,7 @@ import flixel.util.FlxTimer;
  * Text scroll Class, used for most of the menus! (They look pretty)
  * 
  * Originally made by Funkin' Crew, Modified by Toffee Caramel.
- * All rights reserved to Funkin' Crew, since most of this code isn't mine!
+ * All rights reserved to Funkin' Crew, most of this code isn't mine!
  */
 class TextScroll extends FlxSpriteGroup
 {
@@ -58,7 +58,7 @@ class TextScroll extends FlxSpriteGroup
      * @param x X Position in which the texts will appear.
      * @param y Y Position in which the texts will appear.
      * @param text The text that will show up.
-     * @param widthShit The width for each. (Recommended to use `FlxG.width;`)
+     * @param widthShit The width for each text.
      * @param bold Set whether the texts should be bold or not.
      * @param size Set the size of the texts.
      */

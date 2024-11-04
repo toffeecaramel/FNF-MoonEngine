@@ -17,10 +17,10 @@ class InteractableObj extends FlxSprite
     public var onClick:Void->Void;
     public var canInteract:Bool = true;
 
-    public function new(x:Float, y:Float, graphic:String)
+    public function new(x:Float, y:Float, graphic:flixel.graphics.FlxGraphic)
     {
         super(x, y);
-        loadGraphic('$graphic.png');
+        loadGraphic(graphic);
         updateHitbox();
     }
 

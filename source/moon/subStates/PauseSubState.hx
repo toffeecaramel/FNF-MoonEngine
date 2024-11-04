@@ -101,9 +101,9 @@ class PauseSubState extends MusicSubState
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
-        final up = controls.UI_UP_P;
-		final down = controls.UI_DOWN_P;
-		final accepted = controls.ACCEPT;
+        final up = FlxG.keys.justPressed.UP;
+		final down = FlxG.keys.justPressed.DOWN;
+		final accepted = FlxG.keys.justPressed.ENTER;
 
         if (up) changeSelection(-1);
         if (down) changeSelection(1);

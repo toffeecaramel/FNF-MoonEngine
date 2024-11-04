@@ -31,10 +31,10 @@ class Paths
         return getPath(file, type, library);
     }
 
-    static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
+    static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
     {
         var bitmap:BitmapData = null;
-        var file:String = getPath('images/$key.png', IMAGE, library);
+        var file:String = getPath('$from/$key.png', IMAGE, library);
 
         if (currentTrackedAssets.exists(file)) {
             localTrackedAssets.push(file);
@@ -67,10 +67,10 @@ class Paths
     inline static public function data(key:String)
         return 'assets/data/$key';
 
-    inline static public function getSparrowAtlas(key:String, ?library:String)
+    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String)
     {
-        var graphic:FlxGraphic = returnGraphic(key, library);
-        return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('images/$key.xml', library))));
+        var graphic:FlxGraphic = returnGraphic(key, from, library);
+        return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('$from/$key.xml', library))));
     }
 
     static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true) 
@@ -101,9 +101,9 @@ class Paths
         return newGraphic;
     }
 
-    public static function returnGraphic(key:String, ?library:String, ?textureCompression:Bool = false)
+    public static function returnGraphic(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
-        var path = getPath('images/$key.png', IMAGE, library);
+        var path = getPath('$from/$key.png', IMAGE, library);
         if (FileSystem.exists(path))
         {
             if (!currentTrackedAssets.exists(key))
@@ -131,7 +131,7 @@ class Paths
             localTrackedAssets.push(key);
             return currentTrackedAssets.get(key);
         }
-        trace('oh no ' + key + ' is returning null NOOOO');
+        trace('$key didn\'t load. did you type the path correctly?', "ERROR");
         return null;
     }
 

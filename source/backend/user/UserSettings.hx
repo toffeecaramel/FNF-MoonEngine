@@ -1,5 +1,6 @@
 package backend.user;
 
+import flixel.FlxG;
 import flixel.util.FlxSave;
 
 using StringTools;
@@ -77,7 +78,10 @@ class UserSettings
          * - ( INTERFACE SETTINGS ) - 
          **/
 
-        'Healthbar Visibilty' => setting(SELECTOR, "Toggles whether the health bar should be visible or not.", 
+        'Noteskin' => setting(SELECTOR, "Toggles your noteskins.", 
+            ["DEFAULT", "MOON"], "DEFAULT"),
+        
+        'Healthbar Visibility' => setting(SELECTOR, "Toggles whether the health bar should be visible or not.", 
             ["On", "Below 100%", "Off"], "On"),
 
         'Show Accuracy' => setting(SELECTOR, "Toggles accuracy stat on the in-game HUD.", ["Off", "Approximate", "Full"], "Full"),
@@ -92,29 +96,31 @@ class UserSettings
 
         'Auto-Updates' => setting(SELECTOR, "When an update is released, select whether to automatically download it, redirect you to a browser or do nothing.", ["Off", "In-Game", "Redirect"], "In-Game"),
         'Modding Tools' => setting(CHECKMARK, "Enable tools for modding (such as the chart and character editors).", false),
+
+        // this one is just for storing the current character, not an option for the options menu!
+        'Game Character' => setting(SELECTOR, "why are you reading this >:(", ['bf'], 'bf')
     ];
 
-    private static var save:FlxSave = new FlxSave();
+    public static var save:FlxSave = new FlxSave();
 
+    /**
+     * Function for initializing all the options
+     **/
     public static function init():Void
     {
         save.bind("ME-Settings");
+        updateGeneralSettings();
         loadSettings();
-        loadControls();
+        Controls.loadControls();
     }
 
-    public static function loadControls():Void
+    /**
+     * Function used for updating all the settings that are global
+     * For example, volumes and such!
+     **/
+    public static function updateGeneralSettings():Void
     {
-        if ((save.data.gameControls != null) && (Lambda.count(save.data.gameControls) == Lambda.count(Init.gameControls)))
-            Init.gameControls = save.data.gameControls;
-
-        saveControls();
-    }
-
-    public static function saveControls():Void
-    {
-        save.data.gameControls = Init.gameControls;
-        save.flush();
+        FlxG.sound.volume = callSetting('Master Volume') / 100;
     }
 
     public static function getConfig(name:String):Dynamic

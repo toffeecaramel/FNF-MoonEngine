@@ -12,84 +12,86 @@ import flixel.util.FlxColor;
 import moon.obj.notes.*;
 import moon.obj.editors.*;
 import moon.utilities.NoteUtils;
+import flixel.ui.FlxButton;
+
+using StringTools;
 
 /**
-    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    *  This chart editor was made with <3 by Toffee & LunaMyria *
-    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    As much as it is a complex design and is a HARD work,
-    we had so much fun working & designing this just so the
-    users can have a good time into the editor.
+ * This chart editor was made with <3 by Toffee & LunaMyria
+ **/
 
-    We truly hope you all enjoy using it, have fun charting peep!
-**/
+/**
+ * Editor Actions!
+ * Ok so basically, whenever you do a thing that can be undone (with CTRL + Z)
+ * it stores in an array with "editor actions" so that way, you can undo any changes!
+ **/
+enum EditorAction {
+    AddNote(noteData:Dynamic);
+    DeleteNote(noteData:Dynamic);
 
-enum GridMode {
+    //AddEvent(data:Dynamic);
+    //DeleteEvent(data:Dynamic);
+}
+
+enum GridType {
     NOTES;
     EVENTS;
 }
 
+// - And here we go with the editor itself :)
 class ChartEditor extends MusicState
 {
-    // - Set the size of the grid here
     final gridSize:Int = 50;
-
-    // - Set the ammount of keys (Default: 8)
-	final kAmmount:Int = 8;
-
-    // - Set the instrumental and vocals
-    private var inst:FlxSound;
-    private var voices:FlxSound;
-
-    // - Set the chart
-    private var _chart:Chart;
-
-    // - Set the group for the grid lanes
-    private var _renderedLanes:FlxTypedGroup<FlxSprite>;
-
-    // - Set the group for the notes
-    private var _notes:FlxTypedGroup<Note>;
-
-    // - Set the sprite for the 'strumline'
-	var strumline:FlxSprite;
-
-    // - Set all the cameras
-	var strumLineCam:FlxObject;
-    public var camGlobal:FlxCamera;
-    public var camHUD:FlxCamera;
-
-    // - Lil square that follows the mouse
-	private var dummyArrow:FlxSprite;
-
-    // - Set the song & difficulty
-    public var song:String;
-	public var difficulty:String;
-
-    /**
-     * Calls the `ChartEditor`, only use when switching states
-     * 
-     * @param song          The song in which the `Chart` will load
-     * @param difficulty    The difficulty in which the `Chart` will load.
-     */
-    public function new(song:String, difficulty:String):Void
-    {
-        super();
-        this.song = song;
-        this.difficulty = difficulty;
-
-		_chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
-		Conductor.changeBPM(_chart.bpm);
-    }
+    final kAmmount:Int = 8;
+    var curSection:Int = 0;
+    public static var lastSection:Int = 0;
 
     public var minX:Float = 0;
     public var maxX:Float = 0;
     final minY:Float = 0;
     public var maxY:Float = 0;
 
-    override public function create():Void
-    {
-        super.create();
+    private var inst:FlxSound;
+    private var voices:FlxSound;
 
+    private var _chart:Chart;
+
+    private var _renderedLanes:FlxTypedGroup<FlxSprite>;
+    private var _notes:FlxTypedGroup<Note>;
+
+    var strumline:FlxSprite;
+    private var dummyArrow:FlxSprite;
+    private var moonTabs:MoonTabs;
+    private var selectedNote:Note;
+    private var startHandle:FlxSprite;
+    private var endHandle:FlxSprite;
+    private var durationIndicator:FlxSprite;
+
+    var strumLineCam:FlxObject;
+
+    public var camGlobal:FlxCamera;
+    public var camHUD:FlxCamera;
+
+    public var song:String;
+    public var difficulty:String;
+
+    private var actions:Array<EditorAction> = [];
+    private var gridType:GridType = NOTES;
+
+    public function new(song:String, difficulty:String):Void
+    {
+        super();
+        this.song = song;
+        this.difficulty = difficulty;
+
+        // - Load up the chart
+        _chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
+        Conductor.changeBPM(_chart.bpm);
+    }
+
+    override public function create():Void {
+        super.create();
+        curSection = lastSection;
         camGlobal = FlxG.camera;
         camHUD = new FlxCamera();
         camHUD.bgColor = 0x00000000;
@@ -99,17 +101,16 @@ class ChartEditor extends MusicState
         maxX = minX + gridSize * kAmmount;
 
         inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
-		FlxG.sound.list.add(inst);
-		
-		final path = (_chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
-		voices = new FlxSound().loadEmbedded(path, false, true);
-		FlxG.sound.list.add(voices);
+        FlxG.sound.list.add(inst);
+        
+        final path = (_chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
+        voices = new FlxSound().loadEmbedded(path, false, true);
+        FlxG.sound.list.add(voices);
 
         inst.time = 0;
-
         maxY = getYfromStrum(inst.length);
 
-		makeBG();
+        makeBG();
         
         dummyArrow = new FlxSprite().makeGraphic(gridSize, gridSize, FlxColor.WHITE);
         add(dummyArrow);
@@ -125,43 +126,52 @@ class ChartEditor extends MusicState
         for(nData in _chart.notes)
             addNote(getNoteX(nData.direction, nData.lane), Math.floor(getYfromStrum(nData.time)) + 1, nData);
 
-		strumLineCam = new FlxObject(0, 0);
-		strumLineCam.screenCenter(X);
+        strumLineCam = new FlxObject(0, 0);
+        strumLineCam.screenCenter(X);
 
-		strumline = new FlxSprite(650, 0).loadGraphic(Paths.image('editors/charter/strumline'));
-		add(strumline);
-		//strumline.setGraphicSize(gridSize, gridSize); THIS LOOKED SO FUNNY LMFAO
-		
-		var bar = new FlxSprite().makeGraphic(FlxG.width, 70, FlxColor.fromRGB(80, 80, 80));
-		bar.scrollFactor.set();
-		bar.alpha = 0.3;
-		add(bar);
-
-        // - SET UP ALL THE INTERFACE OBJECTS - //
+        strumline = new FlxSprite(650, 0).loadGraphic(Paths.image('editors/charter/strumline'));
+        add(strumline);
+        
+        var bar = new FlxSprite().makeGraphic(FlxG.width, 70, FlxColor.fromRGB(80, 80, 80));
+        bar.scrollFactor.set();
+        bar.alpha = 0.3;
+        add(bar);
 
         final okay = ['arrowFunk', 'eventsGrid'];
         for (i in 0...okay.length)
         {
-            var spr = new WhiteButton(FlxG.width / 1 - 130, 100 + (50 * i), Paths.image('editors/charter/${okay[i]}'), function(){trace("meh");});
+            var spr = new WhiteButton(FlxG.width / 1 - 130, 100 + (50 * i), Paths.image('editors/charter/${okay[i]}'), () -> toggleGridType(okay[i] == 'arrowFunk' ? NOTES : EVENTS));
             spr.camera = camHUD;
             add(spr);
         }
-		
-		FlxG.camera.follow(strumLineCam);
+        
+        FlxG.camera.follow(strumLineCam);
         moon.obj.interfaces.Cursor.show();
+
+        var tabs = [
+            {name: "Characters", tag: "characters"},
+            {name: "Edit Properties", tag: "editproperties",}
+        ];
+        
+        moonTabs = new MoonTabs(100, 50, tabs);
+        moonTabs.camera = camHUD;
+        add(moonTabs);
+
+        var test = new TooltipButton(250, 250, Paths.image('editors/bIcons/copy'), 'This is a description text whatever :V', function(){trace('click!', "DEBUG");});
+        moonTabs.addToTab("editproperties", test);
+        test.camera = camHUD;
     }
 
-	private function makeBG():Void
-	{
-		var coolGradient = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
-		coolGradient.scrollFactor.set();
-		add(coolGradient);
-	}
+    private function makeBG():Void
+    {
+        var coolGradient = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
+        coolGradient.scrollFactor.set();
+        add(coolGradient);
+    }
 
     function generateGrid():Void
     {
         _renderedLanes.clear();
-
         final stepDuration:Float = Conductor.stepCrochet;
         final totalSteps:Int = Math.ceil(inst.length / stepDuration);
         
@@ -169,9 +179,9 @@ class ChartEditor extends MusicState
         {
             final yPosition:Float = i * gridSize;
 
-            _renderedLanes.recycle(FlxSprite, function():FlxSprite{
-                var stepLine:FlxSprite = new FlxSprite().makeGraphic(Std.int(gridSize * kAmmount), 4, 
-                FlxColor.WHITE);
+            _renderedLanes.recycle(FlxSprite, function():FlxSprite
+            {
+                var stepLine:FlxSprite = new FlxSprite().makeGraphic(Std.int(gridSize * kAmmount), 4, FlxColor.WHITE);
                 stepLine.y = yPosition;
                 stepLine.x = (FlxG.width - stepLine.width) - gridSize * 4 - 30;
                 stepLine.alpha = 0.7;
@@ -180,23 +190,30 @@ class ChartEditor extends MusicState
         }
     }
 
+    private function toggleGridType(type:GridType):Void
+    {
+        gridType = type;
+        switch(gridType) 
+        {
+            case NOTES:
+            case EVENTS:
+        }
+        trace('congrats, you are at $gridType now.');
+    }
+
     override public function update(elapsed:Float):Void
     {
         super.update(elapsed);
 
-		if (FlxG.keys.justPressed.SPACE)
-        {
-            if (inst.playing)
-                setAudioState('pause');
-            else
-                setAudioState('play');
-        }
+        if (curBeat % 4 == 0 && curStep >= 16 * (curSection + 1))
+            changeSection(curSection + 1, false);
 
         checkMouseInteractions(elapsed);
+        checkKeyboardInteractions(elapsed);
 
-		Conductor.songPosition = inst.time;
-		strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 28);
-		strumLineCam.y = strumline.y + (FlxG.height / 2.6) - 25;
+        Conductor.songPosition = inst.time;
+        strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 28);
+        strumLineCam.y = strumline.y + (FlxG.height / 2.6) - 25;
     }
 
     private function checkMouseInteractions(elapsed:Float):Void
@@ -212,21 +229,53 @@ class ChartEditor extends MusicState
     
             if (FlxG.mouse.x >= minX && FlxG.mouse.x < maxX)
             {
-                if (FlxG.mouse.justPressed)
-                    addNote(curMouseX, curMouseY);
+                if (!FlxG.mouse.overlaps(_notes))
+                {
+                    if (FlxG.mouse.justPressed)
+                        addNote(curMouseX, curMouseY, null, true);
+                }
+                else
+                {
+                    _notes.forEachAlive(function(note:Note)
+                    {
+                        if (FlxG.mouse.overlaps(note))
+                        {
+                            if (FlxG.mouse.justPressed) selectNote(note);
+                            else if (FlxG.mouse.pressedRight) deleteNoteData(note);
+                        }
+                    });
+                }
             }
         }
     }
-        
-    private function addNote(x:Float, y:Float, ?noteData):Void
+
+    private function checkKeyboardInteractions(elapsed:Float):Void
+    {
+        if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.Z) {
+            undoLastAction(); // Undo last action if CTRL + Z is pressed
+        }
+
+        if (FlxG.keys.justPressed.SPACE)
+            (inst.playing) ? setAudioState('pause') : setAudioState('play');
+
+        var shiftThing:Int = 1;
+        if (FlxG.keys.pressed.SHIFT)
+            shiftThing = 4;
+
+        if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D)
+            changeSection(curSection + shiftThing);
+        if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A)
+            changeSection(curSection - shiftThing);
+    }
+
+    private function addNote(x:Float, y:Float, ?noteData, addedByMouse:Bool = false):Void
     {
         final colIndex = Math.floor((x - minX) / gridSize);
-        final lane = (colIndex >= 4) ? "P1" : "Opponent"; // Player notes on the right (columns 4-7)
-
+        final lane = (colIndex >= 4) ? "P1" : "Opponent";
         final direction = NoteUtils.numberToDirection(colIndex % 4);
-        if (noteData == null)
+
+        if (noteData == null) 
         {
-            // Todo: make them get the actual values...
             noteData = {
                 type: "DEFAULT",
                 time: getStrumFromY(y),
@@ -234,31 +283,51 @@ class ChartEditor extends MusicState
                 direction: direction,
                 duration: 0.0,
             };
-
             _chart.notes.push(noteData);
         }
-
         final xVal = getNoteX(direction, lane);
-        var note:Note = Note.returnDefaultNote(UserSettings.callSetting('Noteskin'), noteData.type, 
+
+        _notes.recycle(Note, function():Note
+        {
+            var note:Note = Note.returnDefaultNote(UserSettings.callSetting('Noteskin'), noteData.type, 
             noteData.time, noteData.direction, noteData.lane, false);
 
-        note.setGraphicSize(gridSize-2, gridSize-2);
-        note.antialiasing = true;
-        note.updateHitbox();
-        note.x = xVal;
-        note.y = y;
-        _notes.add(note);
+            note.setGraphicSize(gridSize - 2, gridSize - 2);
+            note.antialiasing = true;
+            note.updateHitbox();
+            note.x = xVal;
+            note.y = y;
+            return note;
+
+            if(addedByMouse) selectNote(note);
+
+        });
+        if(addedByMouse)
+        {
+            addAction(EditorAction.AddNote(noteData));
+            playSFX('addNote');
+        }
+    }
+
+    function changeSection(sec:Int = 0, ?updateMusic:Bool = true):Void
+    {
+        curSection = sec;
+
+        if (updateMusic) {
+            inst.pause();
+            voices.pause();
+            inst.time = sectionStartTime();
+            voices.time = inst.time;
+            updateCurStep();
+        }
     }
 
     private function setAudioState(st:String = 'play')
     {
         final audios = [inst, voices];
-        for (yeah in audios)
-        {
-            if(yeah != null)
-            {
-                switch(st)
-                {
+        for (yeah in audios) {
+            if(yeah != null) {
+                switch(st) {
                     case 'play': yeah.play(); yeah.volume = 1;
                     case 'pause': yeah.pause();
                     case 'stop': yeah.stop();
@@ -268,16 +337,108 @@ class ChartEditor extends MusicState
         }
     }
 
-    private function getNoteX(direction:String, lane:String):Float 
+    private function getNoteX(direction:String, lane:String):Float
     {
         final baseX = (lane == 'P1') ? (minX + 4 * gridSize) : minX;
         final directionIndex = NoteUtils.directionToNumber(direction);
-
         return baseX + directionIndex * gridSize;
+    }
+
+    private function undoLastAction():Void
+    {
+        if (actions.length == 0) return;
+        var lastAction = actions.pop();
+        
+        switch(lastAction)
+        {
+            case AddNote(noteData): removeActualNote(noteData);
+            case DeleteNote(noteData): restoreNote(noteData);
+        }
+
+        playSFX('undo');
+    }
+
+    private function selectNote(note:Note):Void
+    {
+        selectedNote = note;
+        playSFX('noteSelect');
+    }
+
+    private function deselectNote():Void
+    {
+        selectedNote = null;
+        startHandle.visible = false;
+        endHandle.visible = false;
+        durationIndicator.visible = false;
+    }
+
+    private function deleteNoteData(note:Note):Void
+    {
+        addAction(EditorAction.DeleteNote({
+            type: note.type,
+            time: note.strumTime,
+            lane: note.lane,
+            direction: note.noteDir,
+            duration: note.sustainLength
+        }));
+        removeActualNote(null, note);
+
+        playSFX('deleteNote');
+    }
+
+    private function removeActualNote(?noteData:Dynamic, ?note:Note):Void
+    {
+        if (noteData != null)
+        {
+            _chart.notes = _chart.notes.filter(n -> n != noteData);
+            
+            _notes.forEachAlive(function(noteD:Note)
+            {
+                if (noteD != null && noteD.matchesData(noteData))
+                {
+                    noteD.kill();
+                    _notes.remove(noteD);
+                    noteD.destroy();
+                }
+            });
+        }
+        else if (note != null)
+        {
+            _chart.notes = _chart.notes.filter(n -> !note.matchesData(n));
+            note.kill();
+            _notes.remove(note);
+            note.destroy();
+        }
+    }
+
+    private function restoreNote(noteData:Dynamic):Void {
+        _chart.notes.push(noteData); // Add back to chart data
+        addNote(getNoteX(noteData.direction, noteData.lane), getYfromStrum(noteData.time), noteData, false); // Render note
+    }
+    
+    private function addAction(action:EditorAction):Void {
+        actions.push(action);
+    }
+
+    private function playSFX(name:String):Void
+    {
+        if(!inst.playing)
+            FlxG.sound.play(Paths.sound('editors/chartEditor/$name'), UserSettings.callSetting('Editor Sounds') / 100);
     }
 
     private function getYfromStrum(strumTime:Float):Float
         return FlxMath.remapToRange(strumTime, 0, inst.length, 0, (inst.length / Conductor.stepCrochet) * gridSize);
+
     private function getStrumFromY(y:Float):Float
         return FlxMath.remapToRange(y, 0, (inst.length / Conductor.stepCrochet) * gridSize, 0, inst.length);
+
+    function sectionStartTime():Float
+    {
+        var daBPM:Float = _chart.bpm;
+        var daPos:Float = 0;
+        for (i in 0...curSection)
+            daPos += 4 * (1000 * 60 / daBPM);
+        
+        return daPos;
+    }
 }

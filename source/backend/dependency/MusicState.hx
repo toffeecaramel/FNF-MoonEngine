@@ -18,8 +18,6 @@ class MusicState extends FlxUIState
 	public var curStep:Int = 0;
 	public var curBeat:Int = 0;
 
-	private var controls(get, never):Controls;
-
 	// class create event
 	override function create()
 	{
@@ -85,9 +83,6 @@ class MusicState extends FlxUIState
 		curBeat = Math.floor(curStep / 4);
 	}
 
-	inline function get_controls():Controls
-		return PlayerSettings.player1.controls;
-
 	public function updateCurStep():Void
 	{
 	    var lastChange:BPMChangeEvent = {
@@ -127,8 +122,6 @@ class MusicState extends FlxUIState
 
 class MusicSubState extends FlxSubState
 {
-	private var controls(get, never):Controls;
-
 	public function new()
 	{
 		super();
@@ -169,9 +162,6 @@ class MusicSubState extends FlxSubState
 
 		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
 	}
-
-	inline function get_controls():Controls
-		return PlayerSettings.player1.controls;
 
 	public function stepHit():Void
 	{

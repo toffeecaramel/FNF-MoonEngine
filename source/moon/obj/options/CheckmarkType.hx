@@ -7,44 +7,37 @@ import flixel.util.FlxColor;
 
 class CheckmarkType extends FlxTypedGroup<FlxText>
 {
-    public var x:Float; // - X of the objects
-    public var y:Float; // - Y of the objects
-    public var label:String; // - The label of the texts.
-    public var boolean:Bool; // - The value of the option (on/off)
-    public var color:FlxColor; // - Color for the thingies
-    public var cLabel:FlxText; // - The text that shows the current value
-
-    private var cLabelOffset:Float = FlxG.width / 2 + 325;
+    public var x:Float;
+    public var y:Float;
+    public var label:String;
+    public var boolean:Bool;
+    public var color:FlxColor;
+    public var cLabel:FlxText;
 
     /**
-     * [Creates an checkmark option type.]
+     * Constructor for an Checkmark-Type option.
      * @param y         Y Position of the object.
      * @param label     Text that shows up before the 'on, off' 
      * @param boolean   The true/false value for the object
      */
-    public function new(y:Float = 0, label:String = 'lol hi', boolean:Bool = false):Void
+    public function new(x:Float = 0, y:Float = 0, label:String = 'Checkmark', boolean:Bool = false):Void
     {
         super();
+        this.x = x;
         this.y = y;
         this.label = label;
         this.boolean = boolean;
 
-        var tLabel = new FlxText();
-        tLabel.text = label;
-        tLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, LEFT);
-        tLabel.x = FlxG.width / 2 - 400;
-        this.x = tLabel.x;
+        var tLabel = new FlxText(x - 400, y, 0, label);
         tLabel.scrollFactor.set();
-        tLabel.ID = 0;
         add(tLabel);
 
-        cLabel = new FlxText();
-        cLabel.text = boolean ? '< On >' : '< Off >';
-        cLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, RIGHT);
-        cLabel.x = cLabelOffset;
+        cLabel = new FlxText(x + 290, y, 0, boolean ? '< On >' : '< Off >');
         cLabel.scrollFactor.set();
-        cLabel.ID = 1;
         add(cLabel);
+
+        cLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, RIGHT);
+        tLabel.setFormat(Paths.fonts('vcr.ttf'), 24, FlxColor.WHITE, LEFT);
     }
 
     override public function update(elapsed:Float):Void
@@ -58,10 +51,10 @@ class CheckmarkType extends FlxTypedGroup<FlxText>
         }
     }
 
-    public function updateCheck(value:Bool):Void
+    public function updateCheck():Void
     {
-        boolean = value;
+        boolean = !boolean;
+        UserSettings.setConfig(label, boolean);
         cLabel.text = boolean ? '< On >' : '< Off >';
-        cLabel.x = cLabelOffset;
     }
 }

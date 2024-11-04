@@ -30,7 +30,7 @@ class Postbuild
 
             var buildTime:Float = roundToTwoDecimals(end - start);
 
-            trace('The game took $buildTime seconds to build.');
+            Sys.println('\n[ The game took $buildTime seconds to build! ]\n');
         }
     }
 

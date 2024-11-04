@@ -67,7 +67,7 @@ class Strumline extends FlxTypedGroup<FlxSprite>
     public function playConfirm(noteDir:String) 
     {
         final index = NoteUtils.directionToNumber(noteDir);
-        if (index != -1) 
+        if (index != -1) // just incase :')
         {
             var strum = members[index];
             strum.scale.set(nScalex + 0.25, nScaley + 0.25);
