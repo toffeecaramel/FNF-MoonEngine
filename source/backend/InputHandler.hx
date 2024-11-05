@@ -5,50 +5,40 @@ import moon.utilities.NoteUtils;
 import backend.Timings.JudgementsTiming;
 
 /**
-    First of all, yes, this is also based on forever's engine input but
-    with also my attempt to do my own code for it
-
-    I tried doing one from scratch but I am a dumbass and I truly hated it.
-    trust me it was terrible lmao :sob:
-**/
-
+ * Class meant to handle inputs by the chosen player.
+ * It's a separate class so it can be better handled with more than
+ * 1 player.
+ * @author toffeecaramel
+ **/
 class InputHandler
 {
-    // - Function called when a note is hit.
+    // - Function called when you hit a note.
     public var onNoteHit:(Note, JudgementsTiming)->Void;
 
-    // - Function called when a note is missed.
+    // - Function called when you miss a note/Ghost tap.
     public var onNoteMiss:Note->Void;
 
-    // - Array for Just Pressed Keys.
+    // - Arrays for pressing and releasing keys.
     public var justPressed:Array<Bool>;
-
-    // - Array for Pressed Keys.
     public var pressed:Array<Bool>;
-
-    // - Array for Released Keys.
     public var released:Array<Bool>;
 
-    // - Array for the notes.
+    // Array for the notes.
     private var unspawnNotes:Array<Note>;
 
-    public function new(unspawnNotes:Array<Note>) {
+    /**
+     * Creates an handler for Note Inputs.
+     * @param unspawnNotes The array of notes.
+     */
+    public function new(unspawnNotes:Array<Note>){
         this.unspawnNotes = unspawnNotes;
     }
 
-    public function update():Void {
-        // - Calls the function to check inputs.
+    public function update():Void
+    {
         processInputs();
-
-        // - Calls the function to check for sustains.
-        checkForSustainHits();
-
-        // - Calls the function to check for misses.
-        checkForMisses();
-
-        //justPressed = [];
-        //pressed = [];
-        //released = [];
+        checkSustains();
+        checkMisses();
     }
 
     private function processInputs():Void
@@ -57,104 +47,102 @@ class InputHandler
         {
             if (justPressed[i])
             {
-                final noteDir = NoteUtils.numberToDirection(i);
+                // - Checks in all possible notes in the range.
+                var possibleNotes = unspawnNotes.filter(note -> 
+                    note.noteDir == NoteUtils.numberToDirection(i) && // - Checks if direction matches.
+                    // TODO: Make it get a lane from a public variable in this class.
+                    note.lane == 'P1' && // - Checks if it's in the lane.
+                    isWithinTiming(note) && // - Checks if it's within timing.
+                    !note.wasGoodHit && // - Checks if it wasn't a good hit yet.
+                    !note.tooLate && // - Check if it wasn't a "too late" note.
+                    (!note.isSustainNote) // - Checks if the note isn't a sustain note
+                );
 
-                var possibleNoteList:Array<Note> = [];
-                var pressedNotes:Array<Note> = [];
+                // - Sorts through all the possible notes.
+                possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
-                for (note in unspawnNotes)
-                    if (note.noteDir == noteDir
-                    && note.lane == 'P1'
-                    && isWithinTiming(note)
-					&& !note.wasGoodHit
-                    && !note.tooLate)
-                        possibleNoteList.push(note);
-
-                possibleNoteList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-
-                if (possibleNoteList.length > 0) 
+                if (possibleNotes.length > 0)
                 {
-                    var eligible = true;
-                    var firstNote = true;
+                    // - Gets the first possible note.
+                    final note = possibleNotes[0];
 
-                    for (coolNote in possibleNoteList) {
-                        for (noteDouble in pressedNotes) {
-                            if (Math.abs(noteDouble.strumTime - coolNote.strumTime) < 10)
-                                firstNote = false;
-                            else
-                                eligible = false;
-                        }
+                    // - Checks timing for the note.
+                    final timing = checkTiming(note);
 
-                        if (eligible)
+                    if (timing != null)
+                    {
+                        // - Calls the appropriate function based on timing.
+                        (timing != miss) ? onNoteHit(note, timing) : onNoteMiss(note);
+                        note.wasGoodHit = true;
+
+                        // - Kills note.
+                        if (!note.isSustainNote) assassinateNote(note);
+                    }
+                }
+                else if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
+                    onNoteMiss(null); // - For when you ghost tap.
+            }
+        }
+    }
+    
+    private function checkSustains():Void
+    {
+        for (note in unspawnNotes)
+        {
+            if (note.isSustainNote && note.lane == 'P1')
+            {
+                final noteDir = NoteUtils.directionToNumber(note.noteDir);
+                if (pressed[noteDir] && note.parentNote.wasGoodHit)
+                {
+                    if (note.strumTime <= Conductor.songPosition && !note.wasGoodHit)
+                    {
+                        note.wasGoodHit = true;
+                        if (onNoteHit != null) onNoteHit(note, null);
+                        assassinateNote(note);
+                        break;
+                    }
+                }
+                else if (released[noteDir] && note.parentNote.wasGoodHit && !note.wasGoodHit)
+                {
+                    if (note.isSustainNote && note.parentNote != null)
+                    {
+                        var currentNote = note;
+                        while (currentNote != null && currentNote.isSustainNote)
                         {
-							final timing = checkTiming(coolNote);
-							(timing != miss) ? onNoteHit(coolNote, timing) : onNoteMiss(coolNote);
-                            coolNote.wasGoodHit = true;
-                            pressedNotes.push(coolNote);
-							assassinateNote(coolNote);
+                            currentNote.kill();
+                            unspawnNotes.remove(currentNote);
+                            currentNote = currentNote.nextSustainNote;
                         }
                     }
-                } 
-                else
-				if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
-					onNoteMiss(null);
+                    break;
+                }
             }
         }
     }
 
-    private function checkForSustainHits():Void
+    private function checkMisses():Void
     {
         for (note in unspawnNotes)
         {
-            final noteDir = NoteUtils.directionToNumber(note.noteDir);
-            if (pressed[noteDir]
-            && note.isSustainNote
-            && note.parentNote.wasGoodHit
-			&& note.lane == 'P1'
-			&& note.strumTime - Conductor.songPosition <= 0)
+            if (!note.wasGoodHit && note.lane == 'P1' && !note.tooLate &&
+                Conductor.songPosition > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
             {
-                if (onNoteHit != null) onNoteHit(note, null);
-                note.wasGoodHit = true;
-                note.canBeHit = false;
-				assassinateNote(note);
-                break;
-            }
-        }
-    }
-
-    private function checkForMisses():Void
-    {
-        for (note in unspawnNotes)
-        {
-            if (!note.wasGoodHit
-            && note.lane == 'P1'
-            && !note.tooLate
-            && Conductor.songPosition > note.strumTime
-            + Timings.getParameters(JudgementsTiming.miss)[1])
-            {
-                //trace('Skill Issue :/');
                 if (onNoteMiss != null) onNoteMiss(note);
-                note.wasGoodHit = false;
                 note.tooLate = true;
-                note.canBeHit = false;
-				assassinateNote(note);
-                break;
+                assassinateNote(note);
             }
         }
     }
 
-    private function isWithinTiming(note:Note):Bool {
+    private function isWithinTiming(note:Note):Bool
         return checkTiming(note) != null;
-    }
 
     private function checkTiming(note:Note):JudgementsTiming
     {
-        final timeDifference:Float = Math.abs(note.strumTime - Conductor.songPosition);
-
+        final timeDifference = Math.abs(note.strumTime - Conductor.songPosition);
         for (jt in Timings.values)
         {
-			final timingData = Timings.getParameters(jt);
-            if (timeDifference <= timingData[1])
+            if (timeDifference <= Timings.getParameters(jt)[1])
             {
                 note.canBeHit = true;
                 return jt;
@@ -163,9 +151,9 @@ class InputHandler
         return null;
     }
     
-	private function assassinateNote(poorLittleNote:Note):Void
-	{
-		poorLittleNote.kill();
-		unspawnNotes.remove(poorLittleNote);
-	}
+    private function assassinateNote(note:Note):Void
+    {
+        note.kill();
+        unspawnNotes.remove(note);
+    }
 }

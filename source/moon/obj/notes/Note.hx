@@ -31,13 +31,14 @@ class Note extends FNFSprite
 
     public var prevNote:Note;
     public var parentNote:Note;
+    public var nextSustainNote:Note;
     public var childrenNotes:Array<Note> = [];
 
     public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
     public static var scriptHandler:ScriptHandler = new ScriptHandler();
 
-    public var allowRotation:Bool = false;
+    public var allowRotation:Bool = true;
     public var arrowColors:Array<Array<FlxColor>> = [
         [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
         [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
@@ -62,64 +63,57 @@ class Note extends FNFSprite
         this.strumTime = strumTime;
         this.lane = lane;
 
-        if (isSustainNote && prevNote != null){
+        if (isSustainNote && prevNote != null) {
             parentNote = prevNote;
             while (parentNote.parentNote != null)
                 parentNote = parentNote.parentNote;
             parentNote.childrenNotes.push(this);
+
+            // Set the nextSustainNote for the previous note
+            if (prevNote.isSustainNote) {
+                prevNote.nextSustainNote = this;
+            }
         } 
+        else if (!isSustainNote) {
+            parentNote = null;
+        }
 
         else if (!isSustainNote)
             parentNote = null;
 
-        loadNoteProperties();
-        loadNoteGraphics();
         loadNoteScript();
     }
 
-    /**
-     * Function to load note properties from its JSON directory.
-     * If the specific type's properties don't exist, fallback to default.
-     */
-    private function loadNoteProperties():Void
+    private function loadNoteScript():Void
     {
-        final basePath = (type != "DEFAULT")
-            ? 'assets/data/notes/_notetypes/$type/'
-            : 'assets/data/notes/$skin/';
-
-        final propertiesPath = '${basePath}NoteProperties.json';
-
-        var jsonContent:String = sys.io.File.getContent(
-            (sys.FileSystem.exists(propertiesPath)) ? propertiesPath : 'assets/data/notes/$skin/NoteProperties.json');
-        var properties = haxe.Json.parse(jsonContent);
-        if (properties.allowRotation != null)
-            this.allowRotation = properties.allowRotation;
-
-        // - TODO: Make the game get the arrow colors correctly.
+        if (type != "DEFAULT") 
+        {
+            final scriptPath = 'assets/data/notes/_notetypes/$type/NoteScript.hx';
+            
+            if (sys.FileSystem.exists(scriptPath))
+            {
+                scriptHandler.set("note", this);
+                scriptHandler.loadScript(scriptPath);
+            }
+            else
+            {
+                trace('No custom script found for type $type.', "ERROR");
+                loadDefaultGraphics();
+            }
+        }
+        else loadDefaultGraphics();
     }
 
-    /**
-     * Function to load the graphics for the note based on type and skin.
-     */
-    private function loadNoteGraphics():Void
+    private function loadDefaultGraphics():Void
     {
-        var basePath = (type != "DEFAULT")
-            ? 'assets/data/notes/_notetypes/$type/'
-            : 'assets/data/notes/$skin/';
-
-        if(basePath == null) basePath = 'assets/data/notes/DEFAULT/';
-
+        var basePath = 'assets/data/notes/$skin/';
         if (!isSustainNote)
         {
             loadGraphic('${basePath}note.png');
             if (allowRotation)
                 angle = NoteUtils.angleFromDirection(noteDir);
-
-            if (type == "BOMB")
-                FlxTween.tween(this, {angle: 360}, Conductor.crochet / 1000 * 2, {type: LOOPING});
         }
-
-        if (isSustainNote && prevNote != null)
+        else if (isSustainNote && prevNote != null)
         {
             noteSpeed = prevNote.noteSpeed;
             loadGraphic('${basePath}holdE.png');
@@ -131,22 +125,6 @@ class Note extends FNFSprite
                 prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }
-        }
-    }
-
-    /**
-     * Function to load and execute the hscript file for the note type (if it exists)
-     */
-    private function loadNoteScript():Void
-    {
-        if (type != "DEFAULT") 
-        {
-            final scriptPath = 'assets/data/notes/_notetypes/$type/NoteScript.hx';
-            
-            if (sys.FileSystem.exists(scriptPath))
-                scriptHandler.loadScript(scriptPath);
-            else
-                trace('No custom script found for type $type.', "ERROR");
         }
     }
 
@@ -181,10 +159,19 @@ class Note extends FNFSprite
     {
         var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote);
 
-        // Apply shader if colors are defined
         if (newNote.arrowColors != null)
             NoteUtils.applyNoteShader(newNote, noteDir, newNote.arrowColors);
 
         return newNote;
+    }
+
+    public function killSustainChain():Void
+    {
+        var currentNote:Note = this;
+        while (currentNote != null && currentNote.isSustainNote)
+        {
+            currentNote.kill();
+            currentNote = currentNote.nextSustainNote;
+        }
     }
 }

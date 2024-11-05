@@ -451,7 +451,7 @@ class PlayState extends MusicState
 	/**
 	 * Function called whenever a note is hit.
 	 * @param note 		The note that got hit.
-	 * @param character The character that will have an animation triggered.
+	 * @param character The character that will have an singing animation triggered.
 	 * @param jt 		The judgement.
 	 */
 	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
@@ -461,6 +461,8 @@ class PlayState extends MusicState
 		{
 			updateComboDisplay(combo, jt, note.isSustainNote);
 			combo++;
+
+			health += (note.isSustainNote) ? 0.6 : 0;
 
 			if (jt != null)
 			{
@@ -518,10 +520,11 @@ class PlayState extends MusicState
 	}
 
 	var twn:FlxTween;
-	private function updateComboDisplay(combo:Int, judgement:JudgementsTiming = sick, onlyNum:Bool = false):Void
+	var timingData:Array<Dynamic>;
+	private function updateComboDisplay(combo:Int, judgement:JudgementsTiming, onlyNum:Bool = false):Void
 	{
 		//trace(judgement);
-		final timingData = Timings.getParameters(judgement);
+		if(judgement != null) timingData = Timings.getParameters(judgement);
 
 		final baseX = FlxG.width / 2 - 180;
 		final baseY = 80;

@@ -17,6 +17,12 @@ class MoonTabs extends FlxGroup
     private var xPos:Float;
     private var yPos:Float;
 
+    /**
+     * Creates a pop-up with tabs.
+     * @param x     The X position of the entire object.
+     * @param y     The Y position of the entire object.
+     * @param tabs  The tabs. Usage example: `[{name: "My Tab Title", tag: "mytabtag"}, {name: "My Tab 2", tag: "tag2"}]`
+     */
     public function new(x:Float, y:Float, tabs:Array<{name:String, tag:String}>)
     {
         super();
@@ -62,7 +68,7 @@ class MoonTabs extends FlxGroup
 
     private function activateTab(tag:String):Void
     {
-        // Hide all tab groups
+        // - Hide all tab groups
         for (tabGroup in tabGroups)
             tabGroup.visible = false;
 
