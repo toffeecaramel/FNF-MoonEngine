@@ -63,21 +63,17 @@ class Note extends FNFSprite
         this.strumTime = strumTime;
         this.lane = lane;
 
-        if (isSustainNote && prevNote != null) {
+        if (isSustainNote && prevNote != null)
+        {
             parentNote = prevNote;
             while (parentNote.parentNote != null)
                 parentNote = parentNote.parentNote;
             parentNote.childrenNotes.push(this);
 
             // Set the nextSustainNote for the previous note
-            if (prevNote.isSustainNote) {
+            if (prevNote.isSustainNote)
                 prevNote.nextSustainNote = this;
-            }
-        } 
-        else if (!isSustainNote) {
-            parentNote = null;
         }
-
         else if (!isSustainNote)
             parentNote = null;
 
@@ -96,10 +92,7 @@ class Note extends FNFSprite
                 scriptHandler.loadScript(scriptPath);
             }
             else
-            {
-                trace('No custom script found for type $type.', "ERROR");
                 loadDefaultGraphics();
-            }
         }
         else loadDefaultGraphics();
     }
@@ -120,7 +113,8 @@ class Note extends FNFSprite
             flipY = UserSettings.callSetting('Downscroll');
             updateHitbox();
 
-            if (prevNote.isSustainNote) {
+            if (prevNote.isSustainNote)
+            {
                 prevNote.loadGraphic('${basePath}holdM.png');
                 prevNote.scale.y *= Conductor.stepCrochet / 100 * 4 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
@@ -163,15 +157,5 @@ class Note extends FNFSprite
             NoteUtils.applyNoteShader(newNote, noteDir, newNote.arrowColors);
 
         return newNote;
-    }
-
-    public function killSustainChain():Void
-    {
-        var currentNote:Note = this;
-        while (currentNote != null && currentNote.isSustainNote)
-        {
-            currentNote.kill();
-            currentNote = currentNote.nextSustainNote;
-        }
     }
 }
