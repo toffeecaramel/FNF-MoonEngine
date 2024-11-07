@@ -1,8 +1,6 @@
 package moon.states;
 
 import haxe.macro.Compiler.NullSafetyMode;
-import backend.Timings.JudgementsTiming;
-import backend.dependency.FNFSprite;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -29,6 +27,9 @@ import moon.states.editors.*;
 import moon.states.editors.chart.*;
 import moon.subStates.*;
 import moon.utilities.*;
+import backend.dependency.FNFSprite;
+import backend.gameplay.Timings;
+import backend.gameplay.*;
 
 using StringTools;
 
@@ -51,6 +52,7 @@ class PlayState extends MusicState
 
 	private var inputHandler:InputHandler;
 
+	private var chartRenderer:ChartRenderer;
 	public var unspawnNotes:Array<Note> = [];
 	public var eventList:Array<Dynamic> = [];
     //private var notes:FlxTypedGroup<Note>;
@@ -76,10 +78,8 @@ class PlayState extends MusicState
 	final skin:String = UserSettings.callSetting('Noteskin');
 	public static var scrollSpeed:Float;
 
-	public static var misses:Int = 0;
 	public static var health:Float = 50;
 	public var combo:Int = 0;
-	public static var score:Int = 0;
 	public var totalHits:Int = 0;
 
 	var yPos:Float = 0;
@@ -106,7 +106,6 @@ class PlayState extends MusicState
 		unspawnNotes = [];
 
 		health = 50;
-		misses = 0;
 	}
 
 	var test:FlxText;
@@ -204,44 +203,18 @@ class PlayState extends MusicState
 		// - Load the chart
 		chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
 		scrollSpeed = chart.scrollSpeed / 2.6;
-		Conductor.changeBPM(chart.bpm);
+		Conductor.changeBPM(chart.bpm, chart.timeSignature[0] / chart.timeSignature[1]);
 
 		for (event in chart.events)
 			eventList.push(event);
+
 		// - Load the notes
-		for (noteData in chart.notes) 
-		{
-			var note:Note = Note.returnDefaultNote(skin, noteData.type, noteData.time, 
-				noteData.direction, noteData.lane, false);
-			note.camera = camStrums;
-			note.noteSpeed = scrollSpeed;
-			note.scale.set(noteScale, noteScale);
-			note.updateHitbox();
-			note.active = false;
-		
-			var susLength:Float = noteData.duration / Conductor.stepCrochet;
-			unspawnNotes.push(note);
-		
-			for (susNote in 0...Math.floor(susLength)) {
-				var oldNote:Note = unspawnNotes[Std.int(unspawnNotes.length - 1)];
-				var sustainNote:Note = Note.returnDefaultNote(skin, noteData.type,
-					noteData.time + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet,
-					noteData.direction, noteData.lane, true, oldNote);
-				sustainNote.camera = camStrums;
-				sustainNote.scrollFactor.set();
-				sustainNote.scale.set(noteScale, noteScale);
-				sustainNote.updateHitbox();
-				sustainNote.active = false;
-				add(sustainNote);
-				unspawnNotes.push(sustainNote);
-			}
-		
-			note.scrollFactor.set();
-			add(note);
-		}
+		chartRenderer = new ChartRenderer(playerStrumline, opponentStrumline, unspawnNotes, chart, skin);
+		chartRenderer.camera = camStrums;
+		add(chartRenderer);
 
 		// - Add the input handler
-		inputHandler = new InputHandler(unspawnNotes);
+		inputHandler = new InputHandler(unspawnNotes, P1);
 		inputHandler.onNoteHit = function(note:Note, judgement:JudgementsTiming):Void {
             onNoteHit(note, player, judgement);
             //trace('Note got hit: ${note.noteDir}, $judgement');
@@ -289,12 +262,6 @@ class PlayState extends MusicState
 		setAudioState('play');
 	}
 
-	private function getNoteX(direction:String, lane:String):Float 
-	{
-		var strumline = (lane == 'P1') ? playerStrumline : opponentStrumline;
-		return strumline.members[NoteUtils.directionToNumber(direction)].x;
-	}
-
 	private var val:Float;
 
 	override public function update(elapsed:Float)
@@ -321,8 +288,7 @@ class PlayState extends MusicState
 
 		inputHandler.update();
 
-		for (note in unspawnNotes) 
-			updateNotePosition(note, elapsed);
+		chartRenderer.updateNotePosition(elapsed);
 
 		//checkForInput();
 
@@ -382,39 +348,6 @@ class PlayState extends MusicState
 				notes.strumTime = noteData.time - UserSettings.callSetting('Offset');*/
 	}
 
-	private function updateNotePosition(note:Note, elapsed:Float):Void 
-	{
-		// - Subtract the note time on the chart with the song position
-		final timeDifference:Float = note.strumTime - Conductor.songPosition;
-
-		// - Determine the strumline to use based on whether the note is a player note or not
-		final strumline:Strumline = note.lane == 'P1' ? playerStrumline : opponentStrumline;
-
-		// - Get the y position of the strumline member corresponding to the note's direction
-		final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-
-		final susVal = (note.isSustainNote) ? 48 : 0;
-		final susOffset = (note.isSustainNote) ? 32 : 0;
-
-		// - Adjust y position based on scroll direction
-		if (UserSettings.callSetting('Downscroll'))
-			note.y = strumlineY - (timeDifference * scrollSpeed) + susVal;
-		else
-			note.y = strumlineY + (timeDifference * scrollSpeed) - susVal;
-			
-		note.visible = note.active = (note.y > FlxG.height + 800 || note.y < FlxG.height - 800) ? false : true;
-
-		// - Adjust the x position of the note
-		note.x = getNoteX(note.noteDir, note.lane) + susOffset;
-
-		if((note.strumTime - Conductor.songPosition <= 0) && note.lane == 'Opponent')
-		{
-			onNoteHit(note, opponent, null);
-			note.kill();
-			unspawnNotes.remove(note);
-		}
-	}
-
 	private function executeEvent(event:Dynamic):Void
 	{
 		//trace(event.name);
@@ -440,14 +373,13 @@ class PlayState extends MusicState
 	{	
 		// - Get the strum.
 		final strum = (lane != 'P1') ? opponentStrumline : playerStrumline;
-		final xVal = getNoteX(direction, lane);
 		final yVal = strum.members[NoteUtils.directionToNumber(direction)].y;
-		
+
 		// - Play the animation.	
 		strum.playConfirm(direction);
-		gl.callAnim(xVal - 47, yVal - 47, direction, skin);
+		gl.callAnim(chartRenderer.getNoteX(direction, lane) - 47, yVal - 47, direction, skin);
 	}
-	
+
 	/**
 	 * Function called whenever a note is hit.
 	 * @param note 		The note that got hit.
@@ -482,13 +414,7 @@ class PlayState extends MusicState
 						Timings.judgementCounter.set(jt, Timings.judgementCounter.get(jt) + 1);
 
 					totalHits++;
-
-					score += timingData[2];
-
-					// Accuracy test
-					final accJudge = Timings.judgementCounter.get(jt);
-					test.text = '${totalHits / (totalHits + misses) * 100}%';
-					test.screenCenter(X);
+					//score += timingData[2];
 				}
 			}
 		}
@@ -513,8 +439,6 @@ class PlayState extends MusicState
 	{
 		combo = 0;
 		health -= 7;
-		misses += 1;
-		score -= 400;
 
 		updateComboDisplay(combo, miss);
 	}
@@ -668,7 +592,7 @@ class PlayState extends MusicState
 
 		//FlxG.sound.play('assets/sounds/metronomeTest.ogg');
 
-		if (curBeat % 4 == 0)
+		if (curBeat % Conductor.timeSignature == 0)
 		{
 			camGame.zoom += 0.040;
 			camHUD.zoom += 0.032;

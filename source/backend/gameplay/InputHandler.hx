@@ -1,8 +1,9 @@
-package backend;
+package backend.gameplay;
 
 import moon.obj.notes.Note;
 import moon.utilities.NoteUtils;
-import backend.Timings.JudgementsTiming;
+import backend.gameplay.Timings.JudgementsTiming;
+import backend.gameplay.PlayerStats;
 
 /**
  * Class meant to handle inputs by the chosen player.
@@ -23,6 +24,12 @@ class InputHandler
     public var pressed:Array<Bool>;
     public var released:Array<Bool>;
 
+    // - The player type for this inputs.
+    public var playerType:PlayerType;
+
+    // - The stats for this player's inputs.
+    public var playerStats:PlayerStats;
+
     // Array for the notes.
     private var unspawnNotes:Array<Note>;
 
@@ -30,8 +37,12 @@ class InputHandler
      * Creates an handler for Note Inputs.
      * @param unspawnNotes The array of notes.
      */
-    public function new(unspawnNotes:Array<Note>){
+    public function new(unspawnNotes:Array<Note>, playerType:PlayerType)
+    {
         this.unspawnNotes = unspawnNotes;
+        this.playerType = playerType;
+
+        playerStats = new PlayerStats(playerType);
     }
 
     public function update():Void
@@ -71,9 +82,14 @@ class InputHandler
 
                     if (timing != null)
                     {
+                        final timingData = Timings.getParameters(timing);
+                        
                         // - Calls the appropriate function based on timing.
                         (timing != miss) ? onNoteHit(note, timing) : onNoteMiss(note);
                         note.wasGoodHit = true;
+
+                        playerStats.score += timingData[2];
+                        trace("VAI TOMA NO CU OTARIO, TOMA O SCORE: " + playerStats.score, "DEBUG");
 
                         // - Kills note.
                         if (!note.isSustainNote) assassinateNote(note);
@@ -99,6 +115,8 @@ class InputHandler
                         note.wasGoodHit = true;
                         if (onNoteHit != null) onNoteHit(note, null);
                         assassinateNote(note);
+                        playerStats.score += 6;
+                        trace(playerStats.score, "DEBUG");
                         break;
                     }
                 }
@@ -130,6 +148,8 @@ class InputHandler
                 if (onNoteMiss != null) onNoteMiss(note);
                 note.tooLate = true;
                 assassinateNote(note);
+                playerStats.score += Std.int(Timings.getParameters(miss)[2]);
+                trace(playerStats.score, "DEBUG");
             }
         }
     }

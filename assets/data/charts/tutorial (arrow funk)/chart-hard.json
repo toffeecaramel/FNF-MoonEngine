@@ -1703,5 +1703,6 @@
 		}
 	],
 	"scrollSpeed": 1.8,
-	"bpm": 110
+	"bpm": 110,
+	"timeSignature": [4, 4]
 }

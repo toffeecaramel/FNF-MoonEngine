@@ -42,10 +42,10 @@ class Strumline extends FlxTypedGroup<FlxSprite>
             strum.updateHitbox();
             add(strum);
 
-            strum.alpha = 0;
-            strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i));
+            strum.alpha = 0.0001;
+            strum.angle = NoteUtils.angleFromDirection(NoteUtils.numberToDirection(i)) - 10;
 
-            FlxTween.tween(strum, {alpha: 1}, 
+            FlxTween.tween(strum, {alpha: 1, angle: strum.angle + 10}, 
             Conductor.crochet / 1000 * 2,
             {ease: FlxEase.quadOut, startDelay: Conductor.crochet / 1000 * i});
 

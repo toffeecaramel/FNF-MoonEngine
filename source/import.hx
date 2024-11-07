@@ -7,6 +7,7 @@ import flixel.system.FlxSound;
 #end
 
 import backend.Conductor;
+import backend.gameplay.*;
 import backend.user.*;
 import backend.*;
 import backend.dependency.FNFSound;

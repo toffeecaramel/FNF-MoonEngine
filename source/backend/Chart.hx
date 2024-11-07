@@ -36,6 +36,7 @@ typedef EventData = {
 //and typedef for the whole chart data
 typedef ChartData = {
     var bpm:Float;
+	var timeSignature:Array<Float>;
 	var scrollSpeed:Float;
 	var hasVoices:Bool;
     var notes:Array<NoteData>;
@@ -45,6 +46,7 @@ typedef ChartData = {
 class Chart
 {
     public var bpm:Float;
+	public var timeSignature:Array<Float>;
 	public var scrollSpeed:Float;
 	public var hasVoices:Bool;
     public var notes:Array<NoteData>;
@@ -60,6 +62,7 @@ class Chart
 
 		//and set it's values on the class variables
         this.bpm = chartData.bpm;
+		this.timeSignature = chartData.timeSignature;
 		this.scrollSpeed = chartData.scrollSpeed;
         this.notes = chartData.notes;
 		this.events = chartData.events;
@@ -78,6 +81,7 @@ class Chart
 			scrollSpeed: originalSong.speed,
 			hasVoices: originalSong.needsVoices,
 			bpm: originalSong.bpm,
+			timeSignature: [4, 4],
 			notes: [],
 			events: []
 		};

@@ -11,166 +11,154 @@ import moon.states.*;
 
 class MusicState extends FlxUIState
 {
-	// original variables extended from original game source
-	private var lastBeat:Float = 0;
-	private var lastStep:Float = 0;
+    private var lastBeat:Float = 0;
+    private var lastStep:Float = 0;
 
-	public var curStep:Int = 0;
-	public var curBeat:Int = 0;
+    public var curStep:Int = 0;
+    public var curBeat:Int = 0;
 
-	// class create event
-	override function create()
-	{
-		super.create();
+    override function create()
+    {
+        super.create();
 
-		transIn = FlxTransitionableState.defaultTransIn;
-		transOut = FlxTransitionableState.defaultTransOut;
+        transIn = FlxTransitionableState.defaultTransIn;
+        transOut = FlxTransitionableState.defaultTransOut;
 
-		// For debugging
-		FlxG.watch.add(Conductor, "songPosition");
-		FlxG.watch.add(this, "curBeat");
-		FlxG.watch.add(this, "curStep");
-	}
+        FlxG.watch.add(Conductor, "songPosition");
+        FlxG.watch.add(this, "curBeat");
+        FlxG.watch.add(this, "curStep");
+    }
 
-	// class 'step' event
-	override function update(elapsed:Float)
-	{
-		updateContents(elapsed);
+    override function update(elapsed:Float)
+    {
+        updateContents(elapsed);
 
-		super.update(elapsed);
-	}
+        super.update(elapsed);
+    }
 
-	public function updateContents(elapsed:Float)
-	{
-		Conductor.updateSongPosition(FlxG.elapsed * 1000);
+    public function updateContents(elapsed:Float)
+    {
+        Conductor.updateSongPosition(FlxG.elapsed * 1000);
 
-		updateCurStep();
-		updateBeat();
+        updateCurStep();
+        updateBeat();
 
-		// delta time bullshit
-		var trueStep:Int = curStep;
-		for (i in storedSteps)
-			if (i < oldStep)
-				storedSteps.remove(i);
-		for (i in oldStep...trueStep)
-		{
-			if (!storedSteps.contains(i) && i > 0)
-			{
-				curStep = i;
-				stepHit();
-				skippedSteps.push(i);
-			}
-		}
-		if (skippedSteps.length > 0)
-		{
-			//trace('skipped steps $skippedSteps');
-			skippedSteps = [];
-		}
-		curStep = trueStep;
+        var trueStep:Int = curStep;
+        for (i in storedSteps)
+            if (i < oldStep)
+                storedSteps.remove(i);
+        for (i in oldStep...trueStep)
+        {
+            if (!storedSteps.contains(i) && i > 0)
+            {
+                curStep = i;
+                stepHit();
+                skippedSteps.push(i);
+            }
+        }
+        if (skippedSteps.length > 0)
+        {
+            skippedSteps = [];
+        }
+        curStep = trueStep;
 
-		//
-		if (oldStep != curStep && curStep > 0 && !storedSteps.contains(curStep))
-			stepHit();
-		oldStep = curStep;
-	}
+        if (oldStep != curStep && curStep > 0 && !storedSteps.contains(curStep))
+            stepHit();
+        oldStep = curStep;
+    }
 
-	var oldStep:Int = 0;
-	var storedSteps:Array<Int> = [];
-	var skippedSteps:Array<Int> = [];
+    var oldStep:Int = 0;
+    var storedSteps:Array<Int> = [];
+    var skippedSteps:Array<Int> = [];
 
-	public function updateBeat():Void
-	{
-		curBeat = Math.floor(curStep / 4);
-	}
+    public function updateBeat():Void
+    {
+        curBeat = Math.floor(curStep / Conductor.timeSignature);
+    }
 
-	public function updateCurStep():Void
-	{
-	    var lastChange:BPMChangeEvent = {
-	        stepTime: 0,
-	        songTime: 0,
-	        bpm: 0
-	    };
+    public function updateCurStep():Void
+    {
+        var lastChange:BPMChangeEvent = {
+            stepTime: 0,
+            songTime: 0,
+            bpm: 0
+        };
 
-	    for (i in 0...Conductor.bpmChangeMap.length)
-	        if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
-	            lastChange = Conductor.bpmChangeMap[i];
+        for (i in 0...Conductor.bpmChangeMap.length)
+            if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
+                lastChange = Conductor.bpmChangeMap[i];
 
-	    var songPosDiff = Conductor.songPosition - lastChange.songTime;
+        var songPosDiff = Conductor.songPosition - lastChange.songTime;
 
-	    // Calculate the step using the difference in time since the last BPM change
-	    curStep = lastChange.stepTime + Math.floor(songPosDiff / Conductor.stepCrochet);
-	}
+        curStep = lastChange.stepTime + Math.floor(songPosDiff / Conductor.stepCrochet);
+    }
 
-	public function stepHit():Void
-	{
-		if (curStep % 4 == 0)
-			beatHit();
+    public function stepHit():Void
+    {
+        if (curStep % Conductor.timeSignature == 0)
+            beatHit();
 
-		// trace('step $curStep');
+        if (!storedSteps.contains(curStep))
+            storedSteps.push(curStep);
+        else
+            trace('SOMETHING WENT WRONG??? STEP REPEATED $curStep',  "WARNING");
+    }
 
-		if (!storedSteps.contains(curStep))
-			storedSteps.push(curStep);
-		else
-			trace('SOMETHING WENT WRONG??? STEP REPEATED $curStep');
-	}
-
-	public function beatHit():Void
-	{
-		// used for updates when beats are hit in classes that extend this one
-	}
+    public function beatHit():Void
+    {
+        // used for updates when beats are hit in classes that extend this one
+    }
 }
 
 class MusicSubState extends FlxSubState
 {
-	public function new()
-	{
-		super();
-	}
+    public function new()
+    {
+        super();
+    }
 
-	private var lastBeat:Float = 0;
-	private var lastStep:Float = 0;
+    private var lastBeat:Float = 0;
+    private var lastStep:Float = 0;
 
-	private var curStep:Int = 0;
-	private var curBeat:Int = 0;
+    private var curStep:Int = 0;
+    private var curBeat:Int = 0;
 
-	override function update(elapsed:Float)
-	{
-		// everyStep();
-		var oldStep:Int = curStep;
+    override function update(elapsed:Float)
+    {
+        var oldStep:Int = curStep;
 
-		updateCurStep();
-		curBeat = Math.floor(curStep / 4);
+        updateCurStep();
+        curBeat = Math.floor(curStep / Conductor.timeSignature);
 
-		if (oldStep != curStep && curStep > 0)
-			stepHit();
+        if (oldStep != curStep && curStep > 0)
+            stepHit();
 
-		super.update(elapsed);
-	}
+        super.update(elapsed);
+    }
 
-	private function updateCurStep():Void
-	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
-		for (i in 0...Conductor.bpmChangeMap.length)
-		{
-			if (Conductor.songPosition > Conductor.bpmChangeMap[i].songTime)
-				lastChange = Conductor.bpmChangeMap[i];
-		}
+    private function updateCurStep():Void
+    {
+        var lastChange:BPMChangeEvent = {
+            stepTime: 0,
+            songTime: 0,
+            bpm: 0
+        }
+        for (i in 0...Conductor.bpmChangeMap.length)
+        {
+            if (Conductor.songPosition > Conductor.bpmChangeMap[i].songTime)
+                lastChange = Conductor.bpmChangeMap[i];
+        }
 
-		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
-	}
+        curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
+    }
 
-	public function stepHit():Void
-	{
-		if (curStep % 4 == 0)
-			beatHit();
-	}
+    public function stepHit():Void
+    {
+        if (curStep % Conductor.timeSignature == 0)
+            beatHit();
+    }
 
-	public function beatHit():Void
-	{
-		// do literally nothing dumbass
-	}
+    public function beatHit():Void
+    {
+    }
 }
