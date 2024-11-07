@@ -16,6 +16,10 @@ class PlayerStats
 
     public var thisPlayer:PlayerType = CPU;
 
+    /**
+     * Creates Player Stats for a player type.
+     * @param thisPlayer The player type. Current available: `P1, P2, CPU`.
+     */
     public function new(thisPlayer:PlayerType = CPU)
     {
         this.thisPlayer = thisPlayer;
