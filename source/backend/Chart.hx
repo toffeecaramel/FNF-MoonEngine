@@ -52,15 +52,19 @@ class Chart
     public var notes:Array<NoteData>;
 	public var events:Array<EventData>;
 
+    /**
+     * Creates a chart from a json file.
+     * @param jsonPath The path for your json file.
+     */
     public function new(jsonPath:String)
     {
-		//get the file content
+		// - Get the file content
         var jsonString = sys.io.File.getContent(jsonPath);
 
-		//parse to a variable
+		// - Parse to a variable
         var chartData:ChartData = Json.parse(jsonString);
 
-		//and set it's values on the class variables
+		// - And set it's values on the class variables
         this.bpm = chartData.bpm;
 		this.timeSignature = chartData.timeSignature;
 		this.scrollSpeed = chartData.scrollSpeed;
@@ -70,10 +74,10 @@ class Chart
     }
 
 	/**
-		*Convert FNF (Legacy) Charts to Moon Engine charts*
-		`All it does is get the chart information (from SwagSong)`
-		`and change the values so they work on the Moon Engine format.`
-	**/
+	 * Converts an FNF chart to the Moon Engine chart format.
+	 * @param originalSong The chart you want to convert.
+	 * @return ChartData
+	 */
 	public static function convertOriginalToNew(originalSong:SwagSong):ChartData
 	{
 		// - Make the new structure while getting values from the og chart
@@ -108,7 +112,7 @@ class Chart
 				lastBPM = section.bpm;
 			}*/
 
-			// Process notes in the section
+			// - Process notes in the section
 			for (note in section.sectionNotes)
 			{
 				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
@@ -125,6 +129,7 @@ class Chart
 				// - Then push it to the notes array
 				newChart.notes.push(noteData);
 				
+				// - Create the camera events
 				if (section.mustHitSection != lastMustHitSection)
 				{
 					var cameraEvent:EventData = {
@@ -151,10 +156,10 @@ class Chart
 	}
 
 	/**
-		*Just load the base game JSON*
-		`this literally just loads base game json (code from Forever Engine)`
-	**/
-	
+	 * Loads up an FNF chart from the JSON.
+	 * @param jsonInput The JSON file.
+	 * @return SwagSong
+	 */
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
 		var rawJson = sys.io.File.getContent('$jsonInput').trim();
@@ -166,9 +171,10 @@ class Chart
 	}
 
 	/**
-		*Just parse the base game JSON*
-		`this literally just parse the base game json (code from Forever Engine)`
-	**/
+	 * Just a parser for base FNF charts.
+	 * @param rawJson The JSON file to parse.
+	 * @return SwagSong
+	 */
 	public static function parseJSONshit(rawJson:String):SwagSong
 	{
 		var swagShit:SwagSong = cast Json.parse(rawJson).song;

@@ -30,6 +30,8 @@ haxelib install flixel-ui
 haxelib install flixel-tools
 haxelib install flixel-text-input
 haxelib install hscript
+haxelib install haxeui
+haxelib install haxeui-flixel
 haxelib run lime setup
 haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc

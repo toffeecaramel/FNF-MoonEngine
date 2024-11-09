@@ -107,7 +107,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param noteData  The typedef containing all note data.
      * @param susLength The sustain's length (in milliseconds).
      */
-     private function recycleSustain(mainNote:Note, noteData:Dynamic, susLength:Float):Void
+    private function recycleSustain(mainNote:Note, noteData:Dynamic, susLength:Float):Void
     {
         // - Previous note is just main note lol
         var prevNote = mainNote;
