@@ -120,7 +120,7 @@ class InputHandler
                         break;
                     }
                 }
-                else if (released[noteDir] && note.parentNote.wasGoodHit && !note.wasGoodHit)
+                else if ((released[noteDir] || !pressed[noteDir]) && note.parentNote.wasGoodHit && !note.wasGoodHit)
                 {
                     if (note.isSustainNote && note.parentNote != null)
                     {
