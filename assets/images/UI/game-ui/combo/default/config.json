@@ -1,0 +1,9 @@
+{
+    "width": 200,
+    "judgementScale": 0.71,
+    
+    "numberScale": 0.56,
+    "numberY": 80,
+    "numberSpacing": 48,
+    "antialiasing": true
+}

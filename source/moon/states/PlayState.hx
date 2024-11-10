@@ -69,10 +69,8 @@ class PlayState extends MusicState
 	public var camOther:FlxCamera;
 	public var camFollow:FlxObject;
 
-	var judgementGroup:FlxTypedGroup<FNFSprite>;
-	var comboGroup:FlxTypedGroup<FNFSprite>;
-
 	public var gameHUD:GameHUD;
+	private var comboDisplay:ComboDisplay;
 
 	public static var noteScale:Float;
 	final skin:String = UserSettings.callSetting('Noteskin');
@@ -147,13 +145,9 @@ class PlayState extends MusicState
 		add(gameHUD);
 
 		// - Add the Combo & Judgements Group
-		comboGroup = new FlxTypedGroup<FNFSprite>();
-		comboGroup.camera = camHUD;
-		add(comboGroup);
-
-		judgementGroup = new FlxTypedGroup<FNFSprite>();
-		judgementGroup.camera = camHUD;
-		add(judgementGroup);
+		comboDisplay = new ComboDisplay(FlxG.width / 2, FlxG.height / 2, "default");
+		comboDisplay.cam = camHUD;
+        add(comboDisplay);
 
 		// - Number of strums and spacing between them
 		final numStrums:Int = 4;
@@ -391,7 +385,7 @@ class PlayState extends MusicState
 		// - If the note is a mustPress, it will call the timing functions
 		if(note.lane == 'P1')
 		{
-			updateComboDisplay(combo, jt, note.isSustainNote);
+			comboDisplay.showCombo(combo, jt);
 			combo++;
 
 			health += (note.isSustainNote) ? 0.6 : 0;
@@ -440,84 +434,9 @@ class PlayState extends MusicState
 		combo = 0;
 		health -= 7;
 
-		updateComboDisplay(combo, miss);
+		comboDisplay.showCombo(combo, miss);
 	}
-
-	var twn:FlxTween;
-	var timingData:Array<Dynamic>;
-	private function updateComboDisplay(combo:Int, judgement:JudgementsTiming, onlyNum:Bool = false):Void
-	{
-		//trace(judgement);
-		if(judgement != null) timingData = Timings.getParameters(judgement);
-
-		final baseX = FlxG.width / 2 - 180;
-		final baseY = 80;
 	
-        final comboStr:String = Std.string(combo);
-        final digitWidth:Float = 48;
-
-		comboGroup.clear();
-
-		if(!onlyNum)
-		{
-			judgementGroup.clear();
-			judgementGroup.recycle(FNFSprite, function():FNFSprite
-			{
-				var judgement = new FNFSprite(baseX, baseY).loadGraphic(
-					Paths.image('UI/game-ui/combo/$judgement')
-				);
-				judgement.camera = camHUD;
-				judgement.scale.set(0.71, 0.71);
-				judgement.updateHitbox();
-				return judgement;
-			});
-
-			for (i in 0...judgementGroup.members.length)
-			{
-				var items = judgementGroup.members[i];
-				FlxTween.tween(items, {y: items.y - 20, "scale.x": items.scale.x - 0.1, "scale.y": items.scale.y - 0.1},
-					Conductor.crochet / 1000, {ease: FlxEase.circOut, onComplete: function(t:FlxTween)
-					{
-						FlxTween.tween(items, {
-							y: items.y + 20, alpha: 0, "scale.x": items.scale.x - 0.8, "scale.y": items.scale.y - 0.8
-						},
-						Conductor.crochet / 1000, {
-							ease:FlxEase.circIn, startDelay: Conductor.crochet / 1000 * 2
-						});
-					}});
-			}
-		}
-
-        for (i in 0...comboStr.length)
-        {
-            final digit:String = comboStr.charAt(i);
-			comboGroup.recycle(FNFSprite, function():FNFSprite
-			{
-				var digitSprite:FNFSprite = new FNFSprite(baseX + 60 + i * digitWidth, baseY + 80).loadGraphic(
-					Paths.image('UI/game-ui/combo/numbers/$digit')
-					);
-				digitSprite.scale.set(0.56, 0.56);
-				digitSprite.antialiasing = true;
-				digitSprite.color = timingData[5];
-				digitSprite.updateHitbox();
-				digitSprite.camera = camHUD;
-
-				return digitSprite;
-			});
-        }
-
-		for (i in 0...comboGroup.members.length)
-		{
-			var items = comboGroup.members[i];
-			FlxTween.tween(items, {y: items.y - 20, "scale.x": items.scale.x - 0.07, "scale.y": items.scale.y - 0.07},
-				Conductor.crochet / 1000, {ease: FlxEase.quadOut, onComplete: function(t:FlxTween)
-				{
-					FlxTween.tween(items, {y: items.y + 20, alpha: 0},
-						Conductor.crochet / 1000, {ease:FlxEase.quadIn});
-				}});
-		}
-	}
-
 	override public function openSubState(SubState:FlxSubState)
 	{
 		if (!paused)
@@ -601,11 +520,7 @@ class PlayState extends MusicState
 		charactersDance(curBeat);
 		gameHUD.beatHit(curBeat);
 
-		checkNextHit();
-		if (curBeat % 2 == 0)
-		{
-			onLowHealth();
-		}
+		checkNextNotehit();
 
 		if(scriptHandler.exists('beatHit'))
 			scriptHandler.get("beatHit")(curBeat);
@@ -622,11 +537,6 @@ class PlayState extends MusicState
 		|| player.animation.curAnim.name.startsWith("dance"))
 		&& (curBeat % 2 == 0 || player.characterData.quickDancer))
 			player.dance();
-	}
-
-	public function onLowHealth() 
-	{
-
 	}
 
 	override function stepHit()
@@ -683,28 +593,28 @@ class PlayState extends MusicState
 			openSubState(new PauseSubState(gamemode, camOther));
 	}
 
-	private var nextMustHitBeat:Int = 0;
+	private var nextToHit:Int = 0;
 	private var beatCounter:Int = 0;
 
-	private function checkNextHit():Void
+	private function checkNextNotehit():Void
 	{
 		var minDifference:Float = Math.POSITIVE_INFINITY;
-		var nextMustHitTime:Float = 0;
+		var nextTime:Float = 0;
 	
 		for (note in unspawnNotes) {
 			if (note.lane == 'P1' && note.strumTime > Conductor.songPosition) {
 				var difference:Float = note.strumTime - Conductor.songPosition;
 				if (difference < minDifference) {
 					minDifference = difference;
-					nextMustHitTime = note.strumTime;
+					nextTime = note.strumTime;
 				}
 			}
 		}
 	
-		nextMustHitBeat = Std.int((minDifference / Conductor.crochet) / 2);
-		//test.text = '$nextMustHitBeat';
+		nextToHit = Std.int((minDifference / Conductor.crochet) / 2);
+		//test.text = '$nextToHit';
 	
-		if (nextMustHitTime == 0)
-			nextMustHitBeat = 0;
+		if (nextTime == 0)
+			nextToHit = 0;
 	}
 }
