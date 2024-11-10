@@ -58,7 +58,7 @@ class Story extends MusicSubState
 
     private function addWeeks()
     {
-        final wArray = CoolUtil.getTextFromArray(Paths.data('weeks/weekList.txt'));
+        final wArray = CoolUtil.getTextArray(Paths.data('weeks/weekList.txt'));
         for (i in 0...wArray.length)
         {
             var data = WeekData.getData(wArray[i]);

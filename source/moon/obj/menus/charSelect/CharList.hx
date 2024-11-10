@@ -8,7 +8,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
 import moon.obj.menus.charSelect.CharSelectIcon;
-import moon.menus.CharSelect.CharData;
+import moon.states.menus.CharSelect.CharData;
 
 class CharList extends FlxGroup
 {

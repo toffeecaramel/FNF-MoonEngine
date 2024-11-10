@@ -68,7 +68,7 @@ class LoadingSubState extends MusicSubState
         loadText.text = 'Loading interface...';
         add(loadText);
 
-        final eh = CoolUtil.getTextFromArray(Paths.data('loadingTexts.txt'));
+        final eh = CoolUtil.getTextArray(Paths.data('loadingTexts.txt'));
         var ff = new FlxText();
         ff.setFormat(Paths.fonts('RubikVinyl.ttf'), 32, CENTER);
         ff.text = 'Fun Fact!\n${eh[FlxG.random.int(0, eh.length - 1)]}';

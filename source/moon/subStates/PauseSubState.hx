@@ -11,7 +11,7 @@ import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
-import moon.menus.*;
+import moon.states.menus.*;
 import moon.states.PlayState;
 
 using StringTools;
@@ -120,7 +120,7 @@ class PauseSubState extends MusicSubState
                     FlxG.switchState(new PlayState());
                 case 'Settings':
                     close();
-                    game.openSubState(new moon.menus.Options(true, game.camOther));
+                    game.openSubState(new moon.states.menus.Options(true, game.camOther));
                 case 'Exit to Freeplay':
                     FlxG.switchState(new Freeplay());
             }

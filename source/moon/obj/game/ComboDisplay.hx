@@ -40,14 +40,14 @@ class ComboDisplay extends FlxSpriteGroup
     private var isPixel:Bool = false;
     private var pixelModifier:String;
 
-    public function new(X:Float, Y:Float, skin:String = "default", isPixel:Bool = false;)
+    public function new(X:Float, Y:Float, skin:String = "default", isPixel:Bool = false)
     {
         super(X, Y);
         
         this.skin = skin;
         this.X = X;
         this.Y = Y;
-        this.isPixel = isPixel
+        this.isPixel = isPixel;
 
         pixelModifier = (isPixel) ? '-pixel' : '';
 

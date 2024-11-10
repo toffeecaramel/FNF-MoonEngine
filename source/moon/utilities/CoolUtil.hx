@@ -25,11 +25,11 @@ class CoolUtil
         return string.contains('-') ? dashToSpace(string) : spaceToDash(string);
     }
 
-    public static function getTextFromArray(p:String)
+    public static function getTextArray(path:String)
     {
-        if (sys.FileSystem.exists(p))
+        if (sys.FileSystem.exists(path))
         {
-            var fileContent:String = sys.io.File.getContent(p);
+            final fileContent:String = sys.io.File.getContent(path);
             return fileContent.split("\n").map(function(line:String):String {
                 return line.trim();
             });
