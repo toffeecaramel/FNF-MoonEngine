@@ -156,6 +156,6 @@ class Controls
     public static function saveControls():Void
     {
         UserSettings.save.data.gameControls = gameControls;
-        UserSettings.save.flush();
+        UserSettings.saveSettings();
     }
 }

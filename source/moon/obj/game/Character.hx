@@ -33,7 +33,8 @@ typedef AnimationData = {
     var looped:Bool;
 }
 
-class Character extends FNFSprite {
+class Character extends FNFSprite
+{
     public var debugMode:Bool = false;
 
     public var isPlayer:Bool = false;
@@ -51,12 +52,13 @@ class Character extends FNFSprite {
         super(x, y);
     }
 
-    public function setCharacter(x:Float, y:Float, character:String):Character {
+    public function setCharacter(x:Float, y:Float, character:String):Character
+    {
         curCharacter = character;
         antialiasing = true;
 
         //trace(curCharacter);
-        frames = FlxAtlasFrames.fromSparrow(Paths.character('$curCharacter/$curCharacter.png'), Paths.character('$curCharacter/$curCharacter.xml'));
+        frames = Paths.getSparrowAtlas('data/characters/$curCharacter/$curCharacter');
 
         var rawjson:String = sys.io.File.getContent('assets/data/characters/$curCharacter/$curCharacter.json');
         characterData = Json.parse(rawjson);
@@ -113,15 +115,16 @@ class Character extends FNFSprite {
         if (animation.curAnim.name.startsWith('sing') || animation.curAnim.name.startsWith('miss'))
             holdTimer += elapsed;
 
-        final valVar:Float = 7;
-        if (holdTimer >= Conductor.stepCrochet * valVar * 0.001) 
+        final valVar:Float = 8;
+        if (holdTimer >= Conductor.stepCrochet * valVar) 
         {
             dance();
             holdTimer = 0;
         }
 
         var curCharSimplified:String = simplifyCharacter();
-        switch (curCharSimplified) {
+        switch (curCharSimplified)
+        {
             case 'gf':
                 if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
                     playAnim('danceRight');
@@ -143,9 +146,11 @@ class Character extends FNFSprite {
         if (!debugMode) 
         {
             var curCharSimplified:String = simplifyCharacter();
-            switch (curCharSimplified) {
+            switch (curCharSimplified)
+            {
                 case 'gf':
-                    if (!animation.curAnim.name.startsWith('hair') && !animation.curAnim.name.startsWith('sad')) {
+                    if (!animation.curAnim.name.startsWith('hair') && !animation.curAnim.name.startsWith('sad'))
+                    {
                         danced = !danced;
 
                         if (danced)
@@ -154,7 +159,8 @@ class Character extends FNFSprite {
                             playAnim('danceLeft', forced);
                     }
                 default:
-                    if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null) {
+                    if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null)
+                    {
                         danced = !danced;
                         if (danced)
                             playAnim('danceRight', forced);
@@ -166,15 +172,17 @@ class Character extends FNFSprite {
         }
     }
 
-    override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void {
-        try {
+    override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
+    {
+        try
+        {
             if (animation.getByName(AnimName) != null)
                 super.playAnim(AnimName, Force, Reversed, Frame);
-        } catch (e:Dynamic) {
-            trace("Ooop the character returned a null anim.");
         }
+        catch (e:Dynamic) {}
 
-        if (curCharacter == 'gf') {
+        if (curCharacter == 'gf')
+        {
             if (AnimName == 'singLEFT')
                 danced = true;
             else if (AnimName == 'singRIGHT')
@@ -185,7 +193,8 @@ class Character extends FNFSprite {
         }
     }
 
-    public function simplifyCharacter():String {
+    public function simplifyCharacter():String
+    {
         var base = curCharacter;
         if (base.contains('-'))
             base = base.substring(0, base.indexOf('-'));

@@ -2,8 +2,8 @@ package moon.utilities;
 
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import shaders.RGBPallete.RGBShaderReference;
-import shaders.RGBPallete;
+import moon.shaders.RGBPallete.RGBShaderReference;
+import moon.shaders.RGBPallete;
 
 /**
     This class contains all utilities related to notes.

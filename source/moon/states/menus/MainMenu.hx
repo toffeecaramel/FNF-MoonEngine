@@ -49,7 +49,15 @@ class MainMenu extends MusicState
 		add(warnTxt);
 
 		//trace('Setting: ${UserSettings.callSetting('Master Volume')}');
-		trace('bind to string: ${Controls.bindToString(LEFT)} & string to bind: ${Controls.stringToBind('UI_LEFT')}', 'DEBUG');
+		SongData.updateData(
+			"tutorial (arrow funk)",
+			220,
+			"A",
+			13,
+			true,
+			true,
+			true
+		);
     }
 
     override public function update(elapsed:Float):Void

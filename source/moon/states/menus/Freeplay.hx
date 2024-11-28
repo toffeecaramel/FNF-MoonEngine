@@ -2,125 +2,76 @@ package moon.states.menus;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.util.FlxColor;
-import flixel.util.FlxGradient;
-import flixel.util.FlxTimer;
-import flixel.text.FlxText;
 import flixel.group.FlxGroup;
+import flixel.util.FlxColor;
 import flixel.math.FlxMath;
-import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
-import openfl.display.BlendMode;
-import sys.io.File;
-import sys.FileSystem;
-import haxe.Json;
-
-import moon.obj.notes.*;
-import moon.states.PlayState;
+import moon.obj.menus.freeplay.*;
 
 using StringTools;
 
 class Freeplay extends MusicSubState
 {
-    // The array containing all the songs
-    private var songList:Array<String>= [
-        'tutorial (arrow funk)',
-		'virus (arrow funk)',
-		'blammed (Funk Swipe)',
-		'tko2'
+    private final songList:Array<String> = [
+        null,
+        "tutorial (arrow funk)", 
+        "virus (arrow funk)", 
+        "blammed (Funk Swipe)", 
+        "tko2" 
     ];
 
-    // group for the texts
-    private var txtList:FlxTypedGroup<FlxText>;
+    private var capsulesGrp:FlxTypedGroup<Capsule>;
     private var curSelected:Int = 0;
 
-    private var itemHeight:Float = 50;
-    private var spacing:Float = 24;
-
-    private var targetY:Float = 0;
-    private var currentY:Float = 0;
-    private var scrollSpeed:Float = 16; // haha scroll speed
+    private final capsuleOffsetX:Float = 210; // - The capsules X position.
+    private final capsuleOffsetY:Float = 320; // - The capsules Y position.
+    private final capsuleSeparator:Float = 7; // - Cool effect for separating the capsules
 
     override public function create():Void
     {
         super.create();
-        
-        txtList = new FlxTypedGroup<FlxText>();
+
+        capsulesGrp = new FlxTypedGroup<Capsule>();
+        add(capsulesGrp);
+
         for (i in 0...songList.length)
         {
-            var item = new FlxText(-950, 0, 0, '• ${songList[i]}');
-            item.setFormat(Paths.fonts('KodeMono-Bold.ttf'), 50, LEFT);
-            item.ID = i;
-            item.antialiasing = true;
-            txtList.add(item);
+            var capsule = capsulesGrp.recycle(Capsule);
+            capsule.character = 'bf';
+            capsule.loadGraphics();
+            capsule.selID = i;
+            capsule.init(SongData.getSongData(songList[i]));
+            capsule.doLerp = true;
         }
-        add(txtList);
-
-        changeSelection(0);
+        
+        selectCapsule(curSelected);
     }
 
-    private var selected:Bool = false;
     override public function update(elapsed:Float):Void
     {
-        final up = Controls.justPressed(UI_UP);
-        final down = Controls.justPressed(UI_DOWN);
-        final accepted = Controls.justPressed(ACCEPT);
         super.update(elapsed);
 
-        if (up && !selected) changeSelection(-1);
-        if (down && !selected) changeSelection(1);
-        if (accepted) {
-            FlxG.sound.music.stop();
-            PlayState.gamemode = FREEPLAY;
-            PlayState.song = songList[curSelected];
-            PlayState.difficulty = "hard";
-            openSubState(new moon.subStates.LoadingSubState());
-        }
-
-        currentY = FlxMath.lerp(currentY, targetY, scrollSpeed * elapsed);
-        updateTextPositions(elapsed);
+        if (Controls.justPressed(UI_UP)) changeSelection(-1);
+        if (Controls.justPressed(UI_DOWN)) changeSelection(1);
     }
 
-    function changeSelection(change:Int = 0):Void
+    function changeSelection(change:Int):Void
     {
-        curSelected = FlxMath.wrap(curSelected + change, 0, songList.length - 1);
-        FlxG.sound.play(Paths.sound('interfaces/scroll'), 0.8);
+        curSelected = FlxMath.wrap(curSelected + change, 0, capsulesGrp.length - 1);
 
-        var totalHeight = songList.length * (itemHeight + spacing) - spacing;
-        targetY = ((FlxG.height - itemHeight) / 2 - curSelected * (itemHeight + spacing));
-
-        ///////////////////////////////////////////////////////////////////////////////////
-
-        var path = 'assets/songs/${songList[curSelected]}/metadata.json';
-        if(FileSystem.exists(path))
-        {
-            var toParse = File.getContent(path);
-            var content = Json.parse(toParse);
-
-            trace(content.name);
-        }
+        selectCapsule(curSelected);
     }
 
-    function updateTextPositions(elapsed:Float):Void
+    function selectCapsule(index:Int):Void
     {
-        for (i in 0...txtList.length)
+        for (i in 0...capsulesGrp.length)
         {
-            var txt = txtList.members[i];
-            txt.y = currentY + i * (itemHeight + spacing);
-
-            final targetScale:Float = (curSelected == txt.ID) ? 1 : 0.8;
-            final targetAlpha:Float = (curSelected == txt.ID) ? 1 : 0.2;
-
-            txt.scale.x = txt.scale.y = FlxMath.lerp(txt.scale.x, targetScale, scrollSpeed * elapsed);
-            txt.alpha = FlxMath.lerp(txt.alpha, targetAlpha, scrollSpeed * elapsed);
-            txt.x = FlxMath.lerp(txt.x, 30, scrollSpeed * elapsed);
-            txt.updateHitbox();
-
-            if (curSelected == txt.ID)
-                txt.text = '> ${songList[curSelected].toUpperCase()}';
-            else
-                txt.text = '• ${songList[txt.ID].toUpperCase()}';
+            var capsule = cast capsulesGrp.members[i], Capsule;
+            if (capsule != null)
+            {
+                final offsetX = capsuleOffsetX + (capsuleSeparator * 100) / (Math.abs(i - index) + 3);
+                final offsetY = capsuleOffsetY + (i - index) * 130;
+                capsule.updatePosition(offsetX, offsetY);
+            }
         }
     }
 }

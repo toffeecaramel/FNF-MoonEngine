@@ -71,10 +71,10 @@ class ComboDisplay extends FlxSpriteGroup
         if (judgement != null)
         {
             clearGroup(judgementGroup);
-            createJudgementSprite(judgement);
+            spawnJudgement(judgement);
         }
         
-        createComboSprites(combo, judgement);
+        spawnCombo(combo, judgement);
     }
 
     private function clearGroup(group:FlxTypedSpriteGroup<FNFSprite>):Void
@@ -93,21 +93,21 @@ class ComboDisplay extends FlxSpriteGroup
         });
     }
 
-    private function createJudgementSprite(judgement:JudgementsTiming):Void
+    private function spawnJudgement(judgement:JudgementsTiming):Void
     {
-        var judgementSprite:FNFSprite = judgementGroup.recycle(FNFSprite);
-        judgementSprite.loadGraphic(Paths.image('UI/game-ui/combo/$skin/$judgement' + pixelModifier));
+        final judge:FNFSprite = judgementGroup.recycle(FNFSprite);
+        judge.loadGraphic(Paths.image('UI/game-ui/combo/$skin/$judgement${pixelModifier}'));
 
-        judgementSprite.camera = cam;
-        judgementSprite.scale.set(config.judgementScale, config.judgementScale);
-        judgementSprite.updateHitbox();
-        judgementSprite.setPosition(X +(config.width - judgementSprite.width) / 2, Y);
+        judge.camera = cam;
+        judge.scale.set(config.judgementScale, config.judgementScale);
+        judge.updateHitbox();
+        judge.setPosition(X +(config.width - judge.width) / 2, Y);
 
-        animateSprite(judgementSprite, -20, -0.1, 20, -0.8);
+        doAnim(judge, -20, -0.1, 20, -0.8);
     }
 
     private var timingData:Array<Dynamic>;
-    private function createComboSprites(combo:Int, judgement:JudgementsTiming):Void
+    private function spawnCombo(combo:Int, judgement:JudgementsTiming):Void
     {
         final comboStr:String = Std.string(combo);
         if(judgement != null) timingData = Timings.getParameters(judgement);
@@ -118,21 +118,21 @@ class ComboDisplay extends FlxSpriteGroup
         for (i in 0...comboStr.length)
         {
             final digit:String = comboStr.charAt(i);
-            final digitSprite:FNFSprite = numberGroup.recycle(FNFSprite);
-            digitSprite.loadGraphic(Paths.image('UI/game-ui/combo/$skin/numbers/$digit' + pixelModifier));
+            final number:FNFSprite = numberGroup.recycle(FNFSprite);
+            number.loadGraphic(Paths.image('UI/game-ui/combo/$skin/numbers/$digit${pixelModifier}'));
             
-            digitSprite.camera = cam;
-            digitSprite.scale.set(config.numberScale, config.numberScale);
-            digitSprite.updateHitbox();
-            digitSprite.setPosition(startX + i * config.numberSpacing, Y + config.numberY);
-            digitSprite.antialiasing = config.antialiasing;
-            digitSprite.color = timingData[5];
+            number.camera = cam;
+            number.scale.set(config.numberScale, config.numberScale);
+            number.updateHitbox();
+            number.setPosition(startX + i * config.numberSpacing, Y + config.numberY);
+            number.antialiasing = config.antialiasing;
+            number.color = timingData[5];
 
-            animateSprite(digitSprite, -20, -0.07);
+            doAnim(number, -20, -0.07);
         }
     }
 
-    private function animateSprite(sprite:FNFSprite, yOffset:Float, scaleOffset:Float, ?finalYOffset:Float, ?finalScaleOffset:Float):Void
+    private function doAnim(sprite:FNFSprite, yOffset:Float, scaleOffset:Float, ?finalYOffset:Float, ?finalScaleOffset:Float):Void
     {
         var tweens:Array<FlxTween> = [];
 

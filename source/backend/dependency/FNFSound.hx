@@ -4,6 +4,11 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
+enum MusicType {
+    Inst;
+    Voices;
+}
+
 /**
  * Holy shit FNF Sound class real
  * 
@@ -14,6 +19,11 @@ import flixel.tweens.FlxEase;
  **/
 class FNFSound extends FlxSound
 {
+    /**
+     * Used for recognizing whether the audio is inst or voices.
+     */
+    public var musicID:MusicType;
+
     // ---------- TWEENS AND TIMERS ---------- //
 
     /**
@@ -56,9 +66,10 @@ class FNFSound extends FlxSound
             _twn.cancel();
 
         _twn = FlxTween.tween(this, {pitch: toPitch}, duration, 
-            {ease: (easing == null) ? FlxEase.linear : easing, onComplete: function(tw:FlxTween){
-                if(completeFunc != null)
-                    completeFunc();
+            {ease: (easing == null) ? FlxEase.linear : easing, onComplete: 
+            function(tw:FlxTween)
+            {
+                if(completeFunc != null) completeFunc();
             }});
     }
 }

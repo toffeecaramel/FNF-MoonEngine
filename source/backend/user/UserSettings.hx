@@ -143,7 +143,8 @@ class UserSettings
         return setting != null ? getSettingValue(setting) : null;
     }
 
-    private static function saveSettings():Void {
+    public static function saveSettings():Void
+    {
         final settingsToSave:Map<String, Dynamic> = new Map<String, Dynamic>();
 
         for (key in gameSettings.keys())
@@ -156,7 +157,7 @@ class UserSettings
         save.flush();
     }
 
-    private static function loadSettings():Void
+    public static function loadSettings():Void
     {
         if (save.data.settings != null)
         {

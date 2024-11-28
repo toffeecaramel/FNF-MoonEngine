@@ -51,6 +51,7 @@
 	<haxelib name="hxgamejolt-api" />
 	
 	<haxelib name="hscript" />
+	
 	<haxelib name="funkin.visfix" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->

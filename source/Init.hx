@@ -7,6 +7,7 @@ import flixel.graphics.FlxGraphic;
 import flixel.input.keyboard.FlxKey;
 import openfl.filters.BitmapFilter;
 import openfl.filters.ColorMatrixFilter;
+import sys.FileSystem;
 
 import moon.obj.font.*;
 
@@ -19,6 +20,13 @@ class Init extends FlxState
 		super.create();
 		UserSettings.init();
 		DiscordRPC.initRPC();
+		SongData.init();
+
+		if (!FileSystem.exists("addons/")) FileSystem.createDirectory("addons/");
+
+		// - Get those addons directories if they exist!
+		final addonsDir = getDirectories('addons/');
+		if(addonsDir != null || addonsDir != []) trace('found addons directories: $addonsDir', "DEBUG");
 
 		// - LOAD UP HAXEUI STUFF - //
 
@@ -48,4 +56,7 @@ class Init extends FlxState
 		
 		FlxG.switchState(Type.createInstance(Main.initState, []));
 	}
+
+	private function getDirectories(path:String):Array<String>
+		return (FileSystem.exists(path)) ? FileSystem.readDirectory(path).filter(entry -> FileSystem.isDirectory('${path}/${entry}')) : null;
 }

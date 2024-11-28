@@ -260,8 +260,6 @@ class PlayState extends MusicState
 
 	override public function update(elapsed:Float)
 	{
-		if(loadedSong && !paused && countdownFinished)
-			Conductor.songPosition += elapsed * 1000;
 		super.update(elapsed);
 
 		if (unspawnNotes.length == 0)
@@ -281,7 +279,6 @@ class PlayState extends MusicState
 		///////////////////////////////////////////////////////
 
 		inputHandler.update();
-
 		chartRenderer.updateNotePosition(elapsed);
 
 		//checkForInput();
@@ -422,11 +419,10 @@ class PlayState extends MusicState
 			case 'no animation': //nothing.
 			default: character.playAnim('sing${note.noteDir.toUpperCase()}', true);
 		}
+		character.holdTimer = 0;
 
 		if(scriptHandler.exists('onNoteHit'))
 			scriptHandler.get("onNoteHit")(note, character, jt);
-
-		character.holdTimer = 0;
 	}
 
 	private function onMiss()
@@ -542,9 +538,6 @@ class PlayState extends MusicState
 	override function stepHit()
 	{
 		super.stepHit();
-		if(countdownFinished)
-			if (Math.abs(Conductor.songPosition - inst.time) >= 40 && Conductor.songPosition - inst.time <= 5000)
-				resync();
 	}
 
 	private function startCountdown():Void
@@ -573,17 +566,7 @@ class PlayState extends MusicState
 		}
 	}
 
-	public static function resync():Void
-	{
-		if(countdownFinished)
-		{
-			//trace('Resyncing: ${inst.time} to ${Conductor.songPosition}');
-			setAudioState('pause');
-			Conductor.songPosition = inst.time;
-			voices.time = Conductor.songPosition;
-			setAudioState('play');
-		}
-	}
+
 
 	public function pauseGame(openS:Bool = true):Void
 	{
