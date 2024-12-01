@@ -146,8 +146,7 @@ class ChartEditor extends MusicState
         }
         
         FlxG.camera.follow(strumLineCam);
-        moon.obj.interfaces.Cursor.show();
-
+        
         var tabs = [
             {name: "Characters", tag: "characters"},
             {name: "Edit Properties", tag: "editproperties",}

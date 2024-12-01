@@ -26,25 +26,7 @@ class Init extends FlxState
 
 		// - Get those addons directories if they exist!
 		final addonsDir = getDirectories('addons/');
-		if(addonsDir != null || addonsDir != []) trace('found addons directories: $addonsDir', "DEBUG");
-
-		// - LOAD UP HAXEUI STUFF - //
-
-	    // - Initialize the toolkit
-	    haxe.ui.Toolkit.init();
-
-	    // - Set the theme to dark
-	    haxe.ui.Toolkit.theme = 'dark';
-
-	    // - Set autoscale to false
-	    haxe.ui.Toolkit.autoScale = false;
-
-	    // - Make so it won't focus on the UI elements once they appear
-	    haxe.ui.focus.FocusManager.instance.autoFocus = false;
-
-	    // - Register all cursors
-	    moon.obj.interfaces.Cursor.registerHaxeUICursors();
-	    haxe.ui.tooltips.ToolTipManager.defaultDelay = 150;
+		if(addonsDir != null || addonsDir.length > 0) trace('found addons directories: $addonsDir', "DEBUG");
 
 	    // - Init the alphabet
 	    FlxG.signals.preStateCreate.add(state -> @:privateAccess

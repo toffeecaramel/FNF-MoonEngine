@@ -114,7 +114,6 @@ class PauseSubState extends MusicSubState
             {
                 case 'Resume':
                     close();
-                    PlayState.resync();
                 case 'Restart Song':
                     PlayState.setAudioState('kill');
                     FlxG.switchState(new PlayState());

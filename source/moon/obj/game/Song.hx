@@ -18,10 +18,21 @@ enum SongState {
  **/
 class Song extends FlxTypedGroup<FNFSound>
 {
-	public var pitch(default, set):Float = 1;
-
+	/**
+	 * Sets the song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
+	 */
 	public var curState(default, set):SongState = PLAY;
 
+	/**
+	 * Set the song's pitch.
+	 */
+	public var pitch(default, set):Float = 1;
+
+	/**
+	 * Creates the gameplay's song.
+	 * @param audios The array containing audio info.
+	 * Array example: `[{song: "tutorial", type: Inst, charPath: "pico"}]`
+	 */
 	public function new(audios:Array<{song:String, type:MusicType, ?charPath:String}>)
 	{
 		super();
@@ -44,6 +55,10 @@ class Song extends FlxTypedGroup<FNFSound>
 		super.update(elapsed);
 	}
 
+	/**
+	 * Checks if any audio is out of sync, then re-syncs them by calling `resync()`.
+	 * It is recommended that this function is called on every step hit.
+	 */
 	public function checkDesync():Void
 	{
 		for (i in 0...members.length)
@@ -52,6 +67,9 @@ class Song extends FlxTypedGroup<FNFSound>
 				resync();
 	}
 
+	/**
+	 * Pauses all the songs playing and syncs their time.
+	 */
 	public function resync():Void
 	{
 		for(i in 0...members.length)

@@ -43,8 +43,6 @@
 	
 	<haxelib name="flixel-ui" />
 	<haxelib name="flixel-text-input" />
-	<haxelib name="haxeui-core" />
-	<haxelib name="haxeui-flixel" />
 
 	<haxelib name="discord_rpc" if="cpp" />
 	<haxelib name="hxcpp-debug-server" if="debug" />

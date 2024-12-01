@@ -33,10 +33,12 @@ import backend.gameplay.*;
 
 using StringTools;
 
-enum GameMode {
+enum GameMode
+{
 	STORY;
 	FREEPLAY;
 	DEBUG;
+	ONLINE;
 }
 
 class PlayState extends MusicState
@@ -545,7 +547,6 @@ class PlayState extends MusicState
 		countdownFinished = true;
 		inst.time = voices.time = Conductor.songPosition = 0;
 		setAudioState('play');
-		resync();
 	}
 
 	public static function setAudioState(st:String = 'play')

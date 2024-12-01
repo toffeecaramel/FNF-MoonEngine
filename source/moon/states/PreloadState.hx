@@ -112,6 +112,6 @@ class PreloadState extends FlxTransitionableState
         super.update(elapsed);
 
         if (FlxG.keys.justPressed.ANY)
-            FlxG.switchState(new moon.states.editors.chart.ChartPlaytester());
+            FlxG.switchState(new moon.states.menus.Title());
     }
 }
