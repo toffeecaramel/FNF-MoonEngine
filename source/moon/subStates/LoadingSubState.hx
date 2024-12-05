@@ -86,39 +86,23 @@ class LoadingSubState extends MusicSubState
     {
         var preloadThread = new lime.app.Future(() ->
         {
-            chart = new Chart('assets/data/charts/${PlayState.song}/chart-${PlayState.difficulty}.json');
+            var strumlines = [];
+            chart = new Chart('assets/data/charts/${PlayState.song}/default/chart-${PlayState.difficulty}.json');
 
             for (i in 0...2)
             {
                 var strum = new Strumline(true, 0, 0);
+                strumlines.push(strum);
                 load(strum);
             }
             
             loadProgress = 10;
 
             loadText.text = 'Loading Notes...';
-            var notesThing = [];
-            for (noteData in chart.notes) 
-            {
-                var note:Note = Note.returnDefaultNote(nSkin, 
-                    noteData.type, noteData.time, 
-                    noteData.direction, noteData.lane, false);
-                notesThing.push(note);
-            
-                var susLength:Float = noteData.duration / Conductor.stepCrochet;
-            
-                for (susNote in 0...Math.floor(susLength)) {
-                    var oldNote:Note = notesThing[Std.int(notesThing.length - 1)];
-                    var sustainNote:Note = Note.returnDefaultNote(nSkin, 
-                        noteData.type,
-                        noteData.time + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet,
-                        noteData.direction, noteData.lane, true, oldNote);
-                    notesThing.push(sustainNote);
-                    load(sustainNote);
-                }
+            var notesArray = [];
 
-                load(note);
-            }
+            var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin);
+            load(chartLoader);
 
             loadProgress = 20;
 

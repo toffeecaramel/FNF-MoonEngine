@@ -86,7 +86,7 @@ class ChartEditor extends MusicState
 
         // - Load up the chart
         _chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
-        Conductor.changeBPM(_chart.bpm);
+        Conductor.changeBPM(_chart.bpm, _chart.timeSignature[0] / _chart.timeSignature[1]);
     }
 
     override public function create():Void {

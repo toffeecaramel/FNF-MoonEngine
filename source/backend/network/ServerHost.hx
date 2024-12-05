@@ -11,9 +11,19 @@ import haxe.io.Bytes;
 class ServerHost
 {
     private var serverSocket:Socket;
+
     private var clients:Array<Socket>;
     private var thread:Mutex;
     private var messages:Array<String>;
+
+    // - Success Callbacks.
+    public var onStartSuccess:Void->Void;
+
+    // - Errors Callbacks.
+    public var onStartFail:Void->Void;
+
+    // - Other Callbacks
+    public var onUserDisconnect:Void->Void;
 
     public function new()
     {

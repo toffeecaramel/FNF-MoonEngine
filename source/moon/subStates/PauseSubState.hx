@@ -45,6 +45,7 @@ class PauseSubState extends MusicSubState
             case STORY: optionsList.push(['Exit to Menu', 'Exit back to the Story Mode menu.']);
             case FREEPLAY: optionsList.push(['Exit to Freeplay', 'Exit back to the Freeplay menu.']);
             case DEBUG: optionsList.push(['Exit to Editor', 'Exit back to the Editor you were using.']);
+            case ONLINE: optionsList.push(['Leave Match', 'Exit the match you\'re playing. (YOU WILL LOSE YOUR SCORE!)']);
         }
 
         var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -113,9 +114,10 @@ class PauseSubState extends MusicSubState
             switch(optionsList[curSelected][0])
             {
                 case 'Resume':
+                    PlayState.playback.checkDesync();
                     close();
                 case 'Restart Song':
-                    PlayState.setAudioState('kill');
+                    PlayState.playback.curState = KILL;
                     FlxG.switchState(new PlayState());
                 case 'Settings':
                     close();

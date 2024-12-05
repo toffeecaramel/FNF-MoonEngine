@@ -90,8 +90,7 @@ class PlayState extends MusicState
 	public static var loadedSong:Bool = false;
 
 	// - Sound-Related variables.
-	public static var inst:FlxSound;
-	public static var voices:FlxSound;
+	public static var playback:Song;
 	public static var sfx:FlxTypedGroup<FlxSound>;
 
 	private var scriptHandler:ScriptHandler;
@@ -100,18 +99,19 @@ class PlayState extends MusicState
 	public static var song:String;
 	public static var difficulty:String;
 
-	public function new()
+	var test:FlxText;
+	
+	inline private function resetValues()
 	{
-		super();
 		unspawnNotes = [];
-
 		health = 50;
 	}
 
-	var test:FlxText;
 	override public function create()
 	{
 		super.create();
+		resetValues();
+
 		FlxG.mouse.visible = false;
 
 		curPlaystate = this;
@@ -197,7 +197,7 @@ class PlayState extends MusicState
 		add(splashGrp);
 
 		// - Load the chart
-		chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
+		chart = new Chart('assets/data/charts/$song/default/chart-$difficulty.json');
 		scrollSpeed = chart.scrollSpeed / 2.6;
 		Conductor.changeBPM(chart.bpm, chart.timeSignature[0] / chart.timeSignature[1]);
 
@@ -228,6 +228,11 @@ class PlayState extends MusicState
 		generateSong();
 		updateByOption();
 
+		// placeholder, remove later.
+		final pPos = [player.getMidpoint().x + player.camOffsets[0], player.getMidpoint().y + player.camOffsets[1]];
+
+		moveCamera(pPos[0], pPos[1], 1, FlxEase.circOut);
+
 		test = new FlxText(0, 10, 0, "GUH");
 		test.setFormat(Paths.fonts("vcr.ttf"), 48, CENTER);
 		test.screenCenter(X);
@@ -245,37 +250,45 @@ class PlayState extends MusicState
 
 	private function generateSong():Void
 	{
-		inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
-		FlxG.sound.list.add(inst);
-		
-		// - Doing like this because not loading any embed at all makes sounds glitchy
-		final path = (chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
-		voices = new FlxSound().loadEmbedded(path, false, true);
-		FlxG.sound.list.add(voices);
-		loadedSong = true;
+		var songStuff = [
+			{song: song, type: Inst}
+		];
+		// - this is so dumb lol I have to change it
+		if(chart.hasVoices)songStuff.push({song: song, type: Voices});
+		playback = new Song(songStuff);
 
 		startCountdown();
-		setAudioState('play');
+		playback.curState = PLAY;
+		playback.checkDesync();
 	}
 
 	private var val:Float;
 
 	override public function update(elapsed:Float)
 	{
+		if(playback!=null) Conductor.songPosition += elapsed * 1000;
 		super.update(elapsed);
+
+		//placeholder, remove later...
+		for(note in unspawnNotes)
+			if(note.strumTime - Conductor.songPosition <= 0 && note.lane == 'Opponent')
+			{
+				onNoteHit(note, opponent, null);
+				NoteUtils.killNote(note, unspawnNotes);
+			}
 
 		if (unspawnNotes.length == 0)
 			beatCounter = 0;
 
 		///////////////////////////////////////////////////////
 
-		inputHandler.justPressed = [FlxG.keys.justPressed.LEFT,FlxG.keys.justPressed.DOWN,FlxG.keys.justPressed.UP,FlxG.keys.justPressed.RIGHT,
+		inputHandler.justPressed = [FlxG.keys.justPressed.D,FlxG.keys.justPressed.F,FlxG.keys.justPressed.J,FlxG.keys.justPressed.K,
 		];
 
-		inputHandler.pressed = [FlxG.keys.pressed.LEFT,FlxG.keys.pressed.DOWN,FlxG.keys.pressed.UP,FlxG.keys.pressed.RIGHT,
+		inputHandler.pressed = [FlxG.keys.pressed.D,FlxG.keys.pressed.F,FlxG.keys.pressed.J,FlxG.keys.pressed.K,
 		];
 
-		inputHandler.released = [FlxG.keys.justReleased.LEFT,FlxG.keys.justReleased.DOWN,FlxG.keys.justReleased.UP,FlxG.keys.justReleased.RIGHT,
+		inputHandler.released = [FlxG.keys.justReleased.D,FlxG.keys.justReleased.F,FlxG.keys.justReleased.J,FlxG.keys.justReleased.K,
 		];
 
 		///////////////////////////////////////////////////////
@@ -303,7 +316,7 @@ class PlayState extends MusicState
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
-			setAudioState('stop');
+			playback.curState = KILL;
 			FlxG.switchState(new ChartEditor(song, difficulty));
 		}
 		if (FlxG.keys.justPressed.EIGHT)
@@ -314,7 +327,7 @@ class PlayState extends MusicState
 		}
 		if (FlxG.keys.justPressed.NINE)
 		{
-			setAudioState('stop');
+			playback.curState = KILL;
 			FlxG.switchState(new ChartConverterState());
 		}
 
@@ -328,8 +341,8 @@ class PlayState extends MusicState
 
 	public function updateByOption():Void
 	{
-		inst.volume = UserSettings.callSetting('Instrumental Volume') / 100;
-		voices.volume = UserSettings.callSetting('Voices Volume') / 100;
+		//inst.volume = UserSettings.callSetting('Instrumental Volume') / 100;
+		//voices.volume = UserSettings.callSetting('Voices Volume') / 100;
 
 		//trace(UserSettings.callSetting('Instrumental Volume'), 'DEBUG');
 
@@ -353,7 +366,7 @@ class PlayState extends MusicState
 				final pos = (event.values[0] == 'Player') ? pPos : oppPos;
 				moveCamera(pos[0], pos[1], event.values[1], FlxEase.circOut);
 			case "Change BPM":
-				Conductor.changeBPM(event.values[0]);
+				Conductor.changeBPM(event.values[0], event.values[1][0] / event.values[1][1]);
 		}
 	}
 
@@ -540,38 +553,17 @@ class PlayState extends MusicState
 	override function stepHit()
 	{
 		super.stepHit();
+		playback.checkDesync();
 	}
 
 	private function startCountdown():Void
 	{	
 		countdownFinished = true;
-		inst.time = voices.time = Conductor.songPosition = 0;
-		setAudioState('play');
 	}
-
-	public static function setAudioState(st:String = 'play')
-	{
-		final audios = [inst, voices];
-		for (yeah in audios)
-		{
-			if(yeah != null)
-			{
-				switch(st)
-				{
-					case 'play': yeah.play();
-					case 'pause': yeah.pause();
-					case 'stop': yeah.stop();
-					case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);
-				}
-			}
-		}
-	}
-
-
 
 	public function pauseGame(openS:Bool = true):Void
 	{
-		setAudioState('pause');
+		playback.curState = PAUSE;
 		paused = true;
 		if (openS)
 			openSubState(new PauseSubState(gamemode, camOther));

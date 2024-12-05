@@ -137,26 +137,38 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      */
     public function updateNotePosition(elapsed:Float)
     {
-        // TODO: Remake this? Sustains seems weird on high scroll speeds.
+        final visibleBuffer:Float = 100;
+
         for (note in notesArray)
         {
             final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
             final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-    
             final timeDifference:Float = (note.strumTime - Conductor.songPosition) * chartData.scrollSpeed / 3;
-    
-            final xOffset = (note.isSustainNote) ? 32.5 : 0;
             final yOffset = (note.isSustainNote) ? -17 * (chartData.scrollSpeed * 1.5) : 0;
-    
-            note.y = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset
-            : strumlineY + (timeDifference) + yOffset;
-            
-            note.visible = note.active = (note.y > FlxG.height + 900 || note.y < FlxG.height - 900) ? false : true;
-            note.x = getNoteX(note.noteDir, note.lane) + xOffset;
-    
-            if(note.isSustainNote) note.flipY = UserSettings.callSetting('Downscroll');
+
+            final potentialY:Float = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset
+                : strumlineY + (timeDifference) + yOffset;
+
+            if (potentialY > -visibleBuffer && potentialY < FlxG.height + visibleBuffer)
+            {
+                note.active = note.visible = true;
+
+                final xOffset = (note.isSustainNote) ? 32.5 : 0;
+                note.y = potentialY;
+
+                note.x = getNoteX(note.noteDir, note.lane) + xOffset;
+
+                if(note.isSustainNote) note.flipY = UserSettings.callSetting('Downscroll');
+            }
+            else note.active = note.visible = false; 
+            // huge fuckass if statement lol
+            if ((((!UserSettings.callSetting('Downscroll')) && (note.y < -note.height))
+            || ((UserSettings.callSetting('Downscroll')) && (note.y > (FlxG.height + note.height))))
+            && (note.tooLate || note.wasGoodHit))
+                NoteUtils.killNote(note, notesArray);
         }
     }
+
     /**
      * Get an strumline X based on the lane and direction.
      * @param direction The note's direction.

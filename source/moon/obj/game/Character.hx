@@ -58,7 +58,7 @@ class Character extends FNFSprite
         antialiasing = true;
 
         //trace(curCharacter);
-        frames = Paths.getSparrowAtlas('data/characters/$curCharacter/$curCharacter');
+        frames = Paths.getSparrowAtlas('characters/$curCharacter/$curCharacter', 'data');
 
         var rawjson:String = sys.io.File.getContent('assets/data/characters/$curCharacter/$curCharacter.json');
         characterData = Json.parse(rawjson);

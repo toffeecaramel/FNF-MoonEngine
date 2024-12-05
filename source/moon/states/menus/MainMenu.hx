@@ -17,6 +17,7 @@ import moon.obj.notes.*;
 import openfl.display.BlendMode;
 import moon.states.editors.*;
 import moon.states.*;
+import moon.states.menus.submenus.*;
 //import moon.utilities.SoundUtil;
 
 using StringTools;
@@ -44,7 +45,7 @@ class MainMenu extends MusicState
 		warnTxt.size = 32;
 		
 		// lol
-		warnTxt.text = 'This menu is being revamped lol\nPress P to go to freeplay\nO to go to Options\nS to go to story moed\nAlso press C to check character selection\nK for keybind menu options\n\n\nLMFAOOO THIS CODE WAS SO BADD';
+		warnTxt.text = 'This menu is being revamped lol\nPress M for multiplayer\nPress P to go to freeplay\nO to go to Options\nK for keybinds cause im a lazy fuck\nS to go to story moed\nAlso press C to check character selection\nK for keybind menu options\n\n\nLMFAOOO THIS CODE WAS SO BADD';
 		warnTxt.screenCenter();
 		add(warnTxt);
 
@@ -70,14 +71,14 @@ class MainMenu extends MusicState
             Conductor.songPosition = FlxG.sound.music.time;
 
 		super.update(elapsed);
-		if (FlxG.keys.justPressed.O)
-			openSubState(new Options(false));
-		else if (FlxG.keys.justPressed.P)
-			openSubState(new Freeplay());
-        else if (FlxG.keys.justPressed.S)
-            openSubState(new Story());
-        else if (FlxG.keys.justPressed.C)
-            FlxG.switchState(new CharSelect());
+		if (FlxG.keys.justPressed.O) openSubState(new Options(false));
+		else if (FlxG.keys.justPressed.P) openSubState(new Freeplay());
+        else if (FlxG.keys.justPressed.S) openSubState(new Story());
+
+        else if (FlxG.keys.justPressed.K) openSubState(new KeybindsSub());
+
+        else if (FlxG.keys.justPressed.C) FlxG.switchState(new CharSelect());
+        else if (FlxG.keys.justPressed.M) FlxG.switchState(new Multiplayer());
     }
 
     function changeSelection(change:Int = 0):Void

@@ -1,6 +1,7 @@
 package moon.utilities;
 
 import flixel.FlxSprite;
+import moon.obj.notes.*;
 import flixel.util.FlxColor;
 import moon.shaders.RGBPallete.RGBShaderReference;
 import moon.shaders.RGBPallete;
@@ -101,5 +102,12 @@ class NoteUtils
         }
 
         return rgbShader;
+    }
+
+    public static function killNote(poorNote:Note, notesArray:Array<Note>):Void
+    {
+        poorNote.active = poorNote.exists = false;
+        poorNote.kill();
+        notesArray.remove(poorNote);
     }
 }

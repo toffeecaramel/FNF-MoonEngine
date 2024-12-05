@@ -21,14 +21,8 @@ class Server
 
 	public static function sendMessage(message:String):Void
 	{
-	    if (host != null) {
-	        //trace('Host cutely sending message: $message', "DEBUG");
-	        host.broadcastMessage(message);
-	    }
-	    if (client != null) {
-	        //trace('Client cutely sending message: $message', "DEBUG");
-	        client.sendMessage(message);
-	    }
+	    if (host != null) host.broadcastMessage(message);
+	    if (client != null) client.sendMessage(message);
 	}
 
     public static function processMessages(callback:String->Void):Void

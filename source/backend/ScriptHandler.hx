@@ -26,7 +26,7 @@ class ScriptHandler
 {
     private var interp:Interp;
 
-    private var variables:Array<Dynamic> = [
+    private var classes:Array<Dynamic> = [
         ["FlxG", FlxG],
         ["FlxSprite", FlxSprite],
         ["FlxTween", FlxTween],
@@ -41,8 +41,8 @@ class ScriptHandler
         interp = new Interp();
 
         // - Setup all the libraries
-        for(i in 0...variables.length)
-            interp.variables.set(variables[i][0], variables[i][1]);
+        for(i in 0...classes.length)
+            interp.variables.set(classes[i][0], classes[i][1]);
     }
 
     //load the file and parse

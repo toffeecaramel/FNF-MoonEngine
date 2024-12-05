@@ -36,7 +36,7 @@ typedef EventData = {
 //and typedef for the whole chart data
 typedef ChartData = {
     var bpm:Float;
-	var timeSignature:Array<Float>;
+	var timeSignature:Array<Int>;
 	var scrollSpeed:Float;
 	var hasVoices:Bool;
     var notes:Array<NoteData>;
@@ -46,7 +46,7 @@ typedef ChartData = {
 class Chart
 {
     public var bpm:Float;
-	public var timeSignature:Array<Float>;
+	public var timeSignature:Array<Int>;
 	public var scrollSpeed:Float;
 	public var hasVoices:Bool;
     public var notes:Array<NoteData>;

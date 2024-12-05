@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="follow.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="button-idle0000" x="0" y="352" width="205" height="68"/>
+	<SubTexture name="button-press0000" x="0" y="0" width="244" height="88"/>
+	<SubTexture name="button-press0001" x="0" y="0" width="244" height="88"/>
+	<SubTexture name="button-press0002" x="0" y="88" width="244" height="88"/>
+	<SubTexture name="button-press0003" x="0" y="88" width="244" height="88"/>
+	<SubTexture name="button-press0004" x="0" y="176" width="244" height="88"/>
+	<SubTexture name="button-press0005" x="0" y="176" width="244" height="88"/>
+	<SubTexture name="button-press0006" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0007" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0008" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0009" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0010" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0011" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0012" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0013" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0014" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0015" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0016" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0017" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0018" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0019" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0020" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0021" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0022" x="0" y="264" width="244" height="88"/>
+	<SubTexture name="button-press0023" x="0" y="264" width="244" height="88"/>
+</TextureAtlas>

@@ -6,17 +6,16 @@ import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
 import moon.obj.menus.freeplay.*;
+import moon.states.*;
 
 using StringTools;
 
 class Freeplay extends MusicSubState
 {
     private final songList:Array<String> = [
-        null,
+        null, // - Random
         "tutorial (arrow funk)", 
-        "virus (arrow funk)", 
-        "blammed (Funk Swipe)", 
-        "tko2" 
+        "tremendous"
     ];
 
     private var capsulesGrp:FlxTypedGroup<Capsule>;
@@ -52,6 +51,14 @@ class Freeplay extends MusicSubState
 
         if (Controls.justPressed(UI_UP)) changeSelection(-1);
         if (Controls.justPressed(UI_DOWN)) changeSelection(1);
+        if (Controls.justPressed(ACCEPT))
+        {
+            PlayState.song = songList[curSelected];
+            PlayState.difficulty = 'hard';
+            PlayState.gamemode = FREEPLAY;
+            FlxG.sound.music.kill();
+            openSubState(new moon.subStates.LoadingSubState());
+        }
     }
 
     function changeSelection(change:Int):Void

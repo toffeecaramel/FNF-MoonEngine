@@ -89,10 +89,8 @@ class InputHandler
                         note.wasGoodHit = true;
 
                         playerStats.score += timingData[2];
-                        trace("VAI TOMA NO CU OTARIO, TOMA O SCORE: " + playerStats.score, "DEBUG");
 
-                        // - Kills note.
-                        if (!note.isSustainNote) assassinateNote(note);
+                        if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes);
                     }
                 }
                 else if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
@@ -114,9 +112,8 @@ class InputHandler
                     {
                         note.wasGoodHit = true;
                         if (onNoteHit != null) onNoteHit(note, null);
-                        assassinateNote(note);
+                        NoteUtils.killNote(note, unspawnNotes);
                         playerStats.score += 6;
-                        trace(playerStats.score, "DEBUG");
                         break;
                     }
                 }
@@ -147,9 +144,8 @@ class InputHandler
             {
                 if (onNoteMiss != null) onNoteMiss(note);
                 note.tooLate = true;
-                assassinateNote(note);
+                NoteUtils.killNote(note, unspawnNotes);
                 playerStats.score += Std.int(Timings.getParameters(miss)[2]);
-                trace(playerStats.score, "DEBUG");
             }
         }
     }
@@ -171,9 +167,5 @@ class InputHandler
         return null;
     }
     
-    private function assassinateNote(note:Note):Void
-    {
-        note.kill();
-        unspawnNotes.remove(note);
-    }
+    
 }

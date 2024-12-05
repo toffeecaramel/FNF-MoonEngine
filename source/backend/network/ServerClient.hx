@@ -12,6 +12,7 @@ class ServerClient
     private var connected:Bool = false;
 
     // - Success Callbacks.
+    public var onConnectionSuccess:Void->Void;
 
     // - Errors Callbacks.
     public var onConnectionFail:Void->Void;
@@ -32,8 +33,9 @@ class ServerClient
             connected = true;
 
             trace('Connected to server at $ip:$port');
+            if (onConnectionSuccess != null) onConnectionSuccess();
 
-            Thread.create(receiveMessages);
+            Thread.create(receiveMessages); // :)
             return true;
         }
         catch (e:Dynamic)
@@ -58,7 +60,7 @@ class ServerClient
             }
             catch (e:Dynamic)
             {
-                trace('Connection lost.', "ERROR");
+                trace('Connection lost: $e', "ERROR");
 				if(onLostConnection != null) onLostConnection();
 
                 connected = false;
