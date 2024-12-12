@@ -22,16 +22,25 @@ echo *** Installing Main Dependencies... ***
 echo ***************************************
 echo.
 
-haxelib install lime
-haxelib install openfl
-haxelib install flixel
-haxelib install flixel-addons
-haxelib install flixel-ui
-haxelib install flixel-tools
-haxelib install flixel-text-input
-haxelib install hxcpp-debugger
-haxelib install hxcpp-debug-server
-haxelib install hscript
+haxelib install lime 8.0.2
+haxelib set lime 8.0.2
+haxelib install openfl 9.3.3
+haxelib set openfl 9.3.3
+haxelib git flixel https://github.com/HaxeFlixel/flixel.git
+haxelib set flixel git
+haxelib install flixel-addons 3.2.3
+haxelib set flixel-addons 3.2.3
+haxelib install flixel-ui 2.6.1
+haxelib set flixel-ui 2.6.1
+haxelib install flixel-tools 1.5.1
+haxelib set flixel-tools 1.5.1
+haxelib install flixel-text-input 2.0.2
+haxelib set flixel-text-input 2.0.2
+haxelib install hxcpp-debugger 
+haxelib install hxcpp-debug-server 1.2.4
+haxelib set hxcpp-debug-server 1.2.4
+haxelib install hscript 2.5.0
+haxelib set hscript 2.5.0
 haxelib run lime setup
 haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
