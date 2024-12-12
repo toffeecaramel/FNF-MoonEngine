@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chartline.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="lineHit0000" x="0" y="0" width="1292" height="534"/>
+	<SubTexture name="lineHit0001" x="0" y="0" width="1292" height="534"/>
+	<SubTexture name="lineHit0002" x="0" y="534" width="1292" height="534"/>
+	<SubTexture name="lineHit0003" x="0" y="534" width="1292" height="534"/>
+	<SubTexture name="lineHit0004" x="0" y="1068" width="1292" height="534"/>
+	<SubTexture name="lineHit0005" x="0" y="1068" width="1292" height="534"/>
+	<SubTexture name="lineHit0006" x="0" y="1602" width="1292" height="534"/>
+	<SubTexture name="lineHit0007" x="0" y="1602" width="1292" height="534"/>
+	<SubTexture name="lineHit0008" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0009" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0010" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0011" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0012" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0013" x="0" y="2136" width="1292" height="534"/>
+	<SubTexture name="lineHit0014" x="0" y="2136" width="1292" height="534"/>
+</TextureAtlas>

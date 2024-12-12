@@ -36,6 +36,9 @@ class Paths
     inline static public function frag(key:String)
         return 'assets/shaders/$key.frag';
 
+    inline static public function music(key:String)
+        return 'assets/music/$key.ogg';
+
     static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);

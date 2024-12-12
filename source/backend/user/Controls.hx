@@ -44,6 +44,8 @@ enum MoonKeys
 
 class Controls
 {
+    // Array that has all the keys. if you want them to be rebindable,
+    // go to KeybindsSub at source/moon/states/menus/submenus and put it in the keysArray.
     public static var gameControls:Map<String, Array<Dynamic>> = [
     	// - GAMEPLAY KEYBINDS - //
         'LEFT' => [

@@ -89,7 +89,8 @@ class ChartEditor extends MusicState
         Conductor.changeBPM(_chart.bpm, _chart.timeSignature[0] / _chart.timeSignature[1]);
     }
 
-    override public function create():Void {
+    override public function create():Void
+    {
         super.create();
         curSection = lastSection;
         camGlobal = FlxG.camera;
@@ -163,9 +164,9 @@ class ChartEditor extends MusicState
 
     private function makeBG():Void
     {
-        var coolGradient = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
-        coolGradient.scrollFactor.set();
-        add(coolGradient);
+        var bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(30, 29, 31));
+        bg.scrollFactor.set();
+        add(bg);
     }
 
     function generateGrid():Void
@@ -415,9 +416,8 @@ class ChartEditor extends MusicState
         addNote(getNoteX(noteData.direction, noteData.lane), getYfromStrum(noteData.time), noteData, false); // Render note
     }
     
-    private function addAction(action:EditorAction):Void {
+    private function addAction(action:EditorAction):Void
         actions.push(action);
-    }
 
     private function playSFX(name:String):Void
     {
