@@ -1,5 +1,6 @@
 package backend.gameplay;
 
+import flixel.math.FlxRect;
 import moon.obj.notes.Note;
 import moon.utilities.NoteUtils;
 import backend.gameplay.Timings.JudgementsTiming;
@@ -37,9 +38,13 @@ class InputHandler
      * Creates an handler for Note Inputs.
      * @param unspawnNotes The array of notes.
      */
-    public function new(unspawnNotes:Array<Note>, playerType:PlayerType)
+
+    public var strumlineY:Float;
+
+    public function new(unspawnNotes:Array<Note>, playerType:PlayerType, strumline:Float)
     {
         this.unspawnNotes = unspawnNotes;
+        this.strumlineY = strumline;
         this.playerType = playerType;
 
         playerStats = new PlayerStats(playerType);
@@ -108,6 +113,11 @@ class InputHandler
                 final noteDir = NoteUtils.directionToNumber(note.noteDir);
                 if (pressed[noteDir] && note.parentNote.wasGoodHit)
                 {
+                    var rect = new FlxRect(0, strumlineY + 50 + Note.allWidth / 2 - note.y, note.width * 2, note.height * 2);
+                    rect.y /= note.scale.y;
+                    rect.height -= rect.y;
+                    note.clipRect = rect;
+
                     if (note.strumTime <= Conductor.songPosition && !note.wasGoodHit)
                     {
                         note.wasGoodHit = true;
@@ -166,6 +176,4 @@ class InputHandler
         }
         return null;
     }
-    
-    
 }

@@ -115,6 +115,8 @@ class Note extends FNFSprite
         [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
     ];
 
+    public static var allWidth:Float = 160 * 0.7;
+
     /**
      * Creates a note on the screen.
      * @param skin        The note's skin, basically it's appearence.

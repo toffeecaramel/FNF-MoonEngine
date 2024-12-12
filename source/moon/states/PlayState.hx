@@ -211,7 +211,7 @@ class PlayState extends MusicState
 		add(chartRenderer);
 
 		// - Add the input handler
-		inputHandler = new InputHandler(unspawnNotes, P1);
+		inputHandler = new InputHandler(unspawnNotes, P1, playerStrumline.y);
 		inputHandler.onNoteHit = function(note:Note, judgement:JudgementsTiming):Void {
             onNoteHit(note, player, judgement);
             //trace('Note got hit: ${note.noteDir}, $judgement');
