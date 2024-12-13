@@ -15,7 +15,8 @@ class Freeplay extends MusicSubState
     private final songList:Array<String> = [
         null, // - Random
         "tutorial (arrow funk)", 
-        "tremendous"
+        "tremendous",
+        "unbeatable"
     ];
 
     private var capsulesGrp:FlxTypedGroup<Capsule>;

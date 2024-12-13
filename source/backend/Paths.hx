@@ -6,8 +6,10 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import lime.utils.Assets;
 import openfl.display.BitmapData;
 import openfl.display3D.textures.Texture;
+import flixel.system.FlxAssets;
 import openfl.media.Sound;
 import openfl.utils.AssetType;
+import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.display3D.textures.RectangleTexture;
 import sys.FileSystem;
@@ -19,7 +21,50 @@ class Paths
     public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
     public static var currentTrackedTextures:Map<String, Texture> = [];
     public static var currentTrackedSounds:Map<String, Sound> = [];
+    private static var graphicCache:Map<String, FlxGraphic> = new Map<String, FlxGraphic>();
     public static var localTrackedAssets:Array<String> = [];
+
+    public static function clearMemory():Void
+    {
+        for (key in graphicCache.keys())
+        {
+            var graphic = graphicCache.get(key);
+            if (graphic != null) {
+                graphic.destroy();
+                graphicCache.remove(key);
+            }
+        }
+
+        for (key in currentTrackedTextures.keys())
+        {
+            var texture = currentTrackedTextures.get(key);
+            if (texture != null) {
+                texture.dispose();
+                currentTrackedTextures.remove(key);
+            }
+        }
+
+        for (key in currentTrackedAssets.keys())
+        {
+            var graphic = currentTrackedAssets.get(key);
+            if (graphic != null) {
+                graphic.destroy();
+                currentTrackedAssets.remove(key);
+            }
+        }
+
+        for (key in currentTrackedSounds.keys())
+        {
+            var sound = currentTrackedSounds.get(key);
+            if (sound != null) {
+                sound.close();
+                currentTrackedSounds.remove(key);
+            }
+        }
+
+        localTrackedAssets = [];
+        // FlxG.gc(); // Garbage Collector is very gay bruhh
+    }
 
     inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
         return getPath(file, type, library);
@@ -42,27 +87,28 @@ class Paths
     static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);
-
-        if (currentTrackedAssets.exists(file)) {
-            localTrackedAssets.push(file);
-            return currentTrackedAssets.get(file);
-        }
-
-        var bitmap:BitmapData = OpenFlAssets.exists(file, IMAGE) ? OpenFlAssets.getBitmapData(file) : null;
-
-        if (bitmap != null) {
-            var retVal = cacheBitmap(file, bitmap, allowGPU);
-            if(retVal != null) return retVal;
-        }
-
-        trace('$file is returning null.', "ERROR");
-        return null;
+        if (graphicCache.exists(file))
+            return graphicCache.get(file);
+        
+        var bitmapData:BitmapData = BitmapData.fromFile(file);
+        var graphic:FlxGraphic = FlxGraphic.fromBitmapData(bitmapData, allowGPU);
+        graphicCache.set(file, graphic);
+        
+        return graphic;
     }
 
-    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String)
+    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String = null):FlxAtlasFrames
     {
-        var graphic:FlxGraphic = returnGraphic(key, from, library);
-        return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('$from/$key.xml', library))));
+        var xmlPath:String = getPath('$from/$key.xml', TEXT, library);
+        var pngPath:String = getPath('$from/$key.png', IMAGE, library);
+        
+        var xml = Assets.getText(xmlPath);
+        var pngBitmapData:BitmapData = BitmapData.fromFile(pngPath);
+        
+        var atlasGraphic:FlxGraphic = FlxGraphic.fromBitmapData(pngBitmapData, true);
+        var atlasFrames:FlxAtlasFrames = FlxAtlasFrames.fromSparrow(atlasGraphic, xml);
+    
+        return atlasFrames;
     }
 
     static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true) 

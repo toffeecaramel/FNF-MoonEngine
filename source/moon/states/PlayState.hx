@@ -104,6 +104,7 @@ class PlayState extends MusicState
 	
 	inline private function resetValues()
 	{
+		Paths.clearMemory(); // Low Memory
 		unspawnNotes = [];
 		health = 50;
 	}
@@ -111,10 +112,9 @@ class PlayState extends MusicState
 	override public function create()
 	{
 		super.create();
+
 		resetValues();
-
 		FlxG.mouse.visible = false;
-
 		curPlaystate = this;
 
 		// - Setup the cameras
