@@ -52,7 +52,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         add(notesGroup);
 
         // - Time to recycle these notes baby
-        for(notes in chartData.notes) spawnNotes(notes);
+        for(notes in chartData.content.notes) spawnNotes(notes);
     }
 
     /**
@@ -88,7 +88,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
             var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote);
     
             // - Set the note speed from the chart so it can adjust sustains size.
-            note.noteSpeed = chartData.scrollSpeed;
+            note.noteSpeed = chartData.content.scrollSpeed;
     
             // - Change the scale, I personally prefer smaller strumlines.
             note.scale.set(PlayState.noteScale, PlayState.noteScale);
@@ -143,8 +143,8 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         {
             final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
             final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-            final timeDifference:Float = (note.strumTime - Conductor.songPosition) * chartData.scrollSpeed / 3;
-            final yOffset = (note.isSustainNote) ? -17 * (chartData.scrollSpeed * 1.5) : 0;
+            final timeDifference:Float = (note.strumTime - Conductor.songPosition) * chartData.content.scrollSpeed / 3;
+            final yOffset = (note.isSustainNote) ? -17 * (chartData.content.scrollSpeed * 1.5) : 0;
 
             final potentialY:Float = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset
                 : strumlineY + (timeDifference) + yOffset;

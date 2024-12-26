@@ -27,9 +27,9 @@ class MusicPlayer extends MusicState
 
     override public function update(elapsed:Float):Void
     {
-        final up = controls.UI_UP_P;
-		final down = controls.UI_DOWN_P;
-		final accepted = controls.ACCEPT;
+        final up = Controls.justPressed(UI_UP);
+		final down = Controls.justPressed(UI_DOWN);
+		final accepted = Controls.justPressed(ACCEPT);
 
         if(FlxG.sound.music != null)
             Conductor.songPosition = FlxG.sound.music.time;

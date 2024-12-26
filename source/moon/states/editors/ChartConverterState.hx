@@ -81,7 +81,7 @@ class ChartConverterState extends MusicState
 		try
 		{
 			var jc = Chart.loadBaseFromJson(path);
-			convertedChart = Chart.convertOriginalToNew(jc);
+			convertedChart = Chart.parse('default', jc);
 			FlxTween.tween(importT, {x: FlxG.width - importT.width - 30}, 1, {
 				ease: FlxEase.circOut,
 				onComplete: function(twn:FlxTween)
@@ -137,7 +137,6 @@ class ChartConverterState extends MusicState
 	/**
 	 * Called on when the chart saves succesfully
 	 */
-
 	 function onSaveComplete(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
@@ -148,8 +147,8 @@ class ChartConverterState extends MusicState
 	}
 
 	/**
-		* Called if the player cancel the save file
-	*/
+	 * Called if the player cancel the save file
+	 */
 	function onSaveCancel(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
@@ -159,8 +158,8 @@ class ChartConverterState extends MusicState
 	}
 
 	/**
-		* Called if there was an error on saving the chart.
-	*/
+     * Called if there was an error on saving the chart.
+	 */
 	function onSaveError(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);

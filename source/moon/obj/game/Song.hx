@@ -29,6 +29,21 @@ class Song extends FlxTypedGroup<FNFSound>
 	public var pitch(default, set):Float = 1;
 
 	/**
+	 * The song's current time.
+	 */
+	@:isVar public var time(get, set):Float = 0;
+
+	/**
+	 * Get the song's full time.
+	 */
+	@:isVar public var fullLength(get, never):Float = 0;
+
+	/**
+	 * Get whether or not the song is playing.
+	 */
+	@:isVar public var playing(get, never):Bool = true;
+
+	/**
 	 * Creates the gameplay's song.
 	 * @param audios The array containing audio info.
 	 * Array example: `[{song: "tutorial", type: Inst, charPath: "pico"}]`
@@ -42,7 +57,7 @@ class Song extends FlxTypedGroup<FNFSound>
 			recycle(FNFSound, function():FNFSound
 			{
 				final extPath = (audios[i].charPath != null) ? audios[i].charPath : 'default';
-				var music = cast new FNFSound().loadEmbedded('assets/data/charts/${audios[i].song}/$extPath/${audios[i].type}.ogg', false, true);
+				var music = cast new FNFSound().loadEmbedded('assets/charts/${audios[i].song}/$extPath/${audios[i].type}.ogg', false, true);
 				music.musicID = audios[i].type;
 				FlxG.sound.list.add(cast music); // - I hate the fact that I have to cast it
 				return music;
@@ -81,19 +96,9 @@ class Song extends FlxTypedGroup<FNFSound>
 		}
 	}
 
-	@:noCompletion
-	public function set_pitch(value:Float):Float
-	{
-		pitch = value;
+	////////////////////////////////////////////////////////////////////////////////////
 
-		for (i in 0...members.length)
-			members[i].pitch = pitch;
-
-		return value;
-	}
-
-	@:noCompletion
-	public function set_curState(state:SongState = PLAY):SongState
+	@:noCompletion public function set_curState(state:SongState = PLAY):SongState
 	{
 		curState = state;
 		for (i in 0...members.length)
@@ -110,4 +115,50 @@ class Song extends FlxTypedGroup<FNFSound>
 		}
 		return state;
 	}
+
+	@:noCompletion public function get_time():Float
+	{
+		var lastTime:Float = 0;
+		for (i in 0...members.length)
+			lastTime = members[i].time;
+
+		return lastTime;
+	}		
+
+	@:noCompletion public function set_time(value:Float):Float
+	{
+		time = value;
+		for(i in 0...members.length)
+			members[i].time = value;
+
+		return value;
+	}
+
+	@:noCompletion public function set_pitch(value:Float):Float
+	{
+		pitch = value;
+
+		for (i in 0...members.length)
+			members[i].pitch = pitch;
+
+		return value;
+	}
+
+	@:noCompletion public function get_fullLength():Float
+	{
+		var lastLength:Float = 0;
+		for (i in 0...members.length)
+			lastLength = members[i].length;
+
+		return lastLength;
+	}		
+
+	@:noCompletion public function get_playing():Bool
+	{
+		var isPlaying:Bool = false;
+		for (i in 0...members.length)
+			isPlaying = members[i].playing;
+
+		return isPlaying;
+	}		
 }

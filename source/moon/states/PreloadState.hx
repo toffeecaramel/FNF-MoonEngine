@@ -47,8 +47,7 @@ class PreloadState extends FlxTransitionableState
         // - But! if you want to change the path it loads
         // - just change this lolz! - Toffee
         final loadPaths = [
-            'assets/images/menus',
-            'assets/data/playableChars'
+            'assets/images/menus/main',
         ];
 
         for (i in 0...loadPaths.length)

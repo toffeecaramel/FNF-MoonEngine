@@ -1,12 +1,10 @@
 package;
 
-import moon.states.PreloadState;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxGame;
 import flixel.FlxGame;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxColor;
 import haxe.CallStack.StackItem;
@@ -24,52 +22,22 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.Process;
 
-/**
- * Main class! this is where the game starts at and loads up all necessary things.
- * 
- * This is also where you set-up some things, such as game version, the state in which the
- * game loads on start, and more!
- */
-
 using StringTools;
 
 class Main extends Sprite
 {
-	// • Class Action Variables • //
-
-	// - Game's Version
-	public static final gameVersion:String = 'INDEV';
-
-	// - Game's main informations
-	public static final gameWidth:Int = 1280;
-	public static final gameHeight:Int = 720;
-	public static final framerate:Int = 60;
-	
-	// - The state in which the game loads at.
-	public static var initState:Class<FlxState> = PreloadState;
-
-	// - The game's zoom, since it's -1, it means the game automatically calculates to fit the window dimensions
-	final zoom:Float = -1;
-
-	final skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var infoCounter:backend.FPS; // initialize the heads up display that shows information before creating it.
-
 	public static function main():Void
 	{
 		Lib.current.addChild(new Main());
 	}
 
-	public static var mainClassState:Class<FlxState> = Init;
 	public function new()
 	{
 		super();
-	
-		//var stageWidth:Int = Lib.current.stage.stageWidth;
-		//var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		var gameCreate:FlxGame;
-		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash);
-		addChild(gameCreate); // and create it afterwards
+		var gameCreate = new FlxGame(Finals.GAME_WIDTH, Finals.GAME_HEIGHT,
+			Init, #if (flixel < "5.0.0") Finals.ZOOM, #end Finals.GAME_FRAMERATE, Finals.GAME_FRAMERATE, Finals.SKIP_SPLASH);
+		addChild(gameCreate);
 
 		var infoCounter = new backend.FPS(0, 0);
 		addChild(infoCounter);

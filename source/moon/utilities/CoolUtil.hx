@@ -11,19 +11,13 @@ import sys.FileSystem;
 class CoolUtil
 {
     public static inline function dashToSpace(string:String):String
-    {
         return string.replace("-", " ");
-    }
 
     public static inline function spaceToDash(string:String):String
-    {
         return string.replace(" ", "-");
-    }
 
     public static inline function swapSpaceDash(string:String):String
-    {
         return string.contains('-') ? dashToSpace(string) : spaceToDash(string);
-    }
 
     public static function getTextArray(path:String)
     {
@@ -34,7 +28,6 @@ class CoolUtil
                 return line.trim();
             });
         }
-        else
-            return ["File not found!"];
+        else return ["File not found!"];
     }
 }

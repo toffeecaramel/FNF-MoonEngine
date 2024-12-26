@@ -9,10 +9,11 @@ import flixel.group.FlxGroup;
 import flixel.util.FlxGradient;
 import flixel.addons.display.shapes.FlxShapeBox;
 import flixel.util.FlxColor;
+import flixel.ui.FlxButton;
 import moon.obj.notes.*;
 import moon.obj.editors.*;
+import moon.obj.game.Song;
 import moon.utilities.NoteUtils;
-import flixel.ui.FlxButton;
 
 using StringTools;
 
@@ -51,10 +52,8 @@ class ChartEditor extends MusicState
     final minY:Float = 0;
     public var maxY:Float = 0;
 
-    private var inst:FlxSound;
-    private var voices:FlxSound;
-
     private var _chart:Chart;
+    private var _playback:Song;
 
     private var _renderedLanes:FlxTypedGroup<FlxSprite>;
     private var _notes:FlxTypedGroup<Note>;
@@ -85,8 +84,8 @@ class ChartEditor extends MusicState
         this.difficulty = difficulty;
 
         // - Load up the chart
-        _chart = new Chart('assets/data/charts/$song/chart-$difficulty.json');
-        Conductor.changeBPM(_chart.bpm, _chart.timeSignature[0] / _chart.timeSignature[1]);
+        _chart = new Chart(song, difficulty);
+        Conductor.changeBPM(_chart.content.bpm, _chart.content.timeSignature[0] / _chart.content.timeSignature[1]);
     }
 
     override public function create():Void
@@ -101,15 +100,16 @@ class ChartEditor extends MusicState
         minX = FlxG.width - (gridSize * kAmmount) - gridSize * 4 - 30;
         maxX = minX + gridSize * kAmmount;
 
-        inst = new FlxSound().loadEmbedded('assets/data/charts/$song/Inst.ogg', false, true);
-        FlxG.sound.list.add(inst);
-        
-        final path = (_chart.hasVoices) ? 'assets/data/charts/$song/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
-        voices = new FlxSound().loadEmbedded(path, false, true);
-        FlxG.sound.list.add(voices);
+        var songStuff = [
+			{song: song, type: Inst}
+		];
+		// - this is so dumb lol I have to change it
+		if(_chart.content.hasVoices)songStuff.push({song: song, type: Voices});
+		_playback = new Song(songStuff);
 
-        inst.time = 0;
-        maxY = getYfromStrum(inst.length);
+		_playback.curState = PAUSE;
+        _playback.time = 0;
+        maxY = getYfromStrum(_playback.fullLength);
 
         makeBG();
         
@@ -124,7 +124,7 @@ class ChartEditor extends MusicState
 
         generateGrid();
 
-        for(nData in _chart.notes)
+        for(nData in _chart.content.notes)
             addNote(getNoteX(nData.direction, nData.lane), Math.floor(getYfromStrum(nData.time)) + 1, nData);
 
         strumLineCam = new FlxObject(0, 0);
@@ -173,7 +173,7 @@ class ChartEditor extends MusicState
     {
         _renderedLanes.clear();
         final stepDuration:Float = Conductor.stepCrochet;
-        final totalSteps:Int = Math.ceil(inst.length / stepDuration);
+        final totalSteps:Int = Math.ceil(_playback.fullLength / stepDuration);
         
         for (i in 0...totalSteps)
         {
@@ -211,7 +211,7 @@ class ChartEditor extends MusicState
         checkMouseInteractions(elapsed);
         checkKeyboardInteractions(elapsed);
 
-        Conductor.songPosition = inst.time;
+        Conductor.songPosition = _playback.time;
         strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 28);
         strumLineCam.y = strumline.y + (FlxG.height / 2.6) - 25;
     }
@@ -256,7 +256,7 @@ class ChartEditor extends MusicState
         }
 
         if (FlxG.keys.justPressed.SPACE)
-            (inst.playing) ? setAudioState('pause') : setAudioState('play');
+            (_playback.playing) ? _playback.curState = PAUSE : _playback.curState = PLAY;
 
         var shiftThing:Int = 1;
         if (FlxG.keys.pressed.SHIFT)
@@ -283,7 +283,7 @@ class ChartEditor extends MusicState
                 direction: direction,
                 duration: 0.0,
             };
-            _chart.notes.push(noteData);
+            _chart.content.notes.push(noteData);
         }
         final xVal = getNoteX(direction, lane);
 
@@ -314,26 +314,9 @@ class ChartEditor extends MusicState
         curSection = sec;
 
         if (updateMusic) {
-            inst.pause();
-            voices.pause();
-            inst.time = sectionStartTime();
-            voices.time = inst.time;
+            _playback.curState = PAUSE;
+            _playback.time = sectionStartTime();
             updateCurStep();
-        }
-    }
-
-    private function setAudioState(st:String = 'play')
-    {
-        final audios = [inst, voices];
-        for (yeah in audios) {
-            if(yeah != null) {
-                switch(st) {
-                    case 'play': yeah.play(); yeah.volume = 1;
-                    case 'pause': yeah.pause();
-                    case 'stop': yeah.stop();
-                    case 'kill': yeah.stop(); yeah.kill(); FlxG.sound.list.remove(yeah);
-                }
-            }
         }
     }
 
@@ -390,7 +373,7 @@ class ChartEditor extends MusicState
     {
         if (noteData != null)
         {
-            _chart.notes = _chart.notes.filter(n -> n != noteData);
+            _chart.content.notes = _chart.content.notes.filter(n -> n != noteData);
             
             _notes.forEachAlive(function(noteD:Note)
             {
@@ -404,7 +387,7 @@ class ChartEditor extends MusicState
         }
         else if (note != null)
         {
-            _chart.notes = _chart.notes.filter(n -> !note.matchesData(n));
+            _chart.content.notes = _chart.content.notes.filter(n -> !note.matchesData(n));
             note.kill();
             _notes.remove(note);
             note.destroy();
@@ -412,7 +395,7 @@ class ChartEditor extends MusicState
     }
 
     private function restoreNote(noteData:Dynamic):Void {
-        _chart.notes.push(noteData); // Add back to chart data
+        _chart.content.notes.push(noteData); // Add back to chart data
         addNote(getNoteX(noteData.direction, noteData.lane), getYfromStrum(noteData.time), noteData, false); // Render note
     }
     
@@ -421,19 +404,19 @@ class ChartEditor extends MusicState
 
     private function playSFX(name:String):Void
     {
-        if(!inst.playing)
+        if(!_playback.playing)
             FlxG.sound.play(Paths.sound('editors/chartEditor/$name'), UserSettings.callSetting('Editor Sounds') / 100);
     }
 
     private function getYfromStrum(strumTime:Float):Float
-        return FlxMath.remapToRange(strumTime, 0, inst.length, 0, (inst.length / Conductor.stepCrochet) * gridSize);
+        return FlxMath.remapToRange(strumTime, 0, _playback.fullLength, 0, (_playback.fullLength / Conductor.stepCrochet) * gridSize);
 
     private function getStrumFromY(y:Float):Float
-        return FlxMath.remapToRange(y, 0, (inst.length / Conductor.stepCrochet) * gridSize, 0, inst.length);
+        return FlxMath.remapToRange(y, 0, (_playback.fullLength / Conductor.stepCrochet) * gridSize, 0, _playback.fullLength);
 
     function sectionStartTime():Float
     {
-        var daBPM:Float = _chart.bpm;
+        var daBPM:Float = _chart.content.bpm;
         var daPos:Float = 0;
         for (i in 0...curSection)
             daPos += 4 * (1000 * 60 / daBPM);

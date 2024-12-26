@@ -87,7 +87,7 @@ class LoadingSubState extends MusicSubState
         var preloadThread = new lime.app.Future(() ->
         {
             var strumlines = [];
-            chart = new Chart('assets/data/charts/${PlayState.song}/default/chart-${PlayState.difficulty}.json');
+            chart = new Chart(PlayState.song, PlayState.difficulty);
 
             for (i in 0...2)
             {
@@ -126,7 +126,7 @@ class LoadingSubState extends MusicSubState
             var inst = new FlxSound().loadEmbedded('assets/data/charts/${PlayState.song}/Inst.ogg', false, true);
             
             // - Doing like this because not loading any embed at all makes sounds glitchy
-            final path = (chart.hasVoices) ? 'assets/data/charts/${PlayState.song}/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
+            final path = (chart.content.hasVoices) ? 'assets/data/charts/${PlayState.song}/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
             var voices = new FlxSound().loadEmbedded(path, false, true);
             if(inst.playing || voices.playing){voices.stop(); inst.stop();} // just to make sure...
 

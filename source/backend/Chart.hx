@@ -6,19 +6,6 @@ import haxe.Json;
 
 using StringTools;
 
-/**
-	Here is the class that contains all of the chart's information
-	mainly being notes, it's time, direction, sustain length and more!
-	there's still things missing for now but I'll add more in the future.
-
-	This class also contains functions to convert charts, which was made for
-	porting charts. I will add support for porting moon engine charts to other
-	formats soon!
-
-	will also add support for modern fnf later.
-**/
-
-//typedef for the note data	
 typedef NoteData = {
 	var type:String;
     var direction:String;
@@ -33,126 +20,135 @@ typedef EventData = {
 	var time:Float;
 }
 
-//and typedef for the whole chart data
 typedef ChartData = {
-    var bpm:Float;
+    var notes:Array<NoteData>;
+	var events:Array<EventData>;
+
+	var bpm:Float;
 	var timeSignature:Array<Int>;
 	var scrollSpeed:Float;
 	var hasVoices:Bool;
-    var notes:Array<NoteData>;
-	var events:Array<EventData>;
 }
 
+typedef ChartMetadata = {
+	var artist:String;
+	var displayName:String;
+
+	var player:String;
+	var opponent:String;
+	var spectator:String;
+	var p2type:String;
+	var stage:String;
+}
+
+/**
+ * Class made for Chart handling and Chart conversion as well.
+ */
 class Chart
 {
-    public var bpm:Float;
+	public var content:ChartData;
+	//public var metadata:ChartMetadata;
+
+    /*public var bpm:Float;
 	public var timeSignature:Array<Int>;
 	public var scrollSpeed:Float;
 	public var hasVoices:Bool;
     public var notes:Array<NoteData>;
-	public var events:Array<EventData>;
+	public var events:Array<EventData>;*/
 
-    /**
-     * Creates a chart from a json file.
-     * @param jsonPath The path for your json file.
-     */
-    public function new(jsonPath:String)
+    public function new(songName, difficulty, ?mix = 'default')
     {
-		// - Get the file content
-        var jsonString = sys.io.File.getContent(jsonPath);
+		final path = 'assets/charts/$songName/$mix';
 
-		// - Parse to a variable
-        var chartData:ChartData = Json.parse(jsonString);
-
-		// - And set it's values on the class variables
-        this.bpm = chartData.bpm;
-		this.timeSignature = chartData.timeSignature;
-		this.scrollSpeed = chartData.scrollSpeed;
-        this.notes = chartData.notes;
-		this.events = chartData.events;
-		this.hasVoices = chartData.hasVoices;
+        content = Json.parse(sys.io.File.getContent('$path/chart-$difficulty.json'));
+		//metadata = Json.parse(sys.io.File.getContent('$path/metadata.json'));
     }
 
 	/**
 	 * Converts an FNF chart to the Moon Engine chart format.
-	 * @param originalSong The chart you want to convert.
+	 * @param ogChart The chart you want to convert.
 	 * @return ChartData
 	 */
-	public static function convertOriginalToNew(originalSong:SwagSong):ChartData
+	public static function parse(chartType:String, ogChart:SwagSong):ChartData
 	{
-		// - Make the new structure while getting values from the og chart
-		var newChart:ChartData = {
-			scrollSpeed: originalSong.speed,
-			hasVoices: originalSong.needsVoices,
-			bpm: originalSong.bpm,
-			timeSignature: [4, 4],
-			notes: [],
-			events: []
-		};
-
-		var lastMustHitSection:Bool = originalSong.notes[0].mustHitSection;
-		var lastBPM:Float = originalSong.bpm; // Store the initial BPM
-		var timeOffset:Float = 0; // Track time in milliseconds
-
-		// - Iterate through sections
-		for (section in originalSong.notes)
+		switch (chartType)
 		{
-			/*// - Check for BPM change first, before processing notes
-			if (section.changeBPM && section.bpm != lastBPM)
-			{
-				// - Create a "Change BPM" event at the current time offset
-				var bpmChangeEvent:EventData = {
-					name: "Change BPM", 
-					values: [section.bpm],
-					time: timeOffset
-				};
-				newChart.events.push(bpmChangeEvent);
+			default:
+				// - Make the new structure while getting values from the og chart
+				var newChart:ChartData = {
+					notes: [],
+					events: [],
 
-				// - Update lastBPM to the new BPM
-				lastBPM = section.bpm;
-			}*/
-
-			// - Process notes in the section
-			for (note in section.sectionNotes)
-			{
-				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
-				(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
-				
-				// - Set the notes direction, lane, step, and duration in steps
-				var noteData:NoteData = {
-					type: (note[3] == null) ? 'DEFAULT' : note[3],
-					direction: NoteUtils.numberToDirection(note[1]),
-					lane: lane,
-					time: note[0],
-					duration: ((note.length > 2) ? note[2] : null)
+					scrollSpeed: ogChart.speed,
+					hasVoices: ogChart.needsVoices,
+					bpm: ogChart.bpm,
+					timeSignature: [4, 4]
 				};
-				// - Then push it to the notes array
-				newChart.notes.push(noteData);
-				
-				// - Create the camera events
-				if (section.mustHitSection != lastMustHitSection)
+
+				var lastMustHitSection:Bool = ogChart.notes[0].mustHitSection;
+				var lastBPM:Float = ogChart.bpm;
+				var timeOffset:Float = 0;
+
+				// - Iterate through sections
+				for (section in ogChart.notes)
 				{
-					var cameraEvent:EventData = {
-						name: "Move Camera",
-						values: [
-							section.mustHitSection ? "Player" : "Opponent",
-							0.6,
-							"circOut"
-						],
-						time: note[0]
-					};
-					newChart.events.push(cameraEvent);
+					/*// - Check for BPM change first, before processing notes
+					if (section.changeBPM && section.bpm != lastBPM)
+					{
+						// - Create a "Change BPM" event at the current time offset
+						var bpmChangeEvent:EventData = {
+							name: "Change BPM", 
+							values: [section.bpm],
+							time: timeOffset
+						};
+						newChart.events.push(bpmChangeEvent);
 
-					lastMustHitSection = section.mustHitSection;
+						// - Update lastBPM to the new BPM
+						lastBPM = section.bpm;
+					}*/
+
+					// - Process notes in the section
+					for (note in section.sectionNotes)
+					{
+						var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
+						(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
+						
+						// - Set the notes direction, lane, step, and duration in steps
+						var noteData:NoteData = {
+							type: (note[3] == null) ? 'DEFAULT' : note[3],
+							direction: NoteUtils.numberToDirection(note[1]),
+							lane: lane,
+							time: note[0],
+							duration: ((note.length > 2) ? note[2] : null)
+						};
+						// - Then push it to the notes array
+						newChart.notes.push(noteData);
+						
+						// - Create the camera events
+						if (section.mustHitSection != lastMustHitSection)
+						{
+							var cameraEvent:EventData = {
+								name: "Move Camera",
+								values: [
+									section.mustHitSection ? "Player" : "Opponent",
+									0.6,
+									"circOut"
+								],
+								time: note[0]
+							};
+							newChart.events.push(cameraEvent);
+
+							lastMustHitSection = section.mustHitSection;
+						}
+					}
+
+					// - Update timeOffset for the next section based on section length and BPM
+					//timeOffset += (section.lengthInSteps / (lastBPM / 60)) * 1000; // - Convert steps to milliseconds
+					//trace('time Offset $timeOffset', 'DEBUG');
 				}
-			}
 
-			// - Update timeOffset for the next section based on section length and BPM
-			//timeOffset += (section.lengthInSteps / (lastBPM / 60)) * 1000; // - Convert steps to milliseconds
-			//trace('time Offset $timeOffset', 'DEBUG');
+				return newChart;
 		}
-
-		return newChart;
 	}
 
 	/**
@@ -162,7 +158,7 @@ class Chart
 	 */
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
-		var rawJson = sys.io.File.getContent('$jsonInput').trim();
+		var rawJson = sys.io.File.getContent(jsonInput).trim();
 
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);

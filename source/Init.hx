@@ -36,7 +36,7 @@ class Init extends FlxState
 		    Alphabet.alphabetGroup.clear();
 		});
 		
-		FlxG.switchState(Type.createInstance(Main.initState, []));
+		FlxG.switchState(Type.createInstance(Finals.INITIAL_STATE, []));
 	}
 
 	private function getDirectories(path:String):Array<String>

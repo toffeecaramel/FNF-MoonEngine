@@ -41,7 +41,7 @@ class DiscordRPC
             details: details,
             state: state,
             largeImageKey: 'moonengine-logo',
-            largeImageText: 'Moon Engine v.${Main.gameVersion}',
+            largeImageText: 'Moon Engine v.${Finals.VERSION}',
             smallImageKey: smallImageKey,
             startTimestamp : gameStartTimestamp
         });

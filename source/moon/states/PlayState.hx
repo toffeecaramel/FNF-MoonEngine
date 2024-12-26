@@ -198,11 +198,10 @@ class PlayState extends MusicState
 		add(splashGrp);
 
 		// - Load the chart
-		chart = new Chart('assets/data/charts/$song/default/chart-$difficulty.json');
-		scrollSpeed = chart.scrollSpeed / 2.6;
-		Conductor.changeBPM(chart.bpm, chart.timeSignature[0] / chart.timeSignature[1]);
-
-		for (event in chart.events)
+		chart = new Chart(song, difficulty);
+		scrollSpeed = chart.content.scrollSpeed / 1.8;
+		Conductor.changeBPM(chart.content.bpm, chart.content.timeSignature[0] / chart.content.timeSignature[1]);
+		for (event in chart.content.events)
 			eventList.push(event);
 
 		// - Load the notes
@@ -255,7 +254,7 @@ class PlayState extends MusicState
 			{song: song, type: Inst}
 		];
 		// - this is so dumb lol I have to change it
-		if(chart.hasVoices)songStuff.push({song: song, type: Voices});
+		if(chart.content.hasVoices)songStuff.push({song: song, type: Voices});
 		playback = new Song(songStuff);
 
 		startCountdown();
@@ -283,13 +282,13 @@ class PlayState extends MusicState
 
 		///////////////////////////////////////////////////////
 
-		inputHandler.justPressed = [FlxG.keys.justPressed.D,FlxG.keys.justPressed.F,FlxG.keys.justPressed.J,FlxG.keys.justPressed.K,
+		inputHandler.justPressed = [Controls.justPressed(LEFT),Controls.justPressed(DOWN),Controls.justPressed(UP),Controls.justPressed(RIGHT),
 		];
 
-		inputHandler.pressed = [FlxG.keys.pressed.D,FlxG.keys.pressed.F,FlxG.keys.pressed.J,FlxG.keys.pressed.K,
+		inputHandler.pressed = [Controls.pressed(LEFT),Controls.pressed(DOWN),Controls.pressed(UP),Controls.pressed(RIGHT),
 		];
 
-		inputHandler.released = [FlxG.keys.justReleased.D,FlxG.keys.justReleased.F,FlxG.keys.justReleased.J,FlxG.keys.justReleased.K,
+		inputHandler.released = [Controls.released(LEFT),Controls.released(DOWN),Controls.released(UP),Controls.released(RIGHT),
 		];
 
 		///////////////////////////////////////////////////////
