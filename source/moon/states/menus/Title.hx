@@ -52,8 +52,8 @@ class Title extends MusicState
 		logo.visible = false;
 		add(logo);
 
-	    var coolText = new Alphabet(0, 0, "Oh!... ello! :3\nDon't mind me, I'm just testing", true, CENTER);
-	    add(coolText);
+	    //var coolText = new Alphabet(0, 0, "Oh!... ello! :3\nDon't mind me, I'm just testing", true, CENTER);
+	    //add(coolText);
 	}
 
 	override public function update(elapsed:Float)

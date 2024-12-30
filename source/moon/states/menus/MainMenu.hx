@@ -9,12 +9,13 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.effects.FlxFlicker;
 import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
 import flixel.util.FlxTimer;
+import openfl.display.BlendMode;
 import moon.obj.*;
 import moon.obj.menus.*;
-import openfl.display.BlendMode;
 import moon.states.editors.*;
 import moon.states.*;
 import moon.states.menus.submenus.*;
@@ -94,7 +95,7 @@ class MainMenu extends MusicState
 		FlxTween.tween(logo, {angle: 7}, 3, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		var versionDisplay = new FlxText();
-		versionDisplay.text = 'Moon Engine v.${Finals.VERSION}';
+		versionDisplay.text = 'Moon Engine v.${Constants.VERSION}';
 		versionDisplay.setFormat(Paths.fonts('vcr.ttf'), 24, RIGHT);
 		versionDisplay.setPosition(FlxG.width - versionDisplay.width, FlxG.height - versionDisplay.height);
 		add(versionDisplay);
@@ -109,6 +110,19 @@ class MainMenu extends MusicState
 
 		if(Controls.justPressed(UI_UP)) changeSelection(-1);
 		else if(Controls.justPressed(UI_DOWN)) changeSelection(1);
+
+		if(Controls.justPressed(ACCEPT) && !selected)
+		{
+			selected = true;
+			FlxG.sound.play(Paths.sound('interfaces/confirm'));
+			FlxFlicker.flicker(optionsGrp.members[curSelected], 1.4, 0.07, true, true, function(_)
+			{
+				switch(options[curSelected])
+				{
+					case 'freeplay': openSubState(new Freeplay());
+				}
+			});
+		}
 
 		super.update(elapsed);
 		updateTxts(elapsed);

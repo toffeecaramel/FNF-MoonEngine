@@ -35,8 +35,8 @@ class Main extends Sprite
 	{
 		super();
 
-		var gameCreate = new FlxGame(Finals.GAME_WIDTH, Finals.GAME_HEIGHT,
-			Init, #if (flixel < "5.0.0") Finals.ZOOM, #end Finals.GAME_FRAMERATE, Finals.GAME_FRAMERATE, Finals.SKIP_SPLASH);
+		var gameCreate = new FlxGame(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+			Init, #if (flixel < "5.0.0") Constants.ZOOM, #end Constants.GAME_FRAMERATE, Constants.GAME_FRAMERATE, Constants.SKIP_SPLASH);
 		addChild(gameCreate);
 
 		var infoCounter = new backend.FPS(0, 0);
