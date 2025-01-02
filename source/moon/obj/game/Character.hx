@@ -7,6 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import haxe.Json;
 import openfl.utils.Assets as OpenFlAssets;
 import backend.dependency.FNFSprite;
+import backend.Paths.AnimationData;
 
 using StringTools;
 
@@ -22,15 +23,6 @@ typedef CharacterData = {
     var quickDancer:Bool;
     var healthbarColors:Array<Int>;
     var animations:Array<AnimationData>;
-}
-
-typedef AnimationData = {
-    var name:String;
-    var prefix:String;
-    var x:Float;
-    var y:Float;
-    var fps:Int;
-    var looped:Bool;
 }
 
 class Character extends FNFSprite

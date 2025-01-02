@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="strumline.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="down-confirm0000" x="0" y="0" width="235" height="230"/>
+	<SubTexture name="down-confirm0001" x="235" y="0" width="235" height="230"/>
+	<SubTexture name="down-confirm0002" x="470" y="0" width="220" height="217" frameX="-8" frameY="-7" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-confirm0003" x="470" y="0" width="220" height="217" frameX="-8" frameY="-7" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-confirm0004" x="690" y="0" width="226" height="223" frameX="-5" frameY="-4" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-confirm0005" x="916" y="0" width="226" height="223" frameX="-5" frameY="-4" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-confirm0006" x="1142" y="0" width="157" height="154" frameX="-37" frameY="-36" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-confirm0007" x="1142" y="0" width="157" height="154" frameX="-37" frameY="-36" frameWidth="235" frameHeight="230"/>
+	<SubTexture name="down-press0000" x="1299" y="0" width="142" height="140" frameX="-4" frameY="-2" frameWidth="149" frameHeight="146"/>
+	<SubTexture name="down-press0001" x="1299" y="0" width="142" height="140" frameX="-4" frameY="-2" frameWidth="149" frameHeight="146"/>
+	<SubTexture name="down-press0002" x="1441" y="0" width="149" height="146"/>
+	<SubTexture name="down-press0003" x="1441" y="0" width="149" height="146"/>
+	<SubTexture name="down-static0000" x="1590" y="0" width="157" height="154"/>
+	<SubTexture name="left-confirm0000" x="1747" y="0" width="232" height="236"/>
+	<SubTexture name="left-confirm0001" x="0" y="236" width="222" height="226" frameX="-5" frameY="-5" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0002" x="222" y="236" width="225" height="227" frameX="-3" frameY="-5" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0003" x="222" y="236" width="225" height="227" frameX="-3" frameY="-5" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0004" x="447" y="236" width="231" height="234" frameX="0" frameY="-1" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0005" x="678" y="236" width="231" height="234" frameX="0" frameY="-1" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0006" x="909" y="236" width="154" height="157" frameX="-36" frameY="-38" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-confirm0007" x="909" y="236" width="154" height="157" frameX="-36" frameY="-38" frameWidth="232" frameHeight="236"/>
+	<SubTexture name="left-press0000" x="1063" y="236" width="140" height="142" frameX="-3" frameY="-3" frameWidth="146" frameHeight="149"/>
+	<SubTexture name="left-press0001" x="1063" y="236" width="140" height="142" frameX="-3" frameY="-3" frameWidth="146" frameHeight="149"/>
+	<SubTexture name="left-press0002" x="1203" y="236" width="146" height="149"/>
+	<SubTexture name="left-press0003" x="1203" y="236" width="146" height="149"/>
+	<SubTexture name="left-static0000" x="1349" y="236" width="155" height="156"/>
+	<SubTexture name="right-confirm0000" x="1504" y="236" width="223" height="226" frameX="-5" frameY="-6" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-confirm0001" x="1727" y="236" width="223" height="226" frameX="-5" frameY="-6" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-confirm0002" x="0" y="470" width="226" height="230" frameX="-4" frameY="-3" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-confirm0003" x="0" y="470" width="226" height="230" frameX="-4" frameY="-3" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-confirm0004" x="226" y="470" width="233" height="236"/>
+	<SubTexture name="right-confirm0005" x="459" y="470" width="233" height="236"/>
+	<SubTexture name="right-confirm0006" x="692" y="470" width="155" height="157" frameX="-37" frameY="-40" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-confirm0007" x="692" y="470" width="155" height="157" frameX="-37" frameY="-40" frameWidth="233" frameHeight="236"/>
+	<SubTexture name="right-press0000" x="847" y="470" width="138" height="141" frameX="-6" frameY="-5" frameWidth="147" frameHeight="152"/>
+	<SubTexture name="right-press0001" x="847" y="470" width="138" height="141" frameX="-6" frameY="-5" frameWidth="147" frameHeight="152"/>
+	<SubTexture name="right-press0002" x="985" y="470" width="147" height="152"/>
+	<SubTexture name="right-press0003" x="985" y="470" width="147" height="152"/>
+	<SubTexture name="right-static0000" x="1132" y="470" width="154" height="157"/>
+	<SubTexture name="up-confirm0000" x="1286" y="470" width="238" height="235"/>
+	<SubTexture name="up-confirm0001" x="1524" y="470" width="238" height="235"/>
+	<SubTexture name="up-confirm0002" x="1762" y="470" width="216" height="212" frameX="-10" frameY="-11" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-confirm0003" x="1762" y="470" width="216" height="212" frameX="-10" frameY="-11" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-confirm0004" x="0" y="706" width="222" height="218" frameX="-7" frameY="-8" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-confirm0005" x="222" y="706" width="222" height="218" frameX="-7" frameY="-8" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-confirm0006" x="444" y="706" width="158" height="154" frameX="-37" frameY="-38" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-confirm0007" x="444" y="706" width="158" height="154" frameX="-37" frameY="-38" frameWidth="238" frameHeight="235"/>
+	<SubTexture name="up-press0000" x="602" y="706" width="144" height="141" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
+	<SubTexture name="up-press0001" x="602" y="706" width="144" height="141" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
+	<SubTexture name="up-press0002" x="746" y="706" width="153" height="150"/>
+	<SubTexture name="up-press0003" x="746" y="706" width="153" height="150"/>
+	<SubTexture name="up-static0000" x="444" y="706" width="158" height="154" frameX="0" frameY="0" frameWidth="238" frameHeight="235"/>
+</TextureAtlas>

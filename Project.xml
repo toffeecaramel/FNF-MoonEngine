@@ -50,6 +50,7 @@
 	
 	<haxelib name="hscript" />
 	
+	<haxelib name="flxanimate" />
 	<haxelib name="funkin.visfix" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->

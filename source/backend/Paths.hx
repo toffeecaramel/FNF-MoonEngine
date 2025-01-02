@@ -14,6 +14,15 @@ import sys.FileSystem;
 import sys.io.File;
 import moon.utilities.CoolUtil;
 
+typedef AnimationData = {
+    var name:String;
+    var prefix:String;
+    var x:Float;
+    var y:Float;
+    var fps:Int;
+    var looped:Bool;
+}
+
 class Paths
 {
     public static var currentTrackedAssets:Map<String, FlxGraphic> = [];

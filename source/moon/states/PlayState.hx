@@ -18,6 +18,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
 import lime.media.AudioSource;
+import openfl.filters.BlurFilter;
 
 import moon.obj.*;
 import moon.obj.game.*;
@@ -211,15 +212,12 @@ class PlayState extends MusicState
 
 		// - Add the input handler
 		inputHandler = new InputHandler(unspawnNotes, P1);
-		inputHandler.onNoteHit = function(note:Note, judgement:JudgementsTiming):Void {
-            onNoteHit(note, player, judgement);
-            //trace('Note got hit: ${note.noteDir}, $judgement');
-        };
-		inputHandler.onNoteMiss = function(note:Note):Void
-		{
-			onMiss();
-		};
-		
+		inputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, player, judgement);
+		inputHandler.onNoteMiss = (_) -> onMiss();
+
+		var cpuinputHandler = new InputHandler(unspawnNotes, CPU);
+		cpuinputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, opponent, judgement);
+
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollow.setPosition(0, 0);
 		camGame.follow(camFollow, LOCKON, 1);
@@ -268,15 +266,7 @@ class PlayState extends MusicState
 	{
 		if(playback!=null) Conductor.songPosition += elapsed * 1000;
 		super.update(elapsed);
-
-		//placeholder, remove later...
-		for(note in unspawnNotes)
-			if(note.strumTime - Conductor.songPosition <= 0 && note.lane == 'Opponent')
-			{
-				onNoteHit(note, opponent, null);
-				NoteUtils.killNote(note, unspawnNotes);
-			}
-
+			
 		if (unspawnNotes.length == 0)
 			beatCounter = 0;
 
@@ -566,7 +556,10 @@ class PlayState extends MusicState
 		playback.curState = PAUSE;
 		paused = true;
 		if (openS)
+		{
 			openSubState(new PauseSubState(gamemode, camOther));
+			camGame.filters = [new BlurFilter(20, 20, openfl.filters.BitmapFilterQuality.LOW)];
+		}
 	}
 
 	private var nextToHit:Int = 0;

@@ -44,6 +44,7 @@ haxelib set hscript 2.5.0
 haxelib run lime setup
 haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+haxelib git flxanimate https://github.com/FunkinCrew/flxanimate 9bacdd6ea39f5e3a33b0f5dfb7bc583fe76060d4
 haxelib git funkin.visfix https://github.com/toffeecaramel/funkVis-GrigFIX
 
 cls

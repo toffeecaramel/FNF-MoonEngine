@@ -5,6 +5,13 @@ import moon.utilities.NoteUtils;
 import backend.gameplay.Timings.JudgementsTiming;
 import backend.gameplay.PlayerStats;
 
+enum PlayerType
+{
+    P1;
+    P2;
+    CPU;
+}
+
 /**
  * Class meant to handle inputs by the chosen player.
  * It's a separate class so it can be better handled with more than
@@ -47,9 +54,23 @@ class InputHandler
 
     public function update():Void
     {
-        processInputs();
-        checkSustains();
-        checkMisses();
+        if(playerType != CPU)
+        {
+            processInputs();
+            checkSustains();
+            checkMisses();
+        }
+        else
+        {
+            for(note in unspawnNotes)
+            {
+                if(note.strumTime - Conductor.songPosition <= 0)
+                {
+                    onNoteHit(note, null);
+                    NoteUtils.killNote(note, unspawnNotes);
+                }
+            }
+        }
     }
 
     private function processInputs():Void
@@ -60,13 +81,13 @@ class InputHandler
             {
                 // - Checks in all possible notes in the range.
                 var possibleNotes = unspawnNotes.filter(note -> 
-                    note.noteDir == NoteUtils.numberToDirection(i) && // - Checks if direction matches.
+                    note.noteDir == NoteUtils.numberToDirection(i) &&
                     // TODO: Make it get a lane from a public variable in this class.
-                    note.lane == 'P1' && // - Checks if it's in the lane.
-                    isWithinTiming(note) && // - Checks if it's within timing.
-                    !note.wasGoodHit && // - Checks if it wasn't a good hit yet.
-                    !note.tooLate && // - Check if it wasn't a "too late" note.
-                    (!note.isSustainNote) // - Checks if the note isn't a sustain note
+                    note.lane == 'P1' && 
+                    isWithinTiming(note) &&
+                    !note.wasGoodHit &&
+                    !note.tooLate &&
+                    (!note.isSustainNote)
                 );
 
                 // - Sorts through all the possible notes.
@@ -88,7 +109,7 @@ class InputHandler
                         (timing != miss) ? onNoteHit(note, timing) : onNoteMiss(note);
                         note.wasGoodHit = true;
 
-                        playerStats.score += timingData[2];
+                        playerStats.SCORE += timingData[2];
 
                         if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes);
                     }
@@ -113,7 +134,7 @@ class InputHandler
                         note.wasGoodHit = true;
                         if (onNoteHit != null) onNoteHit(note, null);
                         NoteUtils.killNote(note, unspawnNotes);
-                        playerStats.score += 6;
+                        playerStats.SCORE += 6;
                         break;
                     }
                 }
@@ -142,10 +163,10 @@ class InputHandler
             if (!note.wasGoodHit && note.lane == 'P1' && !note.tooLate &&
                 Conductor.songPosition > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
             {
-                if (onNoteMiss != null) onNoteMiss(note);
+                if (onNoteMiss != null && !note.isSustainNote) onNoteMiss(note);
                 note.tooLate = true;
                 NoteUtils.killNote(note, unspawnNotes);
-                playerStats.score += Std.int(Timings.getParameters(miss)[2]);
+                playerStats.SCORE += Std.int(Timings.getParameters(miss)[2]);
             }
         }
     }
@@ -166,6 +187,4 @@ class InputHandler
         }
         return null;
     }
-    
-    
 }
