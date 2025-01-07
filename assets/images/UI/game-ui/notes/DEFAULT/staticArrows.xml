@@ -5,13 +5,17 @@
 	<SubTexture name="down0000" x="0" y="0" width="157" height="154"/>
 	<SubTexture name="down-hold0000" x="157" y="0" width="50" height="56"/>
 	<SubTexture name="down-holdend0000" x="207" y="0" width="50" height="64"/>
-	<SubTexture name="left0000" x="257" y="0" width="154" height="157"/>
-	<SubTexture name="left-hold0000" x="411" y="0" width="50" height="57"/>
-	<SubTexture name="left-holdend0000" x="461" y="0" width="50" height="64"/>
-	<SubTexture name="right0000" x="0" y="157" width="154" height="157"/>
-	<SubTexture name="right-hold0000" x="154" y="157" width="50" height="57"/>
-	<SubTexture name="right-holdend0000" x="204" y="157" width="50" height="64"/>
-	<SubTexture name="up0000" x="254" y="157" width="157" height="154"/>
-	<SubTexture name="up-hold0000" x="411" y="157" width="50" height="57"/>
-	<SubTexture name="up-holdend0000" x="461" y="157" width="50" height="64"/>
+	<SubTexture name="down-holdstart0000" x="257" y="0" width="50" height="56"/>
+	<SubTexture name="left0000" x="307" y="0" width="154" height="157"/>
+	<SubTexture name="left-hold0000" x="461" y="0" width="50" height="57"/>
+	<SubTexture name="left-holdend0000" x="0" y="157" width="50" height="64"/>
+	<SubTexture name="left-holdstart0000" x="50" y="157" width="50" height="57"/>
+	<SubTexture name="right0000" x="100" y="157" width="154" height="157"/>
+	<SubTexture name="right-hold0000" x="254" y="157" width="50" height="57"/>
+	<SubTexture name="right-holdend0000" x="304" y="157" width="50" height="64"/>
+	<SubTexture name="right-holdstart0000" x="354" y="157" width="50" height="57"/>
+	<SubTexture name="up0000" x="0" y="314" width="157" height="154"/>
+	<SubTexture name="up-hold0000" x="157" y="314" width="50" height="57"/>
+	<SubTexture name="up-holdend0000" x="207" y="314" width="50" height="64"/>
+	<SubTexture name="up-holdstart0000" x="257" y="314" width="50" height="57"/>
 </TextureAtlas>

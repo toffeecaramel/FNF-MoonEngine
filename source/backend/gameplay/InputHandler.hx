@@ -64,10 +64,11 @@ class InputHandler
         {
             for(note in unspawnNotes)
             {
-                if(note.strumTime - Conductor.songPosition <= 0)
+                if(note.strumTime - Conductor.songPosition <= 0 && note.lane == 'Opponent')
                 {
                     onNoteHit(note, null);
                     NoteUtils.killNote(note, unspawnNotes);
+                    trace('Note hit fodase!', "DEBUG");
                 }
             }
         }

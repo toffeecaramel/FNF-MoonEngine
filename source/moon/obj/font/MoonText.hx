@@ -8,103 +8,106 @@ import openfl.text.TextFieldAutoSize;
 import openfl.display.BitmapData;
 import openfl.geom.Matrix;
 
-/**
- * A custom class for rendering texts.
- * 
- * by @toffeecaramel
- */
+using StringTools;
 
 class MoonText extends FlxSprite
 {
-    // - The text field
     private var _textField:TextField;
-
-    // - Array for the formats
     private var _formats:Array<{start:Int, end:Int, format:TextFormat}>;
+    private var _plainText:String;
 
-    /**
-     * Create a new text on-screen.
-     * @param x    In-screen X position of the text.
-     * @param y    In-screen Y position of the text.
-     * @param text The text that will be displayed.
-     */
     public function new(x:Float = 0, y:Float = 0, text:String)
     {
         super(x, y);
-        
-        // - Create the text field.
+
         _textField = new TextField();
-
-        // - Set a format for default (Non-customizable for now).
         _textField.defaultTextFormat = new TextFormat(Paths.fonts('vcr.ttf'), 18, 0xFFFFFF);
-
-        // - Set the orientation (Non-customizable for now).
         _textField.autoSize = TextFieldAutoSize.LEFT;
 
-        // - Apply the text.
-        _textField.text = text;
-
-        // - Update the bitmap/formats.
         _formats = [];
-        updateBitmap();
+        setText(text);
     }
 
-    /**
-     * Set formatting on the text, using `TextFormat` from OpenFL
-     * @param start  The character number in which the TextFormat will start.
-     * @param end    The character number in which the TextFormat will end.
-     * @param format The TextFormat itself, check `TextFormat`'s docummentation on how to use.
-     */
-    public function setFormat(start:Int, end:Int, format:TextFormat):Void
+    public function setText(text:String):Void
     {
-        // - Push the formats to the array.
-        _formats.push({start: start, end: end, format: format});
-
-        // - Apply all the formats.
+        _formats = [];
+        _plainText = parseTags(text);
+        _textField.text = _plainText;
         applyFormats();
     }
 
     /**
-     * Applies the formats on the text.
+     * Parse inline tags to extract plain text and formatting ranges.
+     * @param text Text with inline tags.
+     */
+    private function parseTags(text:String):String
+    {
+        var result = "";
+        var index = 0;
+
+        var tagRegex = ~/<(color|font)=([^>]+)>(.*?)<\/\1>/g;
+
+        while (tagRegex.match(text))
+        {
+            var matchPos = tagRegex.matchedPos();
+            var fullMatch = tagRegex.matched(0);
+            var tag = tagRegex.matched(1);
+            var value = tagRegex.matched(2);
+            var innerText = tagRegex.matched(3);
+
+            result += text.substr(0, matchPos.pos);
+
+            // - Calculates start and end positions for the inner text
+            var start = index + result.length;
+            var end = start + innerText.length;
+
+            // - Alright so here it's the variables for the formatting stuff.
+            // - They're null at first, but it'll atribute a value down below if used.
+            // - It's just so I don't need to do "new TextFormat" for each format :V
+            var color:Dynamic = null;
+            var font:String = null;
+
+            // - Adds formatting based on the tag
+            switch(tag)
+            {
+                case "color": color = Std.parseInt(value.startsWith("0x") ? value : "0x" + value);
+                case "font": font = Paths.fonts(value);
+                default: null;
+            }
+
+            var format = new TextFormat(font, null, color);
+
+            if (format != null)
+                _formats.push({start: start, end: end, format: format});
+
+            // - Appends inner text and adjust the remaining input
+            result += innerText;
+            text = text.substr(matchPos.pos + fullMatch.length);
+        }
+
+        result += text;
+
+        return result;
+    }
+
+    /**
+     * Apply the stored formats to the text field.
      */
     private function applyFormats():Void
     {
-        // - Set the default text format for the normal texts.
-        _textField.defaultTextFormat = new TextFormat(Paths.fonts('vcr.ttf'), 18, 0xFFFFFF);
-        
-        // - Apply all the different formats.
-        for (f in _formats)
-            _textField.setTextFormat(f.format, f.start, f.end);
+        for (format in _formats)
+            _textField.setTextFormat(format.format, format.start, format.end);
 
-        // - Update the bitmap.
         updateBitmap();
     }
 
     /**
-     * Updates the text's bitmap, basically, re-render it.
+     * Updates the bitmap with the current text field content.
      */
     private function updateBitmap():Void
     {
-        // - Create the bitmap data.
-        var bitmapData:BitmapData = new BitmapData(Std.int(_textField.width), Std.int(_textField.height), true, 0x00000000);
-
-        // - Draw it on the sprite.
+        var bitmapData = new BitmapData(Std.int(_textField.width), Std.int(_textField.height), true, 0x00000000);
         bitmapData.draw(_textField, new Matrix());
-
-        // - Set the pixels.
-        this.set_pixels(bitmapData);
-
-        // - Resize it to the correct width.
-        this.setGraphicSize(bitmapData.width, bitmapData.height);
-    }
-
-    /**
-     * Changes the current text to a new one.
-     * @param newText The text you want to apply.
-     **/
-    public function setText(newText:String):Void
-    {
-        _textField.text = newText;
-        applyFormats();
+        set_pixels(bitmapData);
     }
 }

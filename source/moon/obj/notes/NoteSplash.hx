@@ -20,26 +20,20 @@ class NoteSplash extends FNFSprite
         alpha = 0.0001;
 
         animation.addByPrefix('appear', 'splash1', 32, false);
-        animation.finishCallback = function(name:String){
+        animation.onFinish.add(function(name:String){
             alpha = 0.0001;
-        };
+        });
         blend = BlendMode.ADD;
         antialiasing = true;
         updateHitbox();
     }
 
-    public function spawn(noteDir:String, arrowRGB:Array<Array<FlxColor>>):Void
+    public function spawn(noteDir:String):Void
     {
         alpha = 1;
         angle = FlxG.random.float(-360, 360);
         updateHitbox();
 
-        setupShader(noteDir, arrowRGB);
         animation.play('appear', true);
-    }
-
-    public function setupShader(noteDir:String, arrowRGB:Array<Array<FlxColor>>):Void
-    {
-        NoteUtils.applyNoteShader(this, noteDir, arrowRGB);
     }
 }

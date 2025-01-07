@@ -403,7 +403,7 @@ class PlayState extends MusicState
 						{
 							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
 							splashGrp.members[i].setPosition(strum.x-177, strum.y-160); // Oh boy I love offsets
-							splashGrp.members[i].spawn(note.noteDir, note.arrowColors);
+							splashGrp.members[i].spawn(note.noteDir);
 						}
 					
 					if (Timings.judgementCounter.exists(jt))

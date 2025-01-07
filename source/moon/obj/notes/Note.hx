@@ -9,6 +9,14 @@ import moon.utilities.*;
 import moon.states.PlayState;
 import backend.ScriptHandler;
 
+enum abstract NoteState(String) from String to String
+{
+    var NOTE = "default-note";
+    var SUSTAIN_START = "sustain-start-piece";
+    var SUSTAIN_TILE = "sustain-tile-piece";
+    var SUSTAIN_END = "sustain-end-piece";
+}
+
 /**
     Note class in which charts read from, having its properties from either a
     hscript file or here.
@@ -91,29 +99,16 @@ class Note extends FNFSprite
      * All children notes, mostly sustains.
      */
     public var childrenNotes:Array<Note> = [];
+    
+    public var state:NoteState = "default-note";
 
     @:noCompletion
     public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
 
-    @:noCompletion
+    /**
+     * The handler in which the note loads the script.
+     */
     public static var scriptHandler:ScriptHandler = new ScriptHandler();
-
-    /**
-     * Whether or not to allow the note rotate to the correct direction.
-     * Used for notes that are a single image/frame.
-     */
-    public var allowRotation:Bool = true;
-
-    /**
-     * The array that contains all of the arrow colors.
-     * Used for the note's shader.
-     */
-    public var arrowColors:Array<Array<FlxColor>> = [
-        [0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],
-        [0xFF00FFFF, 0xFFFFFFFF, 0xFF1542B7],
-        [0xFF12FA05, 0xFFFFFFFF, 0xFF0A4447],
-        [0xFFF9393F, 0xFFFFFFFF, 0xFF651038]
-    ];
 
     /**
      * Creates a note on the screen.
@@ -170,7 +165,7 @@ class Note extends FNFSprite
         // - And of course, load it if it isn't a default.
         if (type != "DEFAULT") 
         {
-            final scriptPath = 'assets/data/notes/_notetypes/$type/NoteScript.hx';
+            final scriptPath = 'assets/data/notescripts/$type.hx';
             
             if (sys.FileSystem.exists(scriptPath))
             {
@@ -183,25 +178,31 @@ class Note extends FNFSprite
         else loadDefaultGraphics();
     }
 
+    /**
+     * This is just used for loading default graphics!
+     */
     private function loadDefaultGraphics():Void
     {
         // - Loads the graphic based on the skin.
-        final basePath = 'assets/data/notes/$skin/';
+        frames = Paths.getSparrowAtlas('UI/game-ui/notes/$skin/staticArrows');
+        animation.addByPrefix('$noteDir', '$noteDir', 24, true);
+        animation.addByPrefix('$noteDir-hold', '$noteDir-hold', 24, true);
+        animation.addByPrefix('$noteDir-holdend', '$noteDir-holdend', 24, true);
+        animation.addByPrefix('$noteDir-holdstart', '$noteDir-holdstart', 24, true);
+        animation.play('$noteDir');
+
         if (!isSustainNote)
-        {
-            loadGraphic('${basePath}note.png');
-            angle = (allowRotation) ? NoteUtils.angleFromDirection(noteDir) : 0;
-        }
+            animation.play('$noteDir');
         else if (isSustainNote && prevNote != null)
         {
             noteSpeed = prevNote.noteSpeed;
-            loadGraphic('${basePath}holdE.png');
+            animation.play('$noteDir-holdend');
             flipY = UserSettings.callSetting('Downscroll');
             updateHitbox();
 
             if (prevNote.isSustainNote)
             {
-                prevNote.loadGraphic('${basePath}holdM.png');
+                animation.play('$noteDir-hold');
                 prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.3 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }
@@ -243,7 +244,7 @@ class Note extends FNFSprite
     }
 
     /**
-     * Returns a note and applies the shader on it.
+     * Returns a note.
      * @param skin        The note's skin, basically it's appearence.
      * @param type        The note's type. `("DEFAULT", "Bomb", "Alt"...)`
      * @param strumTime   The note's timing in milliseconds.
@@ -257,10 +258,6 @@ class Note extends FNFSprite
         ?prevNote:Note = null):Note
     {
         var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote);
-
-        if (newNote.arrowColors != null)
-            NoteUtils.applyNoteShader(newNote, noteDir, newNote.arrowColors);
-
         return newNote;
     }
 }

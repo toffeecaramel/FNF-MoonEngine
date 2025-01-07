@@ -52,8 +52,10 @@ class Title extends MusicState
 		logo.visible = false;
 		add(logo);
 
-	    //var coolText = new Alphabet(0, 0, "Oh!... ello! :3\nDon't mind me, I'm just testing", true, CENTER);
-	    //add(coolText);
+	    var myText = new MoonText(50, 50, '<color=0xFF0000>Cool red text!</color> This is default <font=DS-DIGI.TTF>but cooler font!</font> yee I like doing <color=0x00FF48>idiot</color> shit eheheh >:3');
+		myText.antialiasing = true;
+		myText.screenCenter();
+		add(myText);
 	}
 
 	override public function update(elapsed:Float)
