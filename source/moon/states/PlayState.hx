@@ -215,15 +215,26 @@ class PlayState extends MusicState
 		inputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, player, judgement);
 		inputHandler.onNoteMiss = (_) -> onMiss();
 
-		var cpuinputHandler = new InputHandler(unspawnNotes, CPU);
-		cpuinputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, opponent, judgement);
+		/*var cpuinputHandler = new InputHandler(unspawnNotes, CPU);
+		cpuinputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, opponent, judgement);*/
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollow.setPosition(0, 0);
 		camGame.follow(camFollow, LOCKON, 1);
 		camGame.zoom = stage.zoom;
 
-		generateSong();
+		// - Generates the song (generatesong)
+		var songStuff = [
+			{song: song, type: Inst}
+		];
+		// - this is so dumb lol I have to change it
+		if(chart.content.hasVoices)songStuff.push({song: song, type: Voices});
+		playback = new Song(songStuff);
+
+		startCountdown();
+		playback.curState = PLAY;
+		playback.checkDesync();
+
 		updateByOption();
 
 		// placeholder, remove later.
@@ -237,6 +248,8 @@ class PlayState extends MusicState
 		test.camera = camOther;
 		add(test);
 
+		gameHUD.updateStats(inputHandler.playerStats);
+
 		scriptHandler = new ScriptHandler();
 		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
         scriptHandler.set("game", curPlaystate);
@@ -244,20 +257,6 @@ class PlayState extends MusicState
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
 		scriptHandler.set("add", add);
-	}
-
-	private function generateSong():Void
-	{
-		var songStuff = [
-			{song: song, type: Inst}
-		];
-		// - this is so dumb lol I have to change it
-		if(chart.content.hasVoices)songStuff.push({song: song, type: Voices});
-		playback = new Song(songStuff);
-
-		startCountdown();
-		playback.curState = PLAY;
-		playback.checkDesync();
 	}
 
 	private var val:Float;
@@ -410,12 +409,12 @@ class PlayState extends MusicState
 						Timings.judgementCounter.set(jt, Timings.judgementCounter.get(jt) + 1);
 
 					totalHits++;
-					//score += timingData[2];
 				}
 			}
 		}
 
 		playStrumAnim(note.lane, note.noteDir);
+		gameHUD.updateStats(inputHandler.playerStats);
 
 		// - SET UP YOUR NOTETYPES FUNCTIONS HERE!!
 
@@ -435,7 +434,9 @@ class PlayState extends MusicState
 		combo = 0;
 		health -= 7;
 
+		inputHandler.playerStats.MISSES += 1;
 		comboDisplay.showCombo(combo, miss);
+		gameHUD.updateStats(inputHandler.playerStats);
 	}
 	
 	override public function openSubState(SubState:FlxSubState)

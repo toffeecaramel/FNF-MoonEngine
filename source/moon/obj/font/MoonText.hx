@@ -10,13 +10,28 @@ import openfl.geom.Matrix;
 
 using StringTools;
 
+/**
+ * Neat little class meant for handling texts in my own way because I hate FlxText.
+ * I'm trying my best to keep it optimized and overall better.
+ * Please, set an default font before applying text formats.
+ * by @toffeecaramel
+ */
 class MoonText extends FlxSprite
 {
     private var _textField:TextField;
     private var _formats:Array<{start:Int, end:Int, format:TextFormat}>;
-    private var _plainText:String;
 
-    public function new(x:Float = 0, y:Float = 0, text:String)
+    /**
+     * Set an display text.
+     */
+    @:isVar public var text(get, set):String;
+
+    /**
+     * Creates a text on a desired position
+     * @param x X position of the text
+     * @param y Y position of the text
+     */
+    public function new(x:Float = 0, y:Float = 0)
     {
         super(x, y);
 
@@ -25,15 +40,6 @@ class MoonText extends FlxSprite
         _textField.autoSize = TextFieldAutoSize.LEFT;
 
         _formats = [];
-        setText(text);
-    }
-
-    public function setText(text:String):Void
-    {
-        _formats = [];
-        _plainText = parseTags(text);
-        _textField.text = _plainText;
-        applyFormats();
     }
 
     /**
@@ -42,6 +48,8 @@ class MoonText extends FlxSprite
      */
     private function parseTags(text:String):String
     {
+        // - I do apologize in case this looks messy and not the best but...
+        // - I'm trying my best, promise!
         var result = "";
         var index = 0;
 
@@ -49,6 +57,7 @@ class MoonText extends FlxSprite
 
         while (tagRegex.match(text))
         {
+            // - This gets all the values from the regex in the text.
             var matchPos = tagRegex.matchedPos();
             var fullMatch = tagRegex.matched(0);
             var tag = tagRegex.matched(1);
@@ -57,22 +66,22 @@ class MoonText extends FlxSprite
 
             result += text.substr(0, matchPos.pos);
 
-            // - Calculates start and end positions for the inner text
+            // - Calculates start and end positions for the inner text.
             var start = index + result.length;
             var end = start + innerText.length;
 
             // - Alright so here it's the variables for the formatting stuff.
             // - They're null at first, but it'll atribute a value down below if used.
             // - It's just so I don't need to do "new TextFormat" for each format :V
+            //TODO: add size changes?
             var color:Dynamic = null;
             var font:String = null;
 
-            // - Adds formatting based on the tag
+            // - Adds formatting based on the tag.
             switch(tag)
             {
                 case "color": color = Std.parseInt(value.startsWith("0x") ? value : "0x" + value);
                 case "font": font = Paths.fonts(value);
-                default: null;
             }
 
             var format = new TextFormat(font, null, color);
@@ -80,7 +89,7 @@ class MoonText extends FlxSprite
             if (format != null)
                 _formats.push({start: start, end: end, format: format});
 
-            // - Appends inner text and adjust the remaining input
+            // - Appends inner text and adjust the remaining input.
             result += innerText;
             text = text.substr(matchPos.pos + fullMatch.length);
         }
@@ -109,5 +118,16 @@ class MoonText extends FlxSprite
         var bitmapData = new BitmapData(Std.int(_textField.width), Std.int(_textField.height), true, 0x00000000);
         bitmapData.draw(_textField, new Matrix());
         set_pixels(bitmapData);
+    }
+
+    @:noCompletion public function get_text():String
+        return _textField.text;
+
+    @:noCompletion public function set_text(value:String)
+    {
+        _formats = [];
+        _textField.text = text = parseTags(value);
+        applyFormats();
+        return text;
     }
 }

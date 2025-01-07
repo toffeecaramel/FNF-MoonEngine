@@ -19,6 +19,8 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
     public var downscroll:Bool;
     private var barY:Float = 0;
 
+    private var placeholderStats:MoonText;
+
     // - Healthbar Items
     public var bar:FlxBar;
     public var barBG:FlxSprite;
@@ -62,7 +64,8 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
 
     public function createStats():Void
     {
-
+        placeholderStats = new MoonText(0, 0);
+        add(placeholderStats);
     }
 
     override public function update(elapsed:Float)
@@ -96,6 +99,16 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
             iconPlayer.animation.play("neutral");
             iconOpp.animation.play("neutral");
         }
+    }
+
+    public function updateStats(stats:PlayerStats)
+    {
+        var textStr = '';
+        textStr += '<color=0xFFF200>Score: ${stats.SCORE}</color> // <color=0xFF0051>Misses: ${stats.MISSES}</color> // ';
+        textStr += '<color=0x2994FF>Accuracy: ${stats.ACCURACY}%</color> // <color=0x8000FF>Rank: ${stats.RANK}</color>';
+        placeholderStats.text = textStr;
+        placeholderStats.setPosition(0, (FlxG.height - placeholderStats.height) - 20);
+        placeholderStats.screenCenter(X);
     }
 
     final iconScale:Float = 1.1;
