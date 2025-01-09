@@ -24,6 +24,11 @@ class FNFSound extends FlxSound
      */
     public var musicID:MusicType;
 
+    /**
+     * An string ID, used for some neat thingies.
+     */
+    public var strID:String;
+
     // ---------- TWEENS AND TIMERS ---------- //
 
     /**

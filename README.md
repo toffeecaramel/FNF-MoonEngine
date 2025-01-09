@@ -1,9 +1,9 @@
-<h1 align="center">⚠️</h1>
+<h1 align="center">! ⚠️ WARNING ⚠️</h1>
 
 * The engine is currently UNFINISHED and isn't reccomended for modding. **BUT** you can always check for progress on it by checking [my twitter!](https://x.com/toffee_caramel_)
 
-<h1 align="center">• Welcome to Moon Engine! • </h1>
-<h3 align="center">A FNF engine based on Forever Engine!</h3>
+<h1 align="center"><• Welcome to Moon Engine! •> </h1>
+<h3 align="center"><~ Explore the limits of the galaxy. ~></h3>
 
 ----------------------------------------------
 
@@ -38,10 +38,10 @@
 <h1 align="center">• FEATURES • </h1>
 
 ## -> Built-In Features
+* Custom Characters support (even playable ones.)
 * Hscript support (W.I.P)
 * Notetypes (W.I.P)
-* Characters JSON
-* Stages JSON (W.I.P)
+* Stages JSON (W.I.P) -> Soon will turn into yaml!
 
 ## -> Planned Features:
 * P2 Support.

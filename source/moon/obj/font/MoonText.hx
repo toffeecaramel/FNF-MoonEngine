@@ -113,9 +113,19 @@ class MoonText extends FlxSprite
     /**
      * Updates the bitmap with the current text field content.
      */
-    private function updateBitmap():Void
+     private function updateBitmap():Void
     {
-        var bitmapData = new BitmapData(Std.int(_textField.width), Std.int(_textField.height), true, 0x00000000);
+        var newWidth = Std.int(_textField.width) + 4;
+        var newHeight = Std.int(_textField.height) + 4;
+
+        if (newWidth > this.frameWidth || newHeight > this.frameHeight)
+        {
+            this.frameWidth = newWidth;
+            this.frameHeight = newHeight;
+            trace('$newWidth is greater than $frameWidth. CHANGING WIDTH/HEIGHT!', "DEBUG");
+        }
+
+        var bitmapData = new BitmapData(this.frameWidth, this.frameHeight, true, 0x00000000);
         bitmapData.draw(_textField, new Matrix());
         set_pixels(bitmapData);
     }
