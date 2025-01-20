@@ -4,7 +4,7 @@ import flixel.FlxState;
 
 class Constants
 {
-	public static final VERSION:String = '[0.0.5] - INDEV';
+	public static final VERSION:String = '[0.0.6] - INDEV';
 
 	// - Game's main informations.
 	public static final GAME_WIDTH:Int = 1280;

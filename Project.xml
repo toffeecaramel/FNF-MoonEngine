@@ -49,7 +49,8 @@
 	<haxelib name="hxgamejolt-api" />
 	
 	<haxelib name="hscript" />
-	
+	<haxelib name="yaml" />
+
 	<haxelib name="flxanimate" />
 	<haxelib name="funkin.visfix" />
 
@@ -100,8 +101,8 @@
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!-- Run a script before and after building. -->
-	<prebuild haxe="Prebuild.hx"/> -->
-	<postbuild haxe="Postbuild.hx"/> -->
+	<prebuild haxe="Prebuild.hx"/>
+	<postbuild haxe="Postbuild.hx"/>
 
 	<define name="DISCORD_RPC" if="cpp" />
 
