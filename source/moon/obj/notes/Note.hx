@@ -185,10 +185,10 @@ class Note extends FNFSprite
     {
         // - Loads the graphic based on the skin.
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$skin/staticArrows');
-        animation.addByPrefix('$noteDir', '$noteDir', 24, true);
-        animation.addByPrefix('$noteDir-hold', '$noteDir-hold', 24, true);
-        animation.addByPrefix('$noteDir-holdend', '$noteDir-holdend', 24, true);
-        animation.addByPrefix('$noteDir-holdstart', '$noteDir-holdstart', 24, true);
+        animation.addByPrefix('$noteDir', '$noteDir', 0, true);
+        animation.addByPrefix('$noteDir-hold', '$noteDir-hold', 0, true);
+        animation.addByPrefix('$noteDir-holdend', '$noteDir-holdend', 0, true);
+        animation.addByPrefix('$noteDir-holdstart', '$noteDir-holdstart', 0, true);
         animation.play('$noteDir');
 
         if (!isSustainNote)

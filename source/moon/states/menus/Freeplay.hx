@@ -134,9 +134,9 @@ class Freeplay extends MusicSubState
         if(FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
         super.update(elapsed);
 
-        if (Controls.justPressed(UI_UP)) changeSelection(-1);
-        if (Controls.justPressed(UI_DOWN)) changeSelection(1);
-        if (Controls.justPressed(ACCEPT))
+        if (Controls.justPressed(UI_UP) && started) changeSelection(-1);
+        if (Controls.justPressed(UI_DOWN) && started) changeSelection(1);
+        if (Controls.justPressed(ACCEPT) && started)
         {
             PlayState.song = songList[curSelected];
             PlayState.difficulty = 'hard';
@@ -145,6 +145,8 @@ class Freeplay extends MusicSubState
             openSubState(new moon.subStates.LoadingSubState());
         }
 
+        //TODO: Make a custom keybind in Controls.
+        if (FlxG.keys.justPressed.TAB && started) {FlxG.switchState(new CharSelect()); FlxG.sound.music.kill();}
         if(started)updateTxts(elapsed);
     }
 

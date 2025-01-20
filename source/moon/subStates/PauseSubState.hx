@@ -114,7 +114,6 @@ class PauseSubState extends MusicSubState
             switch(optionsList[curSelected][0])
             {
                 case 'Resume':
-                    PlayState.playback.checkDesync();
                     game.camGame.filters = [];
                     close();
                 case 'Restart Song':

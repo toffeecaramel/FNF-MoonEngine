@@ -8,6 +8,7 @@ import openfl.display.BitmapData;
 import openfl.display3D.textures.Texture;
 import openfl.media.Sound;
 import openfl.utils.AssetType;
+import openfl.system.System;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.display3D.textures.RectangleTexture;
 import sys.FileSystem;
@@ -52,7 +53,8 @@ class Paths
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);
 
-        if (currentTrackedAssets.exists(file)) {
+        if (currentTrackedAssets.exists(file))
+        {
             localTrackedAssets.push(file);
             return currentTrackedAssets.get(file);
         }
@@ -68,9 +70,9 @@ class Paths
         return null;
     }
 
-    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String)
+    inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
-        var graphic:FlxGraphic = returnGraphic(key, from, library);
+        var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
         return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('$from/$key.xml', library))));
     }
 
@@ -161,4 +163,121 @@ class Paths
             returnPath = CoolUtil.swapSpaceDash(returnPath);
         return returnPath;
     }
+
+    // - Other utilities. - //
+
+
+    public static function clearUnusedMemory(?dumpExclusions:Array<String> = null)
+    {
+        if (dumpExclusions == null)
+            dumpExclusions = [];
+    
+        var counter:Int = 0;
+    
+        for (key in currentTrackedAssets.keys())
+        {
+            // - Check if the asset is not locally tracked and is not excluded
+            if (!localTrackedAssets.contains(key) && !dumpExclusions.contains(key))
+            {
+                var obj = currentTrackedAssets.get(key);
+                if (obj != null)
+                {
+                    obj.persist = false;
+                    obj.destroyOnNoUse = true;
+    
+                    // - Check if the asset has a texture and dispose of it
+                    if (currentTrackedTextures.exists(key))
+                    {
+                        var texture = currentTrackedTextures.get(key);
+                        texture.dispose();
+                        currentTrackedTextures.remove(key);
+                    }
+    
+                    // - Remove cached bitmap data if present
+                    @:privateAccess
+                    if (openfl.Assets.cache.hasBitmapData(key))
+                    {
+                        openfl.Assets.cache.removeBitmapData(key);
+                        FlxG.bitmap._cache.remove(key);
+                    }
+    
+                    // - Destroy the graphic and remove from tracked assets
+                    obj.destroy();
+                    currentTrackedAssets.remove(key);
+                    counter++;
+                }
+            }
+        }
+    
+        System.gc();
+        trace('$counter unused assets have been cleared.', "DEBUG");
+    }
+    
+    public static function clearStoredMemory(?cleanUnused:Bool = false, ?dumpExclusions:Array<String> = null)
+    {
+        var counter = 0;
+
+        if (dumpExclusions == null)
+            dumpExclusions = [];
+    
+        // - Clear all cached bitmap data not in the tracked list
+        @:privateAccess
+        for (key in FlxG.bitmap._cache.keys())
+        {
+            final obj = FlxG.bitmap._cache.get(key);
+
+            if (obj != null && (!currentTrackedAssets.exists(key) || !cleanUnused))
+            {
+                openfl.Assets.cache.removeBitmapData(key);
+                FlxG.bitmap._cache.remove(key);
+                obj.destroy();
+                counter++;
+            }
+        }
+    
+        // - Clear all cached sounds
+        for (key in currentTrackedSounds.keys())
+        {
+            if ((!localTrackedAssets.contains(key) && !dumpExclusions.contains(key)) || !cleanUnused)
+            {
+                if (currentTrackedSounds.exists(key))
+                {
+                    var sound = currentTrackedSounds.get(key);
+                    if (sound != null)
+                        sound.close();
+
+                    counter++;
+                    currentTrackedSounds.remove(key);
+                }
+            }
+        }
+    
+        // - Clear all cached textures
+        for (key in currentTrackedTextures.keys())
+        {
+            if ((!localTrackedAssets.contains(key) && !dumpExclusions.contains(key)) || !cleanUnused)
+            {
+                if (currentTrackedTextures.exists(key))
+                {
+                    var texture = currentTrackedTextures.get(key);
+                    if (texture != null)
+                        texture.dispose();
+
+                    counter++;
+                    currentTrackedTextures.remove(key);
+                }
+            }
+        }
+    
+        // - Clear all tracked assets if not flagged as unused
+        if (!cleanUnused)
+        {
+            localTrackedAssets = [];
+            currentTrackedAssets.clear();
+        }
+    
+        // - Force garbage collection
+        System.gc();
+        trace('$counter assets have been cleared.', "DEBUG");
+    }        
 }

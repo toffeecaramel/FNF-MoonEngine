@@ -353,7 +353,7 @@ class PlayState extends MusicState
 				final pPos = [player.getMidpoint().x + player.camOffsets[0], player.getMidpoint().y + player.camOffsets[1]];
 
 				final pos = (event.values[0] == 'Player') ? pPos : oppPos;
-				moveCamera(pos[0], pos[1], event.values[1], FlxEase.circOut);
+				moveCamera(pos[0], pos[1], event.values[1], Reflect.field(FlxEase, event.values[2]));
 			case "Change BPM":
 				Conductor.changeBPM(event.values[0], event.values[1][0] / event.values[1][1]);
 		}

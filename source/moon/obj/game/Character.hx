@@ -69,7 +69,8 @@ class Character extends FNFSprite
 
         playAnim('idle');
 
-        if (isPlayer) {
+        if (isPlayer)
+        {
             flipX = !flipX;
             if (!curCharacter.startsWith('bf'))
                 flipLeftRight();

@@ -89,10 +89,14 @@ class Song extends FlxTypedGroup<FNFSound>
 	{
 		for(i in 0...members.length)
 		{
-			//trace('Music is resyncing! from ${members[i].time} to ${Conductor.songPosition}', 'WARNING');
-			curState = PAUSE;
-			(members[i].musicID == Inst) ? Conductor.songPosition = members[i].time : members[i].time = Conductor.songPosition;
-			curState = PLAY;
+			if(members[i] != null)
+			{
+				trace('Music is resyncing! from ${members[i].time} to ${Conductor.songPosition}', 'WARNING');
+
+				curState = PAUSE;
+				(members[i].musicID == Inst) ? Conductor.songPosition = members[i].time : members[i].time = Conductor.songPosition;
+				curState = PLAY;
+			}
 		}
 	}
 
@@ -113,6 +117,7 @@ class Song extends FlxTypedGroup<FNFSound>
 					members[i].kill();
 			}
 		}
+		(state == PLAY) ? checkDesync() : null;
 		return state;
 	}
 

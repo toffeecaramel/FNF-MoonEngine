@@ -1,6 +1,5 @@
 package moon.states.menus;
 
-import moon.utilities.AudioUtils;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
@@ -28,22 +27,8 @@ class Title extends MusicState
 	override public function create():Void
 	{
 		super.create();
-        //FlxG.sound.playMusic('assets/music/interfaces/freakyMenu-Moon.ogg');
-		AudioUtils.createSongList([
-		{
-			path: 'interfaces/stayFunky/stayFunky',
-			strId: 'default'
-		},
-		{
-			path: 'interfaces/stayFunky/stayFunky-luna',
-			strId: 'luna'
-		},
-		{
-			path: 'interfaces/stayFunky/stayFunky-pico',
-			strId: 'pico'
-		}
-		]);
-		Conductor.changeBPM(180);
+        FlxG.sound.playMusic('assets/music/interfaces/freakyMenu-Moon.ogg');
+		Conductor.changeBPM(121);
 
 		DiscordRPC.changePresence("At the Title screen.", "Welcome to Moon Engine!");
 
@@ -79,7 +64,7 @@ class Title extends MusicState
 	override public function update(elapsed:Float)
 	{
 		if(FlxG.sound.music != null)
-			Conductor.songPosition = AudioUtils.songList[0].time;
+			Conductor.songPosition = FlxG.sound.music.time;
 		super.update(elapsed);
 		logo.scale.x = logo.scale.y = FlxMath.lerp(logo.scale.y, 0.2, elapsed * 3);
 		logo.angle = FlxMath.lerp(logo.angle, 0, elapsed * 3);
@@ -88,12 +73,6 @@ class Title extends MusicState
         final minutes = Date.now().getMinutes();
 
         clockThingy.angle = (hours % 12 + minutes / 60) * 30;
-
-		AudioUtils.updateChecks(elapsed);
-
-		if(FlxG.keys.justPressed.L) AudioUtils.songInFocus = 'luna';
-		else if(FlxG.keys.justPressed.P) AudioUtils.songInFocus = 'pico';
-		else if(FlxG.keys.justPressed.D) AudioUtils.songInFocus = 'default';
 
 		if(FlxG.keys.justPressed.ENTER)
 			FlxG.switchState(new MainMenu());
@@ -107,10 +86,5 @@ class Title extends MusicState
 
 		logo.angle = (haha)? 2 : -2;
 		logo.scale.set(0.21, 0.21);
-	}
-	override public function stepHit()
-	{
-		super.stepHit();
-		AudioUtils.checkSongsDesync();
 	}
 }

@@ -42,25 +42,33 @@ class Main extends Sprite
 		var infoCounter = new backend.FPS(0, 0);
 		addChild(infoCounter);
 
-		// - Define log level prefixes and corresponding ANSI color codes
-		final logLevels = [
-			"DEBUG" => { prefix: "[>]", color: "\x1b[32m" },  // - Green
-			"WARNING" => { prefix: "[!]", color: "\x1b[33m" },  // - Yellow
-			"ERROR" => { prefix: "[x]", color: "\x1b[31m" },  // - Red
-			"INFO" => { prefix: "[?]", color: "\x1b[36m" }  // - Cyan/Blue/whatever blue tone is that
-		];
-	
-		// - Override the haxe log trace
+		// - This overrides the default trace bc I want to make it prettier.
 		haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) 
 		{
-			final logLevel = (infos != null 
-			&& infos.customParams != null 
-			&& infos.customParams.length > 0) ? infos.customParams[0] : "INFO";	      
+			// - All definitions with each lil prefix.
+			final logLevels = [ // - Doing sidenotes for the colors cause theyre confusing as fuck
+				"DEBUG" => { prefix: "[>]", color: "\x1b[32m" },  // - Green
+				"WARNING" => { prefix: "[!]", color: "\x1b[33m" },  // - Yellow
+				"ERROR" => { prefix: "[x]", color: "\x1b[31m" },  // - Red
+				"INFO" => { prefix: "[?]", color: "\x1b[36m" }   // - Cyan blue whatever
+			];
+		
+			// - Determine log level.
+			final logLevel = infos != null && infos.customParams != null && infos.customParams.length > 0 
+				? infos.customParams[0] 
+				: "INFO";
+		
+			// - Skips debug messages if debug info is disabled.
+			if (logLevel == "DEBUG" && !Constants.TRACE_DEBUG_INFO) return;
+		
+			// - Gets some details. It fallbacks to INFO if the prefix is empty. 
 			final levelData = logLevels.exists(logLevel) ? logLevels[logLevel] : logLevels["INFO"];
-			final className = (infos.className != null) ? '${infos.className}: ' : '';
+			final className = infos != null && infos.className != null ? '${infos.className}: ' : '';
 			final infoBefore = '> ${levelData.prefix} - ${className}';
-			Sys.println('${levelData.color}${infoBefore.rpad(' ', 10)}${v}\x1b[0m');
-		}
+		
+			// - And then displays the pretty text on the console. :D
+			Sys.println('${levelData.color}${infoBefore.rpad(" ", 10)}${v}\x1b[0m');
+		};
 
 		FlxG.fixedTimestep = false;
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);

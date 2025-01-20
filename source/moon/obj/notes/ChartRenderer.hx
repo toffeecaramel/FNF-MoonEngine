@@ -33,7 +33,6 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param chartData   Chart data for the notes to iterate.
      * @param skin        Skin for the notes.
      */
-
     public function new(playerStrum:Strumline, oppStrum:Strumline, notesArray:Array<Note>,
     chartData:Chart, skin:String)
     {

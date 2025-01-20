@@ -96,10 +96,7 @@ class InputHandler
 
                 if (possibleNotes.length > 0)
                 {
-                    // - Gets the first possible note.
                     final note = possibleNotes[0];
-
-                    // - Checks timing for the note.
                     final timing = checkTiming(note);
 
                     if (timing != null)
@@ -112,7 +109,7 @@ class InputHandler
 
                         playerStats.SCORE += timingData[2];
 
-                        if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes);
+                        if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes); //thingyy,,
                     }
                 }
                 else if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))

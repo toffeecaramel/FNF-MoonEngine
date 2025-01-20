@@ -39,6 +39,8 @@ class LoadingSubState extends MusicSubState
 	public function new()
 	{
 		super();
+        
+        Paths.clearStoredMemory();
 		
 		loader = new FlxGroup();
 		add(loader);

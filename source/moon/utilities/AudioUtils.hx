@@ -15,23 +15,37 @@ class AudioUtils
      * Creates a song list, used for mainly fading them out and more.
      * @param list The song list, make sure it follows `{path:String, strId:String}` format.
      */
-    public static function createSongList(list:Array<{path:String, strId:String}>)
+     public static function createSongList(list:Array<{path:String, strId:String}>)
     {
         for (i in 0...list.length)
         {
-            var song = cast new FNFSound().loadEmbedded(Paths.music(list[i].path), true);
-            song.ID = i;
-            song.strID = list[i].strId;
-            songList.push(song);
+            var exists = false;
+            for (existingSong in songList)
+                if (existingSong.strID == list[i].strId)
+                {
+                    exists = true;
+                    break;
+                }
+    
+            if (!exists)
+            {
+                var song = cast new FNFSound().loadEmbedded(Paths.music(list[i].path), true);
+                song.ID = i;
+                song.strID = list[i].strId;
+                songList.push(song);
+            }
         }
-
-        for(i in 0...songList.length){
+    
+        for (i in 0...songList.length)
+        {
             FlxG.sound.list.add(songList[i]);
             songList[i].volume = (i == 0) ? 1 : 0;
             songList[i].play();
         }
-
+    
         songInFocus = songList[0].strID;
+
+        trace('Created song list! length is ${songList.length}', "DEBUG");
     }
 
     /**
@@ -66,6 +80,9 @@ class AudioUtils
         }
     }
 
+    /**
+     * This will kill any audio instance in the songList.
+     */
     public static function killSongs()
     {
         for (i in 0...songList.length)
