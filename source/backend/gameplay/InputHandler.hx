@@ -1,11 +1,9 @@
 package backend.gameplay;
 
 import moon.obj.notes.Note;
-import moon.obj.notes.Note.EntireNote;
 import moon.utilities.NoteUtils;
 import backend.gameplay.Timings.JudgementsTiming;
 import backend.gameplay.PlayerStats;
-import backend.Conductor;
 
 enum PlayerType
 {
@@ -23,10 +21,10 @@ enum PlayerType
 class InputHandler
 {
     // - Function called when you hit a note.
-    public var onNoteHit:(EntireNote, JudgementsTiming)->Void;
+    public var onNoteHit:(Note, JudgementsTiming)->Void;
 
     // - Function called when you miss a note/Ghost tap.
-    public var onNoteMiss:EntireNote->Void;
+    public var onNoteMiss:Note->Void;
 
     // - Arrays for pressing and releasing keys.
     public var justPressed:Array<Bool>;
@@ -40,7 +38,7 @@ class InputHandler
     public var playerStats:PlayerStats;
 
     // Array for the notes.
-    private var unspawnNotes:Array<EntireNote>;
+    private var unspawnNotes:Array<Note>;
 
     private var conductor:Conductor;
 
@@ -48,7 +46,7 @@ class InputHandler
      * Creates an handler for Note Inputs.
      * @param unspawnNotes The array of notes.
      */
-    public function new(unspawnNotes:Array<EntireNote>, playerType:PlayerType, conductor:Conductor)
+    public function new(unspawnNotes:Array<Note>, playerType:PlayerType, conductor:Conductor)
     {
         this.unspawnNotes = unspawnNotes;
         this.playerType = playerType;
@@ -62,9 +60,21 @@ class InputHandler
         if(playerType != CPU)
         {
             processInputs();
-            checkMisses(); // Sustains are simplified, no separate checkSustains() for now
+            checkSustains();
+            checkMisses();
         }
-        // CPU logic remains unchanged (can be adapted later if needed)
+        else
+        {
+            for(note in unspawnNotes)
+            {
+                /*if(note.strumTime - Conductor.time <= 0 && note.lane == 'Opponent')
+                {
+                    onNoteHit(note, null);
+                    NoteUtils.killNote(note, unspawnNotes);
+                    trace('Note hit fodase!', "DEBUG");
+                }*/
+            }
+        }
     }
 
     private function processInputs():Void
@@ -74,70 +84,99 @@ class InputHandler
             if (justPressed[i])
             {
                 // - Checks in all possible notes in the range.
-                var possibleNotes = unspawnNotes.filter(entireNote -> {
-                    final note = entireNote.tapNote;
-                    return note.noteDir == NoteUtils.numberToDirection(i) &&
-                           note.lane == 'P1' &&
-                           isWithinTiming(entireNote) &&
-                           !note.wasGoodHit &&
-                           !note.tooLate; // Sustain check removed from initial hit check for simplification
-                });
+                var possibleNotes = unspawnNotes.filter(note -> 
+                    note.noteDir == NoteUtils.numberToDirection(i) &&
+                    // TODO: Make it get a lane from a public variable in this class.
+                    note.lane == 'P1' && 
+                    isWithinTiming(note) &&
+                    !note.wasGoodHit &&
+                    !note.tooLate &&
+                    (!note.isSustainNote)
+                );
 
                 // - Sorts through all the possible notes.
-                possibleNotes.sort((a, b) -> Std.int(a.tapNote.strumTime - b.tapNote.strumTime));
+                possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
                 if (possibleNotes.length > 0)
                 {
-                    final entireNote = possibleNotes[0];
-                    final note = entireNote.tapNote;
-                    final timing = checkTiming(entireNote);
+                    final note = possibleNotes[0];
+                    final timing = checkTiming(note);
 
                     if (timing != null)
                     {
                         final timingData = Timings.getParameters(timing);
-
-                        (timing != miss) ? onNoteHit(entireNote, timing) : onNoteMiss(entireNote);
+                        
+                        // - Calls the appropriate function based on timing.
+                        (timing != miss) ? onNoteHit(note, timing) : onNoteMiss(note);
                         note.wasGoodHit = true;
 
                         playerStats.SCORE += timingData[2];
 
-                        NoteUtils.killNote(entireNote, unspawnNotes, !entireNote.isSustainNote); // Kill sustain only if it's NOT a sustain note (i.e., kill tap note and sustain for tap notes, only tap note for sustains)
+                        if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes); //thingyy,,
                     }
                 }
                 else if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
-                    onNoteMiss(null);
+                    onNoteMiss(null); // - For when you ghost tap.
+            }
+        }
+    }
+    
+    private function checkSustains():Void
+    {
+        for (note in unspawnNotes)
+        {
+            if (note.isSustainNote && note.lane == 'P1')
+            {
+                final noteDir = NoteUtils.directionToNumber(note.noteDir);
+                if (pressed[noteDir] && note.parentNote.wasGoodHit)
+                {
+                    if (note.strumTime <= conductor.time && !note.wasGoodHit)
+                    {
+                        note.wasGoodHit = true;
+                        if (onNoteHit != null) onNoteHit(note, null);
+                        NoteUtils.killNote(note, unspawnNotes);
+                        playerStats.SCORE += 6;
+                        break;
+                    }
+                }
+                else if ((released[noteDir] || !pressed[noteDir]) && note.parentNote.wasGoodHit && !note.wasGoodHit)
+                {
+                    if (note.isSustainNote && note.parentNote != null)
+                    {
+                        var currentNote = note;
+                        while (currentNote != null && currentNote.isSustainNote)
+                        {
+                            currentNote.kill();
+                            unspawnNotes.remove(currentNote);
+                            currentNote = currentNote.nextSustainNote;
+                        }
+                    }
+                    break;
+                }
             }
         }
     }
 
-    private function checkSustains():Void // Simplified sustain logic - currently empty
-    {
-        // For now, sustain logic is simplified: hitting tap note counts as hitting the sustain.
-        // More complex sustain handling (holding, release, sustain misses) can be added later.
-    }
-
     private function checkMisses():Void
     {
-        for (entireNote in unspawnNotes)
+        for (note in unspawnNotes)
         {
-            final note = entireNote.tapNote;
             if (!note.wasGoodHit && note.lane == 'P1' && !note.tooLate &&
                 conductor.time > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
             {
-                if (onNoteMiss != null) onNoteMiss(entireNote);
+                if (onNoteMiss != null && !note.isSustainNote) onNoteMiss(note);
                 note.tooLate = true;
-                NoteUtils.killNote(entireNote, unspawnNotes); // In case of miss, kill the entire note (tap and sustain) by default
+                NoteUtils.killNote(note, unspawnNotes);
                 playerStats.SCORE += Std.int(Timings.getParameters(miss)[2]);
             }
         }
     }
 
-    private function isWithinTiming(entireNote:EntireNote):Bool
-        return checkTiming(entireNote) != null;
+    private function isWithinTiming(note:Note):Bool
+        return checkTiming(note) != null;
 
-    private function checkTiming(entireNote:EntireNote):JudgementsTiming
+    private function checkTiming(note:Note):JudgementsTiming
     {
-        final note = entireNote.tapNote;
         final timeDifference = Math.abs(note.strumTime - conductor.time);
         for (jt in Timings.values)
         {
