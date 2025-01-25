@@ -75,7 +75,7 @@ class Title extends MusicState
         clockThingy.angle = (hours % 12 + minutes / 60) * 30;
 
 		if(FlxG.keys.justPressed.ENTER)
-			FlxG.switchState(new MainMenu());
+			FlxG.switchState(new MainMenu(Constants.MAIN_MENU_OPTIONS));
 	}
 
 	var haha:Bool = false;

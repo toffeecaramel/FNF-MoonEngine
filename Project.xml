@@ -48,6 +48,7 @@
 	<haxelib name="hxcpp-debug-server" if="debug" />
 	<haxelib name="hxgamejolt-api" />
 	
+	<haxelib name="moonchart" />
 	<haxelib name="hscript" />
 	<haxelib name="yaml" />
 

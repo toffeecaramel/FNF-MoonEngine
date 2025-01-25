@@ -1,5 +1,8 @@
 package moon.states.editors;
 
+import moonchart.formats.fnf.legacy.FNFPsych.FNFPsychBasic;
+import moonchart.formats.fnf.FNFVSlice;
+import moon.obj.editors.TooltipButton;
 import backend.Chart.ChartData;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -66,22 +69,46 @@ class ChartConverterState extends MusicState
 
 		FlxG.stage.window.onDropFile.add(function(path:String)
 		{
-			(path.endsWith('.json')) ? gotFile(path) : changeTxt('Error!\nThe file MUST be a .json format!', FlxColor.RED);
+			(path.endsWith('.json')) ? selectFormat(path) : changeTxt('Error!\nThe file MUST be a .json format!', FlxColor.RED);
 			converted = false;
 		});
 	}
 
-	private var convertedChart:ChartData;
+	private final formats:Array<String> = ['legacypsych', 'vslice'];
+	private var buttons:Array<TooltipButton> = [];
+	private function selectFormat(path:String)
+	{
+		changeTxt('Now select the format:');
+		for (i in 0...formats.length)
+		{
+			var button = new TooltipButton((i == 0) ? FlxG.width / 2 - 200 : FlxG.width / 2 + 200, 
+			Paths.image('editors/chartConverter/${formats[i]}'), (i == 0) ? 'Gets a chart from the legacy format/psych format.' : 
+			'Converts from the base game\'s current format',
+			() -> gotFile(path, formats[i]));
+			add(button);
+			buttons.push(button);
+		}
+	}
 
-	private function gotFile(path:String)
+	private var convertedChart:ChartData;
+	private var jc:Dynamic;
+	private function gotFile(path:String, format:String)
 	{
 		changeTxt("Please wait...");
 		importT.alpha = 1;
 		// jc stands for Json Content!
 		try
 		{
-			var jc = Chart.loadBaseFromJson(path);
-			convertedChart = Chart.parse('default', jc);
+			switch(format)
+			{
+				case 'legacypsych':
+					jc = Chart.loadBaseFromJson(path);
+					convertedChart = Chart.parse(jc);
+				case 'vslice':
+					var vslice = new FNFVSlice().fromFile(path, null, "hard");
+					var base = new FNFPsychBasic().fromFormat(vslice);
+					convertedChart = Chart.parse(base);
+			}
 			FlxTween.tween(importT, {x: FlxG.width - importT.width - 30}, 1, {
 				ease: FlxEase.circOut,
 				onComplete: function(twn:FlxTween)
@@ -90,8 +117,8 @@ class ChartConverterState extends MusicState
 					importT.text = 'Got info!';
 					FlxTween.tween(importT, {alpha: 0, x: FlxG.width + importT.width + 30}, 1, {startDelay: 1, ease: FlxEase.circIn});
 					
-					info.text = 'Song: ${jc.song}\n' + 'BPM: ${jc.bpm}\n' + 'Scroll Speed: ${jc.speed}\n\n'
-						+ 'Player 1: ${jc.player1}\nPlayer 2: ${jc.player2}';
+					//info.text = 'Song: ${jc.song}\n' + 'BPM: ${jc.bpm}\n' + 'Scroll Speed: ${jc.speed}\n\n'
+					//	+ 'Player 1: ${jc.player1}\nPlayer 2: ${jc.player2}';
 					info.x = 0;
 					info.y = 0;
 				}

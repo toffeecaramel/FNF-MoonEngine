@@ -69,86 +69,82 @@ class Chart
 	 * @param ogChart The chart you want to convert.
 	 * @return ChartData
 	 */
-	public static function parse(chartType:String, ogChart:SwagSong):ChartData
+	public static function parse(ogChart:SwagSong):ChartData
 	{
-		switch (chartType)
+		// - Make the new structure while getting values from the og chart
+		var newChart:ChartData = {
+			notes: [],
+			events: [],
+
+			scrollSpeed: ogChart.speed,
+			hasVoices: ogChart.needsVoices,
+			bpm: ogChart.bpm,
+			timeSignature: [4, 4]
+		};
+
+		var lastMustHitSection:Bool = ogChart.notes[0].mustHitSection;
+		var lastBPM:Float = ogChart.bpm;
+		var timeOffset:Float = 0;
+
+		// - Iterate through sections
+		for (section in ogChart.notes)
 		{
-			default:
-				// - Make the new structure while getting values from the og chart
-				var newChart:ChartData = {
-					notes: [],
-					events: [],
-
-					scrollSpeed: ogChart.speed,
-					hasVoices: ogChart.needsVoices,
-					bpm: ogChart.bpm,
-					timeSignature: [4, 4]
+			/*// - Check for BPM change first, before processing notes
+			if (section.changeBPM && section.bpm != lastBPM)
+			{
+				// - Create a "Change BPM" event at the current time offset
+				var bpmChangeEvent:EventData = {
+					name: "Change BPM", 
+					values: [section.bpm],
+					time: timeOffset
 				};
+				newChart.events.push(bpmChangeEvent);
 
-				var lastMustHitSection:Bool = ogChart.notes[0].mustHitSection;
-				var lastBPM:Float = ogChart.bpm;
-				var timeOffset:Float = 0;
+				// - Update lastBPM to the new BPM
+				lastBPM = section.bpm;
+			}*/
 
-				// - Iterate through sections
-				for (section in ogChart.notes)
+			// - Process notes in the section
+			for (note in section.sectionNotes)
+			{
+				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
+				(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
+				
+				// - Set the notes direction, lane, step, and duration in steps
+				var noteData:NoteData = {
+					type: (note[3] == null) ? 'DEFAULT' : note[3],
+					direction: NoteUtils.numberToDirection(note[1]),
+					lane: lane,
+					time: note[0],
+					duration: ((note.length > 2) ? note[2] : null)
+				};
+				// - Then push it to the notes array
+				newChart.notes.push(noteData);
+				
+				// - Create the camera events
+				if (section.mustHitSection != lastMustHitSection)
 				{
-					/*// - Check for BPM change first, before processing notes
-					if (section.changeBPM && section.bpm != lastBPM)
-					{
-						// - Create a "Change BPM" event at the current time offset
-						var bpmChangeEvent:EventData = {
-							name: "Change BPM", 
-							values: [section.bpm],
-							time: timeOffset
-						};
-						newChart.events.push(bpmChangeEvent);
+					var cameraEvent:EventData = {
+						name: "Move Camera",
+						values: [
+							section.mustHitSection ? "Player" : "Opponent",
+							0.6,
+							"circOut"
+						],
+						time: note[0]
+					};
+					newChart.events.push(cameraEvent);
 
-						// - Update lastBPM to the new BPM
-						lastBPM = section.bpm;
-					}*/
-
-					// - Process notes in the section
-					for (note in section.sectionNotes)
-					{
-						var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
-						(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
-						
-						// - Set the notes direction, lane, step, and duration in steps
-						var noteData:NoteData = {
-							type: (note[3] == null) ? 'DEFAULT' : note[3],
-							direction: NoteUtils.numberToDirection(note[1]),
-							lane: lane,
-							time: note[0],
-							duration: ((note.length > 2) ? note[2] : null)
-						};
-						// - Then push it to the notes array
-						newChart.notes.push(noteData);
-						
-						// - Create the camera events
-						if (section.mustHitSection != lastMustHitSection)
-						{
-							var cameraEvent:EventData = {
-								name: "Move Camera",
-								values: [
-									section.mustHitSection ? "Player" : "Opponent",
-									0.6,
-									"circOut"
-								],
-								time: note[0]
-							};
-							newChart.events.push(cameraEvent);
-
-							lastMustHitSection = section.mustHitSection;
-						}
-					}
-
-					// - Update timeOffset for the next section based on section length and BPM
-					//timeOffset += (section.lengthInSteps / (lastBPM / 60)) * 1000; // - Convert steps to milliseconds
-					//trace('time Offset $timeOffset', 'DEBUG');
+					lastMustHitSection = section.mustHitSection;
 				}
+			}
 
-				return newChart;
+			// - Update timeOffset for the next section based on section length and BPM
+			//timeOffset += (section.lengthInSteps / (lastBPM / 60)) * 1000; // - Convert steps to milliseconds
+			//trace('time Offset $timeOffset', 'DEBUG');
 		}
+
+		return newChart;
 	}
 
 	/**

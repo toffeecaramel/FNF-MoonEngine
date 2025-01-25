@@ -54,7 +54,7 @@ class TooltipButton extends FlxGroup
 
 			(_timer >= descriptionDelay) ? _displayDialogue(elapsed, [_dialogue, _descText]) : _hideDialogue(elapsed, [_dialogue, _descText]);
 		}
-		else {_timer = 0; _hideDialogue(elapsed, [_dialogue, _descText]); _btn.alpha = 0.8;}
+		else {_timer = 0; _hideDialogue(elapsed, [_dialogue, _descText]); _btn.alpha = 0.7;}
 	}
 
 	private function _displayDialogue(elapsed:Float, _objects:Array<FlxSprite>):Void

@@ -1,5 +1,6 @@
 package moon.states.menus;
 
+import moon.utilities.CoolUtil;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
@@ -43,33 +44,7 @@ class Freeplay extends MusicSubState
 
     private var started:Bool = false;
 
-    private final songList:Array<String> = [
-        null, // - Random
-        "just a thing",
-        "bopeebo",
-        "fresh",
-        "dadbattle",
-        "spookeez",
-        "south",
-        "monster",
-        "pico",
-        "philly nice",
-        "blammed",
-        "satin panties",
-        "high",
-        "m.i.l.f",
-        "coca",
-        "eggnoung!",
-        "winter horrorland",
-        "senpais",
-        "roses",
-        "thorns",
-        "tutorial (arrow funk)", 
-        "tremendous",
-        "termination",
-        "censory overload",
-        "spookeez bside"
-    ];
+    private final songList:Array<String> = CoolUtil.getTextArray('assets/data/freeplaySonglist.txt');
 
     private var textList:FlxTypedGroup<MP3Text> = new FlxTypedGroup<MP3Text>();
     private var curSelected:Int = 0;

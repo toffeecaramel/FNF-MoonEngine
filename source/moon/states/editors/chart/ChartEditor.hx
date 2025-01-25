@@ -178,8 +178,6 @@ class ChartEditor extends MusicState
         notification.x = FlxG.width - notification.width;
         add(notification);
         notification.camera = camHUD;
-        
-        _playback.curState = PAUSE;
     }
 
     private function generateGrid():Void

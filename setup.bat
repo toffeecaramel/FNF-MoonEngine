@@ -43,6 +43,8 @@ haxelib install hscript 2.5.0
 haxelib set hscript 2.5.0
 haxelib install yaml 2.0.1
 haxelib set yaml 2.0.1
+haxelib install moonchart 0.4.0
+haxelib set moonchart 0.4.0
 haxelib run lime setup
 haxelib git hxgamejolt-api https://github.com/MAJigsaw77/hxgamejolt-api.git
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc

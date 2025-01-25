@@ -26,12 +26,8 @@ using StringTools;
 
 class MainMenu extends MusicState
 {
-	private var options:Array<String> = [
-        'story mode', 'freeplay', 
-		'multiplayer', 'mods', 'music player',
-		'profile', 'toolbox', 'credits',
-		'options', 'exit'
-    ];
+	public var options:Array<String> = [];
+
 	private var txtArr:Array<String> = [];
 	private var optionsGrp:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 	private var display:FlxSprite = new FlxSprite();
@@ -44,9 +40,12 @@ class MainMenu extends MusicState
     private final txtOffsetY:Float = 340;
     private final txtSeparator:Float = 7;
 
+	public function new(options:Array<String>){super(); this.options = options;}
+
     override public function create():Void
     {
         super.create();
+		selected = false;
         DiscordRPC.changePresence("At the Main Menu", "Choosin' an Option.");
 		txtArr = CoolUtil.getTextArray('assets/data/menuTexts.txt');
 
@@ -108,8 +107,8 @@ class MainMenu extends MusicState
         if(FlxG.sound.music != null)
             Conductor.songPosition = FlxG.sound.music.time;
 
-		if(Controls.justPressed(UI_UP)) changeSelection(-1);
-		else if(Controls.justPressed(UI_DOWN)) changeSelection(1);
+		if(Controls.justPressed(UI_UP) && !selected) changeSelection(-1);
+		else if(Controls.justPressed(UI_DOWN)&& !selected) changeSelection(1);
 
 		if(Controls.justPressed(ACCEPT) && !selected)
 		{
@@ -120,6 +119,11 @@ class MainMenu extends MusicState
 				switch(options[curSelected])
 				{
 					case 'freeplay': openSubState(new Freeplay());
+					case 'toolbox': FlxG.switchState(new MainMenu(['chart converter', 'chart editor', '< go back']));
+
+					// - Toolbox options.
+					case 'chart converter': FlxG.switchState(new ChartConverterState());
+					case '< go back': FlxG.switchState(new MainMenu(Constants.MAIN_MENU_OPTIONS));
 				}
 			});
 		}

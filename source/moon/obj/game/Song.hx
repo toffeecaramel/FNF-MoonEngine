@@ -117,7 +117,6 @@ class Song extends FlxTypedGroup<FNFSound>
 					members[i].kill();
 			}
 		}
-		(state == PLAY) ? checkDesync() : null;
 		return state;
 	}
 
