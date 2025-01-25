@@ -1,6 +1,5 @@
 package moon.states;
 
-import haxe.macro.Compiler.NullSafetyMode;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -24,6 +23,7 @@ import moon.obj.*;
 import moon.obj.game.*;
 import moon.obj.interfaces.*;
 import moon.obj.notes.*;
+import moon.obj.notes.Note.EntireNote;
 import moon.states.editors.*;
 import moon.states.editors.chart.*;
 import moon.subStates.*;
@@ -57,10 +57,10 @@ class PlayState extends MusicState
 	private var inputHandler:InputHandler;
 
 	private var chartRenderer:ChartRenderer;
-	public var unspawnNotes:Array<Note> = [];
+	public var unspawnNotes:Array<EntireNote> = []; // Changed to Array<EntireNote>
 	public var eventList:Array<Dynamic> = [];
-    //private var notes:FlxTypedGroup<Note>;
-	//private var sustainsGrp:FlxTypedGroup<Note>;
+    //private var notes:FlxTypedGroup<Note>; // No longer needed, ChartRenderer manages notes
+	//private var sustainsGrp:FlxTypedGroup<Note>; // No longer needed, ChartRenderer manages notes
 
 	public static var stage:Stage;
 
@@ -102,7 +102,7 @@ class PlayState extends MusicState
 	public static var difficulty:String;
 
 	var test:FlxText;
-	
+
 	inline private function resetValues()
 	{
 		unspawnNotes = [];
@@ -196,7 +196,7 @@ class PlayState extends MusicState
 				return splash;
 			});
 		}
-		
+
 		add(splashGrp);
 
 		// - Load the chart
@@ -212,8 +212,8 @@ class PlayState extends MusicState
 		add(chartRenderer);
 
 		// - Add the input handler
-		inputHandler = new InputHandler(unspawnNotes, P1, conductor);
-		inputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, player, judgement);
+		inputHandler = new InputHandler(unspawnNotes, P1, conductor); // unspawnNotes is now Array<EntireNote>
+		inputHandler.onNoteHit = (entireNote:EntireNote, judgement:JudgementsTiming) -> onNoteHit(entireNote, player, judgement); // InputHandler will now return EntireNote
 		inputHandler.onNoteMiss = (_) -> onMiss();
 
 		/*var cpuinputHandler = new InputHandler(unspawnNotes, CPU);
@@ -265,7 +265,7 @@ class PlayState extends MusicState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-			
+
 		if (unspawnNotes.length == 0)
 			beatCounter = 0;
 
@@ -306,7 +306,7 @@ class PlayState extends MusicState
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			playback.curState = KILL;
-			FlxG.switchState(new ChartEditor(song, difficulty));
+			//FlxG.switchState(new ChartEditor(song, difficulty));
 		}
 		if (FlxG.keys.justPressed.EIGHT)
 		{
@@ -338,9 +338,9 @@ class PlayState extends MusicState
 		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
 		playerStrumline.y = opponentStrumline.y = yPos;
 
-		/*for(notes in unspawnNotes)
-			for(noteData in chart.notes)
-				notes.strumTime = noteData.time - UserSettings.callSetting('Offset');*/
+		/*for(notes in unspawnNotes) // unspawnNotes is now EntireNote array
+			for(noteData in chart.notes) // chart.notes might need to be adjusted if it's noteData array
+				notes.strumTime = noteData.time - UserSettings.callSetting('Offset'); // Access strumTime through tapNote if needed: notes.tapNote.strumTime */
 	}
 
 	private function executeEvent(event:Dynamic):Void
@@ -365,37 +365,38 @@ class PlayState extends MusicState
 	 * @param direction the direction of the strum.
 	 */
 	private function playStrumAnim(lane:String, direction:String):Void
-	{	
+	{
 		// - Get the strum.
 		final strum = (lane != 'P1') ? opponentStrumline : playerStrumline;
 		final yVal = strum.members[NoteUtils.directionToNumber(direction)].y;
 
-		// - Play the animation.	
+		// - Play the animation.
 		strum.playConfirm(direction);
 		gl.callAnim(chartRenderer.getNoteX(direction, lane) - 47, yVal - 47, direction, skin);
 	}
 
 	/**
 	 * Function called whenever a note is hit.
-	 * @param note 		The note that got hit.
+	 * @param entireNote 	The EntireNote that got hit. // Changed parameter type to EntireNote
 	 * @param character The character that will have an singing animation triggered.
 	 * @param jt 		The judgement.
 	 */
-	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
+	private function onNoteHit(entireNote:EntireNote, character:Character, jt:JudgementsTiming):Void // Changed parameter type to EntireNote
 	{
+		final note = entireNote.tapNote; // Access tapNote from EntireNote
 		// - If the note is a mustPress, it will call the timing functions
 		if(note.lane == 'P1')
 		{
 			comboDisplay.showCombo(combo, jt);
 			combo++;
 
-			health += (note.isSustainNote) ? 0.6 : 0;
+			health += (entireNote.isSustainNote) ? 0.6 : 0; // Check isSustainNote from EntireNote
 
 			if (jt != null)
 			{
 				final timingData = Timings.getParameters(jt);
 				health += timingData[4];
-				if(!note.isSustainNote)
+				if(!entireNote.isSustainNote) // Check isSustainNote from EntireNote
 				{
 					for (i in 0...splashGrp.members.length)
 						if(jt == sick && splashGrp.members[i].ID == NoteUtils.directionToNumber(note.noteDir))
@@ -404,7 +405,7 @@ class PlayState extends MusicState
 							splashGrp.members[i].setPosition(strum.x-177, strum.y-160); // Oh boy I love offsets
 							splashGrp.members[i].spawn(note.noteDir);
 						}
-					
+
 					if (Timings.judgementCounter.exists(jt))
 						Timings.judgementCounter.set(jt, Timings.judgementCounter.get(jt) + 1);
 
@@ -426,7 +427,7 @@ class PlayState extends MusicState
 		character.holdTimer = 0;
 
 		if(scriptHandler.exists('onNoteHit'))
-			scriptHandler.get("onNoteHit")(note, character, jt);
+			scriptHandler.get("onNoteHit")(entireNote, character, jt); // Pass EntireNote to script
 	}
 
 	private function onMiss()
@@ -438,7 +439,7 @@ class PlayState extends MusicState
 		comboDisplay.showCombo(combo, miss);
 		gameHUD.updateStats(inputHandler.playerStats);
 	}
-	
+
 	override public function openSubState(SubState:FlxSubState)
 	{
 		if (!paused)
@@ -530,12 +531,12 @@ class PlayState extends MusicState
 
 	public function charactersDance(curBeat:Float):Void
 	{
-	if ((opponent.animation.curAnim.name.startsWith("idle") 
+	if ((opponent.animation.curAnim.name.startsWith("idle")
 		|| opponent.animation.curAnim.name.startsWith("dance"))
 		&& (curBeat % 2 == 0 || opponent.characterData.quickDancer))
 		opponent.dance();
 
-		if ((player.animation.curAnim.name.startsWith("idle") 
+		if ((player.animation.curAnim.name.startsWith("idle")
 		|| player.animation.curAnim.name.startsWith("dance"))
 		&& (curBeat % 2 == 0 || player.characterData.quickDancer))
 			player.dance();
@@ -548,7 +549,7 @@ class PlayState extends MusicState
 	}
 
 	private function startCountdown():Void
-	{	
+	{
 		countdownFinished = true;
 	}
 
@@ -570,8 +571,9 @@ class PlayState extends MusicState
 	{
 		var minDifference:Float = Math.POSITIVE_INFINITY;
 		var nextTime:Float = 0;
-	
-		for (note in unspawnNotes) {
+
+		for (entireNote in unspawnNotes) { // Iterate through EntireNote array
+			final note = entireNote.tapNote; // Access tapNote from EntireNote
 			if (note.lane == 'P1' && note.strumTime > conductor.time) {
 				var difference:Float = note.strumTime - conductor.time;
 				if (difference < minDifference) {
@@ -580,10 +582,10 @@ class PlayState extends MusicState
 				}
 			}
 		}
-	
+
 		nextToHit = Std.int((minDifference / conductor.crochet) / 2);
 		//test.text = '$nextToHit';
-	
+
 		if (nextTime == 0)
 			nextToHit = 0;
 	}

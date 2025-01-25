@@ -1,5 +1,6 @@
 package moon.utilities;
 
+import moon.obj.notes.Note.EntireNote;
 import flixel.FlxSprite;
 import moon.obj.notes.*;
 import flixel.util.FlxColor;
@@ -104,10 +105,42 @@ class NoteUtils
         return rgbShader;
     }
 
-    public static function killNote(poorNote:Note, notesArray:Array<Note>):Void
+    public static function killNote(entireNote:EntireNote, notesArray:Array<EntireNote>, killSustain:Bool = true):Void // Added killSustain parameter
     {
-        poorNote.active = poorNote.exists = false;
-        poorNote.kill();
-        notesArray.remove(poorNote);
+        entireNote.tapNote.active = false; // Always kill the tap note part
+        entireNote.tapNote.visible = false;
+        entireNote.tapNote.exists = false;
+        entireNote.tapNote.kill();
+
+        if (killSustain) // Conditionally kill sustain parts
+        {
+            if (entireNote.sustainStart != null)
+            {
+                entireNote.sustainStart.active = false;
+                entireNote.sustainStart.visible = false;
+                entireNote.sustainStart.exists = false;
+                entireNote.sustainStart.kill();
+            }
+            if (entireNote.sustainTile != null)
+            {
+                entireNote.sustainTile.active = false;
+                entireNote.sustainTile.visible = false;
+                entireNote.sustainTile.exists = false;
+                entireNote.sustainTile.kill();
+            }
+            if (entireNote.sustainEnd != null)
+            {
+                entireNote.sustainEnd.active = false;
+                entireNote.sustainEnd.visible = false;
+                entireNote.sustainEnd.exists = false;
+                entireNote.sustainEnd.kill();
+            }
+            notesArray.remove(entireNote); // Remove the EntireNote group only when everything is killed (including sustain if killSustain is true)
+        }
+        else
+        {
+            // If !killSustain, only tapNote is killed, sustain parts remain for now.
+            // You might want to handle sustain removal in a different part of your logic (e.g., based on sustain length and time).
+        }
     }
 }

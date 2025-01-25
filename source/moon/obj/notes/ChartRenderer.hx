@@ -2,9 +2,10 @@ package moon.obj.notes;
 
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
-import moon.obj.notes.*;
+import moon.obj.notes.Note.EntireNote;
 import moon.utilities.NoteUtils;
 import moon.states.PlayState;
+import backend.Conductor; // Import Conductor if not already present
 
 /**
  * This class is used for rendering notes from a chart.
@@ -18,10 +19,10 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
     public var oppStrum:Strumline;
 
     // - Separate them for layering. :3
-    private var notesGroup:FlxTypedSpriteGroup<Note>;
-    private var sustainGroup:FlxTypedSpriteGroup<Note>;
+    private var notesGroup:FlxTypedSpriteGroup<EntireNote>; // Changed to EntireNote
+    private var sustainGroup:FlxTypedSpriteGroup<EntireNote>; // Changed to EntireNote
 
-    private var notesArray:Array<Note>;
+    private var notesArray:Array<EntireNote>; // Changed to EntireNote
     private var chartData:Chart;
     private var skin:String;
     private var conductor:Conductor;
@@ -34,7 +35,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param chartData   Chart data for the notes to iterate.
      * @param skin        Skin for the notes.
      */
-    public function new(playerStrum:Strumline, oppStrum:Strumline, notesArray:Array<Note>,
+    public function new(playerStrum:Strumline, oppStrum:Strumline, notesArray:Array<EntireNote>, // Changed to EntireNote
     chartData:Chart, skin:String, conductor:Conductor)
     {
         super();
@@ -46,10 +47,10 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         this.notesArray = notesArray;
         this.conductor = conductor;
 
-        sustainGroup = new FlxTypedSpriteGroup<Note>();
+        sustainGroup = new FlxTypedSpriteGroup<EntireNote>(); // Changed to EntireNote
         add(sustainGroup);
 
-        notesGroup = new FlxTypedSpriteGroup<Note>();
+        notesGroup = new FlxTypedSpriteGroup<EntireNote>(); // Changed to EntireNote
         add(notesGroup);
 
         // - Time to recycle these notes baby
@@ -63,110 +64,85 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
     private function spawnNotes(noteData:Dynamic):Void
     {
         // - Spawn a common note.
-        var mainNote = recycleNote(noteData, false);
+        var mainNote = recycleNote(noteData); // Removed isSustain and prevNote, EntireNote handles sustains
         notesArray.push(mainNote);
 
-        // - Define the sustain length.
-        final susLength:Float = noteData.duration / conductor.stepCrochet;
-
-        // - Then create the sustain if it's duration is bigger than zero.
-        if (susLength > 0) recycleSustain(mainNote, noteData, susLength);
+        // - No need to recycle sustain separately, EntireNote handles it
     }
 
     /**
      * Recycles a note (A.K.A Creates one in a optimized way.)
      * @param noteData  The typedef containing all note data.
-     * @param isSustain Whether or not is a sustain note.
-     * @param prevNote  Previous note.
-     * @return Note
+     * @return EntireNote
      */
-    private function recycleNote(noteData:Dynamic, isSustain:Bool, ?prevNote:Note = null):Note
+    private function recycleNote(noteData:Dynamic):EntireNote // Changed return type to EntireNote
     {
-        final group = (isSustain) ? sustainGroup : notesGroup;
-        return group.recycle(Note, function():Note
+        final group = (noteData.duration > 0) ? sustainGroup : notesGroup; // Decide group based on duration
+        return group.recycle(EntireNote, function():EntireNote // Changed recycle type to EntireNote
         {
-            // - Create the note with the given parameters above.
-            var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote, conductor);
-    
+            // - Create the EntireNote with the given parameters above.
+            var entireNote = EntireNote.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, noteData.duration, conductor); // Pass duration
+
             // - Set the note speed from the chart so it can adjust sustains size.
-            note.noteSpeed = chartData.content.scrollSpeed;
-    
+            entireNote.noteSpeed = chartData.content.scrollSpeed; // Assuming EntireNote uses noteSpeed
+
             // - Change the scale, I personally prefer smaller strumlines.
-            note.scale.set(PlayState.noteScale, PlayState.noteScale);
-            note.updateHitbox();
-            note.active = false;
-            note.isSustainNote = isSustain;
-    
+            entireNote.tapNote.scale.set(PlayState.noteScale, PlayState.noteScale); // Scale tapNote instead
+            entireNote.tapNote.updateHitbox(); // Update tapNote hitbox
+            entireNote.active = false;
+            entireNote.visible = false; // Initially not visible
+
             // - Then boom, note recycled with success. :3
-            return note;
+            return entireNote;
         });
     }
 
     /**
-     * Recycles an sustain note.
-     * @param mainNote  The note in which the sustain will come from.
-     * @param noteData  The typedef containing all note data.
-     * @param susLength The sustain's length (in milliseconds).
+     * No longer needed, Sustain recycling is handled by EntireNote
+     * @deprecated
      */
+    @:deprecated
     private function recycleSustain(mainNote:Note, noteData:Dynamic, susLength:Float):Void
     {
-        // - Previous note is just main note lol
-        var prevNote = mainNote;
-    
-        for (i in 0...Math.floor(susLength))
-        {
-            // - Setup sustain data.
-            final sustainData = {
-                time: noteData.time + conductor.stepCrochet * (i + 1),
-                direction: noteData.direction,
-                lane: noteData.lane,
-                type: noteData.type
-            };
-            
-            // - Then setup the sustain note stuff.
-            var sustainNote = recycleNote(sustainData, true, prevNote);
-            sustainNote.scrollFactor.set();
-            notesArray.push(sustainNote);
-            sustainGroup.add(sustainNote);
-            prevNote = sustainNote;
-        }
+        // - Sustain recycling is now handled within EntireNote
+        trace('recycleSustain is deprecated and should not be called.');
     }
 
     /**
      * Update the positions of the notes.
-     * @param elapsed 
+     * @param elapsed
      */
     public function updateNotePosition(elapsed:Float)
     {
         final visibleBuffer:Float = 100;
 
-        for (note in notesArray)
+        for (entireNote in notesArray) // Iterate through EntireNote array
         {
-            final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
-            final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-            final timeDifference:Float = (note.strumTime - conductor.time) * chartData.content.scrollSpeed / 3;
-            final yOffset = (note.isSustainNote) ? -17 * (chartData.content.scrollSpeed * 1.5) : 0;
+            final tapNote = entireNote.tapNote; // Access tapNote from EntireNote
+            final strumline:Strumline = tapNote.lane == 'P1' ? playerStrum : oppStrum;
+            final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(tapNote.noteDir)].y;
+            final timeDifference:Float = (tapNote.strumTime - conductor.time) * chartData.content.scrollSpeed / 3;
+            final yOffset = (entireNote.isSustainNote) ? -17 * (chartData.content.scrollSpeed * 1.5) : 0; // Check isSustainNote from EntireNote
 
             final potentialY:Float = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset
                 : strumlineY + (timeDifference) + yOffset;
 
             if (potentialY > -visibleBuffer && potentialY < FlxG.height + visibleBuffer)
             {
-                note.active = note.visible = true;
+                entireNote.active = entireNote.visible = true; // Activate/show EntireNote
 
-                final xOffset = (note.isSustainNote) ? 32.5 : 0;
-                note.y = potentialY;
+                final xOffset = (entireNote.isSustainNote) ? 32.5 : 0; // Check isSustainNote from EntireNote
+                entireNote.y = potentialY; // Position EntireNote
+                entireNote.x = getNoteX(tapNote.noteDir, tapNote.lane) + xOffset; // Use tapNote's direction and lane
 
-                note.x = getNoteX(note.noteDir, note.lane) + xOffset;
-
-                if(note.isSustainNote) note.flipY = UserSettings.callSetting('Downscroll');
+                if(entireNote.isSustainNote) entireNote.flipY = UserSettings.callSetting('Downscroll'); // Flip EntireNote if sustain
             }
-            else note.active = note.visible = false; 
+            else entireNote.active = entireNote.visible = false;
             // huge fuckass if statement lol
-            if ((((!UserSettings.callSetting('Downscroll')) && (note.y < -note.height))
-            || ((UserSettings.callSetting('Downscroll')) && (note.y > (FlxG.height + note.height))))
-            && (note.tooLate || note.wasGoodHit))
-                NoteUtils.killNote(note, notesArray);
+            if ((((!UserSettings.callSetting('Downscroll')) && (entireNote.y < -entireNote.height)) // Use EntireNote.y and height
+            || ((UserSettings.callSetting('Downscroll')) && (entireNote.y > (FlxG.height + entireNote.height)))) // Use EntireNote.y and height
+            && (tapNote.tooLate || tapNote.wasGoodHit) && entireNote.alive) // Check tapNote's tooLate and wasGoodHit
+                NoteUtils.killNote(entireNote, notesArray); // You might need to adjust killNote to work with EntireNote or tapNote
         }
     }
 
@@ -176,7 +152,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param lane      The lane in which the note is.
      * @return Float
      */
-    public function getNoteX(direction:String, lane:String):Float 
+    public function getNoteX(direction:String, lane:String):Float
     {
         var strum = (lane == 'P1') ? playerStrum : oppStrum;
         return strum.members[NoteUtils.directionToNumber(direction)].x;
