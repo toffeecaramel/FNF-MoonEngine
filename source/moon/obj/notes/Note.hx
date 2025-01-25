@@ -110,6 +110,8 @@ class Note extends FNFSprite
      */
     public static var scriptHandler:ScriptHandler = new ScriptHandler();
 
+    private var conductor:Conductor;
+
     /**
      * Creates a note on the screen.
      * @param skin        The note's skin, basically it's appearence.
@@ -122,7 +124,7 @@ class Note extends FNFSprite
      */
     public function new(skin:String = 'DEFAULT', 
         type:String = "DEFAULT", strumTime:Float, noteDir:String, 
-        lane:String, ?prevNote:Note, ?sustainNote:Bool = false) 
+        lane:String, ?prevNote:Note, ?sustainNote:Bool = false, conductor:Conductor) 
     {
         super(x, y);
 
@@ -136,6 +138,7 @@ class Note extends FNFSprite
         isSustainNote = sustainNote;
         this.strumTime = strumTime;
         this.lane = lane;
+        this.conductor = conductor;
 
         // - Sustain note checks.
         if (isSustainNote && prevNote != null)
@@ -203,7 +206,7 @@ class Note extends FNFSprite
             if (prevNote.isSustainNote)
             {
                 animation.play('$noteDir-hold');
-                prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.3 * prevNote.noteSpeed;
+                prevNote.scale.y *= conductor.stepCrochet / 100 * 1.3 * prevNote.noteSpeed;
                 prevNote.updateHitbox();
             }
         }
@@ -230,8 +233,8 @@ class Note extends FNFSprite
 
         if (lane == 'P1' || lane == 'P2')
         {
-            if (strumTime > Conductor.songPosition - Timings.msThreshold 
-            && strumTime < Conductor.songPosition + Timings.msThreshold)
+            if (strumTime > conductor.time - Timings.msThreshold 
+            && strumTime < conductor.time + Timings.msThreshold)
                 canBeHit = true;
             else
                 canBeHit = false;
@@ -255,9 +258,9 @@ class Note extends FNFSprite
      */
     public static function returnDefaultNote(skin:String, type:String,
         strumTime:Float, noteDir:String, lane:String, ?isSustainNote:Bool = false, 
-        ?prevNote:Note = null):Note
+        ?prevNote:Note = null, conductor:Conductor):Note
     {
-        var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote);
+        var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote, conductor);
         return newNote;
     }
 }

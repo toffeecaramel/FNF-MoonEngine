@@ -55,7 +55,7 @@ class OffsetCalibration extends MusicSubState
 		new FlxTimer().start(3, function(_)
 		{
 			FlxG.sound.playMusic(Paths.music('interfaces/FeelTheTrack'), false);
-			Conductor.changeBPM(120);
+			conductor.changeBpmAt(0, 120);
 			FlxG.sound.music.onComplete = function()
 			{
 				UserSettings.setConfig('Offset', Std.int(averageOffset));
@@ -69,9 +69,6 @@ class OffsetCalibration extends MusicSubState
 
 	override public function update(elapsed:Float):Void
 	{
-		if (FlxG.sound.music != null) 
-			Conductor.songPosition = FlxG.sound.music.time;
-
 		super.update(elapsed);
 
 		if (allowPress && FlxG.keys.justPressed.ANY)
@@ -94,8 +91,8 @@ class OffsetCalibration extends MusicSubState
 		line.animation.play('hit', true);
 		totalBeats++;
 
-		final currentTime = Conductor.songPosition;
-		final beatLength = 60000 / Conductor.bpm;
+		final currentTime = conductor.time;
+		final beatLength = 60000 / conductor.bpm;
 		var nearestBeatTime = Math.round(currentTime / beatLength) * beatLength;
 		var offset = currentTime - nearestBeatTime;
 

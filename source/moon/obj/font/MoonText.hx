@@ -120,10 +120,10 @@ class MoonText extends FlxSprite
 
         if (newWidth > this.frameWidth || newHeight > this.frameHeight)
         {
+            trace('$newWidth is greater than $frameWidth. CHANGING WIDTH/HEIGHT!', "DEBUG");
             this.frameWidth = newWidth;
             this.frameHeight = newHeight;
             updateHitbox();
-            trace('$newWidth is greater than $frameWidth. CHANGING WIDTH/HEIGHT!', "DEBUG");
         }
 
         var bitmapData = new BitmapData(this.frameWidth, this.frameHeight, true, 0x00000000);

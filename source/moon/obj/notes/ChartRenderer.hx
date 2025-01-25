@@ -24,6 +24,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
     private var notesArray:Array<Note>;
     private var chartData:Chart;
     private var skin:String;
+    private var conductor:Conductor;
 
     /**
      * Spawns notes from a chart.
@@ -34,7 +35,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param skin        Skin for the notes.
      */
     public function new(playerStrum:Strumline, oppStrum:Strumline, notesArray:Array<Note>,
-    chartData:Chart, skin:String)
+    chartData:Chart, skin:String, conductor:Conductor)
     {
         super();
 
@@ -43,6 +44,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         this.chartData = chartData;
         this.skin = skin;
         this.notesArray = notesArray;
+        this.conductor = conductor;
 
         sustainGroup = new FlxTypedSpriteGroup<Note>();
         add(sustainGroup);
@@ -65,7 +67,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         notesArray.push(mainNote);
 
         // - Define the sustain length.
-        final susLength:Float = noteData.duration / Conductor.stepCrochet;
+        final susLength:Float = noteData.duration / conductor.stepCrochet;
 
         // - Then create the sustain if it's duration is bigger than zero.
         if (susLength > 0) recycleSustain(mainNote, noteData, susLength);
@@ -84,7 +86,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         return group.recycle(Note, function():Note
         {
             // - Create the note with the given parameters above.
-            var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote);
+            var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote, conductor);
     
             // - Set the note speed from the chart so it can adjust sustains size.
             note.noteSpeed = chartData.content.scrollSpeed;
@@ -115,7 +117,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         {
             // - Setup sustain data.
             final sustainData = {
-                time: noteData.time + Conductor.stepCrochet * (i + 1),
+                time: noteData.time + conductor.stepCrochet * (i + 1),
                 direction: noteData.direction,
                 lane: noteData.lane,
                 type: noteData.type
@@ -142,7 +144,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         {
             final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
             final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-            final timeDifference:Float = (note.strumTime - Conductor.songPosition) * chartData.content.scrollSpeed / 3;
+            final timeDifference:Float = (note.strumTime - conductor.time) * chartData.content.scrollSpeed / 3;
             final yOffset = (note.isSustainNote) ? -17 * (chartData.content.scrollSpeed * 1.5) : 0;
 
             final potentialY:Float = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset

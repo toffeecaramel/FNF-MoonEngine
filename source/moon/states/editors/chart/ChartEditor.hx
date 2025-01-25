@@ -89,7 +89,7 @@ class ChartEditor extends MusicState
 
         // - Load up the chart
         _chart = new Chart(song, difficulty);
-        Conductor.changeBPM(_chart.content.bpm, _chart.content.timeSignature[0] / _chart.content.timeSignature[1]);
+        conductor.changeBpmAt(0, _chart.content.bpm, _chart.content.timeSignature[0], _chart.content.timeSignature[1]);
     }
 
     override public function create():Void
@@ -113,7 +113,7 @@ class ChartEditor extends MusicState
 
 		// - this is so dumb lol I have to change it
 		if(_chart.content.hasVoices)songStuff.push({song: song, type: Voices});
-		_playback = new Song(songStuff);
+		_playback = new Song(songStuff, conductor);
         _playback.time = 0;
         maxY = getYfromStrum(_playback.fullLength);
 
@@ -183,7 +183,7 @@ class ChartEditor extends MusicState
     private function generateGrid():Void
     {
         _renderedLanes.clear();
-        final stepDuration:Float = Conductor.stepCrochet;
+        final stepDuration:Float = conductor.stepCrochet;
         final totalSteps:Int = Math.ceil(_playback.fullLength / stepDuration);
         
         final gridStartX:Float = (FlxG.width - (gridSize * kAmmount)) - gridSize * 4 - 30;
@@ -249,8 +249,8 @@ class ChartEditor extends MusicState
         checkMouseInteractions(elapsed);
         checkKeyboardInteractions(elapsed);
 
-        Conductor.songPosition = _playback.time;
-        strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(Conductor.songPosition), elapsed * 28);
+        conductor.time = _playback.time;
+        strumline.y = FlxMath.lerp(strumline.y, getYfromStrum(conductor.time), elapsed * 28);
         strumLineCam.y = strumline.y + (FlxG.height / 2.6) - 25;
     }
 
@@ -328,7 +328,7 @@ class ChartEditor extends MusicState
         _notes.recycle(Note, function():Note
         {
             var note:Note = Note.returnDefaultNote(UserSettings.callSetting('Noteskin'), noteData.type, 
-            noteData.time, noteData.direction, noteData.lane, false);
+            noteData.time, noteData.direction, noteData.lane, false, conductor);
 
             note.setGraphicSize(gridSize - 2, gridSize - 2);
             note.antialiasing = true;
@@ -353,7 +353,7 @@ class ChartEditor extends MusicState
     {
         if (susVal > 0) 
         {
-            var sustainHeight:Int = Std.int(Math.floor(FlxMath.remapToRange(susVal, 0, Conductor.stepCrochet * 16, 0, gridSize * 16.02)));
+            var sustainHeight:Int = Std.int(Math.floor(FlxMath.remapToRange(susVal, 0, conductor.stepCrochet * 16, 0, gridSize * 16.02)));
             //trace('added sustain. $susVal', "DEBUG");
 
             var sustainVis:FlxSprite = new FlxSprite(note.x + (gridSize / 2) - 5, note.y + gridSize);
@@ -375,7 +375,7 @@ class ChartEditor extends MusicState
         {
             _playback.curState = PAUSE;
             _playback.time = sectionStartTime();
-            updateCurStep();
+            //updateCurStep();
         }
     }
 
@@ -474,9 +474,9 @@ class ChartEditor extends MusicState
         }
     }
 
-    override function stepHit()
+    override function stepHit(curStep)
     {
-        super.stepHit();
+        super.stepHit(curStep);
         _playback.checkDesync();
     }
 
@@ -495,10 +495,10 @@ class ChartEditor extends MusicState
     }
 
     private function getYfromStrum(strumTime:Float):Float
-        return FlxMath.remapToRange(strumTime, 0, _playback.fullLength, 0, (_playback.fullLength / Conductor.stepCrochet) * gridSize);
+        return FlxMath.remapToRange(strumTime, 0, _playback.fullLength, 0, (_playback.fullLength / conductor.stepCrochet) * gridSize);
 
     private function getStrumFromY(y:Float):Float
-        return FlxMath.remapToRange(y, 0, (_playback.fullLength / Conductor.stepCrochet) * gridSize, 0, _playback.fullLength);
+        return FlxMath.remapToRange(y, 0, (_playback.fullLength / conductor.stepCrochet) * gridSize, 0, _playback.fullLength);
 
     function sectionStartTime():Float
     {

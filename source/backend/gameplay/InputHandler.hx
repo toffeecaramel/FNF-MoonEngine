@@ -40,14 +40,17 @@ class InputHandler
     // Array for the notes.
     private var unspawnNotes:Array<Note>;
 
+    private var conductor:Conductor;
+
     /**
      * Creates an handler for Note Inputs.
      * @param unspawnNotes The array of notes.
      */
-    public function new(unspawnNotes:Array<Note>, playerType:PlayerType)
+    public function new(unspawnNotes:Array<Note>, playerType:PlayerType, conductor:Conductor)
     {
         this.unspawnNotes = unspawnNotes;
         this.playerType = playerType;
+        this.conductor = conductor;
 
         playerStats = new PlayerStats(playerType);
     }
@@ -64,12 +67,12 @@ class InputHandler
         {
             for(note in unspawnNotes)
             {
-                if(note.strumTime - Conductor.songPosition <= 0 && note.lane == 'Opponent')
+                /*if(note.strumTime - Conductor.time <= 0 && note.lane == 'Opponent')
                 {
                     onNoteHit(note, null);
                     NoteUtils.killNote(note, unspawnNotes);
                     trace('Note hit fodase!', "DEBUG");
-                }
+                }*/
             }
         }
     }
@@ -127,7 +130,7 @@ class InputHandler
                 final noteDir = NoteUtils.directionToNumber(note.noteDir);
                 if (pressed[noteDir] && note.parentNote.wasGoodHit)
                 {
-                    if (note.strumTime <= Conductor.songPosition && !note.wasGoodHit)
+                    if (note.strumTime <= conductor.time && !note.wasGoodHit)
                     {
                         note.wasGoodHit = true;
                         if (onNoteHit != null) onNoteHit(note, null);
@@ -159,7 +162,7 @@ class InputHandler
         for (note in unspawnNotes)
         {
             if (!note.wasGoodHit && note.lane == 'P1' && !note.tooLate &&
-                Conductor.songPosition > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
+                conductor.time > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
             {
                 if (onNoteMiss != null && !note.isSustainNote) onNoteMiss(note);
                 note.tooLate = true;
@@ -174,7 +177,7 @@ class InputHandler
 
     private function checkTiming(note:Note):JudgementsTiming
     {
-        final timeDifference = Math.abs(note.strumTime - Conductor.songPosition);
+        final timeDifference = Math.abs(note.strumTime - conductor.time);
         for (jt in Timings.values)
         {
             if (timeDifference <= Timings.getParameters(jt)[1])

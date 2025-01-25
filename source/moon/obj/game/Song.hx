@@ -43,14 +43,17 @@ class Song extends FlxTypedGroup<FNFSound>
 	 */
 	@:isVar public var playing(get, never):Bool = true;
 
+	private var _conductor:Conductor;
+
 	/**
 	 * Creates the gameplay's song.
 	 * @param audios The array containing audio info.
 	 * Array example: `[{song: "tutorial", type: Inst, charPath: "pico"}]`
 	 */
-	public function new(audios:Array<{song:String, type:MusicType, ?charPath:String}>)
+	public function new(audios:Array<{song:String, type:MusicType, ?charPath:String}>, conductor:Conductor)
 	{
 		super();
+		this._conductor = conductor;
 
 		for (i in 0...audios.length)
 		{
@@ -78,7 +81,7 @@ class Song extends FlxTypedGroup<FNFSound>
 	{
 		for (i in 0...members.length)
 			if ((members[i].musicID == Inst) &&
-			(members[i].time >= Conductor.songPosition + 25 || members[i].time <= Conductor.songPosition - 25)) 
+			(members[i].time >= _conductor.time + 25 || members[i].time <= _conductor.time - 25)) 
 				resync();
 	}
 
@@ -91,10 +94,10 @@ class Song extends FlxTypedGroup<FNFSound>
 		{
 			if(members[i] != null)
 			{
-				trace('Music is resyncing! from ${members[i].time} to ${Conductor.songPosition}', 'WARNING');
+				trace('Music is resyncing! from ${members[i].time} to ${_conductor.time}', 'WARNING');
 
 				curState = PAUSE;
-				(members[i].musicID == Inst) ? Conductor.songPosition = members[i].time : members[i].time = Conductor.songPosition;
+				(members[i].musicID == Inst) ? _conductor.time = members[i].time : members[i].time = _conductor.time;
 				curState = PLAY;
 			}
 		}

@@ -104,9 +104,6 @@ class MainMenu extends MusicState
 
     override public function update(elapsed:Float):Void
     {
-        if(FlxG.sound.music != null)
-            Conductor.songPosition = FlxG.sound.music.time;
-
 		if(Controls.justPressed(UI_UP) && !selected) changeSelection(-1);
 		else if(Controls.justPressed(UI_DOWN)&& !selected) changeSelection(1);
 
@@ -171,9 +168,9 @@ class MainMenu extends MusicState
 		}
 	}
 
-    override function beatHit()
+    override function beatHit(curBeat)
     {
-		super.beatHit();
+		super.beatHit(curBeat);
 		display.scale.set(1.07, 1.07);
 		logo.scale.set(0.83, 0.83);
     }

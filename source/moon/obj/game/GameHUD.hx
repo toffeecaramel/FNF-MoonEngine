@@ -112,7 +112,7 @@ class GameHUD extends FlxTypedGroup<FlxBasic>
     }
 
     final iconScale:Float = 1.1;
-    public function beatHit(curBeat:Int):Void
+    public function beatHit(curBeat:Float):Void
     {
         iconPlayer.scale.set(iconScale, iconScale);
         iconOpp.scale.set(iconScale, iconScale);

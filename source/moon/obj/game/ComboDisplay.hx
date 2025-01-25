@@ -9,7 +9,6 @@ import flixel.tweens.FlxEase;
 import backend.gameplay.Timings;
 import backend.gameplay.Timings.JudgementsTiming;
 import backend.dependency.FNFSprite;
-import backend.Conductor;
 import haxe.Json;
 
 typedef ComboDisplayConfig = 
@@ -134,6 +133,7 @@ class ComboDisplay extends FlxSpriteGroup
 
     private function doAnim(sprite:FNFSprite, yOffset:Float, scaleOffset:Float, ?finalYOffset:Float, ?finalScaleOffset:Float):Void
     {
+        //TODO: MAKE ANIMS LENGTH A VARIABLE
         var tweens:Array<FlxTween> = [];
 
         var tween1 = FlxTween.tween(sprite,
@@ -141,7 +141,7 @@ class ComboDisplay extends FlxSpriteGroup
             y: sprite.y + yOffset, 
             "scale.x": sprite.scale.x + scaleOffset, 
             "scale.y": sprite.scale.y + scaleOffset
-        }, Conductor.crochet / 1000,
+        }, 0.7,
         {
             ease: FlxEase.circOut,
             onComplete: function(_)
@@ -156,7 +156,7 @@ class ComboDisplay extends FlxSpriteGroup
                         "scale.x": sprite.scale.x + finalScaleOffset,
                         "scale.y": sprite.scale.y + finalScaleOffset
                     }, 
-                    Conductor.crochet / 1000, {ease: FlxEase.circIn, startDelay: Conductor.crochet / 1000 * 2});
+                    0.7, {ease: FlxEase.circIn, startDelay: 0.7 * 2});
                 }
                 else 
                 {
@@ -164,7 +164,7 @@ class ComboDisplay extends FlxSpriteGroup
                     {
                         y: sprite.y + 20,
                         alpha: 0
-                    }, Conductor.crochet / 1000, {ease: FlxEase.quadIn});
+                    }, 0.7, {ease: FlxEase.quadIn});
                 }
                 tweens.push(tween2);
             }

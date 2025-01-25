@@ -24,7 +24,7 @@ class StrumGlow extends FlxTypedGroup<FlxSprite>
             //spr.color = Note.globalColors[NoteUtils.directionToNumber(direction)];
             spr.updateHitbox();
             spr.alpha = 0.6;
-            FlxTween.tween(spr, {"scale.x": 0.20, "scale.y": 0.20, alpha: 0}, Conductor.crochet / 800,
+            FlxTween.tween(spr, {"scale.x": 0.20, "scale.y": 0.20, alpha: 0}, 0.2,
             {ease: FlxEase.circOut, startDelay: 0.06});
             spr.x = xV;
             spr.y = yV;

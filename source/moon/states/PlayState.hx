@@ -112,6 +112,7 @@ class PlayState extends MusicState
 	override public function create()
 	{
 		super.create();
+		this.syncMethod = ELAPSED;
 		resetValues();
 
 		FlxG.mouse.visible = false;
@@ -137,10 +138,10 @@ class PlayState extends MusicState
 		add(stage);
 
 		// - Setup the characters
-		opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad');
+		opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
 		add(opponent);
 
-		player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf');
+		player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
 		add(player);
 
 		// - Add the game HUD
@@ -201,17 +202,17 @@ class PlayState extends MusicState
 		// - Load the chart
 		chart = new Chart(song, difficulty);
 		scrollSpeed = chart.content.scrollSpeed / 1.8;
-		Conductor.changeBPM(chart.content.bpm, chart.content.timeSignature[0] / chart.content.timeSignature[1]);
+		conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
 		for (event in chart.content.events)
 			eventList.push(event);
 
 		// - Load the notes
-		chartRenderer = new ChartRenderer(playerStrumline, opponentStrumline, unspawnNotes, chart, skin);
+		chartRenderer = new ChartRenderer(playerStrumline, opponentStrumline, unspawnNotes, chart, skin, conductor);
 		chartRenderer.camera = camStrums;
 		add(chartRenderer);
 
 		// - Add the input handler
-		inputHandler = new InputHandler(unspawnNotes, P1);
+		inputHandler = new InputHandler(unspawnNotes, P1, conductor);
 		inputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, player, judgement);
 		inputHandler.onNoteMiss = (_) -> onMiss();
 
@@ -229,7 +230,7 @@ class PlayState extends MusicState
 		];
 		// - this is so dumb lol I have to change it
 		if(chart.content.hasVoices)songStuff.push({song: song, type: Voices});
-		playback = new Song(songStuff);
+		playback = new Song(songStuff,conductor);
 
 		startCountdown();
 		playback.curState = PLAY;
@@ -263,7 +264,6 @@ class PlayState extends MusicState
 
 	override public function update(elapsed:Float)
 	{
-		if(playback!=null) Conductor.songPosition += elapsed * 1000;
 		super.update(elapsed);
 			
 		if (unspawnNotes.length == 0)
@@ -289,7 +289,7 @@ class PlayState extends MusicState
 
 		for (event in eventList)
 		{
-			if (event.time <= Conductor.songPosition)
+			if (event.time <= conductor.time)
 			{
 				executeEvent(event);
 				eventList.remove(event);
@@ -355,7 +355,7 @@ class PlayState extends MusicState
 				final pos = (event.values[0] == 'Player') ? pPos : oppPos;
 				moveCamera(pos[0], pos[1], event.values[1], Reflect.field(FlxEase, event.values[2]));
 			case "Change BPM":
-				Conductor.changeBPM(event.values[0], event.values[1][0] / event.values[1][1]);
+				conductor.changeBpmAt(event.time, event.values[0], event.values[1][0], event.values[1][1]);
 		}
 	}
 
@@ -507,17 +507,17 @@ class PlayState extends MusicState
 	}
 
 	var bool:Bool = false;
-	override function beatHit()
+	override function beatHit(curBeat)
 	{
-		super.beatHit();
+		super.beatHit(curBeat);
 
 		//FlxG.sound.play('assets/sounds/metronomeTest.ogg');
 
-		if (curBeat % Conductor.timeSignature == 0)
+		/*if (curBeat % Conductor.timeSignature == 0)
 		{
 			camGame.zoom += 0.040;
 			camHUD.zoom += 0.032;
-		}
+		}*/
 
 		charactersDance(curBeat);
 		gameHUD.beatHit(curBeat);
@@ -528,7 +528,7 @@ class PlayState extends MusicState
 			scriptHandler.get("beatHit")(curBeat);
 	}
 
-	public function charactersDance(curBeat:Int):Void
+	public function charactersDance(curBeat:Float):Void
 	{
 	if ((opponent.animation.curAnim.name.startsWith("idle") 
 		|| opponent.animation.curAnim.name.startsWith("dance"))
@@ -541,9 +541,9 @@ class PlayState extends MusicState
 			player.dance();
 	}
 
-	override function stepHit()
+	override function stepHit(curStep)
 	{
-		super.stepHit();
+		super.stepHit(curStep);
 		playback.checkDesync();
 	}
 
@@ -572,8 +572,8 @@ class PlayState extends MusicState
 		var nextTime:Float = 0;
 	
 		for (note in unspawnNotes) {
-			if (note.lane == 'P1' && note.strumTime > Conductor.songPosition) {
-				var difference:Float = note.strumTime - Conductor.songPosition;
+			if (note.lane == 'P1' && note.strumTime > conductor.time) {
+				var difference:Float = note.strumTime - conductor.time;
 				if (difference < minDifference) {
 					minDifference = difference;
 					nextTime = note.strumTime;
@@ -581,7 +581,7 @@ class PlayState extends MusicState
 			}
 		}
 	
-		nextToHit = Std.int((minDifference / Conductor.crochet) / 2);
+		nextToHit = Std.int((minDifference / conductor.crochet) / 2);
 		//test.text = '$nextToHit';
 	
 		if (nextTime == 0)

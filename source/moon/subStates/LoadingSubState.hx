@@ -81,7 +81,7 @@ class LoadingSubState extends MusicSubState
 
         FlxTween.tween(ff, {alpha: 1}, 1.5, {ease: FlxEase.circOut});
 
-        new FlxTimer().start(Conductor.crochet / 1000 * 2, startPreload);
+        new FlxTimer().start(conductor.crochet / 1000 * 2, startPreload);
 	}
 
     private function startPreload(t:FlxTimer):Void
@@ -103,7 +103,7 @@ class LoadingSubState extends MusicSubState
             loadText.text = 'Loading Notes...';
             var notesArray = [];
 
-            var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin);
+            var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin, conductor);
             load(chartLoader);
 
             loadProgress = 20;
@@ -115,12 +115,12 @@ class LoadingSubState extends MusicSubState
 
             loadProgress = 40;
     
-            var opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad');
+            var opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
             load(opponent);
 
             loadProgress = 50;
     
-            var player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf');
+            var player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
             load(player);
 
             loadProgress = 60;

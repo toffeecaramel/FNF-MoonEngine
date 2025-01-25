@@ -106,7 +106,6 @@ class Freeplay extends MusicSubState
 
     override public function update(elapsed:Float):Void
     {
-        if(FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
         super.update(elapsed);
 
         if (Controls.justPressed(UI_UP) && started) changeSelection(-1);
@@ -145,9 +144,9 @@ class Freeplay extends MusicSubState
         }
     }
 
-    override function beatHit()
+    override public function beatHit(curBeat)
     {
         //if(started) character.anim.play("loss", true);
-        super.beatHit();
+        super.beatHit(curBeat);
     }
 }

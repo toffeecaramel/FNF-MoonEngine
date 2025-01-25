@@ -28,7 +28,7 @@ class Title extends MusicState
 	{
 		super.create();
         FlxG.sound.playMusic('assets/music/interfaces/freakyMenu-Moon.ogg');
-		Conductor.changeBPM(121);
+		conductor.changeBpmAt(0, 121);
 
 		DiscordRPC.changePresence("At the Title screen.", "Welcome to Moon Engine!");
 
@@ -63,8 +63,6 @@ class Title extends MusicState
 
 	override public function update(elapsed:Float)
 	{
-		if(FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
 		super.update(elapsed);
 		logo.scale.x = logo.scale.y = FlxMath.lerp(logo.scale.y, 0.2, elapsed * 3);
 		logo.angle = FlxMath.lerp(logo.angle, 0, elapsed * 3);
@@ -79,9 +77,9 @@ class Title extends MusicState
 	}
 
 	var haha:Bool = false;
-	override function beatHit():Void
+	override public function beatHit(curBeat):Void
 	{
-		super.beatHit();
+		super.beatHit(curBeat);
 		haha = !haha;
 
 		logo.angle = (haha)? 2 : -2;

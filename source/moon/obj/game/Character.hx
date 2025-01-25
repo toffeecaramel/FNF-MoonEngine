@@ -40,14 +40,17 @@ class Character extends FNFSprite
     public var camOffsets:Array<Float>;
     public var healthbarColors:Array<Int>;
 
+    private var conductor:Conductor;
+
     public function new() {
         super(x, y);
     }
 
-    public function setCharacter(x:Float, y:Float, character:String):Character
+    public function setCharacter(x:Float, y:Float, character:String, conductor:Conductor):Character
     {
         curCharacter = character;
         antialiasing = true;
+        this.conductor = conductor;
 
         //trace(curCharacter);
         frames = Paths.getSparrowAtlas('characters/$curCharacter/$curCharacter', 'data');
@@ -109,7 +112,7 @@ class Character extends FNFSprite
             holdTimer += elapsed;
 
         final valVar:Float = 8;
-        if (holdTimer >= Conductor.stepCrochet * valVar) 
+        if (holdTimer >= conductor.stepCrochet * valVar) 
         {
             dance();
             holdTimer = 0;

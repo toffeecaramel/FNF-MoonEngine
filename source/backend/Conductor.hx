@@ -1,53 +1,152 @@
 package backend;
 
+import lime.app.Event;
+
 /**
-    This is just the base game's conductor, because I'm still a little dumb
-    and dont know how to code a BPM System properly!
+	The conductor. Steps, beats, and measures use floats because this class was carried over from the original version from fnf zenith.
+	Also, time signature changing math was implemented here.
 
-    Code from forever engine
+    Class made entirely by @SomeGuyWhoLovesCoding (https://github.com/SomeGuyWhoLovesCoding)
+	Revamped math by @sword_352 (https://github.com/Sword352)
+	
+	All I made here was to make some few changes that I am comfortable with, so all credits goes to them ^^
 **/
-
-typedef BPMChangeEvent =
-{
-    var stepTime:Int;
-    var songTime:Float;
-    var bpm:Float;
-}
-
+@:publicFields
 class Conductor
 {
-    public static var bpm:Float = 100;
-    public static var timeSignature:Int = 4; // Default to 4/4 time
+	// - Conductor's events.
+	var onStep:Event<Float->Void> = new Event<Float->Void>();
+	var onBeat:Event<Float->Void> = new Event<Float->Void>();
+	var onMeasure:Event<Float->Void> = new Event<Float->Void>();
 
-    public static var crochet:Float = ((60 / bpm) * 1000); // beats in milliseconds
-    public static var stepCrochet:Float = crochet / timeSignature; // steps in milliseconds
+	// - Crochet values.
+	var stepCrochet(default, null):Float = 150;
+	var crochet(default, null):Float = 600;
+	var measureCrochet(default, null):Float = 2400;
 
-    public static var songPosition:Float;
-    public static var lastSongPos:Float;
-    public static var offset:Float = 0;
+	// - Beats per Minute.
+	var bpm(default, null):Float = 100;
 
-    public static var bpmChangeMap:Array<BPMChangeEvent> = [];
+	//- Whenever the conductor's active.
+	var active:Bool;
 
-    private static var lastRealTime:Float = 0;
+	// - And the time (usually based on song position.)
+	var time(default, set):Float = 0;
 
-    public function new()
-    {
-        //
-    }
+	function set_time(value:Float):Float
+	{
+		time = value;
 
-    public static function updateSongPosition(realTime:Float):Void
-    {
-        var delta:Float = realTime - lastRealTime;
-        lastRealTime = realTime;
-        songPosition += delta;
-    }
+		final calc = (time - offsetTime);
+		_stepTracker = Math.ffloor(stepOffset + calc / stepCrochet);
+		_beatTracker = Math.ffloor(beatOffset + calc / crochet);
+		_measureTracker = Math.ffloor(measureOffset + calc / measureCrochet);
 
-    public static function changeBPM(newBpm:Float, measure:Float = 4 / 4)
-    {
-        bpm = newBpm;
-        timeSignature = Math.round(measure * 4);
+		if (active) {
+			if (curStep != _stepTracker)
+			{
+				curStep = _stepTracker;
+				onStep.dispatch(curStep);
+			}
 
-        crochet = ((60 / bpm) * 1000);
-        stepCrochet = crochet / timeSignature;
-    }
+			if (curBeat != _beatTracker)
+			{
+				curBeat = _beatTracker;
+				onBeat.dispatch(curBeat);
+			}
+
+			if (curMeasure != _measureTracker)
+			{
+				curMeasure = _measureTracker;
+				onMeasure.dispatch(curMeasure);
+			}
+		} else {
+			curStep = _stepTracker;
+			curBeat = _beatTracker;
+			curMeasure = _measureTracker;
+		}
+
+		return value;
+	}
+
+	/**
+		The step counter.
+	**/
+	var curStep(default, null):Float = 0;
+
+	/**
+		The beat counter.
+	**/
+	var curBeat(default, null):Float = 0;
+
+	/**
+		The measure counter.
+	**/
+	var curMeasure(default, null):Float = 0;
+
+	/**
+		The step tracker.
+	**/
+	private var _stepTracker(default, null):Float = 0;
+
+	/**
+		The beat tracker.
+	**/
+	private var _beatTracker(default, null):Float = 0;
+	private var _measureTracker(default, null):Float = 0;
+	private var offsetTime(default, null):Float = 0;
+	private var stepOffset(default, null):Float = 0;
+	private var beatOffset(default, null):Float = 0;
+	private var measureOffset(default, null):Float = 0;
+
+	// - These are for time signature's steps/beats.
+	var numerator:Float = 4;
+	var denominator:Float = 4;
+
+	/**
+		Change the conductor's beats per minute.
+		This also includes time signatures.
+		@param position The position you want to execute the event on.
+		@param newBpm The new beats per minute.
+		@param newNumerator The new numerator of the time signature.
+		@param newDenominator The new denominator of the time signature.
+	**/
+	inline function changeBpmAt(position:Float, newBpm:Float = 0, newNumerator:Float = 4, newDenominator:Float = 4):Void
+	{
+		final calc = (position - offsetTime);
+		stepOffset += calc / stepCrochet;
+		beatOffset += calc / crochet;
+		measureOffset += calc / measureCrochet;
+		offsetTime = position;
+
+		if (newBpm > 0) {
+			bpm = newBpm;
+			stepCrochet = (15000 / bpm);
+		}
+
+		crochet = stepCrochet * newNumerator;
+		measureCrochet = crochet * newDenominator;
+
+		numerator = newNumerator;
+		denominator = newDenominator;
+	}
+
+	/**
+		Reset the conductor.
+	**/
+	inline function reset():Void
+	{
+		stepOffset = beatOffset = measureOffset = offsetTime = time = 0.0;
+		changeBpmAt(0);
+	}
+
+	/**
+		Constructs a conductor.
+		@param initialBpm The initial beats per minute.
+	**/
+	inline function new(initialBpm:Float = 100, initialNumerator:Float = 4, initialDenominator:Float = 4):Void
+	{
+		changeBpmAt(0, initialBpm, initialNumerator, initialDenominator);
+		active = true;
+	}
 }
