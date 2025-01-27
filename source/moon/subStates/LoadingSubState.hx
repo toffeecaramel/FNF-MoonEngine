@@ -1,5 +1,6 @@
 package moon.subStates;
 
+import moon.obj.menus.ScrollingArts;
 import flixel.FlxG;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
@@ -32,13 +33,16 @@ class LoadingSubState extends MusicSubState
     private var bfnf:FlxSprite;
     private var bg:FlxSprite;
     private var loadingBar:FlxBar;
+    private var loadCorner:FlxSprite;
 
     private var loadComplete:Bool = false;
     private var loadProgress:Int = 0;
+    private var allowBeat:Bool;
 
 	public function new()
 	{
 		super();
+        allowBeat = false;
         
         Paths.clearStoredMemory();
 		
@@ -46,125 +50,169 @@ class LoadingSubState extends MusicSubState
 		add(loader);
 
         bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-        bg.alpha = 0.0001;
+        bg.x = FlxG.width + bg.width;
         add(bg);
 
-        loadingBar = new FlxBar(0, 0, LEFT_TO_RIGHT, FlxG.width, 45).createFilledBar(FlxColor.BLACK, FlxColor.WHITE);
-		loadingBar.y = FlxG.height - loadingBar.height;
-		loadingBar.screenCenter(X);
-        loadingBar.alpha = 0.0001;
-		add(loadingBar);
-
-        final base = 'assets/images/menus/loading';
         bfnf = new FlxSprite(-400);
-        bfnf.frames = FlxAtlasFrames.fromSparrow('$base/bfRun.png', '$base/bfRun.xml');
+        bfnf.frames = Paths.getSparrowAtlas('menus/loading/bfRun');
         bfnf.animation.addByPrefix('run', 'run', 24, true);
         bfnf.animation.play('run');
         bfnf.updateHitbox();
-        bfnf.y = loadingBar.y - 280;
+        bfnf.flipX = true;
         add(bfnf);
 
+        bfnf.y = FlxG.height - bfnf.height;
+
+        var scrollingArts = new ScrollingArts('assets/images/menus/loading/arts');
+        scrollingArts.screenCenter();
+        scrollingArts.doScrolling(0);
+        add(scrollingArts);
+
         loadText = new FlxText();
-        loadText.setFormat(Paths.fonts('vcr.ttf'), 24, RIGHT);
-        loadText.y = bfnf.y - 60;
-        loadText.text = 'Loading interface...';
+        loadText.setFormat(Paths.fonts('vcr.ttf'), 16, RIGHT);
+        loadText.text = 'Hi! :3';
+        loadText.alpha = 0.0001;
         add(loadText);
 
+        loadingBar = new FlxBar(0, 0, LEFT_TO_RIGHT, 560, 10).createFilledBar(FlxColor.fromRGB(13, 13, 16), FlxColor.WHITE);
+		loadingBar.y = (FlxG.height - loadingBar.height) - 50;
+		loadingBar.screenCenter(X);
+        loadingBar.x += 70;
+		add(loadingBar);
+        loadText.setPosition(loadingBar.x, loadingBar.y);
+        loadingBar.scale.set(0, 1);
+
         final eh = CoolUtil.getTextArray(Paths.data('loadingTexts.txt'));
-        var ff = new FlxText();
+        /*var ff = new FlxText();
         ff.setFormat(Paths.fonts('RubikVinyl.ttf'), 32, CENTER);
         ff.text = 'Fun Fact!\n${eh[FlxG.random.int(0, eh.length - 1)]}';
         ff.alpha = 0.0001;
         ff.y += 30;
         ff.screenCenter(X);
-        add(ff);
+        add(ff);*/
 
-        FlxTween.tween(ff, {alpha: 1}, 1.5, {ease: FlxEase.circOut});
+        loadCorner = new FlxSprite().loadGraphic(Paths.image('menus/loading/loadingCorner'));
+        loadCorner.screenCenter(X);
+        add(loadCorner);
+        loadCorner.y = FlxG.height + 50;
 
-        new FlxTimer().start(conductor.crochet / 1000 * 2, startPreload);
+        FlxG.sound.play(Paths.sound('interfaces/loading/tapeTransition-IN'));
+
+        // - Tweenies
+        FlxTween.tween(bg, {x: (FlxG.width - bg.width)}, 0.4, {ease: FlxEase.circOut});
+        //FlxTween.tween(ff, {alpha: 1}, 1.5, {ease: FlxEase.circOut});
+        FlxTween.tween(loadingBar.scale, {x: 1}, 0.9, {ease: FlxEase.expoInOut, onComplete: function(_)
+        {
+            FlxG.sound.play(Paths.sound('interfaces/loading/jumpii'));
+            FlxTween.tween(loadText, {y: (loadingBar.y - loadText.height) - 10, alpha: 1}, 0.5, {ease: FlxEase.backOut, onComplete: startPreload});
+        }});
+        FlxTween.tween(loadCorner, {y: FlxG.height - loadCorner.height}, 1.3, {ease: FlxEase.expoOut, onComplete: (_) -> allowBeat = true});
 	}
 
-    private function startPreload(t:FlxTimer):Void
+    private function startPreload(_):Void
     {
-        var preloadThread = new lime.app.Future(() ->
+        new FlxTimer().start(0.4, function(_)
         {
-            var strumlines = [];
-            chart = new Chart(PlayState.song, PlayState.difficulty);
-
-            for (i in 0...2)
+            new lime.app.Future(() ->
             {
-                var strum = new Strumline(true, 0, 0);
-                strumlines.push(strum);
-                load(strum);
-            }
-            
-            loadProgress = 10;
+                var strumlines = [];
+                chart = new Chart(PlayState.song, PlayState.difficulty);
 
-            loadText.text = 'Loading Notes...';
-            var notesArray = [];
+                for (i in 0...2)
+                {
+                    var strum = new Strumline(true, 0, 0);
+                    strumlines.push(strum);
+                    load(strum);
+                }
+                
+                loadProgress = 10;
 
-            var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin, conductor);
-            load(chartLoader);
+                loadText.text = 'Loading Notes...';
+                var notesArray = [];
 
-            loadProgress = 20;
+                var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin, conductor);
+                load(chartLoader);
 
-            loadText.text = 'Loading Chart Data...';
-            //TODO: change the stage to the chart stage, as well for the characters.
-            var stage = new Stage('stage');
-            load(stage);
+                loadProgress = 20;
 
-            loadProgress = 40;
-    
-            var opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
-            load(opponent);
+                loadText.text = 'Loading Chart Data...';
+                //TODO: change the stage to the chart stage.
+                var stage = new Stage('stage');
+                load(stage);
 
-            loadProgress = 50;
-    
-            var player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
-            load(player);
+                loadProgress = 40;
+                
+                //TODO: change the character based on the chart's character.
+                var opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
+                load(opponent);
 
-            loadProgress = 60;
+                loadProgress = 50;
 
-            var inst = new FlxSound().loadEmbedded('assets/data/charts/${PlayState.song}/Inst.ogg', false, true);
-            
-            // - Doing like this because not loading any embed at all makes sounds glitchy
-            final path = (chart.content.hasVoices) ? 'assets/data/charts/${PlayState.song}/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
-            var voices = new FlxSound().loadEmbedded(path, false, true);
-            if(inst.playing || voices.playing){voices.stop(); inst.stop();} // just to make sure...
+                var player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
+                load(player);
 
-            loadText.text = 'Loading Song Events...';
-            
-            /**
-             * TODO - PART HERE FOR LOADING SONG EVENTS,
-             * ! SUCH AS: CHANGE CHARACTER, CHANGE STAGE & MORE!
-             **/
+                loadProgress = 60;
 
-            loadProgress = 110;
-            loadText.text = 'Done!';
+                var inst = new FlxSound().loadEmbedded('assets/data/charts/${PlayState.song}/Inst.ogg', false, true);
+                
+                // - Doing like this because not loading any embed at all makes sounds glitchy
+                final path = (chart.content.hasVoices) ? 'assets/data/charts/${PlayState.song}/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
+                var voices = new FlxSound().loadEmbedded(path, false, true);
+                if(inst.playing || voices.playing){voices.stop(); inst.stop();} // just to make sure...
 
-            loadComplete = true;
-        }, true);
+                loadText.text = 'Loading Song Events...';
+                
+                /**
+                 * TODO - PART HERE FOR LOADING SONG EVENTS,
+                 * ! SUCH AS: CHANGE CHARACTER, CHANGE STAGE & MORE!
+                 **/
+
+                loadProgress = 110;
+                loadText.text = 'Done - Press Enter to Continue.';
+                FlxTween.tween(loadText, {alpha: 0.5}, 0.8, {ease: FlxEase.quadInOut, type: PINGPONG});
+
+                loadComplete = true;
+            }, true);
+        });
     }
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-        if(bg.alpha < 1)
-            bg.alpha = loadingBar.alpha += 0.05;
 
-        if(loadComplete && FlxG.keys.justPressed.ENTER) FlxG.switchState(new PlayState());
-        if(loadComplete) bfnf.alpha -= 0.03;
+        if(loadComplete && FlxG.keys.justPressed.ENTER)
+        {
+            FlxG.sound.music.kill();
+            FlxG.switchState(new PlayState());
+        }
 
-        loadText.x = bfnf.x-80;
-        final bfX = loadingBar.x + (loadingBar.width * (loadProgress / 100));
-        bfnf.x = FlxMath.lerp(bfnf.x, bfX -50 , elapsed * 3);
+        bfnf.x = bg.x - 220;
+        if(bfnf.x < -150 && bfnf != null) bfnf.destroy();
+        //if(loadComplete) bfnf.alpha -= 0.03;
+
+        //loadText.x = bfnf.x-80;
+        //final bfX = loadingBar.x + (loadingBar.width * (loadProgress / 100));
+        //bfnf.x = FlxMath.lerp(bfnf.x, bfX -50 , elapsed * 3);
 
         loadingBar.value = FlxMath.lerp(loadingBar.value, loadProgress, FlxG.elapsed * 6);
 	}
+
+    private var boolThing:Bool = false;
+    private function allowMovements():Void
+    {
+        boolThing = !boolThing;
+        loadCorner.y += (boolThing) ? 3 : -3;
+    }
 
     function load(item:FlxBasic)
     {
         loader.add(item);
         loader.remove(item);
+    }
+
+    override public function beatHit(curBeat)
+    {
+        super.beatHit(curBeat);
+        if(allowBeat) allowMovements();
     }
 }

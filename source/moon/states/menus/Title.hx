@@ -28,7 +28,7 @@ class Title extends MusicState
 	{
 		super.create();
         FlxG.sound.playMusic('assets/music/interfaces/freakyMenu-Moon.ogg');
-		conductor.changeBpmAt(0, 121);
+		conductor.changeBpmAt(FlxG.sound.music.time, 121);
 
 		DiscordRPC.changePresence("At the Title screen.", "Welcome to Moon Engine!");
 

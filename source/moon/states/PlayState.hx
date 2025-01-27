@@ -102,6 +102,7 @@ class PlayState extends MusicState
 	public static var difficulty:String;
 
 	var test:FlxText;
+	private var display:FlxSprite = new FlxSprite();
 	
 	inline private function resetValues()
 	{
@@ -254,6 +255,12 @@ class PlayState extends MusicState
 		scriptHandler = new ScriptHandler();
 		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
         scriptHandler.set("game", curPlaystate);
+
+		display.loadGraphic(Paths.image('secret/senpaiFromCorruption'));
+		display.alpha = 0.0001;
+		display.camera = camOther;
+		display.setGraphicSize(1280, 720);
+		add(display);
 
 		if(scriptHandler.exists('create'))
 			scriptHandler.get("create")();
@@ -510,6 +517,21 @@ class PlayState extends MusicState
 	override function beatHit(curBeat)
 	{
 		super.beatHit(curBeat);
+
+		if (curBeat == 527)
+		{
+			display.screenCenter();
+			display.alpha = 1;
+			FlxTween.tween(display, {alpha: 0.0001}, 1);
+		}
+		else if (curBeat == 569)
+		{
+			display.loadGraphic(Paths.image('secret/mmm yum'));
+			display.setGraphicSize(1280, 720);
+			display.screenCenter();
+			display.alpha = 1;
+			FlxTween.tween(display, {alpha: 0.0001}, 1);
+		}
 
 		//FlxG.sound.play('assets/sounds/metronomeTest.ogg');
 

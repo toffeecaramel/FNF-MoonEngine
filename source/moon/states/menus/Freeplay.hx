@@ -115,7 +115,7 @@ class Freeplay extends MusicSubState
             PlayState.song = songList[curSelected];
             PlayState.difficulty = 'hard';
             PlayState.gamemode = FREEPLAY;
-            FlxG.sound.music.kill();
+            //FlxG.sound.music.kill();
             openSubState(new moon.subStates.LoadingSubState());
         }
 

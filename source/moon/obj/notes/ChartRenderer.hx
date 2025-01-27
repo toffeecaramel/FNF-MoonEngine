@@ -46,11 +46,11 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         this.notesArray = notesArray;
         this.conductor = conductor;
 
-        sustainGroup = new FlxTypedSpriteGroup<Note>();
-        add(sustainGroup);
-
         notesGroup = new FlxTypedSpriteGroup<Note>();
         add(notesGroup);
+
+        sustainGroup = new FlxTypedSpriteGroup<Note>();
+        add(sustainGroup);
 
         // - Time to recycle these notes baby
         for(notes in chartData.content.notes) spawnNotes(notes);
@@ -87,16 +87,16 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
         {
             // - Create the note with the given parameters above.
             var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote, conductor);
-    
+
             // - Set the note speed from the chart so it can adjust sustains size.
             note.noteSpeed = chartData.content.scrollSpeed;
-    
+
             // - Change the scale, I personally prefer smaller strumlines.
             note.scale.set(PlayState.noteScale, PlayState.noteScale);
             note.updateHitbox();
             note.active = false;
             note.isSustainNote = isSustain;
-    
+
             // - Then boom, note recycled with success. :3
             return note;
         });
@@ -106,23 +106,24 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * Recycles an sustain note.
      * @param mainNote  The note in which the sustain will come from.
      * @param noteData  The typedef containing all note data.
-     * @param susLength The sustain's length (in milliseconds).
+     * @param susLength The sustain's length (in steps).
      */
     private function recycleSustain(mainNote:Note, noteData:Dynamic, susLength:Float):Void
     {
         // - Previous note is just main note lol
         var prevNote = mainNote;
-    
+        var sustainData:Dynamic = { // Define it once outside the loop to avoid reallocation
+            time: 0,
+            direction: noteData.direction,
+            lane: noteData.lane,
+            type: noteData.type
+        };
+
         for (i in 0...Math.floor(susLength))
         {
             // - Setup sustain data.
-            final sustainData = {
-                time: noteData.time + conductor.stepCrochet * (i + 1),
-                direction: noteData.direction,
-                lane: noteData.lane,
-                type: noteData.type
-            };
-            
+            sustainData.time = noteData.time + conductor.stepCrochet * (i + 1); // Update time only
+
             // - Then setup the sustain note stuff.
             var sustainNote = recycleNote(sustainData, true, prevNote);
             sustainNote.scrollFactor.set();
@@ -134,39 +135,46 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
 
     /**
      * Update the positions of the notes.
-     * @param elapsed 
+     * @param elapsed
      */
     public function updateNotePosition(elapsed:Float)
     {
         final visibleBuffer:Float = 100;
+        final downscroll:Bool = UserSettings.callSetting('Downscroll');
+        final scrollSpeed = chartData.content.scrollSpeed;
+        final noteScale = PlayState.noteScale;
+        final sustainOffset = -20 * (scrollSpeed / 1.1);
 
         for (note in notesArray)
         {
             final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
             final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-            final timeDifference:Float = (note.strumTime - conductor.time) * chartData.content.scrollSpeed / 3;
-            final yOffset = (note.isSustainNote) ? -17 * (chartData.content.scrollSpeed * 1.5) : 0;
+            final timeDifference:Float = (note.strumTime - conductor.time) * scrollSpeed / 3;
+            final yOffset = note.isSustainNote ? sustainOffset : 0;
 
-            final potentialY:Float = (UserSettings.callSetting('Downscroll')) ? strumlineY - (timeDifference) - yOffset
-                : strumlineY + (timeDifference) + yOffset;
+            var potentialY:Float = downscroll ? strumlineY - (timeDifference) - yOffset
+                                            : strumlineY + (timeDifference) + yOffset;
 
             if (potentialY > -visibleBuffer && potentialY < FlxG.height + visibleBuffer)
             {
                 note.active = note.visible = true;
 
-                final xOffset = (note.isSustainNote) ? 32.5 : 0;
+                final xOffset = note.isSustainNote ? 32.5 : 0;
                 note.y = potentialY;
-
                 note.x = getNoteX(note.noteDir, note.lane) + xOffset;
 
-                if(note.isSustainNote) note.flipY = UserSettings.callSetting('Downscroll');
+                if(note.isSustainNote) note.flipY = downscroll;
             }
-            else note.active = note.visible = false; 
-            // huge fuckass if statement lol
-            if ((((!UserSettings.callSetting('Downscroll')) && (note.y < -note.height))
-            || ((UserSettings.callSetting('Downscroll')) && (note.y > (FlxG.height + note.height))))
-            && (note.tooLate || note.wasGoodHit))
+            else
+            {
+                note.active = note.visible = false;
+            }
+
+            // Optimized note killing condition
+            if ((downscroll ? (note.y > (FlxG.height + note.height)) : (note.y < -note.height)) && (note.tooLate || note.wasGoodHit))
+            {
                 NoteUtils.killNote(note, notesArray);
+            }
         }
     }
 
@@ -176,7 +184,7 @@ class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
      * @param lane      The lane in which the note is.
      * @return Float
      */
-    public function getNoteX(direction:String, lane:String):Float 
+    public function getNoteX(direction:String, lane:String):Float
     {
         var strum = (lane == 'P1') ? playerStrum : oppStrum;
         return strum.members[NoteUtils.directionToNumber(direction)].x;
