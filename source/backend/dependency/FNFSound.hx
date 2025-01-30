@@ -35,6 +35,7 @@ class FNFSound extends FlxSound
      * Timer for the pause, used in `doBriefPause();`
      */
     private var _timer:FlxTimer;
+
     /**
      * Do a brief pause in the sound on a specific amount of time.
      * @param duration The duration of the pause.
@@ -46,10 +47,7 @@ class FNFSound extends FlxSound
         if(_timer != null && _timer.active)
             _timer.cancel();
 
-        _timer = new FlxTimer().start(duration, function(T:FlxTimer)
-        {
-            play();
-        });
+        _timer = new FlxTimer().start(duration, (_) -> play());
     }
 
     /**
@@ -71,10 +69,6 @@ class FNFSound extends FlxSound
             _twn.cancel();
 
         _twn = FlxTween.tween(this, {pitch: toPitch}, duration, 
-            {ease: (easing == null) ? FlxEase.linear : easing, onComplete: 
-            function(tw:FlxTween)
-            {
-                if(completeFunc != null) completeFunc();
-            }});
+            {ease: (easing == null) ? FlxEase.linear : easing, onComplete: (_) -> (completeFunc != null) ? completeFunc() : null});
     }
 }

@@ -1,4 +1,4 @@
-package moon.states.menus;
+package moon.states.menus.submenus;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -8,7 +8,7 @@ import flixel.text.FlxText;
 
 import backend.network.*;
 
-class Multiplayer extends MusicState
+class MultiplayerLogin extends MusicSubState
 {
 	private var connectPopup:FlxSprite;
 

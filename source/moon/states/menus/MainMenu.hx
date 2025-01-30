@@ -116,6 +116,7 @@ class MainMenu extends MusicState
 				switch(options[curSelected])
 				{
 					case 'freeplay': openSubState(new Freeplay());
+					case 'multiplayer': openSubState(new MultiplayerLogin());
 					case 'toolbox': FlxG.switchState(new MainMenu(['chart converter', 'chart editor', '< go back']));
 
 					// - Toolbox options.
