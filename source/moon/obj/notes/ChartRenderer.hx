@@ -15,6 +15,13 @@ class ChartRenderer extends FlxTypedGroup<Note>
     @:isVar public var scrollSpeed(default, set):Float = 1;
 
     private var conductor:Conductor;
+    
+    /**
+     * Creates a chart renderer instance.
+     * @param chartNotes 
+     * @param conductor 
+     * @param noteScale 
+     */
     public function new(chartNotes:Array<NoteData>, conductor:Conductor, ?noteScale:Array<Float>)
     {
         super();
@@ -22,6 +29,12 @@ class ChartRenderer extends FlxTypedGroup<Note>
         for(i in 0...chartNotes.length) recycle(Note, () -> recycleNote(chartNotes[i], noteScale));
     }
 
+    /**
+     * Recycles all the notes in this instance.
+     * @param noteData 
+     * @param noteScale 
+     * @return Note
+     */
     public function recycleNote(noteData:NoteData, noteScale:Array<Float>):Note
     {
         var note = new Note(noteData.direction, noteData.time, noteData.type, 'default', noteData.duration);
@@ -32,6 +45,10 @@ class ChartRenderer extends FlxTypedGroup<Note>
         return note;
     }
 
+    /**
+     * This will update every note in this instance.
+     * @param elapsed 
+     */
     public function updateNotes(elapsed:Float)
     {
         super.update(elapsed);
@@ -43,6 +60,7 @@ class ChartRenderer extends FlxTypedGroup<Note>
         for (note in this.members)
         {
             // this shit grahhh
+            // - This checks whenever the notes in on screen, and then update it (for performance reasons)
             final finalY = toY + (note.time - conductor.time) * scrollSpeed;
             if (finalY > visibleTop && finalY < visibleBottom)
             {
@@ -55,6 +73,7 @@ class ChartRenderer extends FlxTypedGroup<Note>
 
     @:noCompletion public function set_scrollSpeed(value:Float):Float
     {
+        // - Doing this for sustains stuff that'll come along in the future.
         scrollSpeed = value;
         for (note in this.members)
             note.speed = value;
