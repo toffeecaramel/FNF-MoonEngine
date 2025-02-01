@@ -115,51 +115,6 @@ class LoadingSubState extends MusicSubState
         {
             new lime.app.Future(() ->
             {
-                var strumlines = [];
-                chart = new Chart(PlayState.song, PlayState.difficulty);
-
-                for (i in 0...2)
-                {
-                    var strum = new Strumline(true, 0, 0);
-                    strumlines.push(strum);
-                    load(strum);
-                }
-                
-                loadProgress = 10;
-
-                loadText.text = 'Loading Notes...';
-                var notesArray = [];
-
-                var chartLoader = new moon.obj.notes.ChartRenderer(strumlines[0], strumlines[1], notesArray, chart, nSkin, conductor);
-                load(chartLoader);
-
-                loadProgress = 20;
-
-                loadText.text = 'Loading Chart Data...';
-                //TODO: change the stage to the chart stage.
-                var stage = new Stage('stage');
-                load(stage);
-
-                loadProgress = 40;
-                
-                //TODO: change the character based on the chart's character.
-                var opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
-                load(opponent);
-
-                loadProgress = 50;
-
-                var player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
-                load(player);
-
-                loadProgress = 60;
-
-                var inst = new FlxSound().loadEmbedded('assets/data/charts/${PlayState.song}/Inst.ogg', false, true);
-                
-                // - Doing like this because not loading any embed at all makes sounds glitchy
-                final path = (chart.content.hasVoices) ? 'assets/data/charts/${PlayState.song}/Voices.ogg' : 'assets/data/charts/nullVoices.ogg';
-                var voices = new FlxSound().loadEmbedded(path, false, true);
-                if(inst.playing || voices.playing){voices.stop(); inst.stop();} // just to make sure...
-
                 loadText.text = 'Loading Song Events...';
                 
                 /**
@@ -183,7 +138,7 @@ class LoadingSubState extends MusicSubState
         if(loadComplete && FlxG.keys.justPressed.ENTER)
         {
             FlxG.sound.music.kill();
-            FlxG.switchState(new PlayState());
+            FlxG.switchState(()->new PlayState());
         }
 
         bfnf.x = bg.x - 220;

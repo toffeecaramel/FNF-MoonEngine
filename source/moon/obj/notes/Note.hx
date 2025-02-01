@@ -9,258 +9,86 @@ import moon.utilities.*;
 import moon.states.PlayState;
 import backend.ScriptHandler;
 
-enum abstract NoteState(String) from String to String
+enum NoteState 
 {
-    var NOTE = "default-note";
-    var SUSTAIN_START = "sustain-start-piece";
-    var SUSTAIN_TILE = "sustain-tile-piece";
-    var SUSTAIN_END = "sustain-end-piece";
+    GOT_HIT;
+    TOO_LATE;
+    MISSED;
+    NONE;
 }
-
-/**
-    Note class in which charts read from, having its properties from either a
-    hscript file or here.
-    
-    This class was inspired by FE's too.
-**/
 class Note extends FNFSprite
 {
     /**
-     * The note's skin, basically how it'll look.
-     **/
-    public var skin:String = 'DEFAULT';
-
-    /**
-     * The note's type. E.G. Bomb, Alt-Animation, etc...
-     **/
-    public var type:String = 'DEFAULT';
-
-    /**
-     * The note's lane. E.G. P1, P2, Opponent...
+     * Defines the note state.
+     * E.G `MISSED, GOT_HIT, TOO_LATE` etc.
      */
-    public var lane:String = 'Opponent';
+    public var state:NoteState = NONE;
 
     /**
-     * the direction of the note (left, down, up, right).
+     * The note's direction.
      */
-    public var noteDir:String = 'left';
+    public var direction:String = 'left';
 
     /**
-     * The note's timing in milliseconds.
+     * The note's time in miliseconds.
      */
-    public var strumTime:Float = 0;
+    public var time:Float = 0;
 
     /**
-     * Whether or not the note can be hit.
+     * The note's speed, used for sustain length calculations.
      */
-    public var canBeHit:Bool = false;
+    public var speed:Float = 1;
 
     /**
-     * Sets if the note was too late or not.
+     * The note's type.
      */
-    public var tooLate:Bool = false;
+    public var type:String = 'default';
 
     /**
-     * Sets if it was a good hit or not.
+     * The note's skin, usually based on how it's on settings.
      */
-    public var wasGoodHit:Bool = false;
+    public var skin(default, set):String = 'default';
 
     /**
-     * Sets whether the note is a sustain note or not.
+     * The note's sustain duration.
      */
-    public var isSustainNote:Bool = false;
+    public var duration:Float = 0;
 
     /**
-     * Stores the note speed, mostly for calculating the sustain's size.
+     * Creates a note on screen.
+     * @param direction
+     * @param time
+     * @param type
+     * @param skin
+     * @param duration
      */
-    public var noteSpeed:Float = 0;
-
-    /**
-     * The sustain's length, used on chart editor.
-     */
-    public var sustainLength:Float = 0;
-
-    /**
-     * The previous note, used for checking sustains usually.
-     */
-    public var prevNote:Note;
-
-    /**
-     * The parent note, used for sustains checks.
-     */
-    public var parentNote:Note;
-
-    /**
-     * The next sustain note.
-     */
-    public var nextSustainNote:Note;
-
-    /**
-     * All children notes, mostly sustains.
-     */
-    public var childrenNotes:Array<Note> = [];
-    
-    public var state:NoteState = "default-note";
-
-    @:noCompletion
-    public var endHoldOffset:Float = Math.NEGATIVE_INFINITY;
-
-    /**
-     * The handler in which the note loads the script.
-     */
-    public static var scriptHandler:ScriptHandler = new ScriptHandler();
-
-    private var conductor:Conductor;
-
-    /**
-     * Creates a note on the screen.
-     * @param skin        The note's skin, basically it's appearence.
-     * @param type        The note's type. `("DEFAULT", "Bomb", "Alt"...)`
-     * @param strumTime   The note's timing in milliseconds.
-     * @param noteDir     The note's direction. `("left", "down", "up", "right")`
-     * @param lane        The note's lane. `("P1", "P2", "Opponent")`
-     * @param prevNote    The previous note (it can be null).
-     * @param sustainNote Is it a sustain note?
-     */
-    public function new(skin:String = 'DEFAULT', 
-        type:String = "DEFAULT", strumTime:Float, noteDir:String, 
-        lane:String, ?prevNote:Note, ?sustainNote:Bool = false, conductor:Conductor) 
+    public function new(direction, time, ?type = 'default', ?skin = 'default', duration) 
     {
-        super(x, y);
-
-        if (prevNote == null)
-            prevNote = this;
-
-        this.skin = skin;
+        super();
+        this.direction = direction;
+        this.time = time;
         this.type = type;
-        this.noteDir = noteDir;
-        this.prevNote = prevNote != null ? prevNote : this;
-        isSustainNote = sustainNote;
-        this.strumTime = strumTime;
-        this.lane = lane;
-        this.conductor = conductor;
-
-        // - Sustain note checks.
-        if (isSustainNote && prevNote != null)
-        {
-            // - Set the parent note to the previous one.
-            parentNote = prevNote;
-
-            while (parentNote.parentNote != null)
-                parentNote = parentNote.parentNote;
-            parentNote.childrenNotes.push(this);
-        
-            if (prevNote.isSustainNote)
-                prevNote.nextSustainNote = this;
-        }
-        else if (!isSustainNote)
-            parentNote = null;
-
-        // - Check for the note script and then load it.
-        loadNoteScript();
+        this.skin = skin;
+        this.duration = duration;
     }
 
-    /**
-     * Checks for the note script, and load it if it exists.
-     */
-    private function loadNoteScript():Void
+    override public function update(dt:Float):Void
     {
-        // - And of course, load it if it isn't a default.
-        if (type != "DEFAULT") 
-        {
-            final scriptPath = 'assets/data/notescripts/$type.hx';
-            
-            if (sys.FileSystem.exists(scriptPath))
-            {
-                scriptHandler.set("note", this);
-                scriptHandler.loadScript(scriptPath);
-            }
-            else
-                loadDefaultGraphics();
-        }
-        else loadDefaultGraphics();
+        super.update(dt);
     }
 
-    /**
-     * This is just used for loading default graphics!
-     */
-    private function loadDefaultGraphics():Void
+    private function _updateGraphics():Void
     {
-        // - Loads the graphic based on the skin.
-        frames = Paths.getSparrowAtlas('UI/game-ui/notes/$skin/staticArrows');
-        animation.addByPrefix('$noteDir', '$noteDir', 0, true);
-        animation.addByPrefix('$noteDir-hold', '$noteDir-hold', 0, true);
-        animation.addByPrefix('$noteDir-holdend', '$noteDir-holdend', 0, true);
-        animation.addByPrefix('$noteDir-holdstart', '$noteDir-holdstart', 0, true);
-        animation.play('$noteDir');
-
-        if (!isSustainNote)
-            animation.play('$noteDir');
-        else if (isSustainNote && prevNote != null)
-        {
-            noteSpeed = prevNote.noteSpeed;
-            animation.play('$noteDir-holdend');
-            flipY = UserSettings.callSetting('Downscroll');
-            updateHitbox();
-
-            if (prevNote.isSustainNote)
-            {
-                animation.play('$noteDir-hold');
-                prevNote.scale.y *= conductor.stepCrochet / 100 * 1.3 * prevNote.noteSpeed;
-                prevNote.updateHitbox();
-            }
-        }
+        final curSkin = (type != 'default') ? skin : type;
+        frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
+        animation.addByPrefix(direction, '${direction}0', 24, true);
+        playAnim(direction);
     }
 
-    /**
-     * Checks for matching notedata, used for the editor.
-     * @param noteData The typedef containing the note's data.
-     * @return Bool 
-        return this.noteDir == noteData.direction &&
-               this.lane == noteData.lane &&
-               this.strumTime == noteData.time &&
-               this.type == noteData.type
-     */
-    public function matchesData(noteData:Dynamic):Bool 
-        return this.noteDir == noteData.direction &&
-               this.lane == noteData.lane &&
-               this.strumTime == noteData.time &&
-               this.type == noteData.type;
-
-    override function update(elapsed:Float):Void 
+    @:noCompletion public function set_skin(skinName:String)
     {
-        super.update(elapsed);
-
-        if (lane == 'P1' || lane == 'P2')
-        {
-            if (strumTime > conductor.time - Timings.msThreshold 
-            && strumTime < conductor.time + Timings.msThreshold)
-                canBeHit = true;
-            else
-                canBeHit = false;
-        } 
-        else
-            canBeHit = false;
-
-        if (tooLate || (parentNote != null && parentNote.tooLate))
-            alpha = 0.3;
-    }
-
-    /**
-     * Returns a note.
-     * @param skin        The note's skin, basically it's appearence.
-     * @param type        The note's type. `("DEFAULT", "Bomb", "Alt"...)`
-     * @param strumTime   The note's timing in milliseconds.
-     * @param noteDir     The note's direction. `("left", "down", "up", "right")`
-     * @param lane        The note's lane. `("P1", "P2", "Opponent")`
-     * @param sustainNote Is it a sustain note?
-     * @param prevNote    The previous note (it can be null).
-     */
-    public static function returnDefaultNote(skin:String, type:String,
-        strumTime:Float, noteDir:String, lane:String, ?isSustainNote:Bool = false, 
-        ?prevNote:Note = null, conductor:Conductor):Note
-    {
-        var newNote = new Note(skin, type, strumTime, noteDir, lane, prevNote, isSustainNote, conductor);
-        return newNote;
+        this.skin = skinName;
+        _updateGraphics();
+        return skinName;
     }
 }

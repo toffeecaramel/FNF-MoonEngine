@@ -1,192 +1,64 @@
 package moon.obj.notes;
 
+import backend.Chart.NoteData;
+import backend.Chart.ChartData;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.FlxBasic;
+import flixel.FlxObject;
 import flixel.FlxG;
-import flixel.group.FlxSpriteGroup;
 import moon.obj.notes.*;
 import moon.utilities.NoteUtils;
 import moon.states.PlayState;
 
-/**
- * This class is used for rendering notes from a chart.
- */
-class ChartRenderer extends FlxTypedSpriteGroup<Dynamic>
+class ChartRenderer extends FlxTypedGroup<Note>
 {
-    @:noCompletion
-    public var playerStrum:Strumline;
+    @:isVar public var scrollSpeed(default, set):Float = 1;
 
-    @:noCompletion
-    public var oppStrum:Strumline;
-
-    // - Separate them for layering. :3
-    private var notesGroup:FlxTypedSpriteGroup<Note>;
-    private var sustainGroup:FlxTypedSpriteGroup<Note>;
-
-    private var notesArray:Array<Note>;
-    private var chartData:Chart;
-    private var skin:String;
     private var conductor:Conductor;
-
-    /**
-     * Spawns notes from a chart.
-     * @param playerStrum Strumline for the player.
-     * @param oppStrum    Strumline for the opponent.
-     * @param notesArray  Array in which the notes will be stored.
-     * @param chartData   Chart data for the notes to iterate.
-     * @param skin        Skin for the notes.
-     */
-    public function new(playerStrum:Strumline, oppStrum:Strumline, notesArray:Array<Note>,
-    chartData:Chart, skin:String, conductor:Conductor)
+    public function new(chartNotes:Array<NoteData>, conductor:Conductor, ?noteScale:Array<Float>)
     {
         super();
-
-        this.playerStrum = playerStrum;
-        this.oppStrum = oppStrum;
-        this.chartData = chartData;
-        this.skin = skin;
-        this.notesArray = notesArray;
         this.conductor = conductor;
-
-        notesGroup = new FlxTypedSpriteGroup<Note>();
-        add(notesGroup);
-
-        sustainGroup = new FlxTypedSpriteGroup<Note>();
-        add(sustainGroup);
-
-        // - Time to recycle these notes baby
-        for(notes in chartData.content.notes) spawnNotes(notes);
+        for(i in 0...chartNotes.length) recycle(Note, () -> recycleNote(chartNotes[i], noteScale));
     }
 
-    /**
-     * Spawns all the notes from the chart data.
-     * @param noteData The typedef containing all note data.
-     */
-    private function spawnNotes(noteData:Dynamic):Void
+    public function recycleNote(noteData:NoteData, noteScale:Array<Float>):Note
     {
-        // - Spawn a common note.
-        var mainNote = recycleNote(noteData, false);
-        notesArray.push(mainNote);
-
-        // - Define the sustain length.
-        final susLength:Float = noteData.duration / conductor.stepCrochet;
-
-        // - Then create the sustain if it's duration is bigger than zero.
-        if (susLength > 0) recycleSustain(mainNote, noteData, susLength);
+        var note = new Note(noteData.direction, noteData.time, noteData.type, 'default', noteData.duration);
+        note.y += noteData.time;
+        note.scale.set(noteScale[0] ?? 1, noteScale[1] ?? 1);
+        note.updateHitbox();
+        note.visible = note.active = false;
+        return note;
     }
 
-    /**
-     * Recycles a note (A.K.A Creates one in a optimized way.)
-     * @param noteData  The typedef containing all note data.
-     * @param isSustain Whether or not is a sustain note.
-     * @param prevNote  Previous note.
-     * @return Note
-     */
-    private function recycleNote(noteData:Dynamic, isSustain:Bool, ?prevNote:Note = null):Note
+    public function updateNotes(elapsed:Float)
     {
-        final group = (isSustain) ? sustainGroup : notesGroup;
-        return group.recycle(Note, function():Note
+        super.update(elapsed);
+        final toY = 10;
+        final visibleRangePadding = FlxG.height * 0.6;
+        final visibleTop = -visibleRangePadding;
+        final visibleBottom = FlxG.height + visibleRangePadding;
+
+        for (note in this.members)
         {
-            // - Create the note with the given parameters above.
-            var note = Note.returnDefaultNote(skin, noteData.type, noteData.time, noteData.direction, noteData.lane, isSustain, prevNote, conductor);
-
-            // - Set the note speed from the chart so it can adjust sustains size.
-            note.noteSpeed = chartData.content.scrollSpeed;
-
-            // - Change the scale, I personally prefer smaller strumlines.
-            note.scale.set(PlayState.noteScale, PlayState.noteScale);
-            note.updateHitbox();
-            note.active = false;
-            note.isSustainNote = isSustain;
-
-            // - Then boom, note recycled with success. :3
-            return note;
-        });
-    }
-
-    /**
-     * Recycles an sustain note.
-     * @param mainNote  The note in which the sustain will come from.
-     * @param noteData  The typedef containing all note data.
-     * @param susLength The sustain's length (in steps).
-     */
-    private function recycleSustain(mainNote:Note, noteData:Dynamic, susLength:Float):Void
-    {
-        // - Previous note is just main note lol
-        var prevNote = mainNote;
-        var sustainData:Dynamic = { // Define it once outside the loop to avoid reallocation
-            time: 0,
-            direction: noteData.direction,
-            lane: noteData.lane,
-            type: noteData.type
-        };
-
-        for (i in 0...Math.floor(susLength))
-        {
-            // - Setup sustain data.
-            sustainData.time = noteData.time + conductor.stepCrochet * (i + 1); // Update time only
-
-            // - Then setup the sustain note stuff.
-            var sustainNote = recycleNote(sustainData, true, prevNote);
-            sustainNote.scrollFactor.set();
-            notesArray.push(sustainNote);
-            sustainGroup.add(sustainNote);
-            prevNote = sustainNote;
-        }
-    }
-
-    /**
-     * Update the positions of the notes.
-     * @param elapsed
-     */
-    public function updateNotePosition(elapsed:Float)
-    {
-        final visibleBuffer:Float = 100;
-        final downscroll:Bool = UserSettings.callSetting('Downscroll');
-        final scrollSpeed = chartData.content.scrollSpeed;
-        final noteScale = PlayState.noteScale;
-        final sustainOffset = -20 * (scrollSpeed / 1.1);
-
-        for (note in notesArray)
-        {
-            final strumline:Strumline = note.lane == 'P1' ? playerStrum : oppStrum;
-            final strumlineY:Float = strumline.members[NoteUtils.directionToNumber(note.noteDir)].y;
-            final timeDifference:Float = (note.strumTime - conductor.time) * scrollSpeed / 3;
-            final yOffset = note.isSustainNote ? sustainOffset : 0;
-
-            var potentialY:Float = downscroll ? strumlineY - (timeDifference) - yOffset
-                                            : strumlineY + (timeDifference) + yOffset;
-
-            if (potentialY > -visibleBuffer && potentialY < FlxG.height + visibleBuffer)
+            // this shit grahhh
+            final finalY = toY + (note.time - conductor.time) * scrollSpeed;
+            if (finalY > visibleTop && finalY < visibleBottom)
             {
+                note.y = finalY;
                 note.active = note.visible = true;
-
-                final xOffset = note.isSustainNote ? 32.5 : 0;
-                note.y = potentialY;
-                note.x = getNoteX(note.noteDir, note.lane) + xOffset;
-
-                if(note.isSustainNote) note.flipY = downscroll;
             }
-            else
-            {
-                note.active = note.visible = false;
-            }
-
-            // Optimized note killing condition
-            if ((downscroll ? (note.y > (FlxG.height + note.height)) : (note.y < -note.height)) && (note.tooLate || note.wasGoodHit))
-            {
-                NoteUtils.killNote(note, notesArray);
-            }
+            else note.active = note.visible = false;
         }
     }
 
-    /**
-     * Get an strumline X based on the lane and direction.
-     * @param direction The note's direction.
-     * @param lane      The lane in which the note is.
-     * @return Float
-     */
-    public function getNoteX(direction:String, lane:String):Float
+    @:noCompletion public function set_scrollSpeed(value:Float):Float
     {
-        var strum = (lane == 'P1') ? playerStrum : oppStrum;
-        return strum.members[NoteUtils.directionToNumber(direction)].x;
+        scrollSpeed = value;
+        for (note in this.members)
+            note.speed = value;
+
+        return value;
     }
 }

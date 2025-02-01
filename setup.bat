@@ -22,16 +22,16 @@ echo *** Installing Main Dependencies... ***
 echo ***************************************
 echo.
 
-haxelib git flixel https://github.com/HaxeFlixel/flixel.git
-haxelib set flixel git
-haxelib install lime 8.0.2
-haxelib set lime 8.0.2
-haxelib install openfl 9.3.3
-haxelib set openfl 9.3.3
-haxelib install flixel-addons 3.2.3
-haxelib set flixel-addons 3.2.3
-haxelib install flixel-ui 2.6.2
-haxelib set flixel-ui 2.6.2
+haxelib install flixel 6.0.0
+haxelib set flixel 6.0.0
+haxelib install lime 8.2.2
+haxelib set lime 8.2.2
+haxelib install openfl 9.4.1
+haxelib set openfl 9.4.1
+haxelib install flixel-addons 3.3.0
+haxelib set flixel-addons 3.3.0
+haxelib install flixel-ui 2.6.4
+haxelib set flixel-ui 2.6.4
 haxelib install flixel-tools 1.5.1
 haxelib set flixel-tools 1.5.1
 haxelib install flixel-text-input 2.0.2

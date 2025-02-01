@@ -68,13 +68,4 @@ class FNFSprite extends FlxSprite
 
 		return this;
 	}
-
-	override public function destroy()
-	{
-		// dump cache stuffs
-		if (graphic != null)
-			graphic.dump();
-
-		super.destroy();
-	}
 }

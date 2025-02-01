@@ -1,6 +1,5 @@
 package moon.states;
 
-import haxe.macro.Compiler.NullSafetyMode;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -45,452 +44,36 @@ enum GameMode
 
 class PlayState extends MusicState
 {
+	public var playfield:PlayField;
+
 	public static var curPlaystate:PlayState;
-
-	private var playerStrumline:Strumline;
-    private var opponentStrumline:Strumline;
-	private var gl:StrumGlow;
-	private var splashGrp:FlxTypedGroup<NoteSplash>;
-
-	private var chart:Chart;
-
-	private var inputHandler:InputHandler;
-
-	private var chartRenderer:ChartRenderer;
-	public var unspawnNotes:Array<Note> = [];
-	public var eventList:Array<Dynamic> = [];
-    //private var notes:FlxTypedGroup<Note>;
-	//private var sustainsGrp:FlxTypedGroup<Note>;
-
-	public static var stage:Stage;
-
-	public static var opponent:Character;
-	public static var player:Character;
-
-	public var camGame:FlxCamera;
-	public var camHUD:FlxCamera;
-	public var camStrums:FlxCamera;
-	public var camOther:FlxCamera;
-	public var camFollow:FlxObject;
-
-	public var gameHUD:GameHUD;
-	private var comboDisplay:ComboDisplay;
-
-	public static var noteScale:Float;
-	final skin:String = UserSettings.callSetting('Noteskin');
-	public static var scrollSpeed:Float;
-
-	public static var health:Float = 50;
-	public var combo:Int = 0;
-	public var totalHits:Int = 0;
-
-	var yPos:Float = 0;
-
-	public static var countdownFinished:Bool = false;
-	public var canPause:Bool = true;
-	public var paused:Bool = false;
-	public static var loadedSong:Bool = false;
-
-	// - Sound-Related variables.
-	public static var playback:Song;
-	public static var sfx:FlxTypedGroup<FlxSound>;
-
-	private var scriptHandler:ScriptHandler;
-
-	public static var gamemode:GameMode;
-	public static var song:String;
-	public static var difficulty:String;
-
-	var test:FlxText;
-	private var display:FlxSprite = new FlxSprite();
-	
-	inline private function resetValues()
-	{
-		unspawnNotes = [];
-		health = 50;
-	}
-
 	override public function create()
 	{
 		super.create();
 		this.syncMethod = ELAPSED;
-		resetValues();
-
 		FlxG.mouse.visible = false;
-
 		curPlaystate = this;
 
-		// - Setup the cameras
-		camGame = FlxG.camera;
-		camHUD = new FlxCamera();
-		camStrums = new FlxCamera();
-		camOther = new FlxCamera();
-
-		camHUD.bgColor = 0x00000000;
-		camStrums.bgColor = 0x00000000;
-		camOther.bgColor = 0x00000000;
-
-		FlxG.cameras.add(camHUD, false);
-		FlxG.cameras.add(camStrums, false);
-		FlxG.cameras.add(camOther, false);
-
-		// - Setup the stage
-		stage = new Stage('stage');
-		add(stage);
-
-		// - Setup the characters
-		opponent = new Character().setCharacter(stage.oppPos[0], stage.oppPos[1], 'dad', conductor);
-		add(opponent);
-
-		player = new Character().setCharacter(stage.playerPos[0], stage.playerPos[1], 'bf', conductor);
-		add(player);
-
-		// - Add the game HUD
-		gameHUD = new GameHUD(UserSettings.callSetting('Downscroll'));
-		gameHUD.camera = camHUD;
-		add(gameHUD);
-
-		// - Add the Combo & Judgements Group
-		comboDisplay = new ComboDisplay(FlxG.width / 2, FlxG.height / 2, "default");
-		comboDisplay.cam = camHUD;
-        add(comboDisplay);
-
-		// - Number of strums and spacing between them
-		final numStrums:Int = 4;
-		final strumSpacing:Float = 95;
-		final strumWidth:Float = 0.6 * 128;
-
-		// - Calculate total width of one strumline
-		final totalStrumlineWidth:Float = numStrums * (strumWidth + strumSpacing);
-
-		// - Position the opponent's strumline on the left, centered in the left half
-		final opponentStrumX:Float = (FlxG.width / 4) - (totalStrumlineWidth / 2);
-		// god this is a mess send help aahahhuhdfguihfuijoi
-
-		// - Position the player's strumline on the right, centered in the right half
-		final playerStrumX:Float = (3 * FlxG.width / 4) - (totalStrumlineWidth / 2);
-
-		// - Add the strumlines
-		opponentStrumline = new Strumline(false, opponentStrumX, yPos);
-		opponentStrumline.camera = camStrums;
-		add(opponentStrumline);
-
-		playerStrumline = new Strumline(true, playerStrumX, yPos);
-		playerStrumline.camera = camStrums;
-		add(playerStrumline);
-
-		gl = new StrumGlow();
-		gl.camera = camStrums;
-		add(gl);
-
-		splashGrp = new FlxTypedGroup<NoteSplash>();
-
-		for (i in 0...playerStrumline.members.length)
-		{
-			final strum = playerStrumline.members[i];
-
-			splashGrp.recycle(NoteSplash, function():NoteSplash
-			{
-				var splash = new NoteSplash(skin);
-				splash.camera = camStrums;
-				splash.ID = i;
-				return splash;
-			});
-		}
-		
-		add(splashGrp);
-
-		// - Load the chart
-		chart = new Chart(song, difficulty);
-		scrollSpeed = chart.content.scrollSpeed / 1.8;
-		conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
-		for (event in chart.content.events)
-			eventList.push(event);
-
-		// - Load the notes
-		chartRenderer = new ChartRenderer(playerStrumline, opponentStrumline, unspawnNotes, chart, skin, conductor);
-		chartRenderer.camera = camStrums;
-		add(chartRenderer);
-
-		// - Add the input handler
-		inputHandler = new InputHandler(unspawnNotes, P1, conductor);
-		inputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, player, judgement);
-		inputHandler.onNoteMiss = (_) -> onMiss();
-
-		/*var cpuinputHandler = new InputHandler(unspawnNotes, CPU);
-		cpuinputHandler.onNoteHit = (note:Note, judgement:JudgementsTiming) -> onNoteHit(note, opponent, judgement);*/
-
-		camFollow = new FlxObject(0, 0, 1, 1);
-		camFollow.setPosition(0, 0);
-		camGame.follow(camFollow, LOCKON, 1);
-		camGame.zoom = stage.zoom;
-
-		// - Generates the song (generatesong)
-		var songStuff = [
-			{song: song, type: Inst}
-		];
-		// - this is so dumb lol I have to change it
-		if(chart.content.hasVoices)songStuff.push({song: song, type: Voices});
-		playback = new Song(songStuff,conductor);
-
-		startCountdown();
-		playback.curState = PLAY;
-		playback.checkDesync();
-
-		updateByOption();
-
-		// placeholder, remove later.
-		final pPos = [player.getMidpoint().x + player.camOffsets[0], player.getMidpoint().y + player.camOffsets[1]];
-
-		moveCamera(pPos[0], pPos[1], 1, FlxEase.circOut);
-
-		test = new FlxText(0, 10, 0, "GUH");
-		test.setFormat(Paths.fonts("vcr.ttf"), 48, CENTER);
-		test.screenCenter(X);
-		test.camera = camOther;
-		add(test);
-
-		gameHUD.updateStats(inputHandler.playerStats);
-
-		scriptHandler = new ScriptHandler();
-		scriptHandler.loadScript("assets/data/scripts/Guh.hx");
-        scriptHandler.set("game", curPlaystate);
-
-		display.loadGraphic(Paths.image('secret/senpaiFromCorruption'));
-		display.alpha = 0.0001;
-		display.camera = camOther;
-		display.setGraphicSize(1280, 720);
-		add(display);
-
-		if(scriptHandler.exists('create'))
-			scriptHandler.get("create")();
-		scriptHandler.set("add", add);
+		playfield = new PlayField(conductor);
+		add(playfield);
 	}
-
-	private var val:Float;
 
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-			
-		if (unspawnNotes.length == 0)
-			beatCounter = 0;
-
-		///////////////////////////////////////////////////////
-
-		inputHandler.justPressed = [Controls.justPressed(LEFT),Controls.justPressed(DOWN),Controls.justPressed(UP),Controls.justPressed(RIGHT),
-		];
-
-		inputHandler.pressed = [Controls.pressed(LEFT),Controls.pressed(DOWN),Controls.pressed(UP),Controls.pressed(RIGHT),
-		];
-
-		inputHandler.released = [Controls.released(LEFT),Controls.released(DOWN),Controls.released(UP),Controls.released(RIGHT),
-		];
-
-		///////////////////////////////////////////////////////
-
-		inputHandler.update();
-		chartRenderer.updateNotePosition(elapsed);
-
-		//checkForInput();
-
-		for (event in eventList)
-		{
-			if (event.time <= conductor.time)
-			{
-				executeEvent(event);
-				eventList.remove(event);
-			}
-		}
-
-		camGame.zoom = FlxMath.lerp(camGame.zoom, stage.zoom, elapsed * 12);
-		camStrums.zoom = camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, elapsed * 12);
-
-		health = FlxMath.bound(health, -0.1, 101);
-
-		// Specific Keys Actions //
-
-		if (FlxG.keys.justPressed.SEVEN)
-		{
-			playback.curState = KILL;
-			FlxG.switchState(new ChartEditor(song, difficulty));
-		}
-		if (FlxG.keys.justPressed.EIGHT)
-		{
-			pauseGame(false);
-			trace("MOM");
-			openSubState(new moon.states.editors.character.CharacterEditor(camOther));
-		}
-		if (FlxG.keys.justPressed.NINE)
-		{
-			playback.curState = KILL;
-			FlxG.switchState(new ChartConverterState());
-		}
-
-		if (FlxG.keys.justPressed.ESCAPE && canPause)
-			pauseGame(true);
-		//trace(health);
-
-		if (scriptHandler.exists('update'))
-			scriptHandler.get("update")(elapsed);
 	}
 
 	public function updateByOption():Void
 	{
-		//inst.volume = UserSettings.callSetting('Instrumental Volume') / 100;
-		//voices.volume = UserSettings.callSetting('Voices Volume') / 100;
-
-		//trace(UserSettings.callSetting('Instrumental Volume'), 'DEBUG');
-
-		yPos = (UserSettings.callSetting('Downscroll')) ? FlxG.height - 120 : 50;
-		playerStrumline.y = opponentStrumline.y = yPos;
-
-		/*for(notes in unspawnNotes)
-			for(noteData in chart.notes)
-				notes.strumTime = noteData.time - UserSettings.callSetting('Offset');*/
-	}
-
-	private function executeEvent(event:Dynamic):Void
-	{
-		//trace(event.name);
-		switch(event.name)
-		{
-			case "Move Camera":
-				final oppPos = [opponent.getMidpoint().x + opponent.camOffsets[0], opponent.getMidpoint().y + opponent.camOffsets[1]];
-				final pPos = [player.getMidpoint().x + player.camOffsets[0], player.getMidpoint().y + player.camOffsets[1]];
-
-				final pos = (event.values[0] == 'Player') ? pPos : oppPos;
-				moveCamera(pos[0], pos[1], event.values[1], Reflect.field(FlxEase, event.values[2]));
-			case "Change BPM":
-				conductor.changeBpmAt(event.time, event.values[0], event.values[1][0], event.values[1][1]);
-		}
-	}
-
-	/**
-	 * Plays an animation on the strum.
-	 * @param lane 		the lane of the strum to be triggered.
-	 * @param direction the direction of the strum.
-	 */
-	private function playStrumAnim(lane:String, direction:String):Void
-	{	
-		// - Get the strum.
-		final strum = (lane != 'P1') ? opponentStrumline : playerStrumline;
-		final yVal = strum.members[NoteUtils.directionToNumber(direction)].y;
-
-		// - Play the animation.	
-		strum.playConfirm(direction);
-		gl.callAnim(chartRenderer.getNoteX(direction, lane) - 47, yVal - 47, direction, skin);
-	}
-
-	/**
-	 * Function called whenever a note is hit.
-	 * @param note 		The note that got hit.
-	 * @param character The character that will have an singing animation triggered.
-	 * @param jt 		The judgement.
-	 */
-	private function onNoteHit(note:Note, character:Character, jt:JudgementsTiming):Void 
-	{
-		// - If the note is a mustPress, it will call the timing functions
-		if(note.lane == 'P1')
-		{
-			comboDisplay.showCombo(combo, jt);
-			combo++;
-
-			health += (note.isSustainNote) ? 0.6 : 0;
-
-			if (jt != null)
-			{
-				final timingData = Timings.getParameters(jt);
-				health += timingData[4];
-				if(!note.isSustainNote)
-				{
-					for (i in 0...splashGrp.members.length)
-						if(jt == sick && splashGrp.members[i].ID == NoteUtils.directionToNumber(note.noteDir))
-						{
-							final strum = playerStrumline.members[NoteUtils.directionToNumber(note.noteDir)];
-							splashGrp.members[i].setPosition(strum.x-177, strum.y-160); // Oh boy I love offsets
-							splashGrp.members[i].spawn(note.noteDir);
-						}
-					
-					if (Timings.judgementCounter.exists(jt))
-						Timings.judgementCounter.set(jt, Timings.judgementCounter.get(jt) + 1);
-
-					totalHits++;
-				}
-			}
-		}
-
-		playStrumAnim(note.lane, note.noteDir);
-		gameHUD.updateStats(inputHandler.playerStats);
-
-		// - SET UP YOUR NOTETYPES FUNCTIONS HERE!!
-
-		switch(note.type.toLowerCase())
-		{
-			case 'no animation': //nothing.
-			default: character.playAnim('sing${note.noteDir.toUpperCase()}', true);
-		}
-		character.holdTimer = 0;
-
-		if(scriptHandler.exists('onNoteHit'))
-			scriptHandler.get("onNoteHit")(note, character, jt);
-	}
-
-	private function onMiss()
-	{
-		combo = 0;
-		health -= 7;
-
-		inputHandler.playerStats.MISSES += 1;
-		comboDisplay.showCombo(combo, miss);
-		gameHUD.updateStats(inputHandler.playerStats);
 	}
 	
 	override public function openSubState(SubState:FlxSubState)
 	{
-		if (!paused)
-		{
-			// pause all tweens and timers
-			FlxTimer.globalManager.forEach(function(tmr:FlxTimer)
-			{
-				if (!tmr.finished)
-					tmr.active = false;
-			});
-
-			FlxTween.globalManager.forEach(function(twn:FlxTween)
-			{
-				if (!twn.finished)
-					twn.active = false;
-			});
-
-			paused = true;
-			// */
-		}
-
 		super.openSubState(SubState);
 	}
 
 	override function closeSubState()
 	{
-		if (paused)
-		{
-			// resume all tweens and timers
-			FlxTimer.globalManager.forEach(function(tmr:FlxTimer)
-			{
-				if (!tmr.finished)
-					tmr.active = true;
-			});
-
-			FlxTween.globalManager.forEach(function(twn:FlxTween)
-			{
-				if (!twn.finished)
-					twn.active = true;
-			});
-
-			paused = false;
-			// */
-		}
-
 		super.closeSubState();
 	}
 
@@ -504,91 +87,20 @@ class PlayState extends MusicState
 		super.onFocusLost();
 	}
 
-	var camtwn:FlxTween;
-	public function moveCamera(x:Float, y:Float, duration:Float, easey:EaseFunction)
-	{
-		if(camtwn != null && camtwn.active)
-			camtwn.cancel();
-
-		camtwn = FlxTween.tween(camFollow, {x: x, y: y}, duration, {ease: easey});
-	}
-
-	var bool:Bool = false;
 	override function beatHit(curBeat)
 	{
 		super.beatHit(curBeat);
-
-		if (curBeat == 527)
-		{
-			display.screenCenter();
-			display.alpha = 1;
-			FlxTween.tween(display, {alpha: 0.0001}, 1);
-		}
-		else if (curBeat == 569)
-		{
-			display.loadGraphic(Paths.image('secret/mmm yum'));
-			display.setGraphicSize(1280, 720);
-			display.screenCenter();
-			display.alpha = 1;
-			FlxTween.tween(display, {alpha: 0.0001}, 1);
-		}
-
-		//FlxG.sound.play('assets/sounds/metronomeTest.ogg');
-
-		/*if (curBeat % Conductor.timeSignature == 0)
-		{
-			camGame.zoom += 0.040;
-			camHUD.zoom += 0.032;
-		}*/
-
-		charactersDance(curBeat);
-		gameHUD.beatHit(curBeat);
-
-		checkNextNotehit();
-
-		if(scriptHandler.exists('beatHit'))
-			scriptHandler.get("beatHit")(curBeat);
-	}
-
-	public function charactersDance(curBeat:Float):Void
-	{
-	if ((opponent.animation.curAnim.name.startsWith("idle") 
-		|| opponent.animation.curAnim.name.startsWith("dance"))
-		&& (curBeat % 2 == 0 || opponent.characterData.quickDancer))
-		opponent.dance();
-
-		if ((player.animation.curAnim.name.startsWith("idle") 
-		|| player.animation.curAnim.name.startsWith("dance"))
-		&& (curBeat % 2 == 0 || player.characterData.quickDancer))
-			player.dance();
 	}
 
 	override function stepHit(curStep)
 	{
 		super.stepHit(curStep);
-		playback.checkDesync();
-	}
-
-	private function startCountdown():Void
-	{	
-		countdownFinished = true;
-	}
-
-	public function pauseGame(openS:Bool = true):Void
-	{
-		playback.curState = PAUSE;
-		paused = true;
-		if (openS)
-		{
-			openSubState(new PauseSubState(gamemode, camOther));
-			camGame.filters = [new BlurFilter(20, 20, openfl.filters.BitmapFilterQuality.LOW)];
-		}
+		playfield.onStepHit(curStep);
 	}
 
 	private var nextToHit:Int = 0;
 	private var beatCounter:Int = 0;
-
-	private function checkNextNotehit():Void
+	/*private function checkNextNotehit():Void
 	{
 		var minDifference:Float = Math.POSITIVE_INFINITY;
 		var nextTime:Float = 0;
@@ -608,5 +120,5 @@ class PlayState extends MusicState
 	
 		if (nextTime == 0)
 			nextToHit = 0;
-	}
+	}*/
 }
