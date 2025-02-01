@@ -22,11 +22,11 @@ class ChartRenderer extends FlxTypedGroup<Note>
      * @param conductor 
      * @param noteScale 
      */
-    public function new(chartNotes:Array<NoteData>, conductor:Conductor, ?noteScale:Array<Float>)
+    public function new(chartNotes:Array<NoteData>, conductor:Conductor)
     {
         super();
         this.conductor = conductor;
-        for(i in 0...chartNotes.length) recycle(Note, () -> recycleNote(chartNotes[i], noteScale));
+        for(i in 0...chartNotes.length) recycle(Note, () -> recycleNote(chartNotes[i]));
     }
 
     /**
@@ -35,12 +35,10 @@ class ChartRenderer extends FlxTypedGroup<Note>
      * @param noteScale 
      * @return Note
      */
-    public function recycleNote(noteData:NoteData, noteScale:Array<Float>):Note
+    public function recycleNote(noteData:NoteData):Note
     {
         var note = new Note(noteData.direction, noteData.time, noteData.type, 'default', noteData.duration);
         note.y += noteData.time;
-        note.scale.set(noteScale[0] ?? 1, noteScale[1] ?? 1);
-        note.updateHitbox();
         note.visible = note.active = false;
         return note;
     }

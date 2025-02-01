@@ -1,5 +1,6 @@
 package moon.obj.notes;
 
+import haxe.Json;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
@@ -79,10 +80,18 @@ class Note extends FNFSprite
 
     private function _updateGraphics():Void
     {
+        final data = Json.parse(sys.io.File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
         final curSkin = (type != 'default') ? skin : type;
+        
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
         animation.addByPrefix(direction, '${direction}0', 24, true);
+
+        scale.set(data.note_size, data.note_size);
+        updateHitbox();
+
         playAnim(direction);
+        centerOffsets();
+        centerOrigin();
     }
 
     @:noCompletion public function set_skin(skinName:String)

@@ -1,5 +1,7 @@
 package moon.obj.game;
 
+import flixel.FlxG;
+import moon.obj.notes.Receptor;
 import backend.Chart.NoteData;
 import moon.obj.notes.ChartRenderer;
 import flixel.group.FlxGroup;
@@ -20,17 +22,33 @@ class PlayField extends FlxGroup
     public var chart:Chart;
 
     public var chartNotes:ChartRenderer;
+
+    public var opponentStrum:Receptor;
+    public var playerStrum:Receptor;
     public function new(conductor:Conductor):Void
     {
         super();
+
         this.conductor = conductor;
+
+        // ** - Generate Chart and Notes - ** //
         chart = new Chart('access denied', 'hard');
         chart.content.scrollSpeed /= 2; //- Too fast lol...
         conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
 
-        chartNotes = new ChartRenderer(chart.content.notes, conductor, [0.6, 0.6]);
+        chartNotes = new ChartRenderer(chart.content.notes, conductor);
         chartNotes.scrollSpeed = chart.content.scrollSpeed;
         add(chartNotes);
+
+        // ** - Generate Strumlines - ** //
+        //TODO: Add them to cameras.
+        final xVal = (FlxG.width * 0.5);
+        final xAddition = (FlxG.width * 0.25);
+        opponentStrum = new Receptor(xVal - xAddition, 20, 'default');
+        add(opponentStrum);
+
+        playerStrum = new Receptor(xVal + xAddition, 20, 'default');
+        add(playerStrum);
 
         playback = new Song([{song: 'access denied', type: Inst}, {song: 'access denied', type: Voices}], conductor);
         playback.curState = PLAY;
