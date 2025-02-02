@@ -16,7 +16,7 @@ enum PlayerType
  * Class meant to handle inputs by the chosen player.
  * It's a separate class so it can be better handled with more than
  * 1 player.
- * @author toffeecaramel
+ * by toffeecaramel
  **/
 class InputHandler
 {
@@ -26,18 +26,22 @@ class InputHandler
     // - Function called when you miss a note/Ghost tap.
     public var onNoteMiss:Note->Void;
 
+    // - Function called when you ghost tap, either with or without the Ghost Tap Option on.
+    public var onGhostTap:Int->Void;
+
+    // - Function called whenever you release a key.
+    public var onKeyRelease:Int->Void;
+
     // - Arrays for pressing and releasing keys.
-    public var justPressed:Array<Bool>;
-    public var pressed:Array<Bool>;
-    public var released:Array<Bool>;
+    public var justPressed:Array<Bool> = [];
+    public var pressed:Array<Bool> = [];
+    public var released:Array<Bool> = [];
 
     // - The player type for this inputs.
     public var playerType:PlayerType;
 
     // - The stats for this player's inputs.
     public var playerStats:PlayerStats;
-
-    // Array for the notes.
     private var unspawnNotes:Array<Note>;
 
     private var conductor:Conductor;
@@ -85,17 +89,15 @@ class InputHandler
             {
                 // - Checks in all possible notes in the range.
                 var possibleNotes = unspawnNotes.filter(note -> 
-                    note.noteDir == NoteUtils.numberToDirection(i) &&
+                    note.direction == NoteUtils.numberToDirection(i) &&
                     // TODO: Make it get a lane from a public variable in this class.
                     note.lane == 'P1' && 
                     isWithinTiming(note) &&
-                    !note.wasGoodHit &&
-                    !note.tooLate &&
-                    (!note.isSustainNote)
+                    note.state == NONE
                 );
 
                 // - Sorts through all the possible notes.
-                possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+                possibleNotes.sort((a, b) -> Std.int(a.time - b.time));
 
                 if (possibleNotes.length > 0)
                 {
@@ -107,65 +109,42 @@ class InputHandler
                         final timingData = Timings.getParameters(timing);
                         
                         // - Calls the appropriate function based on timing.
-                        (timing != miss) ? onNoteHit(note, timing) : onNoteMiss(note);
-                        note.wasGoodHit = true;
+                        (timing != miss && onNoteHit != null) ? onNoteHit(note, timing) : (timing == miss && onNoteMiss != null) ? onNoteMiss(note) : null;
+                        note.state = GOT_HIT;
 
                         playerStats.SCORE += timingData[2];
 
-                        if (!note.isSustainNote) NoteUtils.killNote(note, unspawnNotes); //thingyy,,
+                        NoteUtils.killNote(note, unspawnNotes); //thingyy,,
                     }
                 }
-                else if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
-                    onNoteMiss(null); // - For when you ghost tap.
+                else
+                {
+
+                    if(onGhostTap != null) onGhostTap(i);
+                    if (onNoteMiss != null && !UserSettings.callSetting('Ghost Tapping'))
+                        onNoteMiss(null); // - For when you ghost tap.
+                }
             }
         }
+
+        for (i in 0...released.length)
+            if(released[i] && onKeyRelease != null) onKeyRelease(i);
     }
     
     private function checkSustains():Void
     {
-        for (note in unspawnNotes)
-        {
-            if (note.isSustainNote && note.lane == 'P1')
-            {
-                final noteDir = NoteUtils.directionToNumber(note.noteDir);
-                if (pressed[noteDir] && note.parentNote.wasGoodHit)
-                {
-                    if (note.strumTime <= conductor.time && !note.wasGoodHit)
-                    {
-                        note.wasGoodHit = true;
-                        if (onNoteHit != null) onNoteHit(note, null);
-                        NoteUtils.killNote(note, unspawnNotes);
-                        playerStats.SCORE += 6;
-                        break;
-                    }
-                }
-                else if ((released[noteDir] || !pressed[noteDir]) && note.parentNote.wasGoodHit && !note.wasGoodHit)
-                {
-                    if (note.isSustainNote && note.parentNote != null)
-                    {
-                        var currentNote = note;
-                        while (currentNote != null && currentNote.isSustainNote)
-                        {
-                            currentNote.kill();
-                            unspawnNotes.remove(currentNote);
-                            currentNote = currentNote.nextSustainNote;
-                        }
-                    }
-                    break;
-                }
-            }
-        }
+
     }
 
     private function checkMisses():Void
     {
         for (note in unspawnNotes)
         {
-            if (!note.wasGoodHit && note.lane == 'P1' && !note.tooLate &&
-                conductor.time > note.strumTime + Timings.getParameters(JudgementsTiming.miss)[1])
+            if (note.state != GOT_HIT && note.state != TOO_LATE && note.lane == 'P1' &&
+                conductor.time > note.time + Timings.getParameters(JudgementsTiming.miss)[1])
             {
-                if (onNoteMiss != null && !note.isSustainNote) onNoteMiss(note);
-                note.tooLate = true;
+                if (onNoteMiss != null) onNoteMiss(note);
+                note.state = TOO_LATE;
                 NoteUtils.killNote(note, unspawnNotes);
                 playerStats.SCORE += Std.int(Timings.getParameters(miss)[2]);
             }
@@ -177,15 +156,10 @@ class InputHandler
 
     private function checkTiming(note:Note):JudgementsTiming
     {
-        final timeDifference = Math.abs(note.strumTime - conductor.time);
+        final timeDifference = Math.abs(note.time - conductor.time);
         for (jt in Timings.values)
-        {
             if (timeDifference <= Timings.getParameters(jt)[1])
-            {
-                note.canBeHit = true;
                 return jt;
-            }
-        }
         return null;
     }
 }

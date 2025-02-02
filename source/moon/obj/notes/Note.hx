@@ -56,6 +56,11 @@ class Note extends FNFSprite
     public var duration:Float = 0;
 
     /**
+     * The note's strumline, in which it's attached to
+     */
+    public var lane:String = 'P1';
+
+    /**
      * Creates a note on screen.
      * @param direction
      * @param time
@@ -82,7 +87,7 @@ class Note extends FNFSprite
     {
         final data = Json.parse(sys.io.File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
         final curSkin = (type != 'default') ? skin : type;
-        
+
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
         animation.addByPrefix(direction, '${direction}0', 24, true);
 

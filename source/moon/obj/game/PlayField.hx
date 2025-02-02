@@ -1,5 +1,6 @@
 package moon.obj.game;
 
+import moon.utilities.NoteUtils;
 import flixel.FlxG;
 import moon.obj.notes.Receptor;
 import backend.Chart.NoteData;
@@ -16,15 +17,17 @@ import flixel.group.FlxGroup;
  */
 class PlayField extends FlxGroup
 {
+    public var combo:Int = 0;
     public var conductor:Conductor;
     public var playback:Song;
+    var inputHandler:InputHandler;
 
     public var chart:Chart;
 
     public var chartNotes:ChartRenderer;
 
-    public var opponentStrum:Receptor;
-    public var playerStrum:Receptor;
+    public static var opponentStrum:Receptor;
+    public static var playerStrum:Receptor;
     public function new(conductor:Conductor):Void
     {
         super();
@@ -32,31 +35,65 @@ class PlayField extends FlxGroup
         this.conductor = conductor;
 
         // ** - Generate Chart and Notes - ** //
-        chart = new Chart('access denied', 'hard');
-        chart.content.scrollSpeed /= 2; //- Too fast lol...
+        chart = new Chart('sansational (fnffan remix)', 'hard');
+        chart.content.scrollSpeed /= 2.5; //- Too fast lol...
         conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
 
-        chartNotes = new ChartRenderer(chart.content.notes, conductor);
-        chartNotes.scrollSpeed = chart.content.scrollSpeed;
-        add(chartNotes);
+        var something = new MoonText();
+        add(something);
 
         // ** - Generate Strumlines - ** //
         //TODO: Add them to cameras.
         final xVal = (FlxG.width * 0.5);
         final xAddition = (FlxG.width * 0.25);
-        opponentStrum = new Receptor(xVal - xAddition, 20, 'default');
+        opponentStrum = new Receptor(xVal - xAddition, 80, 'default', true);
         add(opponentStrum);
 
-        playerStrum = new Receptor(xVal + xAddition, 20, 'default');
+        playerStrum = new Receptor(xVal + xAddition, 80, 'default', false);
         add(playerStrum);
 
-        playback = new Song([{song: 'access denied', type: Inst}, {song: 'access denied', type: Voices}], conductor);
+        chartNotes = new ChartRenderer(chart.content.notes, conductor);
+        chartNotes.scrollSpeed = chart.content.scrollSpeed;
+        add(chartNotes);
+
+        inputHandler = new InputHandler(chartNotes.members, P1, conductor);
+        inputHandler.onNoteHit = function(note, timing)
+        {
+            final timingData = Timings.getParameters(timing);
+            combo++;
+            //trace('${note.time}, ${note.direction}, ${note.lane}, $timing');
+            note.kill();
+            playerStrum.strumline.members[NoteUtils.directionToNumber(note.direction)].playAnim('${note.direction}-confirm');
+            something.text = '<color=0xFF0000>COMBO: $combo</color>\nah, mandou $timing!!!';
+            something.screenCenter();
+        };
+        inputHandler.onNoteMiss = function(note)
+        {
+            combo = 0;
+            something.text = 'erro :(';
+        };
+        inputHandler.onKeyRelease = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-static');
+        inputHandler.onGhostTap = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-press');
+
+        playback = new Song([{song: 'sansational (fnffan remix)', type: Inst}, {song: 'sansational (fnffan remix)', type: Voices}], conductor);
         playback.curState = PLAY;
     }
 
     override public function update(elapsed:Float)
     {
-        chartNotes.updateNotes(elapsed);    
+        super.update(elapsed);
+        chartNotes.updateNotes(elapsed);
+
+        inputHandler.justPressed = [Controls.justPressed(LEFT),Controls.justPressed(DOWN),Controls.justPressed(UP),Controls.justPressed(RIGHT),
+		];
+
+		inputHandler.pressed = [Controls.pressed(LEFT),Controls.pressed(DOWN),Controls.pressed(UP),Controls.pressed(RIGHT),
+		];
+
+		inputHandler.released = [Controls.released(LEFT),Controls.released(DOWN),Controls.released(UP),Controls.released(RIGHT),
+		];
+
+        inputHandler.update();
     }
 
     public function onStepHit(step)

@@ -107,11 +107,11 @@ class Chart
 			// - Process notes in the section
 			for (note in section.sectionNotes)
 			{
-				var lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
+				final lane:String = (section.mustHitSection && note[1] <= 3) ? "P1" : 
 				(!section.mustHitSection && note[1] >= 4) ? "P1" : "Opponent"; // - This is such a dumb if statement.
 				
 				// - Set the notes direction, lane, step, and duration in steps
-				var noteData:NoteData = {
+				final noteData:NoteData = {
 					type: (note[3] == null) ? 'DEFAULT' : note[3],
 					direction: NoteUtils.numberToDirection(note[1]),
 					lane: lane,
@@ -127,7 +127,7 @@ class Chart
 					var cameraEvent:EventData = {
 						name: "Move Camera",
 						values: [
-							section.mustHitSection ? "Player" : "Opponent",
+							section.mustHitSection ? "player" : "opponent",
 							0.6,
 							"circOut"
 						],

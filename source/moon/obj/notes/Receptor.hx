@@ -17,7 +17,7 @@ import moon.states.PlayState;
 class Receptor extends FlxTypedGroup<FlxBasic>
 {
     public var strumline:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
-    public function new(x:Float, y:Float, skin:String = 'default')
+    public function new(x:Float, y:Float, skin:String = 'default', isCPU:Bool = false)
     {
         var data = Json.parse(File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
         super();
@@ -25,8 +25,9 @@ class Receptor extends FlxTypedGroup<FlxBasic>
         {
             strumline.recycle(StrumNote, function():StrumNote
             {
-                var note = new StrumNote(skin, NoteUtils.numberToDirection(i));
+                var note = new StrumNote(skin, NoteUtils.numberToDirection(i), isCPU);
                 note.scale.set(data.strum_size, data.strum_size);
+                note.antialiasing = data.strum_antialiasing;
                 note.updateHitbox();
                 note.setPosition(x, y);
                 note.x -= ((4 * 0.5) * note.width);
@@ -36,4 +37,7 @@ class Receptor extends FlxTypedGroup<FlxBasic>
         }
         add(strumline);
     }
+
+    override public function update(elapsed:Float)
+    {super.update(elapsed);}
 }

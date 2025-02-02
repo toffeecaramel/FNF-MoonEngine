@@ -1,5 +1,7 @@
 package;
 
+import moon.states.PlayState;
+import moon.subStates.LoadingSubState;
 import flixel.FlxState;
 
 class Constants
@@ -22,5 +24,5 @@ class Constants
 		'options', 'exit'
 	];
 
-    public static final INITIAL_STATE:Class<FlxState> = moon.states.PreloadState;
+    public static final INITIAL_STATE:Class<FlxState> = PlayState;
 }

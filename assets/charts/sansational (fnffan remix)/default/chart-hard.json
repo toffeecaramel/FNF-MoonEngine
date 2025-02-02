@@ -1,0 +1,6687 @@
+{
+	"events": [
+		{
+			"name": "Move Camera",
+			"time": 3000,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 6692.30769230769,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 10153.8461538462,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 14076.9230769231,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 17538.4615384615,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 21461.5384615385,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 24923.0769230769,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 28615.3846153846,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 32307.6923076923,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 40038.4615384615,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 47076.9230769231,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 50769.2307692308,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 54461.5384615384,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 58153.8461538461,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 61846.1538461538,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 69461.5384615384,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 78461.5384615384,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 80307.6923076923,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 82153.8461538461,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 84000,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 85846.1538461538,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 87692.3076923077,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 89538.4615384615,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 98999.9999999999,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 106615.384615385,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 108461.538461538,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 109846.153846154,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 111923.076923077,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 113538.461538461,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 115615.384615385,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 117230.769230769,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 119076.923076923,
+			"values": [
+				"player",
+				0.6,
+				"circOut"
+			]
+		},
+		{
+			"name": "Move Camera",
+			"time": 120923.076923077,
+			"values": [
+				"opponent",
+				0.6,
+				"circOut"
+			]
+		}
+	],
+	"hasVoices": true,
+	"notes": [
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 3000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 3230.76923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 3461.53846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 3692.30769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 3923.07692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 4153.84615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 4269.23076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 4384.61538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 4615.38461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 4846.15384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 5076.92307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 5307.69230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 5538.46153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 5365.38461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 5769.23076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6057.69230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6115.38461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6173.07692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6230.76923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 6692.30769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 6923.07692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 7153.84615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 7384.61538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 7615.38461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 7846.15384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 7961.53846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 8076.92307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 6461.53846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 8307.69230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 8538.46153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 8769.23076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9230.76923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9346.15384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9576.92307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9692.30769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9807.69230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9865.38461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 9923.07692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 9346.15384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 9576.92307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 9692.30769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 9807.69230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 9923.07692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 10153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 11884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 10153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12865.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 12923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 14884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 13846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 15923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16557.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 16961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 17076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 17192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 17307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 16846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 17076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 16961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 17192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 17307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 17538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 17538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 17769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 18923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19326.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 19961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20134.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 21000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 20884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 21461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 21692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 21807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 21923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 22961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23019.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 21230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23826.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 23884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 24923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 24923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 25846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26711.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 26769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27346.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27519.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 27923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28442.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 28615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 28846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 28730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 29884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30346.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 28615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 30923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31211.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 31961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 32192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 32076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 32134.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 31153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 31615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 31846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 31961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 32307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 32307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33346.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 33923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 32307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 34961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35653.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35826.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 35884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 36923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 37038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 37153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 37384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 37615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 37846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 38884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 39115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 39230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 39346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 39461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 39923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 40846.1538461539,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 39692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 41884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 42923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43153.8461538462,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43211.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 43961.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 44769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 45923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 46846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 47076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 47307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 47538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 47653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 47769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 50307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 50538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 48923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 49846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50711.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 50769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51461.5384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 51923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52269.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 50884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 52961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 53076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 53192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 53307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 53538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 53769.2307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54403.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 54576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 54692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 54923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 55961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 57923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 56884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57865.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 57923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 58038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 58961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 59076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 59307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 59538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 59653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 59884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 58153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60576.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 60807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61557.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 61961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 62884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 63923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 64961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65076.9230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65365.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 65884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 66923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 67961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 68884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 69000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 69461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 69576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 69692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 69807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 69923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 70846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 69230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 71884.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72750,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 72923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 73961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 74076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 74307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 74538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 74769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 75923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76442.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 76846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 77884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78403.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 78461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 78692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 78923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 79961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 80076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 80307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 80538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 80538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 80769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 80884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81057.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 81923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 82153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 82153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 82615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 82384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 82846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 82961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 83076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 83192.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 82500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 83423.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 83653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 116,
+			"lane": "Opponent",
+			"time": 83653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 83884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 84000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 84115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 84923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85384.6153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85788.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 85846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 86076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 86307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 86538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 86653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 86884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 87692.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 87923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 87923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 89076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 89192.3076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 89307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88442.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 88846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 89538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 89538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 89769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 89884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 90000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 90230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 90576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 90807.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92192.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92423.0769230768,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92307.6923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 91499.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 92999.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93692.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93807.6923076922,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94499.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 93923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 94846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95423.0769230768,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95538.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95192.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95307.6923076922,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95192.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96115.3846153845,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96807.6923076922,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 95999.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96692.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 98653.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 96923.0769230768,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97269.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97384.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97499.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97153.8461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97038.4615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97730.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97961.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97846.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 97615.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 98999.9999999999,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99346.1538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99807.6923076922,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99923.0769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100038.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100269.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100153.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99692.3076923076,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99115.3846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99230.7692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 98769.2307692307,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 98884.6153846153,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 99461.5384615384,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100730.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100615.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 100961.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101423.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101769.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102115.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102346.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 101307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102807.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103038.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 102576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103269.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103615.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103730.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103961.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 103153.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104423.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104769.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 104884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105115.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105346.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105576.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 105000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 106615.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 106846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 106961.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 106384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 106384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107423.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 107538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108807.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109038.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 108230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109153.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109269.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109730.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 108000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 108115.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 109961.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 110076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 110192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 110423.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 110653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 110769.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111346.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111519.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 111923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 112038.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 112269.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 112500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 112615.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 112846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113365.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113423.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 111807.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 113653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 113769.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 114000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 114230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 114461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 114692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 114807.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 115269.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 116,
+			"lane": "Opponent",
+			"time": 115038.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 115615.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 115846.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 116076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 116307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 116538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 116653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 117115.384615385,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 116,
+			"lane": "P1",
+			"time": 116884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 115384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 115500,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 117230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 117346.153846154,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 117461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 117692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 117923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 117923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 118153.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 118384.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 118442.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 118730.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119076.923076923,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119192.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 119307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 119538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 119653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 119884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120288.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120519.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 119307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119307.692307692,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119538.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119653.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 119884.615384615,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120000,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120230.769230769,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120288.461538461,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120461.538461538,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "right",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120519.230769231,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "up",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120692.307692308,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 120923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "Opponent",
+			"time": 121153.846153846,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "down",
+			"duration": 0,
+			"lane": "P1",
+			"time": 120923.076923077,
+			"type": "DEFAULT"
+		},
+		{
+			"direction": "left",
+			"duration": 0,
+			"lane": "P1",
+			"time": 121153.846153846,
+			"type": "DEFAULT"
+		}
+	],
+	"scrollSpeed": 2.7,
+	"bpm": 130,
+	"timeSignature": [
+		4,
+		4
+	]
+}
