@@ -1,6 +1,6 @@
 package moon.obj.game;
 
-import backend.dependency.FNFSprite;
+import backend.dependency.MoonSprite;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import haxe.Json;
@@ -42,7 +42,7 @@ class Stage extends FlxGroup
         
         for (image in data.images)
         {
-            var img:FNFSprite = new FNFSprite().loadGraphic('assets/data/stages/$curStage/${image.name}.png');
+            var img:MoonSprite = new MoonSprite().loadGraphic('assets/data/stages/$curStage/${image.name}.png');
             img.scrollFactor.set(image.parallax[0], image.parallax[1]);
             img.antialiasing = image.antialiasing;
             img.scale.set(image.scale, image.scale);

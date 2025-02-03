@@ -2,7 +2,7 @@ package moon.obj.game;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
-import backend.dependency.FNFSound;
+import backend.dependency.MoonSound;
 
 using StringTools;
 
@@ -16,7 +16,7 @@ enum SongState {
 /**
  * Class meant to handle over gameplay's Inst and Voices.
  **/
-class Song extends FlxTypedGroup<FNFSound>
+class Song extends FlxTypedGroup<MoonSound>
 {
 	/**
 	 * Sets the song's state, those being: `PLAY`, `PAUSE`, `STOP` & `KILL`.
@@ -57,10 +57,10 @@ class Song extends FlxTypedGroup<FNFSound>
 
 		for (i in 0...audios.length)
 		{
-			recycle(FNFSound, function():FNFSound
+			recycle(MoonSound, function():MoonSound
 			{
 				final extPath = (audios[i].charPath != null) ? audios[i].charPath : 'default';
-				var music = cast new FNFSound().loadEmbedded('assets/charts/${audios[i].song}/$extPath/${audios[i].type}.ogg', false, true);
+				var music = cast new MoonSound().loadEmbedded('assets/charts/${audios[i].song}/$extPath/${audios[i].type}.ogg', false, true);
 				music.musicID = audios[i].type;
 				FlxG.sound.list.add(cast music); // - I hate the fact that I have to cast it
 				return music;

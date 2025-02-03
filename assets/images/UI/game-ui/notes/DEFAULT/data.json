@@ -1,5 +1,17 @@
 {
-    "strum_size": 0.6,
-    "strum_antialiasing": true,
-    "note_size": 0.6
+    "strumlineData":
+    {
+        "size": 0.6
+    },
+    "noteData":
+    {
+        "size": 0.6
+    },
+    "splashData":
+    {
+        "fps": 28,
+        "size": 0.8,
+        "randomRotation": true,
+        "randomReverse": false
+    }
 }

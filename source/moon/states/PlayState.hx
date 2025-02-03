@@ -28,7 +28,6 @@ import moon.states.editors.chart.*;
 import moon.subStates.*;
 import moon.utilities.*;
 import moon.shaders.*;
-import backend.dependency.FNFSprite;
 import backend.gameplay.Timings;
 import backend.gameplay.*;
 

@@ -7,6 +7,7 @@ import openfl.text.TextFormat;
 import openfl.text.TextFieldAutoSize;
 import openfl.display.BitmapData;
 import openfl.geom.Matrix;
+import openfl.display.Bitmap; // Import Bitmap
 
 using StringTools;
 
@@ -20,6 +21,7 @@ class MoonText extends FlxSprite
 {
     private var _textField:TextField;
     private var _formats:Array<{start:Int, end:Int, format:TextFormat}>;
+    private var _bitmapData:BitmapData; // Store the BitmapData
 
     /**
      * Set an display text.
@@ -40,6 +42,7 @@ class MoonText extends FlxSprite
         _textField.autoSize = TextFieldAutoSize.LEFT;
 
         _formats = [];
+        _bitmapData = null; // Initialize BitmapData to null
     }
 
     /**
@@ -118,17 +121,32 @@ class MoonText extends FlxSprite
         final newWidth = Std.int(_textField.width) + 4;
         final newHeight = Std.int(_textField.height) + 4;
 
-        if (newWidth > this.frameWidth || newHeight > this.frameHeight)
+        var changeBitmap:Bool = false;
+
+        // - Check if we need to create a new BitmapData
+        if (_bitmapData == null)
+            changeBitmap = true;
+
+        else if (newWidth > _bitmapData.width || newHeight > _bitmapData.height)
+            changeBitmap = true;
+
+        if (changeBitmap)
         {
             trace('$newWidth is greater than $frameWidth. CHANGING WIDTH/HEIGHT!', "DEBUG");
             this.frameWidth = newWidth;
             this.frameHeight = newHeight;
             updateHitbox();
-        }
 
-        var bitmapData = new BitmapData(this.frameWidth, this.frameHeight, true, 0x00000000);
-        bitmapData.draw(_textField, new Matrix());
-        set_pixels(bitmapData);
+            // - Dispose of the old BitmapData if it exists
+            if (_bitmapData != null)
+                _bitmapData.dispose();
+            _bitmapData = new BitmapData(this.frameWidth, this.frameHeight, true, 0x00000000);
+        } 
+        else
+            _bitmapData.fillRect(_bitmapData.rect, 0x00000000); // - If reusing, clear the existing BitmapData
+
+        _bitmapData.draw(_textField, new Matrix());
+        set_pixels(_bitmapData);
     }
 
     @:noCompletion public function get_text():String

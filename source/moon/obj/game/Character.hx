@@ -6,7 +6,7 @@ import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import haxe.Json;
 import openfl.utils.Assets as OpenFlAssets;
-import backend.dependency.FNFSprite;
+import backend.dependency.MoonSprite;
 import backend.Paths.AnimationData;
 
 using StringTools;
@@ -25,7 +25,7 @@ typedef CharacterData = {
     var animations:Array<AnimationData>;
 }
 
-class Character extends FNFSprite
+class Character extends MoonSprite
 {
     public var debugMode:Bool = false;
 

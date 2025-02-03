@@ -31,11 +31,10 @@ class PlayField extends FlxGroup
     public function new(conductor:Conductor):Void
     {
         super();
-
         this.conductor = conductor;
 
         // ** - Generate Chart and Notes - ** //
-        chart = new Chart('sansational (fnffan remix)', 'hard');
+        chart = new Chart('fresh', 'hard', 'mano');
         chart.content.scrollSpeed /= 2.5; //- Too fast lol...
         conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
 
@@ -64,6 +63,8 @@ class PlayField extends FlxGroup
             //trace('${note.time}, ${note.direction}, ${note.lane}, $timing');
             note.kill();
             playerStrum.strumline.members[NoteUtils.directionToNumber(note.direction)].playAnim('${note.direction}-confirm');
+            if(timing == sick) playerStrum.displaySplash(note.direction);
+
             something.text = '<color=0xFF0000>COMBO: $combo</color>\nah, mandou $timing!!!';
             something.screenCenter();
         };
@@ -75,7 +76,7 @@ class PlayField extends FlxGroup
         inputHandler.onKeyRelease = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-static');
         inputHandler.onGhostTap = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-press');
 
-        playback = new Song([{song: 'sansational (fnffan remix)', type: Inst}, {song: 'sansational (fnffan remix)', type: Voices}], conductor);
+        playback = new Song([{song: 'fresh', type: Inst, charPath: 'mano'}, {song: 'fresh', type: Voices, charPath: 'mano'}], conductor);
         playback.curState = PLAY;
     }
 

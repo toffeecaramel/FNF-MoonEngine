@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import backend.dependency.FNFSprite;
+import backend.dependency.MoonSprite;
 import moon.utilities.*;
 import moon.states.PlayState;
 import backend.ScriptHandler;
@@ -17,7 +17,7 @@ enum NoteState
     MISSED;
     NONE;
 }
-class Note extends FNFSprite
+class Note extends MoonSprite
 {
     /**
      * Defines the note state.
@@ -71,6 +71,7 @@ class Note extends FNFSprite
     public function new(direction, time, ?type = 'default', ?skin = 'default', duration) 
     {
         super();
+        centerAnimations = true;
         this.direction = direction;
         this.time = time;
         this.type = type;
@@ -91,12 +92,11 @@ class Note extends FNFSprite
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
         animation.addByPrefix(direction, '${direction}0', 24, true);
 
-        scale.set(data.note_size, data.note_size);
+        scale.set(data.noteData.size ?? 1, data.noteData.size ?? 1);
+        antialiasing = data.noteData.antialiasing ?? true;
         updateHitbox();
 
         playAnim(direction);
-        centerOffsets();
-        centerOrigin();
     }
 
     @:noCompletion public function set_skin(skinName:String)

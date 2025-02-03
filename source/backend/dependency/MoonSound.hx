@@ -17,7 +17,7 @@ enum MusicType {
  * Such as: pitch tween, pausing for a timer, and maybe more? who knows!
  * by @toffeecaramel
  **/
-class FNFSound extends FlxSound
+class MoonSound extends FlxSound
 {
     /**
      * Used for recognizing whether the audio is inst or voices.

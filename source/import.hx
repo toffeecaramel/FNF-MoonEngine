@@ -10,8 +10,8 @@ import backend.Conductor;
 import backend.gameplay.*;
 import backend.user.*;
 import backend.*;
-import backend.dependency.FNFSound;
-import backend.dependency.FNFSound.MusicType;
+import backend.dependency.MoonSound;
+import backend.dependency.MoonSound.MusicType;
 import backend.dependency.MusicState;
 import backend.dependency.MusicState.MusicSubState;
 #end
