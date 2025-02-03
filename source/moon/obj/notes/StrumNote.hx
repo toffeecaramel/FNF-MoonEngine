@@ -21,14 +21,10 @@ class StrumNote extends MoonSprite
 
         animation.onFinish.add(function(anim:String)
         {
-            final confirmAnim = '$direction-confirm'; //gotta do it like this lol
-            final pressAnim = '$direction-press';
-            final staticAnim = '$direction-static';
-            switch(anim)
-            {
-                // the curse of not being able to use $ here...
-                case confirmAnim: playAnim((isCPU) ? staticAnim : pressAnim, false);
-            }
+            if(anim =='$direction-confirm') playAnim((isCPU) ? '$direction-static' : '$direction-press', false);
+
+            //if (anim == '$direction-press')
+                //animation.stop(); // ugh
         });
 
         playAnim('$direction-static', true);
