@@ -60,6 +60,8 @@ class Note extends MoonSprite
      */
     public var lane:String = 'P1';
 
+    public var conductor:Conductor;
+
     /**
      * Creates a note on screen.
      * @param direction
@@ -82,15 +84,18 @@ class Note extends MoonSprite
     override public function update(dt:Float):Void
     {
         super.update(dt);
+        if(active && state == GOT_HIT) alpha = 0;
     }
 
     private function _updateGraphics():Void
     {
         final data = Json.parse(sys.io.File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
         final curSkin = (type != 'default') ? skin : type;
-
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
+
         animation.addByPrefix(direction, '${direction}0', 24, true);
+        animation.addByPrefix('$direction-hold', '${direction}-hold0', 24, true);
+        animation.addByPrefix('$direction-holdEnd', '${direction}-holdend0', 24, true);
 
         scale.set(data.noteData.size ?? 1, data.noteData.size ?? 1);
         antialiasing = data.noteData.antialiasing ?? true;

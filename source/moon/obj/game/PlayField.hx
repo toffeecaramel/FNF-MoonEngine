@@ -51,11 +51,11 @@ class PlayField extends FlxGroup
         playerStrum = new Receptor(xVal + xAddition, 80, 'default', false);
         add(playerStrum);
 
-        chartNotes = new ChartRenderer(chart.content.notes, conductor);
+        chartNotes = new ChartRenderer(chart, conductor);
         chartNotes.scrollSpeed = chart.content.scrollSpeed;
         add(chartNotes);
 
-        inputHandler = new InputHandler(chartNotes.members, P1, conductor);
+        inputHandler = new InputHandler(chartNotes.notes.members, P1, conductor);
         inputHandler.onNoteHit = function(note, timing)
         {
             final timingData = Timings.getParameters(timing);

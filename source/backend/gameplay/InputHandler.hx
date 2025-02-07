@@ -113,8 +113,6 @@ class InputHandler
                         note.state = GOT_HIT;
 
                         playerStats.SCORE += timingData[2];
-
-                        NoteUtils.killNote(note, unspawnNotes); //thingyy,,
                     }
                 }
                 else
