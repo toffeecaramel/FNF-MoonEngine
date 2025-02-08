@@ -2,9 +2,10 @@ package moon.obj.menus;
 
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
-import cpp.Function;
 import flixel.FlxSprite;
+#if cpp
 import sys.FileSystem;
+#end
 import flixel.group.FlxSpriteGroup;
 
 using StringTools;
@@ -50,6 +51,6 @@ class ScrollingArts extends FlxSpriteGroup
         
         tween1 = FlxTween.tween(spr, {alpha: 1}, 0.5);
         tween2 = FlxTween.tween(spr, {x: (FlxG.random.bool(50)) ? spr.x - scrollAmmount : spr.x + scrollAmmount}, scrollLength);
-        tween3 = FlxTween.tween(spr, {alpha: 0.0001}, 0.5, {startDelay: scrollLength - 0.5, onComplete: (_) -> doScrolling(FlxG.random.int(0, this.members.length - 1))});
+        tween3 = FlxTween.tween(spr, {alpha: 0.0001}, 0.5, {startDelay: scrollLength - 0.5, onComplete: (_) -> doScrolling(FlxG.random.int(0, this.members.length - 1, [index]))});
     }
 }

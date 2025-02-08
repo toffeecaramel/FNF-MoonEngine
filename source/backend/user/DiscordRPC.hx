@@ -7,11 +7,11 @@ import lime.app.Application;
 
 class DiscordRPC
 {
-    #if DISCORD_RPC
     public static var gameStartTimestamp:Int = 0;
 
     public static function initRPC()
     {
+        #if DISCORD_RPC
         gameStartTimestamp = Math.floor(Date.now().getTime() / 1000);
 
         DiscordRpc.start({
@@ -22,10 +22,12 @@ class DiscordRPC
 		});
 
 		Application.current.window.onClose.add(shutdownRPC);
+        #end
     }
 
     static function onReady()
     {
+        #if DISCORD_RPC
         DiscordRpc.presence({
             details : 'Moon Engine',
             state   : 'Initializing...',
@@ -33,10 +35,12 @@ class DiscordRPC
             largeImageText : 'Moon Engine',
             startTimestamp : gameStartTimestamp
         });
+        #end
     }
 
     public static function changePresence(details:String = '', state:Null<String> = '', ?smallImageKey:String)
     {
+        #if DISCORD_RPC
         DiscordRpc.presence({
             details: details,
             state: state,
@@ -45,6 +49,7 @@ class DiscordRPC
             smallImageKey: smallImageKey,
             startTimestamp : gameStartTimestamp
         });
+        #end
     }
 
     static function onError(_code : Int, _message : String)
@@ -59,7 +64,8 @@ class DiscordRPC
 
     public static function shutdownRPC()
     {
+        #if DISCORD_RPC
         DiscordRpc.shutdown();
+        #end
     }
-    #end
 }

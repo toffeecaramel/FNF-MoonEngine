@@ -1,14 +1,12 @@
 package moon.obj.notes;
 
+#if cpp
 import sys.io.File;
+#end
 import haxe.Json;
-import flixel.FlxSprite;
-import flixel.util.FlxColor;
 import backend.dependency.MoonSprite;
 import flixel.FlxG;
-import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.display.BlendMode;
-import moon.utilities.NoteUtils;
 
 class NoteSplash extends MoonSprite
 {

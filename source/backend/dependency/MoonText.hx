@@ -1,4 +1,4 @@
-package moon.obj.font;
+package backend.dependency;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -7,14 +7,12 @@ import openfl.text.TextFormat;
 import openfl.text.TextFieldAutoSize;
 import openfl.display.BitmapData;
 import openfl.geom.Matrix;
-import openfl.display.Bitmap; // Import Bitmap
 
 using StringTools;
 
 /**
  * Neat little class meant for handling texts in my own way because I hate FlxText.
  * I'm trying my best to keep it optimized and overall better.
- * Please, set an default font before applying text formats.
  * by @toffeecaramel
  */
 class MoonText extends FlxSprite

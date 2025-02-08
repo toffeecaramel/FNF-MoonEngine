@@ -38,8 +38,8 @@ class PlayField extends FlxGroup
         chart.content.scrollSpeed /= 2.5; //- Too fast lol...
         conductor.changeBpmAt(0, chart.content.bpm, chart.content.timeSignature[0], chart.content.timeSignature[1]);
 
-        var something = new MoonText();
-        add(something);
+        var judges = new JudgementsGroup(700 , 400);
+        add(judges);
 
         // ** - Generate Strumlines - ** //
         //TODO: Add them to cameras.
@@ -64,14 +64,12 @@ class PlayField extends FlxGroup
             note.kill();
             playerStrum.strumline.members[NoteUtils.directionToNumber(note.direction)].playAnim('${note.direction}-confirm');
             if(timing == sick) playerStrum.displaySplash(note.direction);
-
-            something.text = '<color=0xFF0000>COMBO: $combo</color>\nah, mandou $timing!!!';
-            something.screenCenter();
+            judges.showJudgements(combo, timing);
         };
+
         inputHandler.onNoteMiss = function(note)
         {
             combo = 0;
-            something.text = 'erro :(';
         };
         inputHandler.onKeyRelease = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-static');
         inputHandler.onGhostTap = (number) -> playerStrum.strumline.members[number].playAnim('${NoteUtils.numberToDirection(number)}-press');

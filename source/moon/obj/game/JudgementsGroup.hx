@@ -12,7 +12,7 @@ import backend.dependency.MoonSprite;
 import haxe.Json;
 import flixel.group.FlxGroup;
 
-typedef ComboDisplayConfig = 
+typedef ComboDisplayConfig =
 {
     var width:Float;
     var judgementScale:Float;
@@ -25,9 +25,9 @@ typedef ComboDisplayConfig =
 
 class JudgementsGroup extends FlxGroup
 {
-    private var judgementGroup:FlxTypedSpriteGroup<MoonSprite>;
-    private var numberGroup:FlxTypedSpriteGroup<MoonSprite>;
-    
+    private var judgementGroup:FlxTypedGroup<MoonSprite>;
+    private var numberGroup:FlxTypedGroup<MoonSprite>;
+
     private var config:ComboDisplayConfig;
     private var skin:String;
 
@@ -35,49 +35,60 @@ class JudgementsGroup extends FlxGroup
 
     public var X:Float;
     public var Y:Float;
-    public var cam:FlxCamera;
 
     private var isPixel:Bool = false;
-    private var pixelModifier:String;
 
-    public function new(X:Float, Y:Float, skin:String = "default", isPixel:Bool = false)
+    public function new(X:Float = 0, Y:Float = 0, skin:String = "default")
     {
         super();
-        
+
         this.skin = skin;
         this.X = X;
         this.Y = Y;
-        this.isPixel = isPixel;
 
-        pixelModifier = (isPixel) ? '-pixel' : '';
+        var configPath:String = 'assets/images/UI/game-ui/combo/$skin/config';
+        try
+        {
+            final configJson:String = File.getContent('$configPath.json');
+            config = Json.parse(configJson);
+        }
+        catch (e:Dynamic)
+        {
+            // - Lol just a precaution!!
+            trace('ERROR: Failed to load combo config JSON at: $configPath.json. :/\nError: ${e}', "ERROR");
+            config = {
+                width: 200,
+                judgementScale: 1,
+                numberY: 0,
+                numberScale: 1,
+                numberSpacing: 10,
+                antialiasing: true
+            };
+        }
 
-        var configPath:String = 'assets/images/UI/game-ui/combo/$skin/config$pixelModifier';
-        final configJson:String = File.getContent('$configPath.json');
-        config = Json.parse(configJson);
-        
-        judgementGroup = new FlxTypedSpriteGroup<MoonSprite>();
-        numberGroup = new FlxTypedSpriteGroup<MoonSprite>();
-        
+        judgementGroup = new FlxTypedGroup<MoonSprite>();
+        numberGroup = new FlxTypedGroup<MoonSprite>();
+
         add(judgementGroup);
         add(numberGroup);
-        
+
         activeTweens = new Map<MoonSprite, Array<FlxTween>>();
     }
 
     public function showJudgements(combo:Int, judgement:JudgementsTiming):Void
     {
         clearGroup(numberGroup);
-        
+
         if (judgement != null)
         {
             clearGroup(judgementGroup);
             spawnJudgement(judgement);
         }
-        
+
         spawnCombo(combo, judgement);
     }
 
-    private function clearGroup(group:FlxTypedSpriteGroup<MoonSprite>):Void
+    private function clearGroup(group:FlxTypedGroup<MoonSprite>):Void
     {
         group.forEachAlive(function(sprite:MoonSprite)
         {
@@ -95,13 +106,16 @@ class JudgementsGroup extends FlxGroup
 
     private function spawnJudgement(judgement:JudgementsTiming):Void
     {
-        final judge:MoonSprite = judgementGroup.recycle(MoonSprite);
-        judge.loadGraphic(Paths.image('UI/game-ui/combo/$skin/$judgement${pixelModifier}'));
+        final color = Timings.getParameters(judgement)[5];
+        if (config == null) return;
 
-        judge.camera = cam;
-        judge.scale.set(config.judgementScale, config.judgementScale);
+        final judge:MoonSprite = judgementGroup.recycle(MoonSprite);
+        judge.loadGraphic(Paths.image('UI/game-ui/combo/$skin/$judgement'));
+        judge.color = color;
+
+        judge.scale.set(config.judgementScale ?? 1, config.judgementScale ?? 1);
         judge.updateHitbox();
-        judge.setPosition(X +(config.width - judge.width) / 2, Y);
+        judge.setPosition(X +((config.width ?? 300) - judge.width) / 2, Y);
 
         doAnim(judge, -20, -0.1, 20, -0.8);
     }
@@ -109,23 +123,24 @@ class JudgementsGroup extends FlxGroup
     private var timingData:Array<Dynamic>;
     private function spawnCombo(combo:Int, judgement:JudgementsTiming):Void
     {
+        if (config == null) return;
+
         final comboStr:String = Std.string(combo);
         if(judgement != null) timingData = Timings.getParameters(judgement);
 
-        final totalWidth:Float = (comboStr.length - 1) * config.numberSpacing;
-        final startX:Float = X + (config.width - totalWidth) / 2;
+        final totalWidth:Float = (comboStr.length - 1) * config.numberSpacing ?? 40;
+        final startX:Float = X + (config.width ?? 300 - totalWidth) / 2;
 
         for (i in 0...comboStr.length)
         {
             final digit:String = comboStr.charAt(i);
             final number:MoonSprite = numberGroup.recycle(MoonSprite);
-            number.loadGraphic(Paths.image('UI/game-ui/combo/$skin/numbers/$digit${pixelModifier}'));
-            
-            number.camera = cam;
-            number.scale.set(config.numberScale, config.numberScale);
+            number.loadGraphic(Paths.image('UI/game-ui/combo/$skin/numbers/$digit'));
+
+            number.scale.set(config.numberScale ?? 1, config.numberScale ?? 1);
             number.updateHitbox();
-            number.setPosition(startX + i * config.numberSpacing, Y + config.numberY);
-            number.antialiasing = config.antialiasing;
+            number.setPosition(startX + i * config.numberSpacing ?? 40, Y + config.numberY ?? 70);
+            number.antialiasing = config.antialiasing ?? true;
             number.color = timingData[5];
 
             doAnim(number, -20, -0.07);
@@ -134,15 +149,14 @@ class JudgementsGroup extends FlxGroup
 
     private function doAnim(sprite:MoonSprite, yOffset:Float, scaleOffset:Float, ?finalYOffset:Float, ?finalScaleOffset:Float):Void
     {
-        //TODO: MAKE ANIMS LENGTH A VARIABLE
         var tweens:Array<FlxTween> = [];
 
         var tween1 = FlxTween.tween(sprite,
         {
-            y: sprite.y + yOffset, 
-            "scale.x": sprite.scale.x + scaleOffset, 
+            y: sprite.y + yOffset,
+            "scale.x": sprite.scale.x + scaleOffset,
             "scale.y": sprite.scale.y + scaleOffset
-        }, 0.7,
+        }, 0.5,
         {
             ease: FlxEase.circOut,
             onComplete: function(_)
@@ -150,22 +164,22 @@ class JudgementsGroup extends FlxGroup
                 var tween2:FlxTween;
                 if (finalYOffset != null && finalScaleOffset != null)
                 {
-                    tween2 = FlxTween.tween(sprite, 
+                    tween2 = FlxTween.tween(sprite,
                     {
                         y: sprite.y + finalYOffset,
-                        alpha: 0,
+                        alpha: 0.0001,
                         "scale.x": sprite.scale.x + finalScaleOffset,
                         "scale.y": sprite.scale.y + finalScaleOffset
-                    }, 
-                    0.7, {ease: FlxEase.circIn, startDelay: 0.7 * 2});
+                    },
+                    0.5, {ease: FlxEase.circIn, startDelay: 0.7 * 2});
                 }
-                else 
+                else
                 {
                     tween2 = FlxTween.tween(sprite,
                     {
                         y: sprite.y + 20,
-                        alpha: 0
-                    }, 0.7, {ease: FlxEase.quadIn});
+                        alpha: 0.0001
+                    }, 0.5, {ease: FlxEase.quadIn});
                 }
                 tweens.push(tween2);
             }
@@ -173,13 +187,5 @@ class JudgementsGroup extends FlxGroup
 
         tweens.push(tween1);
         activeTweens.set(sprite, tweens);
-    }
-
-    private function removeSprite(sprite:MoonSprite):Void
-    {
-        if (activeTweens.exists(sprite))
-            activeTweens.remove(sprite);
-
-        sprite.kill();
     }
 }

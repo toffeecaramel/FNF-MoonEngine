@@ -1,12 +1,16 @@
 package backend;
 
-import sys.io.File;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
+
+#if cpp
 import sys.FileSystem;
+import sys.io.File;
+#end
+
 import hscript.Parser;
 import hscript.Expr;
 import hscript.Interp;

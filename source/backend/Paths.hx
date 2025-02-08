@@ -11,8 +11,12 @@ import openfl.utils.AssetType;
 import openfl.system.System;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.display3D.textures.RectangleTexture;
+
+#if cpp
 import sys.FileSystem;
 import sys.io.File;
+#end
+
 import moon.utilities.CoolUtil;
 
 typedef AnimationData = {

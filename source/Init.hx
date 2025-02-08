@@ -7,7 +7,9 @@ import flixel.graphics.FlxGraphic;
 import flixel.input.keyboard.FlxKey;
 import openfl.filters.BitmapFilter;
 import openfl.filters.ColorMatrixFilter;
+#if cpp
 import sys.FileSystem;
+#end
 
 import moon.obj.font.*;
 
@@ -36,7 +38,7 @@ class Init extends FlxState
 		    Alphabet.alphabetGroup.clear();
 		});
 		
-		FlxG.switchState(Type.createInstance(Constants.INITIAL_STATE, []));
+		FlxG.switchState(() -> Type.createInstance(Constants.INITIAL_STATE, []));
 	}
 
 	private function getDirectories(path:String):Array<String>

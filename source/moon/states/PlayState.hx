@@ -1,5 +1,6 @@
 package moon.states;
 
+import backend.dependency.MoonTypedText;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;

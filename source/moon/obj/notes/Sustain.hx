@@ -90,7 +90,9 @@ class Sustain extends FlxSpriteGroup
     @:noCompletion public function set_parent(parentNote:Note):Note
     {
         this.parent = parentNote;
-        _updateGraphs();
+
+        if(parentNote != null) _updateGraphs();
+        
         return parentNote;
     }
 }

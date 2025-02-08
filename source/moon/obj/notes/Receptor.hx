@@ -1,6 +1,8 @@
 package moon.obj.notes;
 
+#if cpp
 import sys.io.File;
+#end
 import haxe.Json;
 import backend.dependency.MoonSprite;
 import flixel.FlxG;
