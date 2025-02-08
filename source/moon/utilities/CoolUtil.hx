@@ -6,6 +6,8 @@ using StringTools;
 
 #if sys
 import sys.FileSystem;
+#else
+import openfl.utils.Assets;
 #end
 
 class CoolUtil
@@ -21,9 +23,9 @@ class CoolUtil
 
     public static function getTextArray(path:String)
     {
-        if (sys.FileSystem.exists(path))
+        if (#if sys sys.FileSystem.exists(path) #else Assets.exists(path) #end)
         {
-            final fileContent:String = sys.io.File.getContent(path);
+            final fileContent:String = #if sys sys.io.File.getContent(path); #else Assets.getText(path); #end
             return fileContent.split("\n").map(function(line:String):String {
                 return line.trim();
             });

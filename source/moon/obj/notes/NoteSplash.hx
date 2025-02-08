@@ -1,8 +1,11 @@
 package moon.obj.notes;
 
-#if cpp
+#if sys
 import sys.io.File;
+#else
+import openfl.utils.Assets;
 #end
+
 import haxe.Json;
 import backend.dependency.MoonSprite;
 import flixel.FlxG;
@@ -17,7 +20,9 @@ class NoteSplash extends MoonSprite
         centerAnimations = true;
 
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$skin/splash');
-        data = Json.parse(File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
+
+        final content = '';
+        data = Paths.JSON('UI/game-ui/notes/$skin/data');
 
         alpha = 0.0001;
         scale.set(data.splashData.size ?? 1, data.splashData.size ?? 1);

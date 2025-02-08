@@ -24,11 +24,13 @@ class Init extends FlxState
 		DiscordRPC.initRPC();
 		SongData.init();
 
+		#if sys
 		if (!FileSystem.exists("addons/")) FileSystem.createDirectory("addons/");
 
 		// - Get those addons directories if they exist!
 		final addonsDir = getDirectories('addons/');
 		if(addonsDir != null || addonsDir.length > 0) trace('found addons directories: $addonsDir', "DEBUG");
+		#end
 
 	    // - Init the alphabet
 	    FlxG.signals.preStateCreate.add(state -> @:privateAccess
@@ -41,6 +43,8 @@ class Init extends FlxState
 		FlxG.switchState(() -> Type.createInstance(Constants.INITIAL_STATE, []));
 	}
 
+	#if sys
 	private function getDirectories(path:String):Array<String>
 		return (FileSystem.exists(path)) ? FileSystem.readDirectory(path).filter(entry -> FileSystem.isDirectory('${path}/${entry}')) : null;
+	#end
 }

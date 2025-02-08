@@ -1,5 +1,11 @@
 package moon.obj.notes;
 
+#if sys
+import sys.io.File;
+#else
+import openfl.utils.Assets;
+#end
+
 import haxe.Json;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
@@ -89,7 +95,8 @@ class Note extends MoonSprite
 
     private function _updateGraphics():Void
     {
-        final data = Json.parse(sys.io.File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
+        final content = 'UI/game-ui/notes/$skin/data';
+        final data = cast Paths.JSON(content);
         final curSkin = (type != 'default') ? skin : type;
         frames = Paths.getSparrowAtlas('UI/game-ui/notes/$curSkin/staticArrows');
 

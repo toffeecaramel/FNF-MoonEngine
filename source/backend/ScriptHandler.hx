@@ -6,9 +6,11 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
 
-#if cpp
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#else
+import openfl.utils.Assets;
 #end
 
 import hscript.Parser;
@@ -52,7 +54,7 @@ class ScriptHandler
     //load the file and parse
     public function loadScript(path:String):Void
     {
-        var scriptContent:String = File.getContent(path);
+        var scriptContent:String = #if sys File.getContent(path) #else Assets.getText(path) #end;
         var parser:Parser = new Parser();
         var expr:Expr = parser.parseString(scriptContent);
 

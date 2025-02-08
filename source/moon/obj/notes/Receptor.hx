@@ -1,8 +1,11 @@
 package moon.obj.notes;
 
-#if cpp
+#if sys
 import sys.io.File;
+#else
+import openfl.utils.Assets;
 #end
+
 import haxe.Json;
 import backend.dependency.MoonSprite;
 import flixel.FlxG;
@@ -23,7 +26,8 @@ class Receptor extends FlxTypedGroup<FlxBasic>
 
     public function new(x:Float, y:Float, skin:String = 'default', isCPU:Bool = false)
     {
-        var data = Json.parse(File.getContent('assets/images/UI/game-ui/notes/$skin/data.json'));
+        final data = cast Paths.JSON('UI/game-ui/notes/$skin/data');
+
         super();
 
         for (i in 0...4) // - No more than that!

@@ -1,7 +1,6 @@
 package moon.obj.game;
 
 import flixel.FlxCamera;
-import sys.io.File;
 import flixel.group.FlxSpriteGroup;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
@@ -46,16 +45,14 @@ class JudgementsGroup extends FlxGroup
         this.X = X;
         this.Y = Y;
 
-        var configPath:String = 'assets/images/UI/game-ui/combo/$skin/config';
         try
         {
-            final configJson:String = File.getContent('$configPath.json');
-            config = Json.parse(configJson);
+            config = cast Paths.JSON('UI/game-ui/combo/$skin/config');
         }
         catch (e:Dynamic)
         {
             // - Lol just a precaution!!
-            trace('ERROR: Failed to load combo config JSON at: $configPath.json. :/\nError: ${e}', "ERROR");
+            trace('ERROR: Failed to load combo config JSON. :/\nError: ${e}', "ERROR");
             config = {
                 width: 200,
                 judgementScale: 1,

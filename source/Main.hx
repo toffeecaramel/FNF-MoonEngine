@@ -11,13 +11,15 @@ import haxe.CallStack.StackItem;
 import haxe.CallStack;
 import haxe.io.Path;
 import lime.app.Application;
-import openfl.Assets;
+
+import openfl.utils.Assets;
 import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.UncaughtErrorEvent;
+
 #if cpp
 import sys.FileSystem;
 import sys.io.File;
@@ -44,6 +46,7 @@ class Main extends Sprite
 		var infoCounter = new backend.FPS(0, 0);
 		addChild(infoCounter);
 
+		#if sys
 		// - This overrides the default trace bc I want to make it prettier.
 		haxe.Log.trace = function(v:Dynamic, ?infos:haxe.PosInfos) 
 		{
@@ -71,6 +74,7 @@ class Main extends Sprite
 			// - And then displays the pretty text on the console. :D
 			Sys.println('${levelData.color}${infoBefore.rpad(" ", 10)}${v}\x1b[0m');
 		};
+		#end
 
 		FlxG.fixedTimestep = false;
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
@@ -90,8 +94,10 @@ class Main extends Sprite
 	// Originally from FE as well.
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
+		#if sys
 		if (!FileSystem.exists("crash/"))
 			FileSystem.createDirectory("crash/");
+		#end
 
 		var message:String = "";
 		var path:String;
@@ -112,16 +118,21 @@ class Main extends Sprite
 				case FilePos(s, file, line, column):
 					message += '$file (Line: $line)\n';
 				default:
+					#if sys
 					Sys.println(stackItem);
+					#end
 			}
 		}
 
 		message += '\nPlease, if possible, report this bug to toffee.caramel (discord)';
+
+		#if sys
 		File.saveContent(path, message + "\n");
 		Sys.println(message);
 		Sys.println('Crash dump saved in ${Path.normalize(path)}');
 		Application.current.window.alert(message, "Error!");
 
 		Sys.exit(1);
+		#end
 	}
 }

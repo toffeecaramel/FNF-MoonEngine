@@ -1,5 +1,6 @@
 package backend;
 
+import haxe.Json;
 import flixel.FlxG;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -12,7 +13,7 @@ import openfl.system.System;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.display3D.textures.RectangleTexture;
 
-#if cpp
+#if sys
 import sys.FileSystem;
 import sys.io.File;
 #end
@@ -53,6 +54,9 @@ class Paths
     inline static public function music(key:String)
         return 'assets/music/$key.ogg';
 
+    inline static public function JSON(key:String, ?from:String = 'images')
+        return Json.parse(#if sys File.getContent('assets/$from/$key.json') #else OpenFlAssets.getText('assets/$from/$key.json') #end);
+
     static public function image(key:String, ?from:String = 'images', ?library:String = null, ?allowGPU:Bool = true):FlxGraphic 
     {
         var file:String = getPath('$from/$key.png', IMAGE, library);
@@ -77,7 +81,7 @@ class Paths
     inline static public function getSparrowAtlas(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
         var graphic:FlxGraphic = returnGraphic(key, from, library, textureCompression);
-        return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('$from/$key.xml', library))));
+        return (FlxAtlasFrames.fromSparrow(graphic, #if sys File.getContent(file('$from/$key.xml', library)) #else OpenFlAssets.getText(file('$from/$key.xml', library))#end));
     }
 
     static public function cacheBitmap(file:String, ?bitmap:BitmapData = null, ?allowGPU:Bool = true) 
@@ -111,7 +115,8 @@ class Paths
     public static function returnGraphic(key:String, ?from:String = 'images', ?library:String, ?textureCompression:Bool = false)
     {
         var path = getPath('$from/$key.png', IMAGE, library);
-        if (FileSystem.exists(path))
+
+        if (#if sys FileSystem.exists(path) #else OpenFlAssets.exists(path) #end)
         {
             if (!currentTrackedAssets.exists(key))
             {
@@ -163,13 +168,12 @@ class Paths
     inline static function getPreloadPath(file:String)
     {
         var returnPath:String = 'assets/$file';
-        if (!FileSystem.exists(returnPath))
+        if (#if sys !FileSystem.exists(returnPath) #else !OpenFlAssets.exists(returnPath) #end)
             returnPath = CoolUtil.swapSpaceDash(returnPath);
         return returnPath;
     }
 
     // - Other utilities. - //
-
 
     public static function clearUnusedMemory(?dumpExclusions:Array<String> = null)
     {

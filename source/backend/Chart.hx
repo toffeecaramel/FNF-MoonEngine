@@ -4,6 +4,13 @@ import flixel.tweens.FlxEase;
 import moon.utilities.*;	
 import haxe.Json;
 
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#else
+import openfl.utils.Assets;
+#end
+
 using StringTools;
 
 typedef NoteData = {
@@ -58,9 +65,8 @@ class Chart
 
     public function new(songName, difficulty, ?mix = 'default')
     {
-		final path = 'assets/charts/$songName/$mix';
-
-        content = Json.parse(sys.io.File.getContent('$path/chart-$difficulty.json'));
+		final path = '$songName/$mix';
+        content = Paths.JSON('$path/chart-$difficulty','charts');
 		//metadata = Json.parse(sys.io.File.getContent('$path/metadata.json'));
     }
 
@@ -154,8 +160,8 @@ class Chart
 	 */
 	public static function loadBaseFromJson(jsonInput:String):SwagSong
 	{
-		var rawJson = sys.io.File.getContent(jsonInput).trim();
-
+		final json = #if sys File.getContent(jsonInput); #else Assets.getText(jsonInput); #end
+		var rawJson = json.trim();
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
 

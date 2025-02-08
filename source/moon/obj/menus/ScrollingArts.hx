@@ -3,8 +3,10 @@ package moon.obj.menus;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
-#if cpp
+#if sys
 import sys.FileSystem;
+#else
+import openfl.utils.Assets;
 #end
 import flixel.group.FlxSpriteGroup;
 
@@ -26,7 +28,8 @@ class ScrollingArts extends FlxSpriteGroup
         this.scrollAmmount = scrollAmmount;
         this.scrollLength = scrollLength;
 
-        imgs = FileSystem.readDirectory(path);
+        #if sys
+        imgs = FileSystem.readDirectory(path); //TODO: find a alternative for openfl assets... 
 
         for(i in 0...imgs.length)
         {
@@ -37,6 +40,7 @@ class ScrollingArts extends FlxSpriteGroup
                 return img;
             });
         }
+        #end
     }
 
     var tween1:FlxTween;
@@ -44,6 +48,7 @@ class ScrollingArts extends FlxSpriteGroup
     var tween3:FlxTween;
     public function doScrolling(index:Int)
     {
+        #if sys
         var spr = this.members[index];
         spr.screenCenter();
         for(twn in [tween1, tween2, tween3])
@@ -52,5 +57,6 @@ class ScrollingArts extends FlxSpriteGroup
         tween1 = FlxTween.tween(spr, {alpha: 1}, 0.5);
         tween2 = FlxTween.tween(spr, {x: (FlxG.random.bool(50)) ? spr.x - scrollAmmount : spr.x + scrollAmmount}, scrollLength);
         tween3 = FlxTween.tween(spr, {alpha: 0.0001}, 0.5, {startDelay: scrollLength - 0.5, onComplete: (_) -> doScrolling(FlxG.random.int(0, this.members.length - 1, [index]))});
+        #end
     }
 }
